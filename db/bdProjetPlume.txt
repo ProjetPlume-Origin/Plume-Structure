@@ -1,0 +1,54 @@
+# modèle Conceptuel de Données - Plume (MCD)
+
+# script créé le : Thu Oct 23 13:19:29 EDT 2014 -   syntaxe MySQL ;
+
+# use  db_projet_plume ;
+
+DROP TABLE IF EXISTS Utilisateur ;
+CREATE TABLE Utilisateur (idUtilisateur int AUTO_INCREMENT NOT NULL,
+sNomUtilisateur VARCHAR(45),
+sCourrielUtilisateur VARCHAR(45),
+sMotPassUtilisateur VARCHAR(15),
+sAvatarUtilisateur VARCHAR(50),
+iStatut INT(2),
+sTypeUtilisateur VARCHAR(20),
+PRIMARY KEY (idUtilisateur) ) ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS Reglage ;
+CREATE TABLE Reglage (sTypePolice VARCHAR(50) NOT NULL,
+sTaillePolice VARCHAR(5),
+sCouleurPolice VARCHAR(10),
+sCouleurFond VARCHAR(10),
+idUtilisateur INT,
+PRIMARY KEY (sTypePolice) ) ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS Ouvrage ;
+CREATE TABLE Ouvrage (idOuvrage int AUTO_INCREMENT NOT NULL,
+sTitreOuvrage VARCHAR(150),
+sDateOuvrage DATETIME,
+sCouvertureOuvrage VARCHAR(100),
+sGenre VARCHAR(45),
+idUtilisateur INT NOT NULL,
+PRIMARY KEY (idOuvrage) ) ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS Commentaire ;
+CREATE TABLE Commentaire (idCommentaire int AUTO_INCREMENT NOT NULL,
+sContenuCommentaire LONGTEXT,
+sDateCommentaire DATETIME,
+idParagraphe INT NOT NULL,
+idUtilisateur INT NOT NULL,
+PRIMARY KEY (idCommentaire) ) ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS Paragraphe ;
+CREATE TABLE Paragraphe (idParagraphe int AUTO_INCREMENT NOT NULL,
+sContenuParagraphe LONGTEXT,
+sDateParagraphe DATETIME,
+idOuvrage INT,
+PRIMARY KEY (idParagraphe) ) ENGINE=InnoDB;
+
+ALTER TABLE Reglage ADD CONSTRAINT FK_Reglage_idUtilisateur FOREIGN KEY (idUtilisateur) REFERENCES Utilisateur (idUtilisateur);
+
+ALTER TABLE Ouvrage ADD CONSTRAINT FK_Ouvrage_idUtilisateur FOREIGN KEY (idUtilisateur) REFERENCES Utilisateur (idUtilisateur);
+ALTER TABLE Commentaire ADD CONSTRAINT FK_Commentaire_idParagraphe FOREIGN KEY (idParagraphe) REFERENCES Paragraphe (idParagraphe);
+ALTER TABLE Commentaire ADD CONSTRAINT FK_Commentaire_idUtilisateur FOREIGN KEY (idUtilisateur) REFERENCES Utilisateur (idUtilisateur);
+ALTER TABLE Paragraphe ADD CONSTRAINT FK_Paragraphe_idOuvrage FOREIGN KEY (idOuvrage) REFERENCES Ouvrage (idOuvrage);
