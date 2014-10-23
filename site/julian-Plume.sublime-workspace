@@ -1,0 +1,1071 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"ba",
+				"background-color"
+			],
+			[
+				"margin",
+				"margin-left"
+			],
+			[
+				"ma",
+				"margin-right"
+			],
+			[
+				"mar",
+				"margin-bottom"
+			],
+			[
+				"pa",
+				"padding-left"
+			],
+			[
+				"te",
+				"text-decoration"
+			],
+			[
+				"marg",
+				"margin"
+			],
+			[
+				"margi",
+				"margin-bottom"
+			],
+			[
+				"tex",
+				"text-decoration"
+			],
+			[
+				"st",
+				"list-style-type"
+			],
+			[
+				"fon",
+				"font-weight"
+			],
+			[
+				"id",
+				"idProduit"
+			],
+			[
+				"setId",
+				"setIdProduit"
+			],
+			[
+				"getIdE",
+				"getIdEtudiant"
+			],
+			[
+				"get",
+				"getNom  (function)"
+			],
+			[
+				"est",
+				"estVide  (function)"
+			],
+			[
+				"exec",
+				"executer"
+			],
+			[
+				"getn",
+				"getNomProduit"
+			],
+			[
+				"mys",
+				"MySqliLib  (class)"
+			],
+			[
+				"oprod",
+				"oProduit  (variable)"
+			],
+			[
+				"pro",
+				"Produit  (class)"
+			],
+			[
+				"opro",
+				"oProduit  (variable)"
+			],
+			[
+				"Pro",
+				"Produit  (class)"
+			],
+			[
+				"oP",
+				"oProduit  (variable)"
+			],
+			[
+				"t",
+				"TypeException.class.php"
+			],
+			[
+				"set",
+				"setCategorie  (function)"
+			],
+			[
+				"o",
+				"oResultat"
+			],
+			[
+				"Mys",
+				"MySqliLib  (class)"
+			],
+			[
+				"s",
+				"sNomProduit  (variable)"
+			],
+			[
+				"MySql",
+				"MySqliLib  (class)"
+			],
+			[
+				"setid",
+				"setIdEtudiant"
+			],
+			[
+				"setI",
+				"setIdEtudiant"
+			],
+			[
+				"es",
+				"estNumerique  (function)"
+			],
+			[
+				"in",
+				"inline-block"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"bac",
+				"background-image"
+			],
+			[
+				"max",
+				"max-height"
+			],
+			[
+				"php",
+				"php"
+			],
+			[
+				"N",
+				"nom"
+			],
+			[
+				"C",
+				"Connexion  (class)"
+			],
+			[
+				"wid",
+				"width:   (property)"
+			],
+			[
+				"min",
+				"min-width"
+			],
+			[
+				"pos",
+				"position"
+			],
+			[
+				"i",
+				"italic"
+			],
+			[
+				"f",
+				"first-of-type  (pseudo-class)"
+			],
+			[
+				"border-t",
+				"border-top:   (property)"
+			],
+			[
+				"bor",
+				"border-color"
+			],
+			[
+				"E",
+				"Exception  (class)"
+			],
+			[
+				"n",
+				"nth-child(  (pseudo-class)"
+			],
+			[
+				"pad",
+				"padding-left"
+			],
+			[
+				"l",
+				"last-of-type  (pseudo-class)"
+			],
+			[
+				"las",
+				"last-child  (pseudo-class)"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"getN",
+				"getNomUtilisateur"
+			],
+			[
+				"nom",
+				"nom"
+			],
+			[
+				"mo",
+				"motPass"
+			],
+			[
+				"contr",
+				"controleur  (variable)"
+			],
+			[
+				"Son",
+				"SondageControleur  (class)"
+			],
+			[
+				"con",
+				"controleur/"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"co",
+				"connexion"
+			],
+			[
+				"Co",
+				"CollectionSondage  (class)"
+			],
+			[
+				"sonda",
+				"sondage"
+			],
+			[
+				"we",
+				"-webkit-animation:   (property)"
+			],
+			[
+				"op",
+				"opacity"
+			],
+			[
+				"v",
+				"volleyMediaQuery1024.css"
+			],
+			[
+				"opac",
+				"opacity"
+			],
+			[
+				"border",
+				"border-bottom"
+			],
+			[
+				"sa",
+				"sauvegarderEmployes  (function)"
+			],
+			[
+				"Re",
+				"Representation  (class)"
+			],
+			[
+				"c",
+				"classe.php"
+			],
+			[
+				"clas",
+				"Classe/"
+			],
+			[
+				"un",
+				"unAppartement  (variable)"
+			],
+			[
+				"une",
+				"uneMaison  (variable)"
+			],
+			[
+				"oM",
+				"oMonImmeuble  (variable)"
+			],
+			[
+				"_",
+				"__toString"
+			],
+			[
+				"a",
+				"aImmeubles  (variable)"
+			],
+			[
+				"su",
+				"superficie"
+			],
+			[
+				"ar",
+				"array"
+			],
+			[
+				"person",
+				"personnel.txt"
+			],
+			[
+				"per",
+				"personnel.txt"
+			],
+			[
+				"arr",
+				"array"
+			],
+			[
+				"for",
+				"foreach	foreach …"
+			],
+			[
+				"calcul",
+				"calculerSalaire"
+			],
+			[
+				"chi",
+				"chiffreAffaire"
+			],
+			[
+				"lis",
+				"listeEmployes"
+			],
+			[
+				"li",
+				"listeEmployes"
+			],
+			[
+				"pr",
+				"productionRisque.php"
+			],
+			[
+				"p",
+				"prime  (function)"
+			],
+			[
+				"cal",
+				"calculerSalaire"
+			],
+			[
+				"P",
+				"Production  (class)"
+			],
+			[
+				"re",
+				"representation.php"
+			],
+			[
+				"sala",
+				"salaireMensuel"
+			],
+			[
+				"abstra",
+				"abstract"
+			],
+			[
+				"TE",
+				"text-decoration"
+			],
+			[
+				"list-style",
+				"list-style-type"
+			],
+			[
+				"borde",
+				"border-bottom"
+			],
+			[
+				"dis",
+				"display"
+			],
+			[
+				"d",
+				"display"
+			],
+			[
+				"padding-",
+				"padding-top:   (property)"
+			],
+			[
+				"ajou",
+				"ajouteUtilisateur"
+			],
+			[
+				"colo",
+				"color"
+			],
+			[
+				"u",
+				"blink  (value)"
+			],
+			[
+				"aSpecta",
+				"aSpectacles"
+			],
+			[
+				"nb",
+				"nbLignes  (variable)"
+			],
+			[
+				"af",
+				"afficherListeSpectacles"
+			],
+			[
+				"affic",
+				"afficherListeSpectacles  (function)"
+			],
+			[
+				"modele",
+				"modeleSpectacle.php"
+			],
+			[
+				"mode",
+				"modeleSpectacle.php"
+			],
+			[
+				"fl",
+				"float"
+			],
+			[
+				"border-r",
+				"border-right:   (property)"
+			],
+			[
+				"font-",
+				"font-size"
+			],
+			[
+				"b",
+				"bottom"
+			],
+			[
+				"rel",
+				"relative"
+			],
+			[
+				"margin-",
+				"margin-left"
+			],
+			[
+				"PRINT",
+				"print_r"
+			],
+			[
+				"id_",
+				"id_utilisateur"
+			],
+			[
+				"produit",
+				"produitCoche"
+			],
+			[
+				"print",
+				"print_r"
+			],
+			[
+				"produ",
+				"produitCoche"
+			],
+			[
+				"Prod",
+				"Produit"
+			],
+			[
+				"valu",
+				"value1"
+			],
+			[
+				"SUP",
+				"suppr"
+			],
+			[
+				"NOM",
+				"Nom"
+			],
+			[
+				"jo",
+				"joueurs"
+			],
+			[
+				"Jou",
+				"joueur"
+			],
+			[
+				"jouer",
+				"jouers"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "index.php",
+			"settings":
+			{
+				"buffer_size": 719,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 173.0,
+		"selected_items":
+		[
+			[
+				"set html",
+				"Set Syntax: HTML"
+			],
+			[
+				"set ht",
+				"Set Syntax: HTML (Tcl)"
+			],
+			[
+				"sql",
+				"Set Syntax: SQL"
+			],
+			[
+				"set htm",
+				"Set Syntax: HTML"
+			],
+			[
+				"set h",
+				"Set Syntax: HTML"
+			],
+			[
+				"act",
+				"Package Control: Enable Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"gist",
+				"Package Control: Install Package"
+			],
+			[
+				"dis",
+				"Package Control: Disable Package"
+			],
+			[
+				"p",
+				"Package Control: Enable Package"
+			],
+			[
+				"set css",
+				"Set Syntax: CSS"
+			],
+			[
+				"SET CSS",
+				"Set Syntax: CSS"
+			],
+			[
+				"enable",
+				"Package Control: Enable Package"
+			],
+			[
+				"list",
+				"Package Control: List Packages"
+			],
+			[
+				"disa",
+				"Package Control: Disable Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"set php",
+				"Set Syntax: PHP"
+			],
+			[
+				"INS",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"re",
+				"Package Control: Remove Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: List Packages"
+			],
+			[
+				"INSTAL",
+				"Package Control: Install Package"
+			],
+			[
+				"set p",
+				"Set Syntax: PHP"
+			],
+			[
+				"set xl",
+				"Set Syntax: XML"
+			],
+			[
+				"setp",
+				"Set Syntax: PHP"
+			],
+			[
+				"set",
+				"Set Syntax: SQL"
+			],
+			[
+				"set sql",
+				"Set Syntax: SQL"
+			],
+			[
+				"col",
+				"Color Picker"
+			],
+			[
+				"pac",
+				"Package Control: List Packages"
+			]
+		],
+		"width": 408.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/Julian/Google Drive/GitHub/Plume-Origin/julian_Plume.sublime-project",
+		"/H/EasyPHP/www/582-853-MA_Programmation_Internet_3/TP/Volet_3/core/Controleur.class.php",
+		"/H/EasyPHP/www/582-853-MA_Programmation_Internet_3/TP/Volet_2/tests/index.php",
+		"/H/EasyPHP/www/582-853-MA_Programmation_Internet_3/Exe_Caroline/Etudiant_ajax_complet/core/gabarit.php",
+		"/H/EasyPHP/www/582-853-MA_Programmation_Internet_3/TP/Volet_2/tests/test_classe_media.php",
+		"/H/EasyPHP/www/582-853-MA_Programmation_Internet_3/TP/Volet_3/vues/templates/footer.php",
+		"/H/EasyPHP/www/582-853-MA_Programmation_Internet_3/TP/Volet_3/core/gabarit.php",
+		"/H/EasyPHP/www/582-853-MA_Programmation_Internet_3/TP/Volet_3/site/css/main.css",
+		"/H/EasyPHP/www/582-853-MA_Programmation_Internet_3/TP/Volet_3/vues/templates/jumbotron.php",
+		"/H/EasyPHP/www/582-853-MA_Programmation_Internet_3/TP/Volet_3/site/gabarit.php",
+		"/H/EasyPHP/www/582-853-MA_Programmation_Internet_3/TP/Volet_3/vues/templates/nav.php",
+		"/H/EasyPHP/www/582-853-MA_Programmation_Internet_3/TP/Volet_3/vues/templates/header.php",
+		"/H/EasyPHP/www/582-853-MA_Programmation_Internet_3/TP/Volet_3/core/index.php",
+		"/H/EasyPHP/www/582-853-MA_Programmation_Internet_3/TP/Volet_3/tests/index.php",
+		"/C/Users/Julian/Google Drive/AEC/Session 4/582-862-MA Mise En Page II/initializr-default/index.html",
+		"/H/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/TPs/TP2_Feng/modele/utilisateur.php",
+		"/H/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/TPs/TP2_Feng/vue/entete.php",
+		"/H/EasyPHP/www/582-853-MA_Programmation_Internet_3/TP/Volet_3/modeles/utilisateur.php",
+		"/C/Users/Julian/Google Drive/AEC/Session 4/582-892-MA_Projet_Integration_II/02_Version_alpha_individuel/css/main.css",
+		"/C/Users/Julian/Google Drive/AEC/Session 4/582-892-MA_Projet_Integration_II/02_Version_alpha_individuel/pages/recherche.html",
+		"/C/Users/Julian/Google Drive/AEC/Session 4/582-892-MA_Projet_Integration_II/02_Version_alpha_individuel/pages/ouvres.html",
+		"/C/Users/Julian/Google Drive/AEC/Session 4/582-892-MA_Projet_Integration_II/03_Version_alpha_equipe/db/bd_projet_plume.sql",
+		"/C/Users/Julian/Google Drive/AEC/Session 4/582-892-MA_Projet_Integration_II/02_Version_alpha_individuel/index.html",
+		"/H/EasyPHP/www/582-853-MA_Programmation_Internet_3/TP/bd/bd_tp_denims.txt",
+		"/H/EasyPHP/www/582-853-MA_Programmation_Internet_3/TP/test/test_classe_Produit.php",
+		"/H/EasyPHP/www/582-853-MA_Programmation_Internet_3/TP/model/Media.class.php",
+		"/H/EasyPHP/www/582-853-MA_Programmation_Internet_3/TP/model/Produit.class.php",
+		"/H/EasyPHP/www/582-853-MA_Programmation_Internet_3/TP/test/test_classe_Media.php",
+		"/H/EasyPHP/www/582-853-MA_Programmation_Internet_3/Exe_Caroline/Etudiant/tests/test_classe_Etudiant.php",
+		"/H/EasyPHP/www/582-853-MA_Programmation_Internet_3/Exe_Caroline/Etudiant/modeles/Etudiant_v3.class.php",
+		"/H/EasyPHP/www/582-853-MA_Programmation_Internet_3/Exe_Caroline/Etudiant/modeles/Etudiant.class.php",
+		"/E/EasyPHP/www/582-853-MA_Programmation_Internet_3/Exe_Caroline/Etudiant/modeles/Etudiant_v3.class.php",
+		"/E/EasyPHP/www/582-853-MA_Programmation_Internet_3/Exe_Caroline/Etudiant/modeles/Etudiant.class.php",
+		"/E/EasyPHP/www/582-853-MA_Programmation_Internet_3/Exe_Caroline/Etudiant/tests/test_classe_Etudiant.php",
+		"/E/EasyPHP/www/582-853-MA_Programmation_Internet_3/TP/model/Media.class.php",
+		"/E/EasyPHP/www/582-853-MA_Programmation_Internet_3/TP/test/test_classe_Produit.php",
+		"/E/EasyPHP/www/582-853-MA_Programmation_Internet_3/TP/model/Produit.class.php",
+		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/Exercices_du_cours/PHP-OO/mvc-produits/model/Model.php",
+		"/E/EasyPHP/www/582-853-MA_Programmation_Internet_3/TP/test/test.html",
+		"/E/EasyPHP/www/582-853-MA_Programmation_Internet_3/Exe_Caroline/Etudiant/site/index.php",
+		"/E/EasyPHP/www/582-853-MA_Programmation_Internet_3/Exe_Caroline/Etudiant/modeles/Dossier.class.php",
+		"/E/EasyPHP/www/582-853-MA_Programmation_Internet_3/Exercices/Etudiants/lib/MySqliLib.class.php",
+		"/E/EasyPHP/www/582-853-MA_Programmation_Internet_3/TP/outils/lib/MySqliLib.class.php",
+		"/E/EasyPHP/www/582-853-MA_Programmation_Internet_3/TP/outils/lib/TypeException.class.php",
+		"/E/EasyPHP/www/582-853-MA_Programmation_Internet_3/Exe_Caroline/Etudiant/lib/TypeException.class.php",
+		"/E/EasyPHP/www/582-853-MA_Programmation_Internet_3/Exe_Caroline/Etudiant/lib/MySqliLib.class.php",
+		"/E/EasyPHP/www/582-853-MA_Programmation_Internet_3/TP/outils/lib/MySqliException.class.php",
+		"/E/EasyPHP/www/582-853-MA_Programmation_Internet_3/Exe_Caroline/Etudiant/lib/MySqliException.class.php",
+		"/E/EasyPHP/www/582-853-MA_Programmation_Internet_3/lib/MySqliLib.class.php",
+		"/U/AEC/Session 4/582-892-MA_Projet_Integration_II/02_Version_alpha/db/db_projet_plume.txt",
+		"/C/Users/e1396063/Downloads/bd_projet_plume.sql",
+		"/E/EasyPHP/www/582-853-MA_Programmation_Internet_3/db.txt",
+		"/U/AEC/Session 4/582-892-MA_Projet_Integration_II/02_Version_alpha/db_projet_plume.txt",
+		"/E/EasyPHP/www/582-853-MA_Programmation_Internet_3/db",
+		"/E/EasyPHP/www/582-853-MA_Programmation_Internet_3/Exe_Caroline/Etudiant/tests/test_classe_ModeleEtudiant.php",
+		"/E/EasyPHP/www/582-853-MA_Programmation_Internet_3/Exe_Caroline/Etudiant/modeles/ModeleEtudiant.class.php",
+		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/Exercices_du_cours/PHP-OO/Produits-PDO/ajouterProduit.php",
+		"/E/EasyPHP/www/582-853-MA_Programmation_Internet_3/Exe_Caroline/Etudiant/bd/alter_table_add_constraint.sql",
+		"/E/EasyPHP/www/582-853-MA_Programmation_Internet_3/Exe_Caroline/Etudiant/bd/alter_table_add_constraint.txt",
+		"/E/EasyPHP/www/582-853-MA_Programmation_Internet_3/Exe_Caroline/bd_etudiants.sql",
+		"/E/EasyPHP/www/582-853-MA_Programmation_Internet_3/Exe_Caroline/alter_table_add_constraint.sql",
+		"/E/EasyPHP/www/582-853-MA_Programmation_Internet_3/Exe_Caroline/Etudiant/tests/test_classe_Dossier.php",
+		"/U/AEC/Session 4/582-862-MA Mise En Page II/TPs/TP2/css/main.css",
+		"/U/AEC/Session 4/582-862-MA Mise En Page II/TPs/TP2/index.html",
+		"/U/AEC/Session 4/582-862-MA Mise En Page II/TPs/TP2/pages/deuxieme_session/projet_01/projet_01.html",
+		"/U/AEC/Session 4/582-862-MA Mise En Page II/TPs/TP2/pages/projet_03/projet_03.html",
+		"/U/AEC/Session 4/582-862-MA Mise En Page II/TPs/TP2/pages/contact.html",
+		"/U/AEC/Session 4/582-862-MA Mise En Page II/TPs/TP2/pages/cv.html",
+		"/U/PortfolioWebdev/index.html",
+		"/U/PortfolioFTP/00_GuitarPlus/css/guitar.css",
+		"/C/Users/Julian/Google Drive/AEC/Session 4/582-862-MA Mise En Page II/TPs/TP2/index.html",
+		"/C/Users/Julian/Google Drive/AEC/Session 4/582-862-MA Mise En Page II/TPs/TP2/pages/contact.html",
+		"/C/Users/Julian/Google Drive/AEC/Session 4/582-862-MA Mise En Page II/TPs/TP2/pages/projet_03/projet_03.html",
+		"/C/Users/Julian/Google Drive/AEC/Session 4/582-862-MA Mise En Page II/TPs/TP2/pages/cv.html",
+		"/C/Users/Julian/Google Drive/AEC/Session 4/582-862-MA Mise En Page II/TPs/TP2/css/main.css",
+		"/U/AEC/Session 4/582-862-MA Mise En Page II/Exercices/Exercice_4/index.html",
+		"/U/AEC/Session 4/582-862-MA Mise En Page II/TPs/TP2/css/bootstrap.css",
+		"/U/AEC/Session 4/582-862-MA Mise En Page II/Exercices/Exercice_5/index.html",
+		"/U/AEC/Session 4/582-862-MA Mise En Page II/TPs/TP2/js/main.js",
+		"/C/Users/e1396063/Downloads/ReactiveRaven-jqBootstrapValidation-d66d033/README.md",
+		"/C/Users/e1396063/Downloads/ReactiveRaven-jqBootstrapValidation-d66d033/LICENSE",
+		"/E/EasyPHP/www/582-853-MA_Programmation_Internet_3/Exe_Caroline/Etudiant/site/Controleur.class.php",
+		"/E/EasyPHP/www/582-853-MA_Programmation_Internet_3/Exe_Caroline/Etudiant/vues/VueEtudiant.class.php",
+		"/E/EasyPHP/www/582-853-MA_Programmation_Internet_3/Exe_Caroline/Etudiant/site/gabarit.php",
+		"/E/EasyPHP/www/582-853-MA_Programmation_Internet_3/Exe_Caroline/Etudiant/vues/vueEtudiant.Class.php",
+		"/E/EasyPHP/www/582-853-MA_Programmation_Internet_3/Exe_Caroline/Etudiant/tests/test_classe_VueEtudiant.php",
+		"/U/AEC/Session 4/582-862-MA Mise En Page II/Documents distribués/Cours_09_ Animation, transition et transformation/effetPhoto.html",
+		"/C/Users/e1396063/Downloads/index.php",
+		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/Examen/Final/.htaccess",
+		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/Examen/Final/controleur/controleur.php",
+		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/Examen/Final/modele/Films.php",
+		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/Examen/Final/modele/Connexion.php",
+		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/Examen/Final/index.php",
+		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/Examen/Final/vues/ListeRealisateur.php",
+		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/Examen/Final/modele/Realisateur.php",
+		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/Exercices_du_cours/PHP-OO/mvc-contacts/controller/ContactsController.php",
+		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/TPs/TP2/vues/ListeSondage.php",
+		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/TPs/TP2/controleur/controleur.php",
+		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/TPs/TP2/modele/Sondage.php",
+		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/TPs/TP2/modele/Utilisateur.php",
+		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/TPs/TP2/modele/Reponse.php",
+		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/TPs/TP2/modele/Connexion.php",
+		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/Exercices_du_cours/URL_Rewriting/.htaccess",
+		"/U/AEC/Session 4/582-862-MA Mise En Page II/TPs/demo_bootstrap/index.html",
+		"/U/AEC/Session 4/582-862-MA Mise En Page II/TPs/demo_bootstrap/pages/projet_03/index1.html",
+		"/U/AEC/Session 4/582-862-MA Mise En Page II/TPs/demo_bootstrap/pages/projet_03/projet_03.html",
+		"/U/AEC/Session 4/582-862-MA Mise En Page II/TPs/demo_bootstrap/index1.html",
+		"/U/AEC/Session 4/582-862-MA Mise En Page II/TPs/TP2/pages/projet_03/projet_03_copy.html",
+		"/U/AEC/Session 4/582-862-MA Mise En Page II/Exercices/Exercice_4/css/exe4_cv.css",
+		"/U/AEC/Session 4/582-862-MA Mise En Page II/Examen/question3.html",
+		"/U/AEC/Session 4/582-862-MA Mise En Page II/Exercices/Exercice_2/partie_2/index.html",
+		"/U/AEC/Session 4/582-862-MA Mise En Page II/Documents distribués/Cours_04_Media queries/testMediaQuery.html",
+		"/U/AEC/Session 4/582-862-MA Mise En Page II/Documents distribués/Cours_04_Media queries/MediaQuery.html",
+		"/U/AEC/Session 4/582-862-MA Mise En Page II/Examen/question2.html",
+		"/U/AEC/Session 4/582-862-MA Mise En Page II/Examen/question1.html",
+		"/U/AEC/Session 4/582-862-MA Mise En Page II/Documents distribués/Cours_08_Font et mise en page des textes/font_1656.html",
+		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/Exercices_du_cours/Revision-Final/sauverXML.php",
+		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/Exercices_du_cours/Revision-Final/controleur/Controleur.php",
+		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/Exercices_du_cours/Revision-Final/vues/exporterContact.php",
+		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/Exercices_du_cours/Revision-Final/modele/XML.php",
+		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/Exercices_du_cours/Revision-Final/vues/ListeDesContacts.php",
+		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/Exercices_du_cours/Revision-Final/index.php",
+		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/tuto_revision_final/app/controleur/IndexControleur.php",
+		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/Tutorat_Antoine/test.php",
+		"/U/AEC/Session 4/582-862-MA Mise En Page II/initializr-default/exemple.html",
+		"/U/AEC/Session 4/582-862-MA Mise En Page II/TPs/TP2/pages/projet_01/projet_01.html",
+		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/Exercices_du_cours/PHP-OO/xml/pays.xml",
+		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/Exercices_du_cours/PHP-OO/xml/pays2.xml"
+	],
+	"find":
+	{
+		"height": 36.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"\");\n",
+			"background-image",
+			"nouveauxEcrivans",
+			"boiteOuvre",
+			"border",
+			"btnNav",
+			"h5",
+			"13",
+			"img",
+			"3>",
+			"h3",
+			"\">\n",
+			"Titre",
+			"Blog",
+			"h2",
+			".navPrincipal a",
+			"<li",
+			"GAUCHE",
+			"transparent",
+			"Produit",
+			"<!",
+			"2",
+			"Produit",
+			"ajouterProduit",
+			"12",
+			"1_BM13844_2",
+			"produit",
+			"Produit",
+			"produit",
+			"Produit",
+			"idProduit",
+			"IdProduit",
+			"idProduit",
+			"rechercherUnProduit",
+			"Produit",
+			"NomProduit",
+			"Produit",
+			"NomProduit",
+			"NomMedia",
+			"Produit",
+			"supprimerProduit_innoDB",
+			"Produit",
+			"modifierProduit",
+			"produit",
+			"Produit",
+			"Categorie",
+			"sNomProduit",
+			"Produit",
+			"20",
+			"Etudiant",
+			"oEtudiant",
+			"Etudiant",
+			"setCategorie",
+			"sCategorie",
+			"setCategorie",
+			"sNom",
+			"Etudiant",
+			"Nom",
+			"ajouterEtudiant",
+			"modifierEtudiant",
+			"oEtudiant",
+			"produit",
+			"Produit",
+			"produit",
+			"oProduit",
+			"modalProjet_04",
+			"../../",
+			"première",
+			"img/projet_04/projet04_01_800x600.png",
+			"02",
+			"Tutoriel",
+			"02",
+			"session1_projet01_02_800x600.png",
+			"01",
+			"modalProjet_01",
+			"Projet_01",
+			"projet_01",
+			"Projet_01",
+			"01",
+			"aEtudiant",
+			"tudiant",
+			"Etudiant",
+			"étudiant",
+			"Tremblay",
+			"Etudiant",
+			"nom",
+			"Nom",
+			"IdDossier",
+			"idDossier",
+			"IdDossier",
+			"idDossier",
+			"sPrenom",
+			"idDossier",
+			"IdDossier",
+			"idDossier",
+			"32",
+			"64",
+			"h3",
+			"h4",
+			"btn",
+			".ca\n.ca\n.ca\nnavbarprojet",
+			"shr",
+			".navbar-fixed-top.navbar-fixed-top-shrink {\n.navbar-fixed-top.navbar-fixed-top-shrink {\nshrink",
+			".navbar-fixed-top.navbar-fixed-top-shrink {\n.navbar-fixed-top.navbar-fixed-top-shrink {\n.navbar-fixed-top.navbar-fixed-top-shrink",
+			".navbar-fixed-top.navbar-fixed-top-shrink {\n.navbar-fixed-top.navbar-fixed-top-shrink {\n.navbar-fixed-top.navbar-fixed-top-shrin",
+			"nom",
+			"Nom",
+			"nom",
+			"Nom",
+			"singlebutton",
+			"textarea",
+			"textinput",
+			"EEEEEE",
+			"h2",
+			"\"<table><tr>\"",
+			"<tr><td>",
+			"Sondage",
+			"800px",
+			"animate",
+			"lang",
+			"robotoslab_bold",
+			"carousel-example-generic",
+			"effect8",
+			"h2",
+			"container",
+			"12",
+			"6",
+			"/li>"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "index.php",
+					"settings":
+					{
+						"buffer_size": 719,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								719,
+								719
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 124.0
+	},
+	"output.sftp":
+	{
+		"height": 100.0
+	},
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 279.0,
+	"status_bar_visible": true
+}
