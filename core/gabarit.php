@@ -1,6 +1,6 @@
 <?php 
 	include_once "../vues/templates/header.php";
-	include_once "../vues/templates/navAdmin.php"; 
+	include_once "../vues/templates/nav.php"; 
 ?>
 		<article class="container">		
 			<div class="row">

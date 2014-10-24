@@ -9,12 +9,17 @@
 
 ?>
 <!DOCTYPE html>
-<html lang="fr">
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> 
+<html class="no-js"> <!--<![endif]-->
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>nom du projet | Julian Rendon</title>
+		<title>Plume</title>
+		<meta name="description" content="">
 		<meta name="author" content="Julian Rendon">
 
 		<!-- Bootstrap CSS -->
@@ -28,6 +33,10 @@
         </style>
 		<link rel="stylesheet" href="<?php echo SITE.DS; ?>css/bootstrap-theme.min.css">
 		<link rel="stylesheet" href="<?php echo SITE.DS; ?>css/main.css">
+		<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Esteban' rel='stylesheet' type='text/css'>
+        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+        <script src="<?php echo SITE.DS; ?>../js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -37,4 +46,8 @@
 		<![endif]-->
 	</head>
 	<body>
+		<!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to
+            improve your experience.</p>
+        <![endif]-->
 		
