@@ -519,7 +519,7 @@
 			"file": "site/Controleur.class.php",
 			"settings":
 			{
-				"buffer_size": 65,
+				"buffer_size": 489,
 				"line_ending": "Windows"
 			}
 		},
@@ -527,7 +527,7 @@
 			"file": "site/gabarit.php",
 			"settings":
 			{
-				"buffer_size": 227,
+				"buffer_size": 334,
 				"line_ending": "Windows"
 			}
 		},
@@ -535,15 +535,23 @@
 			"file": "site/index.php",
 			"settings":
 			{
-				"buffer_size": 487,
+				"buffer_size": 488,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "vues/vueAccueil.php",
+			"file": "vues/VueAccueil.php",
 			"settings":
 			{
-				"buffer_size": 25,
+				"buffer_size": 714,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "vues/templates/nav.php",
+			"settings":
+			{
+				"buffer_size": 1917,
 				"line_ending": "Windows"
 			}
 		}
@@ -700,11 +708,11 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/vues/templates/footer.php",
+		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/vues/templates/header.php",
 		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/core/index.php",
 		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/core/gabarit.php",
 		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/core/Controleur.class.php",
-		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/vues/templates/footer.php",
-		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/vues/templates/header.php",
 		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/README.md",
 		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/modeles/Paragraphe.class.php",
 		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/db/bd_projet_plume.sql",
@@ -998,15 +1006,15 @@
 					"file": "site/Controleur.class.php",
 					"settings":
 					{
-						"buffer_size": 65,
+						"buffer_size": 489,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								27,
-								27
+								361,
+								361
 							]
 						],
 						"settings":
@@ -1122,31 +1130,25 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 14.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
+				},
 				{
 					"buffer": 1,
 					"file": "site/gabarit.php",
 					"settings":
 					{
-						"buffer_size": 227,
+						"buffer_size": 334,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								158,
-								158
+								334,
+								334
 							]
 						],
 						"settings":
@@ -1272,15 +1274,15 @@
 					"file": "site/index.php",
 					"settings":
 					{
-						"buffer_size": 487,
+						"buffer_size": 488,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								310,
-								310
+								257,
+								257
 							]
 						],
 						"settings":
@@ -1403,18 +1405,18 @@
 				},
 				{
 					"buffer": 3,
-					"file": "vues/vueAccueil.php",
+					"file": "vues/VueAccueil.php",
 					"settings":
 					{
-						"buffer_size": 25,
+						"buffer_size": 714,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								22,
-								22
+								714,
+								714
 							]
 						],
 						"settings":
@@ -1532,6 +1534,140 @@
 						"zoom_level": 1.0
 					},
 					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "vues/templates/nav.php",
+					"settings":
+					{
+						"buffer_size": 1917,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"codeintel": true,
+							"codeintel_config":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_files_in_project": false,
+									"javascriptExtraPaths":
+									[
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 5,
+									"codeintel_scan_files_in_project": false,
+									"phpExtraPaths":
+									[
+									]
+								},
+								"Python":
+								{
+									"env":
+									{
+									}
+								}
+							},
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_live": true,
+							"codeintel_live_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							{
+								"JavaScript":
+								[
+									"/build/",
+									"/min/"
+								]
+							},
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+								"PyWin32",
+								"jQuery",
+								"Rails"
+							],
+							"codeintel_snippets": true,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"sublime_auto_complete": true,
+							"synced": false,
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
 				}
 			]
 		}
@@ -1553,18 +1689,11 @@
 				0,
 				1,
 				1
-			],
-			[
-				1,
-				0,
-				2,
-				1
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.408923643054,
 			1.0
 		],
 		"rows":
