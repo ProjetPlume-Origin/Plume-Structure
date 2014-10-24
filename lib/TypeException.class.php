@@ -26,7 +26,26 @@
 		const ERR_RESOURCE="Le paramètre doit être une ressource";
 		const ERR_OBJET = "Erreur - le paramètre doit être un objet";
 		const ERR_ARRAY = "Erreur - le paramètre doit être un array";
-    	/**
+    	const ERR_INVALID_FORMAT = "Erreur - le paramètre doit être en format Courriel ";
+         
+		 
+        /**
+		 * détermine si le paramètre est un courriel
+		 * @param mixed $sCourriel
+		 */
+       public static function estCourriel($sCourriel){
+            
+            if (!(filter_var($sCourriel, FILTER_VALIDATE_EMAIL)) )
+              
+                throw new TypeException(get_class()." :: ". TypeException::ERR_INVALID_FORMAT);
+          
+            
+            
+        }
+		
+		
+		
+		/**
 		 * détermine si le paramètre est une chaîne vide
 		 * @param mixed $sCh
 		 */
