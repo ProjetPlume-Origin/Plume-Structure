@@ -14,7 +14,8 @@
 				
 				switch($_GET['s']){
 
-					case 1: default://Accueil 						
+					case 1: default://Accueil 
+						VueAccueil::afficherListeDesCategories();					
 
 					case 2: //					 
 						break;		
