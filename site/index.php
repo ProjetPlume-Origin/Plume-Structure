@@ -10,7 +10,7 @@
 	 /**
 	 * Inclure les vues
 	 */
-	 require_once("../vues/VueAccueil.php");
+	 require_once("../vues/VueAccueil.class.php");
 
 	 /**
 	 * Inclure les modèles
