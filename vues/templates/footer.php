@@ -17,11 +17,11 @@
 		<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
 		
 		<!-- Bootstrap JavaScript -->
-		<script src="<?php echo SITE.DS; ?>../js/vendor/bootstrap.min.js"></script>
-		<script src="<?php echo SITE.DS; ?>../js/jquery-2.1.1.min.js"></script>
-		<script src="<?php echo SITE.DS; ?>../js/scripts.js"></script>
-		<script src="<?php echo SITE.DS; ?>../js/main.js"></script>
-		<script src="<?php echo SITE.DS; ?>../js/valider.js"></script>
+		<script src="<?php echo RACINE.DS; ?>js/vendor/bootstrap.min.js"></script>
+		<script src="<?php echo RACINE.DS; ?>js/vendor/jquery-2.1.1.min.js"></script>
+		<script src="<?php echo RACINE.DS; ?>js/scripts.js"></script>
+		<script src="<?php echo RACINE.DS; ?>js/main.js"></script>
+		<script src="<?php echo RACINE.DS; ?>js/valider.js"></script>
 
 		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 		<script>
