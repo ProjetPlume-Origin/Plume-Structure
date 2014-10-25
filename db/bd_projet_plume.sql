@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 3.2.1
+-- version 3.4.11.1deb2+deb7u1
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 23, 2014 at 08:03 PM
--- Server version: 5.1.37
--- PHP Version: 5.3.0
+-- Client: localhost
+-- Généré le: Ven 24 Octobre 2014 à 19:07
+-- Version du serveur: 5.5.38
+-- Version de PHP: 5.4.4-14+deb7u14
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -16,13 +17,13 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `bd_projet_plume`
+-- Base de données: `e1395754`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `commentaire`
+-- Structure de la table `commentaire`
 --
 
 CREATE TABLE IF NOT EXISTS `commentaire` (
@@ -37,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `commentaire` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
--- Dumping data for table `commentaire`
+-- Contenu de la table `commentaire`
 --
 
 INSERT INTO `commentaire` (`idCommentaire`, `sContenuCommentaire`, `sDateCommentaire`, `idParagraphe`, `idUtilisateur`) VALUES
@@ -49,7 +50,7 @@ INSERT INTO `commentaire` (`idCommentaire`, `sContenuCommentaire`, `sDateComment
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ouvrage`
+-- Structure de la table `ouvrage`
 --
 
 CREATE TABLE IF NOT EXISTS `ouvrage` (
@@ -64,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `ouvrage` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `ouvrage`
+-- Contenu de la table `ouvrage`
 --
 
 INSERT INTO `ouvrage` (`idOuvrage`, `sTitreOuvrage`, `sDateOuvrage`, `sCouvertureOuvrage`, `sGenre`, `idUtilisateur`) VALUES
@@ -76,7 +77,7 @@ INSERT INTO `ouvrage` (`idOuvrage`, `sTitreOuvrage`, `sDateOuvrage`, `sCouvertur
 -- --------------------------------------------------------
 
 --
--- Table structure for table `paragraphe`
+-- Structure de la table `paragraphe`
 --
 
 CREATE TABLE IF NOT EXISTS `paragraphe` (
@@ -89,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `paragraphe` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
 
 --
--- Dumping data for table `paragraphe`
+-- Contenu de la table `paragraphe`
 --
 
 INSERT INTO `paragraphe` (`idParagraphe`, `sContenuParagraphe`, `sDateParagraphe`, `idOuvrage`) VALUES
@@ -101,7 +102,7 @@ INSERT INTO `paragraphe` (`idParagraphe`, `sContenuParagraphe`, `sDateParagraphe
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reglage`
+-- Structure de la table `reglage`
 --
 
 CREATE TABLE IF NOT EXISTS `reglage` (
@@ -115,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `reglage` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `reglage`
+-- Contenu de la table `reglage`
 --
 
 INSERT INTO `reglage` (`sTypePolice`, `sTaillePolice`, `sCouleurPolice`, `sCouleurFond`, `idUtilisateur`) VALUES
@@ -125,56 +126,60 @@ INSERT INTO `reglage` (`sTypePolice`, `sTaillePolice`, `sCouleurPolice`, `sCoule
 -- --------------------------------------------------------
 
 --
--- Table structure for table `utilisateur`
+-- Structure de la table `utilisateur`
 --
 
 CREATE TABLE IF NOT EXISTS `utilisateur` (
   `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT,
   `sNomUtilisateur` varchar(45) DEFAULT NULL,
   `sCourrielUtilisateur` varchar(45) DEFAULT NULL,
-  `sMotPassUtilisateur` varchar(15) DEFAULT NULL,
+  `sMotPassUtilisateur` varchar(100) DEFAULT NULL,
   `sAvatarUtilisateur` varchar(50) DEFAULT NULL,
-  `iStatut` int(2) DEFAULT NULL,
+  `sStatut` varchar(30) DEFAULT NULL,
   `sTypeUtilisateur` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`idUtilisateur`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
--- Dumping data for table `utilisateur`
+-- Contenu de la table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`idUtilisateur`, `sNomUtilisateur`, `sCourrielUtilisateur`, `sMotPassUtilisateur`, `sAvatarUtilisateur`, `iStatut`, `sTypeUtilisateur`) VALUES
-(1, 'Samuel Diaz', 'samuel@gmail.com', '123', NULL, 1, 'utilisateur'),
-(2, 'Alexandre Mayer', 'alex@gmail.com', '123', NULL, 1, 'utilisateur'),
-(3, 'Hanaa El Hamoumi', 'hanna@gmail.com', '123', NULL, 1, 'utilisateur'),
-(4, 'Jalal Khair', 'jalal@gmail.com', '123', NULL, 1, 'admin'),
-(5, 'Julian Rendon', 'julian@gmail.com', '123', NULL, 1, 'utilisateur');
+INSERT INTO `utilisateur` (`idUtilisateur`, `sNomUtilisateur`, `sCourrielUtilisateur`, `sMotPassUtilisateur`, `sAvatarUtilisateur`, `sStatut`, `sTypeUtilisateur`) VALUES
+(1, 'Samuel Diaz', 'samuel@gmail.com', '123', NULL, '1', 'utilisateur'),
+(2, 'Alexandre Mayer', 'alex@gmail.com', '123', NULL, '1', 'utilisateur'),
+(3, 'Hanaa El Hamoumi', 'hanna@gmail.com', '123', NULL, '1', 'utilisateur'),
+(4, 'Jalal Khair', 'jalal@gmail.com', '123', NULL, '1', 'admin'),
+(5, 'Julian Rendon', 'julian@gmail.com', '123', NULL, '1', 'utilisateur');
 
 --
--- Constraints for dumped tables
+-- Contraintes pour les tables exportées
 --
 
 --
--- Constraints for table `commentaire`
+-- Contraintes pour la table `commentaire`
 --
 ALTER TABLE `commentaire`
   ADD CONSTRAINT `FK_Commentaire_idUtilisateur` FOREIGN KEY (`idUtilisateur`) REFERENCES `utilisateur` (`idUtilisateur`),
   ADD CONSTRAINT `FK_Commentaire_idParagraphe` FOREIGN KEY (`idParagraphe`) REFERENCES `paragraphe` (`idParagraphe`);
 
 --
--- Constraints for table `ouvrage`
+-- Contraintes pour la table `ouvrage`
 --
 ALTER TABLE `ouvrage`
   ADD CONSTRAINT `FK_Ouvrage_idUtilisateur` FOREIGN KEY (`idUtilisateur`) REFERENCES `utilisateur` (`idUtilisateur`);
 
 --
--- Constraints for table `paragraphe`
+-- Contraintes pour la table `paragraphe`
 --
 ALTER TABLE `paragraphe`
   ADD CONSTRAINT `FK_Paragraphe_idOuvrage` FOREIGN KEY (`idOuvrage`) REFERENCES `ouvrage` (`idOuvrage`);
 
 --
--- Constraints for table `reglage`
+-- Contraintes pour la table `reglage`
 --
 ALTER TABLE `reglage`
   ADD CONSTRAINT `FK_Reglage_idUtilisateur` FOREIGN KEY (`idUtilisateur`) REFERENCES `utilisateur` (`idUtilisateur`);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
