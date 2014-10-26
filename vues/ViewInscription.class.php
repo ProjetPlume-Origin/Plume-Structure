@@ -8,37 +8,38 @@
          
         
         public static function afficherAjouterUtilisateur( $sMsg=""){
-              echo 'get s'.$_GET['s'];
+      	// echo 'get s'.$_GET['s'];
         echo'<article class="col-md-5 col-md-offset-3 moduleUtilisateur">';
         echo "
             <p>".$sMsg."</p>
-            <form action=\"index.php?s=".$_GET['s']."\" method=\"post\">
-				<fieldset>
-					<legend>Inscription</legend> 
-					<div class=\"form-group\">
-								<label for=\"exampleInputNom1\">Nom</label>
-								<input type=\"text\"  name=\"txtNom\" placeholder=\"nom\">
-					</div>
-					<div class=\"form-group\">
-						<label for=\"exampleInputEmail1\">Courriel électronique</label>
-						<input type\"email\" class=\"form-control\" id=\"exampleInputEmail1\"  name=\"txtCourriel\" placeholder=\"Courriel électronique\">
-					</div>
-					<div class=\"form-group\">
-						<label for=\"exampleInputPassword1\">Mot de Passe</label>
-						<input type=\"password\" class=\"form-control\" id=\"exampleInputPassword1\"  name=\"txtPass\" placeholder=\"Mot de passe\">
-					</div>
-					<div class=\"form-group\">
-						<label for=\"exampleInputPassword1\"> Confirmation Mot de Passe</label>
-						<input type=\"password\" class=\"form-control\" id=\"exampleInputPassword11\" name=\"txtPassConfirm\"  placeholder=\"Confirmation mot de passe\">
-					</div>
-					<!--<div class=\"form-group\">
-						<label for=\"exampleInputFile\">Avatar</label>
-						<input type=\"file\" id=\"exampleInputFile\">
-					</div>-->
+            	<form action=\"index.php?s=".$_GET['s']."\" method=\"post\">
+					<fieldset>
+						<legend>Inscription</legend> 
+						<div class=\"form-group\">
+							<label for=\"exampleInputNom1\">Nom</label>
+							<input type=\"text\"  class=\"form-control\" name=\"txtNom\" placeholder=\"nom\">
+						</div>
+						<div class=\"form-group\">
+							<label for=\"exampleInputEmail1\">Courriel électronique</label>
+							<input type\"email\" class=\"form-control\" id=\"exampleInputEmail1\"  name=\"txtCourriel\" placeholder=\"Courriel électronique\">
+						</div>
+						<div class=\"form-group\">
+							<label for=\"exampleInputPassword1\">Mot de Passe</label>
+							<input type=\"password\" class=\"form-control\" id=\"exampleInputPassword1\"  name=\"txtPass\" placeholder=\"Mot de passe\">
+						</div>
+						<div class=\"form-group\">
+							<label for=\"exampleInputPassword1\"> Confirmation Mot de Passe</label>
+							<input type=\"password\" class=\"form-control\" id=\"exampleInputPassword11\" name=\"txtPassConfirm\"  placeholder=\"Confirmation mot de passe\">
+						</div>
+						<!--<div class=\"form-group\">
+							<label for=\"exampleInputFile\">Avatar</label>
+							<input type=\"file\" id=\"exampleInputFile\">
+						</div>-->
+						<button type=\"submit\" name=\"cmd\" value=\"inscription\">Créer un compte</button>
+					</fieldset>	
 					
-				</fieldset>	
-				<button type=\"submit\" name=\"cmd\" value=\"inscription\">Créer un compte</button>
-			</form></article>
+				</form>
+			</article>
 		
 		  ";
 		}
@@ -47,31 +48,31 @@
 /*----------------------------------------------------------------------------------------------------------------------------------*/        
          
         public static function afficherConnexionUtilisateur( $sMsg=""){
-        echo'<article class=\"col-md-5 col-md-offset-3 moduleUtilisateur\">';
-         echo 'get s'.$_GET['s'];
+        echo'<article class="col-md-5 col-md-offset-3 moduleUtilisateur">';
         echo "
             <p>".$sMsg."</p>
         
-        <form action=\"index.php?s=".$_GET['s']."\" method=\"post\">
-				<fieldset>
-					<legend>Connexion</legend> 
+        		<form action=\"index.php?s=".$_GET['s']."\" method=\"post\">
+					<fieldset>
+						<legend>Connexion</legend> 
 
-					 <div class=\"form-group\">
-						<label for=\"exampleInputEmail1\">Courriel électronique</label>
-						<input type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\" placeholder=\"Courriel électronique\"  name=\"txtCourriel\">
-					</div>
-					<div class=\"form-group\">
-						<label for=\"exampleInputPassword1\">Mot de Passe</label>
-						<input type=\"password\" class=\"form-control\"  placeholder=\"mot de passe\"  name=\"txtPass\">
-					 </div>
-				</fieldset>	
+						<div class=\"form-group\">
+							<label for=\"exampleInputEmail1\">Courriel électronique</label>
+							<input type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\" placeholder=\"Courriel électronique\"  name=\"txtCourriel\">
+						</div>
+						<div class=\"form-group\">
+							<label for=\"exampleInputPassword1\">Mot de Passe</label>
+							<input type=\"password\" class=\"form-control\"  placeholder=\"mot de passe\"  name=\"txtPass\">
+						</div>
+					</fieldset>	
                
-				<button type=\"submit\" class=\"btn btn-default\" name=\"cmd\" value=\"connecter\">Se connecter</button>	
-				<div class=\"auser\">
-					<a href=\"mdpOublier.html\">Mot de passe oublié ? </a>
-				</div>
-			</form></article>
-             ";
+					<button type=\"submit\" class=\"btn btn-default\" name=\"cmd\" value=\"connecter\">Se connecter</button>	
+					<div class=\"auser\">
+						<a href=\"mdpOublier.html\">Mot de passe oublié ? </a>
+					</div>
+				</form>
+			</article>
+            ";
         }
         
   /*--------------------------------------------------------------------------------------------------------------------------*/      
