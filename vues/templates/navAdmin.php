@@ -1,26 +1,35 @@
-		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="<?php echo RACINE.DS; ?>">Redwood</a>
-				</div>
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="navbar-collapse collapse">
-					<ul class="nav navbar-nav">
-						<li><a href="<?php echo TEST.DS; ?>">Accueil Admin</a></li>
-					</ul>
-					<!-- .nav, .navbar-search, .navbar-form, etc -->
-                    <form class="navbar-form navbar-right" action="index.php?s=3" method="post">
-                        <li><button id="btnConnexion" type="submit" class="btn btn-success">Deconnecter</button></li>
-                    </form>
-				</div><!--/.navbar-collapse -->
-			</div>			
-		</nav>
+	<!-- ENTETE DU SITE -->    
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container arriereLogoEntete">
+        <div class="row navLogoPlume">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../../site/index.php"><img src="<?php echo RACINE.DS; ?>site/img/Logo/logoplume.png" alt="Logo Plume"></a>            
+          </div>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-left navPrincipal">
+              <li><a href="index.php?s=1">Accueil</a></li>
+
+              <li><a href="index.php?s=2">Utilisateur</a></li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+                <!-- <li><a href="#">Se connecter</a></li>
+                <li><a href="#">Créer un compte</a></li> -->                
+				        <li><a href="index.php?s=3"><button class="btn btn-blue btnNav">Se connecter</button></a></li>
+                <li><a href="index.php?s=4"><button class="btn btn-blue btnNav">Créer un compte</button></a></li>				
+          </ul>
+
+        </div><!-- navbar-collapse -->
+      </div>
+    </div> <!-- FIN ENTETE DU SITE -->
+
+
 
 		
