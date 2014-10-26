@@ -15,12 +15,22 @@
 				switch($_GET['s']){
 
 					case 1: default://Accueil 
-						VueAccueil::afficherListeDesCategories();					
+                        VueAccueil::afficherListeDesCategories();						
+
 					case 2: 
-						Controleur::gererInscriptionUtilisateur();
+						Controleur::gererRechercheAvancee();
 						break;
+
                     case 3: 
-						Controleur::gererConnexionUtilisateur();
+                        Controleur::gererConnexionUtilisateur();
+                        break; 
+
+                    case 4: 
+                        Controleur::gererInscriptionUtilisateur();
+                        break;  
+
+                    case 5: 
+						Controleur::gererDeconnectionUtilisateur();
 						break;	
 
 				}
@@ -30,6 +40,68 @@
 			
 		}
 
+
+        /**
+        * redirige selon l'action
+        */     
+        public static function gererRechercheAvancee() {
+            try{
+                //1èr cas : aucune action n'a été sélectionné $_GET['action'] n'a pas affecté d'une valeur
+                if(isset($_GET['action']) == FALSE){
+                    $_GET['action']="lst";
+                }
+                
+                //2e cas :L'utilisateur a sélectionné une action, 
+                //il existe 1 possibilité : rech  
+                switch($_GET['action']){
+                    case "rech":
+                        Controleur::gererRechercheOuevrage();
+                        break;
+                                           
+                    case "lst": default:
+                        VueAccueil::afficherRechercheAvancee();
+                        
+                }//fin du switch() sur $_GET['action']
+            }catch(Exception $e){
+                echo "<p>".$e->getMessage()."</p>";
+            }           
+            
+        }//fin de la fonction gererRechercheAvancee()
+
+
+        /**
+         * Rechercher et afficher les ouevrages
+         */
+        public static function gererRechercheOuevrage(){
+            try{
+                
+                if(isset($_POST['cmd']) == false){
+                    VueAccueil::afficherRechercheAvancee();
+                }else{
+                    // print_r ("voila");
+                    //Instancier un objet Ouevrage avec l'info saisi par l'internaute $_POST['txtNo']
+                    $oOuevrage = new Ouevrage($_POST['txtNo']);
+                    //Recherche les ouevrages par mot clé, titre ou auteur
+                    $bTrouve = $oOuevrage->rechercherListeDesOeuvres();                  
+                    //Si L'ouevrage existe
+                    if($bTrouve == true){
+                        //afficher l'ouevrage
+                        VueOuevrage::afficherUnOuevrage($oOuevrage);
+                    }else//sinon
+                    {
+                        //afficher un message "Aucun ouevrage ne correspond à votre recherche"
+                        VueOuevrage::afficherRechercheAvancee("Aucun ouevrage ne correspond à votre recherche");
+                    }
+                        
+                }
+            }catch(Exception $e){
+                //repropose la saisie du numéro d'ouevrage, une erreur de type
+                VueOuevrage::afficherRechercheAvancee($e->getMessage());
+            }
+            
+        }//fin de la function gererRechercheOuevrage()
+
+
 			
 		/**
 		 * afficher le formulaire d'ajout et sur submit ajouter du Produit dans la base de données
@@ -38,10 +110,14 @@
 			
 			try{
 				//1èr cas : aucun submit n'a été cliqué
-				if(isset($_POST['cmd']) == false){
+				if(isset($_POST['cmd']) == false) {
 					//afficher le formulaire
-					ViewInscription::afficherAjouterUtilisateur();
-				//2e cas : le bouton submit Modifier a été cliqué
+                  if(isset($_GET['s'])){
+                                //
+                   
+            					ViewInscription::afficherAjouterUtilisateur();
+            				//2e cas : le bouton submit Modifier a été cliqué
+                  }          //
 				}else{
 				
                    /*$oUtilisateur = new Utilisateur(1,$_POST['txtNom'],    
@@ -60,6 +136,7 @@
                                 if($oUtilisateur->verificationMotPass()){
                                     $oUtilisateur->ajouterUtilisateur();
                                     $sMsg = "L'ajout de l'utilisateur' - ".$oUtilisateur->getNom()." - s'est déroulé avec succès.";
+                                    ViewInscription::afficherConnexionUtilisateur($sMsg);
                                  }else{
                                     $sMsg = 'Les 2 mots de passe sont différents.';
                                  }
@@ -75,9 +152,7 @@
                         
                     }
                                                     
-                                                    
-                   
-					ViewInscription::afficherAjouterUtilisateur($sMsg);
+                    ViewInscription::afficherAjouterUtilisateur($sMsg);
 				}
 			}catch(Exception $e){
 				ViewInscription::afficherAjouterUtilisateur($e->getMessage());
@@ -110,9 +185,6 @@
                                 // var_dump($oUtilisateur);
                                  echo('motde passe').md5($_POST['txtPass']);
                                     // $oUtilisateur->connexionUtilisateur();
-                                        
-                                       
-                                         
                                          
                                          $aUtilisateur = $oUtilisateur->connexionUtilisateur();
                                     if(!empty($aUtilisateur)){
@@ -123,6 +195,7 @@
                                         $_SESSION["IdUtilisateur"] = $aUtilisateur[0]['idUtilisateur'];
                                         $_SESSION["sNomUtilisateur"] = $aUtilisateur[0]['sNomUtilisateur'];
                                         echo $_SESSION["IdUtilisateur"]; 
+                                        VueAccueil::afficherListeDesCategories($sMsg);
                                      }else{
 
                                          $sMsg = 'Ce Courriel  ou  mot de passe n\'existent pas dans notre base de données .';
@@ -138,6 +211,25 @@
 				ViewInscription::afficherConnexionUtilisateur($sMsg);
 			}
 		}//fin de la fonction gererAjouterProduit()
+
+
+        /*----------------------------------------------------------------------------------------------------------------------------*/        
+        /**
+         * afficher le formulaire de deconnexion et sur submit on deconnecte notre compte
+         */
+
+        public static function gererDeconnectionUtilisateur() {
+
+            try {
+
+                //1èr cas : aucun submit n'a été cliqué
+                
+                    session_destroy();
+                
+            } catch (Exception $e) {
+
+            }
+        }
         
         
         
