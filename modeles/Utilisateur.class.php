@@ -367,10 +367,11 @@ class Utilisateur {
 			."  sCourrielUtilisateur = '".$oConnexion->getConnect()->escape_string($this->sCourriel)."',"
             ."  sMotPassUtilisateur = '".$oConnexion->getConnect()->escape_string(md5($this->sMotDePasse))."',"     
             ."  sAvatarUtilisateur = '".$oConnexion->getConnect()->escape_string($this->sAvatar)."',"
-            ."  sTypeUtilisateur= '".$oConnexion->getConnect()->escape_string($this->sTypeUtilisateur)."'
+            ."  sTypeUtilisateur= '".$oConnexion->getConnect()->escape_string($this->sTypeUtilisateur)."',"
+            ."  sStatut= 'Inactive'
           ";
 		//Exécuter la requête
-        echo $sRequete;
+        // echo $sRequete;
 		if($oConnexion->executer($sRequete) == true){
 			return $oConnexion->getConnect()->insert_id;
 		}
@@ -399,7 +400,7 @@ class Utilisateur {
                                                         and
                                                     sMotPassUtilisateur = '$motDepasse'     "; 
 			
-		echo $sRequete;
+		// echo $sRequete;
         $oResult = $oConnexion->executer($sRequete);
         $aResult = $oConnexion->recupererTableau($oResult);
         //var_dump($aResult);
@@ -418,7 +419,7 @@ class Utilisateur {
 		$oConnexion = new MySqliLib();
 		// on recherche si ce courriel est déja utilise par un autre membre
         $sRequete ='SELECT * FROM utilisateur WHERE   sCourrielUtilisateur = "'.mysql_real_escape_string($_POST['txtCourriel']).'"'  ;                      
-        echo $sRequete;
+        // echo $sRequete;
         $oResult = $oConnexion->executer($sRequete);
         $aResult = $oConnexion->recupererTableau($oResult);
 
@@ -440,7 +441,7 @@ class Utilisateur {
 		$oConnexion = new MySqliLib();
 		// on recherche si ce courriel est déja utilise par un autre membre
          $sRequete = 'SELECT * FROM utilisateur WHERE   sNomUtilisateur = "'.mysql_real_escape_string($_POST['txtNom']).'"'  ;                                          
-        echo $sRequete;
+        // echo $sRequete;
         $oResult = $oConnexion->executer($sRequete);
         $aResult = $oConnexion->recupererTableau($oResult);
 
