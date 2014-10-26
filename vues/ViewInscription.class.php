@@ -79,8 +79,9 @@
         
    public static function afficherListeUtilisateurs(array $aUtilisateurs , $sMsg="&nbsp;"){
 			//var_dump($aUtilisateurs);
-			 echo "
-				<h1>Liste des Utilisateur <a href=\"index.php?s=".$_GET['s']."&action=add\">Ajouter</a> </h1>
+			
+			echo "
+				<h1>Liste des Utilisateurs  <a href=\"index.php?s=".$_GET['s']."&action=add\">Ajouter <img src=\"../core/img/ajouter.png\" width=\"25\" height=\"25\"></a> </h1>
 				<p>".$sMsg."</p>";
 				if(empty($aUtilisateurs)!=true){
 					echo 
@@ -88,33 +89,31 @@
 						<table >
 							<tr>
                                 <th>Nom</th>
-                              
                                 <th>Courriel</th>
-                                <th>TypeUtilisateur</th>
+                                <th>mot de passe </th>
                                 <th>Status</th>
-								
-							</tr>
+                                <th>Type Utilisateur</th>
+                                <th>Avatar</th>
+                            </tr>
 						";
-                   
-					for($iEnrg = 0; $iEnrg<count($aUtilisateurs); $iEnrg++){
+                   for($iEnrg = 0; $iEnrg<count($aUtilisateurs); $iEnrg++){
 						echo "
-					       <tr>
-                                <th> ".$aUtilisateurs[$iEnrg]->getNom()." </th>
-                               
-                                <th>".$aUtilisateurs[$iEnrg]->getCourriel()." </th>
-                                   
-                            <th><a href=\"index.php?s=".$_GET['s']."&action=mod&iProduit=".$aUtilisateurs[$iEnrg]->getIdUtilisateur()."\">Modifier</a></th>
-						<th><a href=\"#\" onclick=\"supprimerUnProduit('Voulez-vous supprimer ce produit', ".$_GET['s'].", 'sup',".$aUtilisateurs[$iEnrg]->getIdUtilisateur().")\">Supprimer</a> </th></tr>
+					   <tr>
+                            <th> ".$aUtilisateurs[$iEnrg]->getNom()." </th>
+                            <th>".$aUtilisateurs[$iEnrg]->getCourriel()." </th>
+                            <th>".$aUtilisateurs[$iEnrg]->getMotDePasse()." </th>
+                            <th>".$aUtilisateurs[$iEnrg]->getStatus()." </th>
+                            <th>".$aUtilisateurs[$iEnrg]->getTypeUtilisateur()." </th>
+                            <th>".$aUtilisateurs[$iEnrg]->getAvatar()." </th>
+                           <th><a href=\"index.php?s=".$_GET['s']."&action=mod&idUtilisateur=".$aUtilisateurs[$iEnrg]->getIdUtilisateur()."\"><img src=\"../core/img/modifier.png\" width=\"25\" height=\"25\"></a></th>
+						<th><a href=\"#\" onclick=\"supprimerUnUtilisateur('Voulez-vous supprimer ce Utilisateurt', ".$_GET['s'].", 'sup',".$aUtilisateurs[$iEnrg]->getIdUtilisateur().")\"><img src=\"../core/img/supprimer.png\" width=\"25\" height=\"25\"></a> </th></tr>
 					";
-                       
-                        
-					}
+                    }
 					echo '</table>';
 					}else{
 						echo '<p>Aucun utilisateur n’est disponible à l’heure actuelle. Vous pouvez en ajouter un.</p>';
-				}
-				
-			
+				    }
+					
 		}
         
         

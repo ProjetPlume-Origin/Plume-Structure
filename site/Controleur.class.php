@@ -12,6 +12,20 @@
 					$_GET['s']=1;
 				}
 				
+			
+				if(isset($_SESSION["IdUtilisateur"]))
+				{
+					include_once "../vues/templates/navConnecte.php";
+					echo "session" .$_SESSION["IdUtilisateur"];
+				}
+				
+				else
+				{
+					include_once "../vues/templates/nav.php";
+					echo"dfkjdfhkjdf";
+				}   
+				
+				
 				switch($_GET['s']){
 
 					case 1: default://Accueil 
@@ -176,33 +190,31 @@
                         ViewInscription::afficherConnexionUtilisateur();
                     //2e cas : le bouton submit Modifier a été cliqué
                     }else{
-                        echo " je suis apres la clique de ";
                         $oUtilisateur = new Utilisateur();                    
                         $oUtilisateur-> setCourriel(mysql_real_escape_string($_POST['txtCourriel']));
-                             
-                             if(!($oUtilisateur->verificationcourriel())){
-                                 $oUtilisateur-> setMotDePasse(mysql_real_escape_string(md5($_POST['txtPass'])));
-                                // var_dump($oUtilisateur);
-                                 echo('motde passe').md5($_POST['txtPass']);
-                                    // $oUtilisateur->connexionUtilisateur();
-                                         
-                                         $aUtilisateur = $oUtilisateur->connexionUtilisateur();
+                            if(!($oUtilisateur->verificationcourriel())){
+                                $oUtilisateur-> setMotDePasse(mysql_real_escape_string(md5($_POST['txtPass'])));
+                                $aUtilisateur = $oUtilisateur->connexionUtilisateur();
                                     if(!empty($aUtilisateur)){
                                          $sMsg = "La connexion  - ".$oUtilisateur->getNom()." - s'est déroulé avec succès.";
-                                          echo $sMsg;
-                                         //var_dump($aUtilisateur);
-                                        // var_dump($aUtilisateur[0]['idUtilisateur']);
                                         $_SESSION["IdUtilisateur"] = $aUtilisateur[0]['idUtilisateur'];
                                         $_SESSION["sNomUtilisateur"] = $aUtilisateur[0]['sNomUtilisateur'];
-                                        echo $_SESSION["IdUtilisateur"]; 
-                                        VueAccueil::afficherListeDesCategories($sMsg);
+										$_SESSION["sTypeUtilisateur"] = $aUtilisateur[0]['sTypeUtilisateur'];
+                                       // echo $_SESSION["IdUtilisateur"]; 
+									    if($_SESSION["sTypeUtilisateur"] =='Membre'){
+											VueAccueil::afficherListeDesCategories($sMsg);
+										}else{
+											header('Location:../core/index.php');
+										
+										}
                                      }else{
 
                                          $sMsg = 'Ce Courriel  ou  mot de passe n\'existent pas dans notre base de données .';
-                                          echo $sMsg;
+                                          ViewInscription::afficherConnexionUtilisateur($sMsg);
                                      }
                             }else{
                                     $sMsg = 'Ce Courriel n\'existe pas dans notre base de données .';
+									ViewInscription::afficherConnexionUtilisateur($sMsg);
 
                              }
 
@@ -232,10 +244,6 @@
         }
         
         
-        
-        
-		
-		
-
+     
     }//fin de la classe Controleur
 ?>
