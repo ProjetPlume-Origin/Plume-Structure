@@ -31,7 +31,6 @@
 					 case 1: 
                         VueAccueil::afficherListeDesCategories();	
                         VueAccueil::afficherOeuvresAccueil();
-
                         break;
 					case 2: 
 						self::gererRechercheAvancee();
@@ -64,10 +63,16 @@
 				  case 9: ////controleur christhian
 						self::switchCommentaire();
 						break;
+                    
+                  case 10: 
+						//TODO fonction qui redirige sur un affichage propre a un oeuvre
+						break;
+                    
+                    
+                    
 				  default://Accueil 
-                        //VueAccueil::afficherListeDesCategories();
-                        // VueOuvrage::afficherListeOuvrages();
-
+                        VueAccueil::afficherListeDesCategories();	
+                        VueAccueil::afficherOeuvresAccueil();
 
 				}
 			}catch(Exception $e){
@@ -172,13 +177,8 @@
                                 if($oUtilisateur->verificationMotPass()){
                                     $oUtilisateur->ajouterUtilisateur();
                                     $sMsg = "L'ajout de l'utilisateur' - ".$oUtilisateur->getNom()." - s'est déroulé avec succès.";
-
-                                    //ViewInscription::afficherConnexionUtilisateur($sMsg);
-                                    header('Location:../site/index.php?s=3');
-
                                     header('Location:../site/index.php?s=3');
                                     ViewInscription::afficherConnexionUtilisateur($sMsg);
-
                                  }else{
                                     $sMsg = 'Les 2 mots de passe sont différents.';
                                  }
@@ -315,20 +315,8 @@
 		*@Christhian Diaz
 		*
 		****/
-		public  static function exampleComment(){
-            echo"
-			<h1> Ouvre</h1>
-			<p>lore ipsum
-				lore ipsum
-				lore ipsum
-				 lore ipsum
-				         lore ipsum
-				         lore ipsum
-				         <p/>
-
-			";
-            
-
+		public  static function exampleComment()
+		{
 			if (!empty ($_POST)){
 					
 				$resultat = Commentaire::ajouterCommentaire($_POST);
@@ -450,7 +438,6 @@
                     VueOuvrage::afficherAjouterOuvrage();
                 //2e cas : le bouton submit Modifier a été cliqué
                 }else{
-                    
                 //permet de faire un explode de contenu pour le diviser
                     $dContenu = $_POST['txtContenu'];
                     $tabDivision = array();

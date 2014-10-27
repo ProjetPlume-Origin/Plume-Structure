@@ -180,7 +180,7 @@
                 
 
 
-                    <a href="#">
+                    <a href="index.php'.$aOeuvre[$iOeuvre]["idOuvrage"].'">
                       <div class="col-lg-3 col-sm-6 col-xs-12 produit" >
                         <div class="produit-image">
                             <img src="../site/img/imgAccueil/default-book-cover.jpg">
