@@ -2,7 +2,7 @@
 <html lang="fr">
 	<head>
 		<meta charset="utf-8">
-
+        <link rel="stylesheet" href="../site/css/main.css">
 		
 		<meta name="author" content="Alexandre Mayer">
 	</head>
@@ -10,6 +10,8 @@
                 require_once("../lib/MySqliLib.class.php");
 				require_once("../modeles/Preference.class.php");
 				require_once("../lib/TypeException.class.php");
+				require_once("../vues/VueAccueil.class.php");
+
     ?>
 	<body>
 		<div>
@@ -39,6 +41,17 @@
 
 				try{
                     Preference::sauvegarderPreference(1, "lol", "lol", "lol", "lol", "lol");
+                    
+				}catch(Exception $e){
+					echo "<p>".$e->getMessage()."</p>";
+				}
+				?>
+                
+                 <h2>afficher oeuvres a l'accueil() </h2>
+				<?php
+
+				try{
+                    VueAccueil::afficherOeuvresAccueil();
                     
 				}catch(Exception $e){
 					echo "<p>".$e->getMessage()."</p>";
