@@ -12,10 +12,12 @@ session_start();
 	*/
 	//1èr cas : aucune option du menu n'a été sélectionné
 	require_once("../vues/VueAccueil.class.php");
+   // require_once("../vues/ViewInscription.class.php");	
 
-		if(isset($_GET['s']) == true){
+       if(isset($_GET['s']) == true){
 					
-			require_once("../vues/ViewInscription.class.php");		
+			 require_once("../vues/ViewInscription.class.php");	
+	
 	
 		}
 		
@@ -23,7 +25,11 @@ session_start();
 	* Inclure les modèles
 	*/
 	require_once("../modeles/Utilisateur.class.php");
-
+	require_once("../modeles/Ouvrages.class.php");
+	/**
+	* Inclure la vue ouvrage
+	*/
+	require_once("../vues/VueOuvrage.class.php");
 	/**
 	* Inclure le contrôleur
 	*/
@@ -33,4 +39,5 @@ session_start();
 	* Inclure le gabarit (nécessairement le dernier)
 	*/
 	require_once("gabarit.php");
+	require_once("pages/monCompte.php");
 ?>

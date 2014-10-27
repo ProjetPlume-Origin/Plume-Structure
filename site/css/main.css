@@ -31,7 +31,8 @@ h1, h2 {
 p {
   font-family: "Esteban", Georgia, "Times New Roman", serif;
   font-size: 15px;
-  line-height: 1.35em;  
+  line-height: 1.35em; 
+ 
 }
 
 /******************************************************* ENTETE ***************************************************/
@@ -486,10 +487,13 @@ body > main.container > article.col-md-12{
 margin: 180px 0 0 0;
 padding: 0 0 0 0;
 }
-body > main > article > div img{
-    width: 80%;
-    height: auto;
-    margin-left: 10%;
+body > main > div img{
+    width: 10%;
+    height: 160px;
+    margin-left: 5%;
+    margin-right: 2%;
+    margin-top: 1%;
+    margin-bottom: 1%;
     box-shadow: 8px 8px 12px -9px rgba(0,0,0,0.26);
 }
 #mesOeuvres > div > div{
@@ -540,7 +544,18 @@ margin-top: 20px;
     #mesOeuvres article.lienMesOeuvres {
     margin-top: -120px;
     }
+
 }
+ul li {
+	list-style: none;
+}
+/*#mesOeuvres > div > div > ul > li > a:nth-child(2){
+   	margin-left: 20%;
+   }*/
+   #mesOeuvres > div > div > ul > li{
+   	border-bottom: 1px solid #A4A4A4;
+   	background-color: #F5F6CE;
+   }
 /*fin jalal*/
 
 
