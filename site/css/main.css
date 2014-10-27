@@ -569,3 +569,103 @@ ul li {
 
 
 
+/*
+
+Classes changement de preference
+*/
+
+
+/*type police*/
+
+.lobster p{
+    font-family: 'Lobster', cursive;
+}
+
+.oswald p{
+    font-family: 'Oswald', sans-serif;
+}
+
+.playfair p{
+font-family: 'Playfair Display', serif;
+}
+
+.shadow p{
+font-family: 'Shadows Into Light', cursive;
+}
+
+
+/*grandeur police*/
+
+.grandeur12 p{
+ font-size: 12px;
+}
+
+.grandeur14 p{
+ font-size: 14px;
+}
+
+.grandeur16 p{
+ font-size: 16px;
+}
+
+.grandeur18 p{
+ font-size: 18px;
+}
+
+.grandeur20 p{
+ font-size: 20px;
+}
+
+.grandeur22 p{
+ font-size: 22px;
+}
+
+.grandeur24 p{
+ font-size: 24px;
+}
+
+/*luminosité police*/
+
+.textLumino1 p{
+    color:#fff;
+}
+
+.textLumino2 p{
+    color:#bfbfbf;
+}
+
+.textLumino3 p{
+    color:#7c7c7c;
+}
+
+.textLumino4 p{
+    color:#454545;
+}
+
+.textLumino5 p{
+    color:#000;
+}
+
+
+/*luminosité fond d'écran*/
+
+.bgLumino1{
+    background-color:#fff;
+}
+
+.bgLumino2{
+    background-color:#bfbfbf;
+}
+
+.bgLumino3{
+    background-color:#7c7c7c;
+}
+
+.bgLumino4{
+    background-color:#454545;
+}
+
+.bgLumino5{
+    background-color:#000;
+}
+

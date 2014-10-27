@@ -35,6 +35,27 @@
 		<link rel="stylesheet" href="<?php echo SITE.DS; ?>css/main.css">
 		<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Esteban' rel='stylesheet' type='text/css'>
+        
+<!--        Fonts pour affichage avec les preferences-->
+        
+        <link href='http://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet' type='text/css'>
+<!--        font-family: 'Playfair Display', serif;-->
+        
+        <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+<!--        font-family: 'Oswald', sans-serif;-->
+        
+        <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+<!--        font-family: 'Lobster', cursive;-->
+        
+        <link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
+<!--        font-family: 'Shadows Into Light', cursive;-->
+        
+        
+        
+<!--       FIN Fonts pour affichage avec les preferences--> 
+        
+        <script src="../js/vendor/jquery-1.11.1.min.js"></script>
+        <script src="../js/preference.js"></script>
         <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
         <script src="<?php echo RACINE.DS; ?>js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 

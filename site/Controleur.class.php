@@ -262,12 +262,10 @@
             }
         }
         
-     /********
-        **
-        ** example 
-        *  ouvrage
-        * Christhian Diaz
-        ***/
+
+
+       
+
         
         public static function exampleOuvrage(){
         	echo "
@@ -347,10 +345,178 @@
 			header('Location: index.php?s=6');
 		}/// fin function active et desative
 		
+     //*************************JALALControlleur ouvrage a ne pas toucher svp vous avez ecrasé mon code  *********************************************************************
      
      
-     
-     
+     public static function gererSiteOuvrage(){
+            try {
+                //1èr cas : aucune option du menu n'a été sélectionné 
+                if(isset($_GET['s']) == FALSE){
+                    $_GET['s']='monCompte';
+                }
+                //2e cas :L'administrateur a sélectionné une option dans le menu
+                switch($_GET['s']){
+                    case 'monCompte': 
+                    Controleur::gererOuvrage();
+                    break;
+                    
+                }
+            }catch(Exception $e){
+                echo "<p>".$e->getMessage()."</p>";
+            }
+
+        }//fin de la fonction gererSite()
+        
+        public static function gererOuvrage(){
+            try{
+                //1èr cas : aucune action n'a été sélectionné $_GET['action'] n'a pas affecté d'une valeur
+                if(isset($_GET['action']) == FALSE){
+                    $_GET['action']="lst";
+                }
+                
+                //2e cas :L'administrateur a sélectionné une action, 
+                //il existe 3 possibilités add, mod, sup ou la liste des Ouvrage 
+                switch($_GET['action']){
+                    case "add":
+                    Controleur::gererAjouterOuvrage();
+                    break;
+                    case "mod":
+                    Controleur::gererModifierOuvrage();
+                    break;
+                    case "sup":
+                    Controleur::gererSupprimerOuvrage();
+                    break;
+                    case "lst": default:
+                    Controleur::gererListeDesOuvrages();
+                }//fin du switch() sur $_GET['action']
+            }catch(Exception $e){
+                echo "<p>".$e->getMessage()."</p>";
+            }
+            
+        }//fin de la fonction gererOuvrage()
+        
+        /**
+         * afficher la liste des Ouvrage qui vont pouvoir être modifier ou supprimer et ajouter
+         */
+        public static function gererListeDesOuvrages(){
+            try{
+                $sMsg = "";
+                
+                if(isset($_GET['bSup']) == true){
+                    $sMsg ="La suppression s'est bien déroulée.";
+                }
+                //Rechercher la liste des Ouvrage
+                $aOuvrages = Ouvrage::rechercherListeDesOuvrages();
+                //Afficher la liste des Ouvrage
+                VueOuvrage::afficherListeOuvrages($aOuvrages, $sMsg);
+
+            }catch(Exception $e){
+                echo "<p>".$e->getMessage()."</p>";
+            }
+        }//fin de la fonction gererListeDesOuvrage()
+        
+        /**
+         * afficher le formulaire d'ajout et sur submit ajouter l'Ouvrage dans la base de données
+         */
+        public static function gererAjouterOuvrage(){
+            
+            try{
+                //1èr cas : aucun submit n'a été cliqué
+                if(isset($_POST['cmd']) == false){
+                    //afficher le formulaire
+                    VueOuvrage::afficherAjouterOuvrage();
+                //2e cas : le bouton submit Modifier a été cliqué
+                }else{
+                //permet de faire un explode de contenu pour le diviser
+                    $dContenu = $_POST['txtContenu'];
+                    $tabDivision = array();
+                    $cDivision = explode("\r\n", $dContenu);
+                    $contenuDivision = array_values(array_filter ($cDivision));
+                    
+               //apres la mise dans un tableau on fait l'insertion 
+                    //ajout le info de l'ouvrage dans la base de données ouvrage
+                    $oOuvrage = new Ouvrage($_POST['idOuvrage'], $_POST['txtTitre'],' ', $_POST['txtGenre']);
+                    $oOuvrage->ajouterOuvrage();
+                    for ($i = 0; $i < count($contenuDivision); $i++) { 
+
+                        $cOuvrage = new Ouvrage($_POST['idOuvrage'], $_POST['txtTitre'],' ', $_POST['txtGenre'],$contenuDivision[$i]);
+
+                    //ajout le contenu dans la base de données paragraphe
+                        $cOuvrage->ajouterContenu();
+                    }
+                                        
+                    $sMsg = "L'ajout de  - ".$oOuvrage->getOuvrageTitre()." - s'est déroulé avec succès.";
+                    VueOuvrage::afficherAjouterOuvrage($sMsg);
+                }
+            }catch(Exception $e){
+                VueOuvrage::afficherAjouterOuvrage($e->getMessage());
+            }
+        }//fin de la fonction gererAjouterOuvrage()
+        
+        /**
+         * afficher le formulaire de modification et sur submit modifier l'Ouvrage dans la base de données 
+         */
+        public static function gererModifierOuvrage(){
+            
+            try{
+                //1èr cas : aucun submit n'a été cliqué
+                if(isset($_POST['cmd']) == false){
+                    $oOuvrage = new Ouvrage($_GET['idOuvrage']);
+
+                    $oOuvrage->rechercherOuvrage();
+                    $oOuvrage->rechercherContenu();
+
+                    //afficher le formulaire
+                    VueOuvrage::afficherModifierOuvrage($oOuvrage);
+                //2e cas : le bouton submit Modifier a été cliqué
+                }else{
+                //permet de faire un explode de contenu pour le diviser
+                    $dContenu = $_POST['txtContenu'];
+                    $tabDivision = array();
+                    $cDivision = explode("\r\n", $dContenu);
+                    $tContenu = array_values(array_filter($cDivision));
+                    
+                    $oOuvrage = new Ouvrage($_POST['idOuvrage'], $_POST['txtTitre'],' ', $_POST['txtGenre']);
+                    //appel a la fonction pour ajout des paragraphes
+                        $oOuvrage->supprimerContenu();
+                    //apres la mise dans un tableau on fait l'insertion 
+                    for ($i = 0; $i < count($tContenu); $i++) { 
+                        $cOuvrage = new Ouvrage($_POST['idOuvrage'], $_POST['txtTitre'],' ', $_POST['txtGenre'], $tContenu[$i]);
+                        
+                        //appel a la fonction pour ajout des paragraphes
+                        $cOuvrage->ajouterContenu();
+                    }
+                    
+                    //modifier dans la base de données l'Ouvrage
+                    $oOuvrage->modifierOuvrage();
+                    
+                    $sMsg = "La modification de L'ouvrage - ".$oOuvrage->getOuvrageTitre()." - s'est déroulée avec succès.";
+                    $aOuvrage = Ouvrage::rechercherListeDesOuvrages();
+                    VueOuvrage::afficherListeOuvrages($aOuvrage, $sMsg);
+                }
+            }catch(Exception $e){
+                $oOuvrage = new Ouvrage($_GET['idOuvrage']);
+                $oOuvrage->rechercherOuvrage();
+                $oOuvrage->rechercherContenu();
+                //afficher le formulaire
+                VueOuvrage::afficherModifierOuvrage($oOuvrage, $e->getMessage());
+            }
+        }//fin de la fonction gererModifierOuvrage()
+        
+        /**
+         * Supprimer l'Ouvrage de la base de données 
+         * Gère les refresh puisque appeler dans le fichier gererOuvrage.php
+         * @return string message 
+         */
+        public static function gererSupprimerOuvrage(){
+            try{
+                $oOuvrage = new Ouvrage($_GET['idOuvrage']);
+                //supprimer dans la base de données l'Ouvrage
+                $bResultat = $oOuvrage->supprimerOuvrage();     
+            }catch(Exception $e){
+                return $e->getMessage();
+            }
+        }//fin de la fonction gererSupprimerOuvrage()
      
      
      
