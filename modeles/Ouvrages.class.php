@@ -197,7 +197,7 @@
 			"."  sDateOuvrage = '".date("Y-m-d H:i:s")."',
 			"."  sCouvertureOuvrage = 'img/".strtolower($oConnexion->getConnect()->escape_string($this->ouvrageGenre)).".png',
 			"."  sGenre = '".$oConnexion->getConnect()->escape_string($this->ouvrageGenre)."',
-			"."  idUtilisateur = '1'
+			"."  idUtilisateur = '{$_SESSION['IdUtilisateur']}'
 		";
 		
 		//Exécuter la requête
@@ -250,7 +250,7 @@ return $oConnexion->executer($sRequete);
 	 	$oConnexion = new MySqliLib();
 	 	//Requête de recherche de tous les Ouvrages
 	 	$sRequete = "
-	 		SELECT * FROM ouvrage WHERE idUtilisateur = '1' ORDER BY sDateOuvrage DESC
+	 		SELECT * FROM ouvrage WHERE idUtilisateur = '{$_SESSION['IdUtilisateur']}' ORDER BY sDateOuvrage DESC
 		";
 	 	//Exécuter la requête
 	 	$oResult = $oConnexion->executer($sRequete);

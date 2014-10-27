@@ -77,6 +77,7 @@
                                 <?php
 
                                 Controleur::gererSiteOuvrage();
+                                include_once "../../vues/templates/footer.php"; 
                                 ?>
                             </div>                
                             
@@ -87,17 +88,7 @@
                    
                
         </main> <!-- /container -->
-      <!-- Pie de Page --> 
-      <footer>       
-            <div class="col-md-12">              
-              <ul class="icons social">
-                <li><a href="#"><span class="fa fa-twitter"></span></a></li>
-                <li><a href="#"><span class="fa fa-facebook"></span></a></li>
-                <li><a href="#"><span class="fa fa-envelope-o"></span></a></li>
-              </ul>
-              <p class="copy">&copy; Plume 2014</p>
-            </div>
-      </footer><!-- Fin Pie de Page --> 
+      
       <script src="../lib/js/scripts.js"></script>
           <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
