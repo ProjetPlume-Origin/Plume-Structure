@@ -13,12 +13,11 @@
 					case 2: 
 						Controleur::gererUtilisateur();
 						break;
-					
+					case 1 : default :
+						Controleur::gererUtilisateur();
 					 case 5: 
 						Controleur::gererDeconnectionUtilisateur();
-						break;	
-                    case 1 : default :
-						Controleur::gererUtilisateur();
+						break;		
 				}
 			}catch(Exception $e){
 				echo "<p>".$e->getMessage()."</p>";
@@ -35,7 +34,7 @@
 				}
 				
 				//2e cas :L'administrateur a sélectionné une action, 
-				//il existe 3 possibilités add, mod, sup ou la liste utilisateur 
+				//il existe 3 possibilités add, mod, sup ou la liste des étudiants 
 				switch($_GET['action']){
 					case "add":
 						Controleur::gererAjouterUtilisateurAdmin();
@@ -70,7 +69,7 @@
 				}
 				//Rechercher la liste des utilisateurs
 				$aUtilisateurs = Utilisateur::rechercherListeDesUtilisateurs();
-				//var_dump($aUtilisateurs);
+				var_dump($aUtilisateurs);
                 
                 //Afficher la liste des Utilisateurs
 				ViewInscription::afficherListeUtilisateurs($aUtilisateurs, $sMsg);
@@ -80,7 +79,14 @@
 			}
 		}//fin de la fonction
 		
-     
+        
+        
+        
+        
+        
+        
+        
+        
         
 		
 /*---------------------------------------------------------------------------------------------------------------------------*/        
@@ -217,7 +223,6 @@
                 //1èr cas : aucun submit n'a été cliqué
                 
                     session_destroy();
-                     header('Location:../site/index.php');
                 
             } catch (Exception $e) {
 
