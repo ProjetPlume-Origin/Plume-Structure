@@ -217,13 +217,12 @@
                                         $_SESSION["IdUtilisateur"] = $aUtilisateur[0]['idUtilisateur'];
                                         $_SESSION["sNomUtilisateur"] = $aUtilisateur[0]['sNomUtilisateur'];
 										$_SESSION["sTypeUtilisateur"] = $aUtilisateur[0]['sTypeUtilisateur'];
-                                     
+                                       // echo $_SESSION["IdUtilisateur"]; 
 									    if($_SESSION["sTypeUtilisateur"] =='Membre'){
 											VueAccueil::afficherListeDesCategories($sMsg);
 										}else{
-                                             
 											header('Location:../core/index.php');
-										     
+										
 										}
                                      }else{
 

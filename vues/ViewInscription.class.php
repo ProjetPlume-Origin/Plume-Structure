@@ -81,7 +81,7 @@
 		//var_dump($aUtilisateurs);
 		
 		echo "
-			<h1 class=\"admin_h1\">Liste des Utilisateurs  <a href=\"index.php?s=".$_GET['s']."&action=add\">Ajouter <img src=\"../core/img/ajouter.png\" width=\"15\" height=\"15\"></a> </h1>
+			<h1>Liste des Utilisateurs  <a href=\"index.php?s=".$_GET['s']."&action=add\">Ajouter <img src=\"../core/img/ajouter.png\" width=\"15\" height=\"15\"></a> </h1>
 			<p class=\"alert alert-success\">".$sMsg."</p>
 			";
 			if(empty($aUtilisateurs)!=true){
