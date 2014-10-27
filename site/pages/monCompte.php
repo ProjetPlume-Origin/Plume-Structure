@@ -70,7 +70,7 @@
                                 
                                 <nav>
                                     <ul>
-                                        <li><a href="index.php?s=2">Ma liste des ouvrages</a></li>
+                                        <li><a href="index.php?s=monCompte">Ma liste des ouvrages</a></li>
                                     </ul>
 
                                 </nav>
