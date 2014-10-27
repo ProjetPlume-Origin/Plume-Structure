@@ -30,7 +30,8 @@
 
 					 case 1: 
                         VueAccueil::afficherListeDesCategories();	
-                        
+                        VueAccueil::afficherOeuvresAccueil();
+
                         break;
 					case 2: 
 						self::gererRechercheAvancee();
@@ -314,8 +315,20 @@
 		*@Christhian Diaz
 		*
 		****/
-		public  static function exampleComment()
-		{
+		public  static function exampleComment(){
+            echo"
+			<h1> Ouvre</h1>
+			<p>lore ipsum
+				lore ipsum
+				lore ipsum
+				 lore ipsum
+				         lore ipsum
+				         lore ipsum
+				         <p/>
+
+			";
+            
+
 			if (!empty ($_POST)){
 					
 				$resultat = Commentaire::ajouterCommentaire($_POST);
