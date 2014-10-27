@@ -15,7 +15,9 @@
 						break;
 					case 1 : default :
 						echo "Bienvenue sur le site administrateur de plume.";
-						
+					 case 5: 
+						Controleur::gererDeconnectionUtilisateur();
+						break;		
 				}
 			}catch(Exception $e){
 				echo "<p>".$e->getMessage()."</p>";
@@ -41,11 +43,11 @@
 						Controleur::gererModifierUtilisateurAdmin();
 						break;
 					case "sup":
-						Controleur::gererSupprimerUtilisateur();
+						Controleur::gererSupprimerUtilisateurAdmin();
 						break;
 					case "lst": default:
 						Controleur::gererListeDesUtilisateurs();
-						echo" je suis la ";
+						
 						
 				}//fin du switch() sur $_GET['action']
 			}catch(Exception $e){
@@ -53,10 +55,10 @@
 			}
 			
 			
-		}//fin de la fonction gererListeDesProduits()
+		}//fin de la fonction gererListeDesUtilisateurs()
 /*-------------------------------------------------------------------------------------------------------------*/		
 		/**
-		 * afficher la liste des produits qui vont pouvoir être modifier ou supprimer et ajouter
+		 * afficher la liste des Utilisateurs qui vont pouvoir être modifier ou supprimer et ajouter
 		 */
         public static function gererListeDesUtilisateurs(){
 			try{
@@ -67,9 +69,9 @@
 				}
 				//Rechercher la liste des utilisateurs
 				$aUtilisateurs = Utilisateur::rechercherListeDesUtilisateurs();
-				// var_dump($aUtilisateurs);
+				var_dump($aUtilisateurs);
                 
-                //Afficher la liste des produits
+                //Afficher la liste des Utilisateurs
 				ViewInscription::afficherListeUtilisateurs($aUtilisateurs, $sMsg);
 								
 			}catch(Exception $e){
@@ -90,19 +92,18 @@
 /*---------------------------------------------------------------------------------------------------------------------------*/        
         
         /**
-		 * afficher le formulaire d'ajout et sur submit ajouter du Produit dans la base de données
+		 * afficher le formulaire d'ajout et sur submit ajouter du Utilisateur dans la base de données
 		 */
 		public static function gererAjouterUtilisateurAdmin(){
-			echo "gererAjouterUtilisateur";
+             
 			try{
-                echo "alo";
-				//1èr cas : aucun submit n'a été cliqué
+               	//1èr cas : aucun submit n'a été cliqué
 				if(isset($_POST['cmd']) == false){
 					//afficher le formulaire
 					ViewInscription::afficherAjouterUtilisateurAdmin();
 				//2e cas : le bouton submit Modifier a été cliqué
 				}else{
-                    echo"je suis la ";
+                  
                     $oUtilisateur = new Utilisateur();
                     $oUtilisateur-> setNom(mysql_real_escape_string($_POST['txtNom']));
                     if($oUtilisateur->verificationNom()){
@@ -113,7 +114,7 @@
                              $oUtilisateur-> setConfirmation(mysql_real_escape_string($_POST['txtPassConfirm']));
                                 if($oUtilisateur->verificationMotPass()){
                                     $oUtilisateur->ajouterUtilisateur();
-                                    $sMsg = "L'ajout de l'utilisateur' - ".$oUtilisateur->getNom()." - s'est déroulé avec succès.";//echo $sMsg;
+                                    $sMsg = "L'ajout de l'utilisateur' - ".$oUtilisateur->getNom()." - s'est déroulé avec succès.";echo $sMsg;
                                     $aUtilisateurs = Utilisateur::rechercherListeDesUtilisateurs();
                                     ViewInscription::afficherListeUtilisateurs($aUtilisateurs,$sMsg);
                                 
@@ -142,35 +143,93 @@
 				ViewInscription::afficherAjouterUtilisateur($e->getMessage());
 			}
 		}//fin de la fonction afficherAjouterUtilisateur()
-/*-------------------------------------------------------------------------------------------------------------------------------*/		
-      
-        
-/*-------------------------------------------------------------------------------------------------------------------------------*/        
-		
-        
-		/**
-		 * Supprimer l'étudiant de la base de données 
-		 * Gère les refresh puisque appeler dans le fichier gererProduit.php
-		 * @return string message 
-		 */
-		public static function gererSupprimerProduit(){
+
+/*-------------------------------------------------------------------------------------------------------------------------------*/
+
+    public static function gererModifierUtilisateurAdmin(){
 			
 			try{
-				$oProduit = new Produit($_GET['idProduit']);
-				$oProduit->rechercherUnProduit();
-				//supprimer dans la base de données du produit
-				return $oProduit->supprimerUnProduit();				
+				//1èr cas : aucun submit n'a été cliqué
+				if(isset($_POST['cmd']) == false){
+					$oUtilisateur = new Utilisateur($_GET['iUtilisateur']);
+                   // var_dump($oUtilisateur);
+					$oUtilisateur->rechercherUnUtilisateur();
+                    
+                   	//afficher le formulaire
+					ViewInscription::afficherModifierUtilisateurAdmin($oUtilisateur);
+				//2e cas : le bouton submit Modifier a été cliqué
+				}else{
+                    
+                   
+                  
+					$oUtilisateur = new Utilisateur();
+                    echo"post id utilisateur".$_POST['iUtilisateur'];
+                    $oUtilisateur -> setIdUtilisateur($_POST['iUtilisateur']);
+                    $oUtilisateur -> setNom($_POST['txtNom']);
+                    $oUtilisateur -> setTypeUtilisateur($_POST['txtType']);
+                    $oUtilisateur -> setStatus($_POST['txtStatus']);
+                     var_dump($oUtilisateur);
+                   
+					//modifier dans la base de données l'étudiant
+					$oUtilisateur->modifierUnUtilisateur();
+					$sMsg = "La modification de utilisateur - ".$oUtilisateur->getNom()." - s'est déroulée avec succès.";
+					$oUtilisateur = Utilisateur::rechercherListeDesUtilisateurs();
+					ViewInscription::afficherListeUtilisateurs($oUtilisateur, $sMsg);
+				}
+			}catch(Exception $e){
+				$oUtilisateur = new Utilisateur($_GET['idUtilisateur']);
+				$oUtilisateur->rechercherUnUtilisateur();
+				//afficher le formulaire
+				ViewInscription::afficherModifierUtilisateurAdmin($oUtilisateur, $e->getMessage());
+			}
+		}//fin de la fonction gererModifierUtilisateur()
+		
+        
+    
+  /*---------------------------------------------------------------------------------------------------------------------------*/		
+      		/**
+		 * Supprimer Utilisateur de la base de données 
+		 * Gère les refresh puisque appeler dans le fichier gererUtilisateur.php
+		 * @return string message 
+		 */
+		public static function gererSupprimerUtilisateurAdmin(){
+			
+			try{
+				$oUtilisateur = new Utilisateur($_GET['idUtilisateur']);
+				$oUtilisateur->rechercherUnUtilisateur();
+                var_dump($oUtilisateur);
+                var_dump($oUtilisateur);
+                 var_dump($oUtilisateur);
+                var_dump($oUtilisateur);
+                 var_dump($oUtilisateur);
+                var_dump($oUtilisateur);
+				//supprimer dans la base de données d Utilisateur
+				return $oUtilisateur->supprimerUnUtilisateur();				
 			}catch(Exception $e){
 				return $e->getMessage();
 			}
-		}//fin de la fonction gererSupprimerEtudiant()
+		}//fin de la fonction gererSupprimerUtilisateur()  
+    
+    
+        
+        
+        
+        
+   /*---------------------------------------------------------------------------------------------------------------*/
+         public static function gererDeconnectionUtilisateur() {
 
+            try {
 
-    
-    
-    
-    
-    
+                //1èr cas : aucun submit n'a été cliqué
+                
+                    session_destroy();
+                
+            } catch (Exception $e) {
+
+            }
+        }
+        
+        
     }//Fin de la classe Controleur
 
 ?>

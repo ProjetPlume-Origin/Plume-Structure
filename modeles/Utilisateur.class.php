@@ -123,7 +123,7 @@ class Utilisateur {
 		TypeException::estString($sStatus);
 		TypeException::estVide($sStatus);
 		
-		$this->iStatus = $sStatus;
+		$this->sStatus = $sStatus;
 	}
     
       /**
@@ -234,19 +234,21 @@ class Utilisateur {
 		//Connecter à la base de données
 		$oConnexion = new MySqliLib();
 		//Réaliser la requête de recherche par le idEtudiant
-		$sRequete= "SELECT * FROM utilisateurs WHERE sNom=".$this->getNom();
-		
+		$sRequete= "SELECT * FROM utilisateur WHERE idUtilisateur=".$this->getIdUtilisateur();
+		echo $sRequete;
 		//Exécuter la requête
 		$oResult = $oConnexion->executer($sRequete);
 		if($oResult != false){
 			//Récupérer le tableau des enregistrements s'il existe
 			$aUtilisateur = $oConnexion->recupererTableau($oResult);
-			
+           // echo"aUtilisateur";
+			//var_dump($aUtilisateur);
 			if(empty($aUtilisateur[0]) != true){
 				//Affecter les propriétés de l'objet en cours avec les valeurs
-				$this->setNom($aUtilisateur[0]['sNom']);
-				$this->setCourriel($aUtilisateur[0]['sCourriel']);
-				$this->setStatus($aUtilisateur[0]['iStatus']);
+                $this->setIdUtilisateur($aUtilisateur[0]['idUtilisateur']);
+				$this->setNom($aUtilisateur[0]['sNomUtilisateur']);
+				$this->setTypeUtilisateur($aUtilisateur[0]['sTypeUtilisateur']);
+				$this->setStatus($aUtilisateur[0]['sStatut']);
 				//retourner true
 				return true;	
 			}
@@ -268,7 +270,7 @@ class Utilisateur {
 		$oConnexion = new MySqliLib();
 		//Requete de suppression d'Utilisateur identifié par son idUtilisateur
 		$sRequete = "
-			DELETE FROM utilisateurs
+			DELETE FROM utilisateur
 			WHERE idUtilisateur = ".$this->getIdUtilisateur().";";
 		echo $sRequete;
 		//Exécuter la requête
@@ -281,19 +283,19 @@ class Utilisateur {
 	 * @return boolean true si la modification s'est bien déroulé
 	 * false dans tous les autres cas.
 	 */
-	function modifierUtilisateur(){
+	function modifierUnUtilisateur(){
 		//Connexion à la base de données
 		$oConnexion = new MySqliLib();
 		//Requete de modification de l'étudiant
 		$sRequete = "
-			UPDATE utilisateurs
-			SET sNom = '".$oConnexion->getConnect()->escape_string($this->sNom)."',"
-			."  sCourriel = '".$oConnexion->getConnect()->escape_string($this->sCourriel)."',"
-            ."  sMotDePasse = '".$oConnexion->getConnect()->escape_string($this->sMotDePasse)."',"
-             ."  iStatut = '".$oConnexion->getConnect()->escape_string($this->iStatut)."',"
-            ."  sAvar = '".$oConnexion->getConnect()->escape_string($this->sAvar)."'
+			UPDATE utilisateur
+			SET sNomUtilisateur = '".$oConnexion->getConnect()->escape_string($this->sNom)."',"
+                ."  sTypeUtilisateur = '".$oConnexion->getConnect()->escape_string($this->sTypeUtilisateur)."',"
+                ."  sStatut = '".$oConnexion->getConnect()->escape_string($this->sStatus)."'
+          
 			WHERE idUtilisateur = ".$this->idUtilisateur."
-		";	
+		";
+       
 		//Exécuter la requête
 		return $oConnexion->executer($sRequete);
 	}
@@ -314,36 +316,19 @@ class Utilisateur {
 	 	$oResult = $oConnexion->executer($sRequete);
 	 	//Récupérer le tableau des enregistrements
 	 	$aEnreg = $oConnexion->recupererTableau($oResult);
-        var_dump($aEnreg);
+        //var_dump($aEnreg);
 		$aUtilisateurs = array();
 	 	//Pour tous les enregistrements
 	 	for($iEnreg=0; $iEnreg<count($aEnreg); $iEnreg++){
 	 		//affecter un objet à un élément du tableau
-           /* ($idUtilisateur=0, $sNom=" ", $sCourriel="hh@hotmail.com", $sMotDePasse=" ",$sConfirmation=" ",$sTypeUtilisateur="Membre",$sAvatar=" ",$sStatus=" ")*/
-            
-            
-           echo' 1 '.$aEnreg[$iEnreg]['idUtilisateur'];
-                                                  echo' 2 '.$aEnreg[$iEnreg]['sNomUtilisateur'];
-                                                   echo' 3 '.$aEnreg[$iEnreg]['sCourrielUtilisateur'];
-                                                  echo' 4 '.$aEnreg[$iEnreg]['sMotPassUtilisateur'];
-                                                   
-                                                    echo' 5 '.$aEnreg[$iEnreg]['sAvatarUtilisateur']; 
-                                                 echo' 6 '.$aEnreg[$iEnreg]['sStatut'];
-                                                   echo' 7 '.$aEnreg[$iEnreg]['sTypeUtilisateur'] ;                                                                             echo'</br>';
-                                                           
-                                                           
-	 		$aUtilisateurs[$iEnreg] =  new Utilisateur($aEnreg[$iEnreg]['idUtilisateur'], 
-                                                       $aEnreg[$iEnreg]['sNomUtilisateur'],
-                                                       $aEnreg[$iEnreg]['sCourrielUtilisateur']
-                                                      /* $aEnreg[$iEnreg]['sMotPassUtilisateur'],
-                                                       '',
-                                                       $aEnreg[$iEnreg]['sAvatarUtilisateur'], 
-                                                       $aEnreg[$iEnreg]['sStatut'],
-                                                       $aEnreg[$iEnreg]['sTypeUtilisateur']*/
-                                                       
-                                                       
-                                                       
-                                                       
+             $aUtilisateurs[$iEnreg] =  new Utilisateur($aEnreg[$iEnreg]['idUtilisateur'], 
+                                                        $aEnreg[$iEnreg]['sNomUtilisateur'],
+                                                       $aEnreg[$iEnreg]['sCourrielUtilisateur'],
+                                                      $aEnreg[$iEnreg]['sMotPassUtilisateur'],
+                                                       $aEnreg[$iEnreg]['sMotPassUtilisateur'],
+                                                       $aEnreg[$iEnreg]['sTypeUtilisateur'],
+                                                       $aEnreg[$iEnreg]['sAvatarUtilisateur'],
+                                                       $aEnreg[$iEnreg]['sStatut']
                                                        );
 	 	}
 	 	//retourner le tableau d'objets
@@ -473,9 +458,18 @@ class Utilisateur {
     	
   /*****------------------------------------------------------------------------------------------------------------------*****/        
     
-    
-    
-    
+    function supprimerUnUtilisateur(){
+		//Connexion à la base de données
+		$oConnexion = new MySqliLib();
+		//Requete de suppression du produit identifié par son idProduit
+		$sRequete = "
+			DELETE FROM utilisateur
+			WHERE idUtilisateur = ".$this->idUtilisateur.";";
+		//echo  $sRequete;
+		//Exécuter la requête
+		$oConnexion->executer($sRequete);
+		return $oConnexion->getConnect()->affected_rows;
+	}//fin de la fonction supprimerUnProduit()
     
     
     
