@@ -161,9 +161,7 @@
 					ViewInscription::afficherModifierUtilisateurAdmin($oUtilisateur);
 				//2e cas : le bouton submit Modifier a été cliqué
 				}else{
-                    
-                   
-                  
+                                                  
 					$oUtilisateur = new Utilisateur();
                     $oUtilisateur -> setIdUtilisateur($_POST['iUtilisateur']);
                     $oUtilisateur -> setNom($_POST['txtNom']);
