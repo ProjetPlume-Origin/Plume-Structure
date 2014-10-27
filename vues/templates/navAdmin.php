@@ -9,7 +9,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../../site/index.php"><img src="<?php echo RACINE.DS; ?>site/img/Logo/logoplume.png" alt="Logo Plume"></a>            
+            <a class="navbar-brand" href="../../core/index.php"><img src="<?php echo RACINE.DS; ?>site/img/Logo/logoplume.png" alt="Logo Plume"></a>            
           </div>
         </div>
         <div class="navbar-collapse collapse">

@@ -11,13 +11,15 @@
 				//2e cas :L'administrateur a sélectionné une option dans le menu
 				switch($_GET['s']){
 					case 2: 
-						Controleur::gererUtilisateur();
+						self::gererUtilisateur();
 						break;
-					case 1 : default :
-						Controleur::gererUtilisateur();
+					
 					 case 5: 
-						Controleur::gererDeconnectionUtilisateur();
-						break;		
+						self::gererDeconnectionUtilisateur();
+						break;	
+                    
+                    case 1 : default :
+						self::gererUtilisateur();
 				}
 			}catch(Exception $e){
 				echo "<p>".$e->getMessage()."</p>";
@@ -69,7 +71,7 @@
 				}
 				//Rechercher la liste des utilisateurs
 				$aUtilisateurs = Utilisateur::rechercherListeDesUtilisateurs();
-				var_dump($aUtilisateurs);
+				//var_dump($aUtilisateurs);
                 
                 //Afficher la liste des Utilisateurs
 				ViewInscription::afficherListeUtilisateurs($aUtilisateurs, $sMsg);
@@ -134,7 +136,7 @@
                     }else{
                         
                         $sMsg = 'Un membre possède déjà ce Nom.';
-                        $aUtilisateurs = Utilisateur::rechercherListeDesUtilisateurs();                                                             ViewInscription::afficherListeUtilisateurs($aUtilisateurs,$sMsg);
+                        $aUtilisateurs = Utilisateur::rechercherListeDesUtilisateurs();                                                                   ViewInscription::afficherListeUtilisateurs($aUtilisateurs,$sMsg);
                         
                     }
                  
@@ -151,7 +153,7 @@
 			try{
 				//1èr cas : aucun submit n'a été cliqué
 				if(isset($_POST['cmd']) == false){
-					$oUtilisateur = new Utilisateur($_GET['iUtilisateur']);
+					$oUtilisateur = new Utilisateur($_GET['idUtilisateur']);
                    // var_dump($oUtilisateur);
 					$oUtilisateur->rechercherUnUtilisateur();
                     
@@ -163,14 +165,11 @@
                    
                   
 					$oUtilisateur = new Utilisateur();
-                    echo"post id utilisateur".$_POST['iUtilisateur'];
                     $oUtilisateur -> setIdUtilisateur($_POST['iUtilisateur']);
                     $oUtilisateur -> setNom($_POST['txtNom']);
                     $oUtilisateur -> setTypeUtilisateur($_POST['txtType']);
                     $oUtilisateur -> setStatus($_POST['txtStatus']);
-                     var_dump($oUtilisateur);
-                   
-					//modifier dans la base de données l'étudiant
+                   //modifier dans la base de données l'étudiant
 					$oUtilisateur->modifierUnUtilisateur();
 					$sMsg = "La modification de utilisateur - ".$oUtilisateur->getNom()." - s'est déroulée avec succès.";
 					$oUtilisateur = Utilisateur::rechercherListeDesUtilisateurs();
@@ -222,7 +221,8 @@
 
                 //1èr cas : aucun submit n'a été cliqué
                 
-                    session_destroy();
+                session_destroy();
+                header('Location:../site/index.php');
                 
             } catch (Exception $e) {
 

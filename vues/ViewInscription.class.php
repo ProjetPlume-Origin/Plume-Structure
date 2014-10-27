@@ -50,7 +50,7 @@
         public static function afficherConnexionUtilisateur( $sMsg=""){
         echo'<article class="col-md-5 col-md-offset-3 moduleUtilisateur">';
         echo "
-            <p>".$sMsg."</p>
+            <p class=\"alert alert-success\">".$sMsg."</p>
         
         		<form action=\"index.php?s=".$_GET['s']."\" method=\"post\">
 					<fieldset>
@@ -81,7 +81,7 @@
 		//var_dump($aUtilisateurs);
 		
 		echo "
-			<h1>Liste des Utilisateurs  <a href=\"index.php?s=".$_GET['s']."&action=add\">Ajouter <img src=\"../core/img/ajouter.png\" width=\"15\" height=\"15\"></a> </h1>
+			<h1 class=\"admin_h1\">Liste des Utilisateurs  <a href=\"index.php?s=".$_GET['s']."&action=add\">Ajouter <img src=\"../core/img/ajouter.png\" width=\"15\" height=\"15\"></a> </h1>
 			<p class=\"alert alert-success\">".$sMsg."</p>
 			";
 			if(empty($aUtilisateurs)!=true){
@@ -113,7 +113,7 @@
                        		<td><a href=\"index.php?s=".$_GET['s']
                        		."&action=mod&idUtilisateur=".$aUtilisateurs[$iEnrg]->getIdUtilisateur()."\"><img src=\"../core/img/modifier.png\" width=\"15\" height=\"15\"></a> |
 
-                       		<a href=\"#\" onclick=\"supprimerUnUtilisateur('Voulez-vous supprimer ce Utilisateurt', ".$_GET['s'].", 'sup',".$aUtilisateurs[$iEnrg]->getIdUtilisateur().")\">
+                       		<a href=\"#\" onclick=\"supprimerUnUtilisateur('Voulez-vous supprimer ce utilisateur', ".$_GET['s'].", 'sup',".$aUtilisateurs[$iEnrg]->getIdUtilisateur().")\">
                        		<img src=\"../core/img/supprimer.png\" width=\"15\" height=\"15\"></a> </td>
                    		</tr>
 						";
@@ -134,20 +134,25 @@
         
         
         public static function afficherModifierUtilisateurAdmin(Utilisateur $oUtilisateur, $sMsg=""){
-			echo "
+            echo'<article class="col-md-5 col-md-offset-3 moduleUtilisateur">';
+            echo "
 				<p>".$sMsg."</p>
 				<form action=\"index.php?s=".$_GET['s']."&action=".$_GET['action']."&idUtilisateur=".$oUtilisateur->getIdUtilisateur()."\" method=\"post\">
 					<fieldset>
-						<legend>Produit</legend>
-						<input type=\"hidden\" name=\"iUtilisateur\" value=\"".$oUtilisateur->getIdUtilisateur()."\" ><br>
-						<label for=\"nom\">Nom</label><input type=\"text\" name=\"txtNom\"  value=\"".$oUtilisateur->getNom()."\" ><br>
+						<legend>Modification Utilisateur</legend>
+						<input type=\"hidden\" name=\"iUtilisateur\"  class=\"form-control\" value=\"".$oUtilisateur->getIdUtilisateur()."\" ><br>
+						<label for=\"nom\">Nom</label>
+                        <input type=\"text\" name=\"txtNom\"   class=\"form-control\" value=\"".$oUtilisateur->getNom()."\" ><br>
 						
-                        <label for=\"TypeUtilisateur\">Type Utilisateur</label><input type=\"text\" name=\"txtType\"  value=\"".$oUtilisateur->getTypeUtilisateur()."\" ><br>
-                         <label for=\"Status\">Statut</label><input type=\"text\" name=\"txtStatus\"  value=\"".$oUtilisateur->getStatus()."\" ><br>
+                        <label for=\"TypeUtilisateur\">Type Utilisateur</label>
+                        <input type=\"text\" name=\"txtType\"   class=\"form-control\" value=\"".$oUtilisateur->getTypeUtilisateur()."\" ><br>
+                         <label for=\"Status\">Statut</label>
+                         <input type=\"text\" name=\"txtStatus\"  class=\"form-control\" value=\"".$oUtilisateur->getStatus()."\" ><br>
 												
 						<input type=\"submit\" name=\"cmd\" value=\"Enregistrer\" > <a href=\"index.php?s=".$_GET['s']."\">Retour</a>
 					</fieldset>
 				</form>
+                </article>
 			";
 		}
         
@@ -167,7 +172,7 @@
 					<legend>Inscription</legend> 
 					<div class=\"form-group\">
 								<label for=\"exampleInputNom1\">Nom</label>
-								<input type=\"text\"  name=\"txtNom\" placeholder=\"nom\">
+								<input type=\"text\" class=\"form-control\" name=\"txtNom\" placeholder=\"nom\">
 					</div>
 					<div class=\"form-group\">
 						<label for=\"exampleInputEmail1\">Courriel électronique</label>
@@ -185,17 +190,16 @@
 						<label for=\"exampleInputFile\">Avatar</label>
 						<input type=\"file\" id=\"exampleInputFile\">
 					</div>-->
-					
+					<button type=\"submit\" name=\"cmd\" value=\"inscription\">Créer un compte</button>
 				</fieldset>	
-				<button type=\"submit\" name=\"cmd\" value=\"inscription\">Créer un compte</button>
-			</form></article>
+				
+			</form>
+        </article>
 		
 		  ";
 		}
           
     
-    
-        
         
         
         
