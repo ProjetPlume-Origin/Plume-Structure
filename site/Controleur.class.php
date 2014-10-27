@@ -249,15 +249,13 @@
             try {
                 //1èr cas : aucune option du menu n'a été sélectionné 
                 if(isset($_GET['s']) == FALSE){
-                    $_GET['s']=1;
+                    $_GET['s']='monCompte';
                 }
                 //2e cas :L'administrateur a sélectionné une option dans le menu
                 switch($_GET['s']){
-                    case 2: 
+                    case 'monCompte': default :
                     Controleur::gererOuvrage();
                     break;
-                    case 1 : default :
-                    echo "Bienvenue sur votre compte membre.";
                 }
             }catch(Exception $e){
                 echo "<p>".$e->getMessage()."</p>";
@@ -285,6 +283,7 @@
                     Controleur::gererSupprimerOuvrage();
                     break;
                     case "lst": default:
+                    //echo $_SESSION["IdUtilisateur"];
                     Controleur::gererListeDesOuvrages();
                 }//fin du switch() sur $_GET['action']
             }catch(Exception $e){
