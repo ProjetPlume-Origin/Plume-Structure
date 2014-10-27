@@ -103,7 +103,7 @@
 						";
                    for($iEnrg = 0; $iEnrg<count($aUtilisateurs); $iEnrg++){
 						echo "
-<<<<<<< HEAD
+
 					   <tr>
                             <th> ".$aUtilisateurs[$iEnrg]->getNom()." </th>
                             <th>".$aUtilisateurs[$iEnrg]->getCourriel()." </th>
@@ -114,7 +114,7 @@
                            <th><a href=\"index.php?s=".$_GET['s']."&action=mod&iUtilisateur=".$aUtilisateurs[$iEnrg]->getIdUtilisateur()."\"><img src=\"../core/img/modifier.png\" width=\"25\" height=\"25\"></a></th>
 						<th><a href=\"#\" onclick=\"supprimerUnUtilisateur('Voulez-vous supprimer ce Utilisateurt', ".$_GET['s'].", 'sup',".$aUtilisateurs[$iEnrg]->getIdUtilisateur().")\"><img src=\"../core/img/supprimer.png\" width=\"25\" height=\"25\"></a> </th></tr>
 					";
-=======
+
 					   		<tr>
 	                            <td>".$aUtilisateurs[$iEnrg]->getNom()." </td>
 	                            <td>".$aUtilisateurs[$iEnrg]->getCourriel()." </td>
@@ -129,7 +129,6 @@
                            		<img src=\"../core/img/supprimer.png\" width=\"15\" height=\"15\"></a> </td>
                        		</tr>
 							";
->>>>>>> upstream/master
                     }
 					echo "								
 			         			</tbody>
@@ -140,7 +139,6 @@
 						echo '<p>Aucun utilisateur n’est disponible à l’heure actuelle. Vous pouvez en ajouter un.</p>';
 				    }
 					
-<<<<<<< HEAD
 		}
         
         
@@ -166,10 +164,8 @@
 		}
         
         
-=======
 		} //fin de la fonction afficherListeUtilisateurs()
 
->>>>>>> upstream/master
         
  /*------------------------------------------------------------------------------------------------------------*/
   public static function afficherAjouterUtilisateurAdmin($sMsg=""){
