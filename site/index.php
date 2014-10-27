@@ -38,6 +38,12 @@ session_start();
 	/**
 	* Inclure le gabarit (nécessairement le dernier)
 	*/
-	require_once("gabarit.php");
+		
+if(isset($_SESSION['IdUtilisateur']) == true){
+
 	require_once("pages/monCompte.php");
+} else {
+	require_once("gabarit.php");
+}
+	
 ?>

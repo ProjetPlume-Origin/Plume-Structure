@@ -31,6 +31,7 @@
 					 case 1: 
                         VueAccueil::afficherListeDesCategories();	
                         VueAccueil::afficherOeuvresAccueil();
+
                         break;
 					case 2: 
 						self::gererRechercheAvancee();
@@ -64,7 +65,9 @@
 						self::switchCommentaire();
 						break;
 				  default://Accueil 
-                        VueAccueil::afficherListeDesCategories();						
+                        //VueAccueil::afficherListeDesCategories();
+                        // VueOuvrage::afficherListeOuvrages();
+
 
 				}
 			}catch(Exception $e){
@@ -169,8 +172,13 @@
                                 if($oUtilisateur->verificationMotPass()){
                                     $oUtilisateur->ajouterUtilisateur();
                                     $sMsg = "L'ajout de l'utilisateur' - ".$oUtilisateur->getNom()." - s'est déroulé avec succès.";
+
+                                    //ViewInscription::afficherConnexionUtilisateur($sMsg);
+                                    header('Location:../site/index.php?s=3');
+
                                     header('Location:../site/index.php?s=3');
                                     ViewInscription::afficherConnexionUtilisateur($sMsg);
+
                                  }else{
                                     $sMsg = 'Les 2 mots de passe sont différents.';
                                  }
@@ -442,6 +450,7 @@
                     VueOuvrage::afficherAjouterOuvrage();
                 //2e cas : le bouton submit Modifier a été cliqué
                 }else{
+                    
                 //permet de faire un explode de contenu pour le diviser
                     $dContenu = $_POST['txtContenu'];
                     $tabDivision = array();
