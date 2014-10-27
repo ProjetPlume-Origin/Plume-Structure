@@ -30,6 +30,7 @@
 
 					 case 1: 
                         VueAccueil::afficherListeDesCategories();	
+                        VueAccueil::afficherOeuvresAccueil();
                         break;
 					case 2: 
 						self::gererRechercheAvancee();
