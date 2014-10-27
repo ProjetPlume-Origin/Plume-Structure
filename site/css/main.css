@@ -560,3 +560,51 @@ ul li {
 
 
 
+/*
+
+Classes changement de preference
+*/
+
+.lobster p{
+    font-family: 'Lobster', cursive;
+}
+
+.oswald p{
+    font-family: 'Oswald', sans-serif;
+}
+
+.playfair p{
+font-family: 'Playfair Display', serif;
+}
+
+.shadow p{
+font-family: 'Shadows Into Light', cursive;
+}
+
+.grandeur12 p{
+ font-size: 12px;
+}
+
+.grandeur14 p{
+ font-size: 14px;
+}
+
+.grandeur16 p{
+ font-size: 16px;
+}
+
+.grandeur18 p{
+ font-size: 18px;
+}
+
+.grandeur20 p{
+ font-size: 20px;
+}
+
+.grandeur22 p{
+ font-size: 22px;
+}
+
+.grandeur24 p{
+ font-size: 22px;
+}
