@@ -38,8 +38,7 @@
 	 * @param  $idOuvrage
 	 */
     public function setIdOuvrage($idOuvrage){
-    	//TypeException::estNumerique($idOuvrage);
-    	
+    	    	
     	$this->idOuvrage = $idOuvrage;
     }
 
@@ -48,8 +47,7 @@
 	 * @param  $idOuvrage
 	 */
     public function setIdUtilisateur($idUtilisateur){
-    	TypeException::estNumerique($idUtilisateur);
-    	
+    	    	
     	$this->idUtilisateur = $idUtilisateur;
     }
     
@@ -57,34 +55,33 @@
 	 *  * @param string $ouvrageTitre
 	 */
 	public function setOuvrageTitre($ouvrageTitre){
-		//TypeException::estString($ouvrageTitre);
-		//TypeException::estVide($ouvrageTitre);
+		TypeException::estString($ouvrageTitre);
+		TypeException::estVide($ouvrageTitre);
 		
 		$this->ouvrageTitre = $ouvrageTitre;
 	}
 		
 	/**
-	 * @param string $ouvrageDate
+	 * @param string $ouvrageCouverture
 	 */
 	public function setOuvrageCouverture($ouvrageCouverture){
-		//TypeException::estString($ouvrageCouverture);
-		//TypeException::estVide($ouvrageCouverture);
-		
+				
 		$this->ouvrageCouverture = $ouvrageCouverture;
 	}
 	/**
-	 * @param string $ouvrageDate
+	 * @param string $ouvrageGenre
 	 */
 	public function setOuvrageGenre($ouvrageGenre){
-		//TypeException::estString($ouvrageGenre);
-		//TypeException::estVide($ouvrageGenre);
+		TypeException::estString($ouvrageGenre);
+		TypeException::estVide($ouvrageGenre);
 		
 		$this->ouvrageGenre = $ouvrageGenre;
 	}
+	/**
+	 * @param string $ouvrageContenu
+	 */
 	public function setOuvrageContenu($ouvrageContenu){
-		//TypeException::estString($ouvrageContenu);
-		//TypeException::estVide($ouvrageContenu);
-		
+				
 		$this->ouvrageContenu = $ouvrageContenu;
 	}
 	
@@ -209,19 +206,17 @@
 			$_SESSION['id'] = $variable;
 		}
 
-//echo '<br> Id-1 '.$_SESSION['id'];
 }
 
 		
 public function ajouterContenu(){
-//$var = $_SESSION['id'] + '1';
-	//echo 'Id-2 '.$_SESSION['id'];
+
         //Connecter à la base de données
     	$oConnexion = new MySqliLib();
 	
     	$sRequete = " INSERT INTO paragraphe values 
-    	(NULL,'".$oConnexion->getConnect()->escape_string($this->ouvrageContenu)."','".date("Y-m-d H:i:s") ."','1');";
-//{$_SESSION['id']}
+    	(NULL,'".$oConnexion->getConnect()->escape_string($this->ouvrageContenu)."','".date("Y-m-d H:i:s") ."','{$_SESSION['id']}');";
+
 return $oConnexion->executer($sRequete);  
 	
 	}
@@ -244,19 +239,7 @@ return $oConnexion->executer($sRequete);
      	$oResult = $oConnexion->executer($sRequete);
      	
      }
-function modifierContenu(){
-		//Connexion à la base de données
-     	$oConnexion = new MySqliLib();
-     	
-     	$sRequete = "UPDATE paragraphe SET sContenuParagraphe='".$this->getOuvrageContenu()."'
-     	WHERE idOuvrage = ".$this->getIdOuvrage().";";
-     	
-		//Exécuter la requête
-     	$oResult = $oConnexion->executer($sRequete);
-     	
-     }
-     
-  
+
 	
 	/**
 	 * Rechercher tous les Ouvrages de la base de données
@@ -267,8 +250,8 @@ function modifierContenu(){
 	 	$oConnexion = new MySqliLib();
 	 	//Requête de recherche de tous les Ouvrages
 	 	$sRequete = "
-	 		SELECT * FROM ouvrage 
-	 	";
+	 		SELECT * FROM ouvrage WHERE idUtilisateur = '1' ORDER BY sDateOuvrage DESC
+		";
 	 	//Exécuter la requête
 	 	$oResult = $oConnexion->executer($sRequete);
 	 	//Récupérer le tableau des enregistrements
@@ -304,8 +287,8 @@ function modifierContenu(){
 		$oConnexion = new MySqliLib();
 		//Requete de suppression d'Ouvrage identifié par son idOuvrage
 		$sRequete = "
-			DELETE FROM paragraphe
-			WHERE idParagraphe = ".$_SESSION['idContenu'].";";
+			DELETE  FROM paragraphe
+			WHERE idOuvrage = ".$this->getIdOuvrage().";";
 		
 		//Exécuter la requête
 		return $oConnexion->executer($sRequete);
