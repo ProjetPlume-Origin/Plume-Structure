@@ -16,13 +16,13 @@
 				if(isset($_SESSION["IdUtilisateur"]))
 				{
 					include_once "../vues/templates/navConnecte.php";
-					echo "session" .$_SESSION["IdUtilisateur"];
+					
 				}
 				
 				else
 				{
 					include_once "../vues/templates/nav.php";
-					echo"dfkjdfhkjdf";
+					
 				}   
 				
 				
@@ -62,10 +62,7 @@
 				  case 9: ////controleur christhian
 						self::switchCommentaire();
 						break;
-								
-               
-                
-                default://Accueil 
+				  default://Accueil 
                         VueAccueil::afficherListeDesCategories();						
 
 				}
@@ -257,7 +254,8 @@
 
                 //1èr cas : aucun submit n'a été cliqué
                 
-                    session_destroy();
+                session_destroy();
+                header('Location:../site/index.php');
                 
             } catch (Exception $e) {
 
