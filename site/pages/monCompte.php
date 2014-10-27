@@ -47,9 +47,9 @@
                                 </nav>
                                 <?php
 
-                                
+                                //include_once "../vues/templates/navConnecte.php";
                                 Controleur::gererOuvrage();
-                                
+                                include_once "../vues/templates/footer.php"; 
                                 
                                 ?>
                             </div>                
