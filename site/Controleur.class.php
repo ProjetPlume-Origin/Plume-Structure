@@ -63,8 +63,16 @@
 				  case 9: ////controleur christhian
 						self::switchCommentaire();
 						break;
+                    
+                  case 10: 
+						//TODO fonction qui redirige sur un affichage propre a un oeuvre
+						break;
+                    
+                    
+                    
 				  default://Accueil 
-                        VueAccueil::afficherListeDesCategories();						
+                        VueAccueil::afficherListeDesCategories();	
+                        VueAccueil::afficherOeuvresAccueil();
 
 				}
 			}catch(Exception $e){
