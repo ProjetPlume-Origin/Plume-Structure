@@ -39,7 +39,7 @@
 				<td><?php echo $row['idParagraphe'] ?></td>
 				<td>
 					<?php 
-					echo "<a href='index.php?s=7&cid=$cid&st=$status'>$textLink</a>";
+					echo "<a href='index.php?s=8&cid=$cid&st=$status'>$textLink</a>";
 					?>
 				</td>
 			</tr>
