@@ -25,7 +25,7 @@ class Commentaire {
      *
 	 */
 	 
-	/*
+	 /*
 	public function __construct($idUtilisateur=0, $sNom=" ", $sCourriel="hh@hotmail.com", $sMotDePasse="aa",$sConfirmation="aa",$sTypeUtilisateur="Membre",$sAvatar=" ",$sStatus="Inactive"){
 		       	
 		
