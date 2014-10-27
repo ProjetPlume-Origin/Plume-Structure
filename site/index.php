@@ -12,10 +12,12 @@ session_start();
 	*/
 	//1èr cas : aucune option du menu n'a été sélectionné
 	require_once("../vues/VueAccueil.class.php");
+   // require_once("../vues/ViewInscription.class.php");	
 
-		if(isset($_GET['s']) == true){
+       if(isset($_GET['s']) == true){
 					
-			require_once("../vues/ViewInscription.class.php");		
+			 require_once("../vues/ViewInscription.class.php");	
+	
 	
 		}
 		

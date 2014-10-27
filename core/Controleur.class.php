@@ -14,7 +14,7 @@
 						Controleur::gererUtilisateur();
 						break;
 					case 1 : default :
-						echo "Bienvenue sur le site administrateur de plume.";
+						Controleur::gererUtilisateur();
 					 case 5: 
 						Controleur::gererDeconnectionUtilisateur();
 						break;		
