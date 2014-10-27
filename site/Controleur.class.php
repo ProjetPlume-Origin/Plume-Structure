@@ -53,7 +53,21 @@
 
                     case 5: 
 						Controleur::gererDeconnectionUtilisateur();
-						break;	
+						break;
+                    
+                    
+                   case 6: /////controleur christhian                           /*******du  contrelerue**/
+						Controleur::exampleComment(); 
+						break;
+					
+					case 7: /////controleur christhian
+						Controleur::listeDesCommentaires();
+						break;
+						
+					case 8: ////controleur christhian
+						Controleur::switchCommentaire();
+						break;
+								
                     case 1: default://Accueil 
                         VueAccueil::afficherListeDesCategories();						
 
