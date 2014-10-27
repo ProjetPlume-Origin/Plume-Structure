@@ -8,25 +8,13 @@
 			
 			try{
 				//1èr cas : aucune option du menu n'a été sélectionné
-				if(isset($_GET['s']) == false){
+				
+                
+                if(isset($_GET['s']) == false){
 					$_GET['s']=1;
 				}
 				
-			
-				if(isset($_SESSION["IdUtilisateur"]))
-				{
-					include_once "../vues/templates/navConnecte.php";
-					echo "session" .$_SESSION["IdUtilisateur"];
-				}
-				
-				else
-				{
-					include_once "../vues/templates/nav.php";
-					echo"dfkjdfhkjdf";
-				}   
-				
-				
-				switch($_GET['s']){
+                 switch($_GET['s']){
 
 					
 					case 2: 
@@ -164,23 +152,30 @@
                                 if($oUtilisateur->verificationMotPass()){
                                     $oUtilisateur->ajouterUtilisateur();
                                     $sMsg = "L'ajout de l'utilisateur' - ".$oUtilisateur->getNom()." - s'est déroulé avec succès.";
-                                    ViewInscription::afficherConnexionUtilisateur($sMsg);
+                                   // ViewInscription::afficherConnexionUtilisateur($sMsg);
+                                    header('Location:../site/index.php?s=3');
+                                                                     
                                  }else{
                                     $sMsg = 'Les 2 mots de passe sont différents.';
+                                    ViewInscription::afficherAjouterUtilisateur($sMsg);
                                  }
                          }else{
                              
                              $sMsg = 'Un membre possède déjà ce Courriel.';
+                              ViewInscription::afficherAjouterUtilisateur($sMsg);
                         }
                         
                     }else{
                         
                         $sMsg = 'Un membre possède déjà ce Nom.';
+                        ViewInscription::afficherAjouterUtilisateur($sMsg);
                         
                         
                     }
-                                                    
-                    ViewInscription::afficherAjouterUtilisateur($sMsg);
+                        /* if($oUtilisateur){                        
+                            ViewInscription::afficherAjouterUtilisateur($sMsg);
+                         }*/
+                      
 				}
 			}catch(Exception $e){
 				ViewInscription::afficherAjouterUtilisateur($e->getMessage());
@@ -216,7 +211,9 @@
 										$_SESSION["sTypeUtilisateur"] = $aUtilisateur[0]['sTypeUtilisateur'];
                                        // echo $_SESSION["IdUtilisateur"]; 
 									    if($_SESSION["sTypeUtilisateur"] =='Membre'){
-											VueAccueil::afficherListeDesCategories($sMsg);
+											//VueAccueil::afficherListeDesCategories($sMsg);
+                                            header('Location:../site/index.php');
+
 										}else{
 											header('Location:../core/index.php');
 										
@@ -251,7 +248,8 @@
                 //1èr cas : aucun submit n'a été cliqué
                 
                     session_destroy();
-                
+                    header('Location:../site/index.php');
+
             } catch (Exception $e) {
 
             }
