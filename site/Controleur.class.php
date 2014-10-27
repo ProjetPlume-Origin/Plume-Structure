@@ -171,8 +171,13 @@
                                 if($oUtilisateur->verificationMotPass()){
                                     $oUtilisateur->ajouterUtilisateur();
                                     $sMsg = "L'ajout de l'utilisateur' - ".$oUtilisateur->getNom()." - s'est déroulé avec succès.";
+
                                     //ViewInscription::afficherConnexionUtilisateur($sMsg);
                                     header('Location:../site/index.php?s=3');
+
+                                    header('Location:../site/index.php?s=3');
+                                    ViewInscription::afficherConnexionUtilisateur($sMsg);
+
                                  }else{
                                     $sMsg = 'Les 2 mots de passe sont différents.';
                                  }
@@ -409,6 +414,7 @@
                 if(isset($_GET['bSup']) == true){
                     $sMsg ="La suppression s'est bien déroulée.";
                 }
+                 
                 //Rechercher la liste des Ouvrage
                 $aOuvrages = Ouvrage::rechercherListeDesOuvrages();
                 //Afficher la liste des Ouvrage

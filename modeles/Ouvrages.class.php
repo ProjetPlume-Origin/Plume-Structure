@@ -188,6 +188,8 @@
 	 */
 	function ajouterOuvrage(){
 		
+        
+        echo"hhhhhhhhhhhhhhhhhhhhhhhhhhh". $_SESSION["IdUtilisateur"];
 		//Connexion à la base de données
 		$oConnexion = new MySqliLib();
 		//Requete d'ajout de l'Ouvrage
