@@ -45,16 +45,19 @@
 						Controleur::gererDeconnectionUtilisateur();
 						break;
                     
-                    
-                   case 6: /////controleur christhian                           /*******du  contrelerue**/
+                  case 6: /////controleur christhian
+						Controleur::exampleOuvrage();
+						break;
+
+                  case 7: /////controleur christhian                           /*******du  contrelerue**/
 						Controleur::exampleComment(); 
 						break;
 					
-					case 7: /////controleur christhian
+				  case 8: /////controleur christhian
 						Controleur::listeDesCommentaires();
 						break;
 						
-					case 8: ////controleur christhian
+				  case 9: ////controleur christhian
 						Controleur::switchCommentaire();
 						break;
 								
@@ -257,7 +260,100 @@
             }
         }
         
+     /********
+        **
+        ** example 
+        *  ouvrage
+        * Christhian Diaz
+        ***/
         
+        public static function exampleOuvrage(){
+        	echo "
+			<h1>Lorem Ipsum</h1>
+			
+			<div class='paragraph data-pid='1'>
+				<div class='textpar'>
+					Paragraph One
+				</div>
+				
+				<div class='comments'>
+					<div class='comment' data-uid=''></div>
+					<div class='comment comm-two'></div>
+					<div class='comment comm-thr'></div>
+				
+					<div class='add-comment'>
+						Add
+					</div>
+				</div>
+				
+				
+			
+			</div>
+			<p class='paragraph' data-pid='2'>
+				Paragraph Two
+			</p>
+			<p class='paragraph' data-pid='3'>
+				Paragraph Three
+			</p>
+        	";
+        }  ///fin exampe ouvrage
+		
+     
+     
+     	/*****
+		*functionexampleComment
+		*@Christhian Diaz
+		*
+		****/
+		public  static function exampleComment()
+		{
+			if (!empty ($_POST)){
+					
+				$resultat = Commentaire::ajouterCommentaire($_POST);
+				                    
+                if ($resultat !== false) {
+					//echo "Saved as ID: $resultat";
+                    echo"Comment".$_POST['sContenuCommentaire']."saved.";
+				} else {
+					echo "Error Saving";
+					include("../vues/commentaires/add.php");
+				}
+								
+			} else {
+				include("../vues/commentaires/add.php");	
+			}
+		}/////////fin example comment christhian diaz 
+
+        //*******afiicher la liste de commentaries***/
+		public static function listeDesCommentaires()
+		{
+				
+			$data = Commentaire::index();
+			
+			include("../vues/commentaires/index.php");
+		}//fin affiche liste commentaries
+
+
+        /***
+         *
+         * Active et desative le commentaires
+         *  Christhian Diaz
+         */
+		public static function switchCommentaire()
+		{
+			Commentaire::setActive($_GET['cid'],$_GET['st']);
+			header('Location: index.php?s=6');
+		}/// fin function active et desative
+		
+     
+     
+     
+     
+     
+     
+     
+     
+     
      
     }//fin de la classe Controleur
 ?>

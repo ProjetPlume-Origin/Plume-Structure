@@ -40,7 +40,7 @@
             <div class=\"listeGenres\">
               <h2>Genres</h2>
               <ul>
-                <li><a href=\"#\">Science-fiction et fantastique</a></li>
+                <li><a href='index.php?s=6'>Science-fiction et fantastique</a></li>
                 <li><a href=\"#\">Romans policiers</a></li>
                 <li><a href=\"#\">Romans d'épouvante</a></li>
                 <li><a href=\"#\">Poésie et théâtre</a></li>
