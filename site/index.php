@@ -23,7 +23,11 @@ session_start();
 	* Inclure les modèles
 	*/
 	require_once("../modeles/Utilisateur.class.php");
-
+	require_once("../modeles/Ouvrages.class.php");
+	/**
+	* Inclure la vue ouvrage
+	*/
+	require_once("../vues/VueOuvrage.class.php");
 	/**
 	* Inclure le contrôleur
 	*/
@@ -32,5 +36,6 @@ session_start();
 	/**
 	* Inclure le gabarit (nécessairement le dernier)
 	*/
-	require_once("gabarit.php");
+	//require_once("gabarit.php");
+	require_once("pages/monCompte.php");
 ?>
