@@ -14,29 +14,7 @@
 					$_GET['s']=1;
 				}
 				
-                    
-                
-             //  echo 'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq'.$_SESSION["IdUtilisateur"];
-               
-                
-                
-                
-			  /*     if(isset($_SESSION["IdUtilisateur"]))
-				{
-					include_once "../vues/templates/navConnecte.php";
-                      
-				}
-				
-				else
-				{
-					include_once "../vues/templates/nav.php";
-					
-				}   
-                
-				*/
-				
-				
-				switch($_GET['s']){
+                 switch($_GET['s']){
 
 					
 					case 2: 
@@ -174,23 +152,30 @@
                                 if($oUtilisateur->verificationMotPass()){
                                     $oUtilisateur->ajouterUtilisateur();
                                     $sMsg = "L'ajout de l'utilisateur' - ".$oUtilisateur->getNom()." - s'est déroulé avec succès.";
-                                    ViewInscription::afficherConnexionUtilisateur($sMsg);
+                                   // ViewInscription::afficherConnexionUtilisateur($sMsg);
+                                    header('Location:../site/index.php?s=3');
+                                                                     
                                  }else{
                                     $sMsg = 'Les 2 mots de passe sont différents.';
+                                    ViewInscription::afficherAjouterUtilisateur($sMsg);
                                  }
                          }else{
                              
                              $sMsg = 'Un membre possède déjà ce Courriel.';
+                              ViewInscription::afficherAjouterUtilisateur($sMsg);
                         }
                         
                     }else{
                         
                         $sMsg = 'Un membre possède déjà ce Nom.';
+                        ViewInscription::afficherAjouterUtilisateur($sMsg);
                         
                         
                     }
-                                                    
-                    ViewInscription::afficherAjouterUtilisateur($sMsg);
+                        /* if($oUtilisateur){                        
+                            ViewInscription::afficherAjouterUtilisateur($sMsg);
+                         }*/
+                      
 				}
 			}catch(Exception $e){
 				ViewInscription::afficherAjouterUtilisateur($e->getMessage());
