@@ -36,6 +36,6 @@ session_start();
 	/**
 	* Inclure le gabarit (nécessairement le dernier)
 	*/
-	require_once("gabarit.php");
+	//require_once("gabarit.php");
 	require_once("pages/monCompte.php");
 ?>
