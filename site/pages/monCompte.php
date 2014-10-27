@@ -30,39 +30,10 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-    <!-- ENTETE DU SITE -->    
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container arriereLogoEntete">
-        <div class="row navLogoPlume">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="../index.html"><img src="img/logo/logoplume.png" alt="Logo Plume"></a>
-          </div>
-        </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-left navPrincipal">
-              <li><a href="../index.html">Accueil</a></li>
-              <li><a href="monCompte.html">Mes oeuvres</a></li>
-              <li><a href="modifierMonCompte.html">Mon compte</a></li>
-              <li><a href="contact.html">Contact</a></li>
-          </ul>
-
-          
-        </div><!-- navbar-collapse -->
-      </div>
-    </div> <!-- FIN ENTETE DU SITE -->
-
-    <!-- CONTENEUR PRINCIPAL -->
+      <!-- CONTENEUR PRINCIPAL -->
     <main class="container">  
             
-      
-
-                <!-- Tab panes -->
+               <!-- Tab panes -->
               
                     <div id="mesOeuvres">
                         <div class="row">
@@ -76,8 +47,11 @@
                                 </nav>
                                 <?php
 
+                                
+                                include_once "../vues/templates/header.php";
                                 Controleur::gererSiteOuvrage();
                                 include_once "../vues/templates/footer.php"; 
+                                
                                 ?>
                             </div>                
                             
