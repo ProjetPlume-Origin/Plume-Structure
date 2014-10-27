@@ -28,21 +28,23 @@
 				
 				switch($_GET['s']){
 
-					
+					 case 1: 
+                        VueAccueil::afficherListeDesCategories();	
+                        break;
 					case 2: 
-						Controleur::gererRechercheAvancee();
+						self::gererRechercheAvancee();
 						break;
 
                     case 3: 
-                        Controleur::gererConnexionUtilisateur();
+                        self::gererConnexionUtilisateur();
                         break; 
 
                     case 4: 
-                        Controleur::gererInscriptionUtilisateur();
+                        self::gererInscriptionUtilisateur();
                         break;  
 
                     case 5: 
-						Controleur::gererDeconnectionUtilisateur();
+						self::gererDeconnectionUtilisateur();
 						break;
                     
                   case 6: /////controleur christhian
@@ -50,18 +52,20 @@
 						break;
 
                   case 7: /////controleur christhian                           /*******du  contrelerue**/
-						Controleur::exampleComment(); 
+						self::exampleComment(); 
 						break;
 					
 				  case 8: /////controleur christhian
-						Controleur::listeDesCommentaires();
+						self::listeDesCommentaires();
 						break;
 						
 				  case 9: ////controleur christhian
-						Controleur::switchCommentaire();
+						self::switchCommentaire();
 						break;
 								
-                    case 1: default://Accueil 
+               
+                
+                default://Accueil 
                         VueAccueil::afficherListeDesCategories();						
 
 				}
@@ -219,7 +223,7 @@
 										$_SESSION["sTypeUtilisateur"] = $aUtilisateur[0]['sTypeUtilisateur'];
                                        // echo $_SESSION["IdUtilisateur"]; 
 									    if($_SESSION["sTypeUtilisateur"] =='Membre'){
-											VueAccueil::afficherListeDesCategories($sMsg);
+											 header('Location:../site/index.php');
 										}else{
 											header('Location:../core/index.php');
 										
