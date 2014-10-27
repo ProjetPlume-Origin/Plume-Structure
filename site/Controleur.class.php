@@ -264,12 +264,26 @@
             }
         }
         
-     /********
-        **
-        ** example 
-        *  ouvrage
-        * Christhian Diaz
-        ***/
+//Controlleur ouvrage JALAL*********************************************************************
+
+        public static function gererSiteOuvrage(){
+            try {
+                //1èr cas : aucune option du menu n'a été sélectionné 
+                if(isset($_GET['s']) == FALSE){
+                    $_GET['s']='monCompte';
+                }
+                //2e cas :L'administrateur a sélectionné une option dans le menu
+                switch($_GET['s']){
+                    case 'monCompte': default :
+                    Controleur::gererOuvrage();
+                    break;
+                }
+            }catch(Exception $e){
+                echo "<p>".$e->getMessage()."</p>";
+            }
+
+        }//fin de la fonction gererSite()
+
         
         public static function exampleOuvrage(){
         	echo "
