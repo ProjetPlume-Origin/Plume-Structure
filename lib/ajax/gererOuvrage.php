@@ -12,7 +12,7 @@
 	 /**
 	 * Inclure le contrôleur
 	 */
-	 require_once("../../site/Controleur_Ouvrage.class.php");
+	 require_once("../../site/Controleur.class.php");
     
     $bDelete = Controleur::gererSupprimerOuvrage();
 	header("Location:../../site/index.php?s=".$_GET['s']."&bSup=".$bDelete);
