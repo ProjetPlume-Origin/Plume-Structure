@@ -47,10 +47,9 @@
                                 </nav>
                                 <?php
 
-                                //include_once "../vues/templates/header.php";
-                                //include_once "../vues/templates/navConnecte.php";
-                                Controleur::gererSiteOuvrage();
-                                include_once "../vues/templates/footer.php"; 
+                                
+                                Controleur::gererOuvrage();
+                                
                                 
                                 ?>
                             </div>                
@@ -62,6 +61,7 @@
                    
                
         </main> <!-- /container -->
+        <br>
       
       <script src="../lib/js/scripts.js"></script>
           <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
