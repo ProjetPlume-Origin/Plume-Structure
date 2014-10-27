@@ -77,33 +77,27 @@
         
   /*--------------------------------------------------------------------------------------------------------------------------*/      
         
-   		public static function afficherListeUtilisateurs(array $aUtilisateurs , $sMsg="&nbsp;"){
+   public static function afficherListeUtilisateurs(array $aUtilisateurs , $sMsg="&nbsp;"){
 			//var_dump($aUtilisateurs);
 			
 			echo "
-				<h1>Liste des Utilisateurs  <a href=\"index.php?s=".$_GET['s']."&action=add\">Ajouter <img src=\"../core/img/ajouter.png\" width=\"15\" height=\"15\"></a> </h1>
-				<p class=\"alert alert-success\">".$sMsg."</p>
-				";
+				<h1>Liste des Utilisateurs  <a href=\"index.php?s=".$_GET['s']."&action=add\">Ajouter <img src=\"../core/img/ajouter.png\" width=\"25\" height=\"25\"></a> </h1>
+				<p>".$sMsg."</p>";
 				if(empty($aUtilisateurs)!=true){
-					echo "
-						<div class=\"table-responsive\">
-							<table class=\"table\">
-								<thead>
-						        	<tr>
-		                                <th>Nom</th>
-		                                <th>Courriel</th>
-		                                <th>mot de passe </th>
-		                                <th>Status</th>
-		                                <th>Type Utilisateur</th>
-		                                <th>Avatar</th>
-		                                <th>Action</th>
-		                            </tr>
-	                            </thead>
-				      			<tbody>
+					echo 
+						"
+						<table >
+							<tr>
+                                <th>Nom</th>
+                                <th>Courriel</th>
+                                <th>mot de passe </th>
+                                <th>Status</th>
+                                <th>Type Utilisateur</th>
+                                <th>Avatar</th>
+                            </tr>
 						";
                    for($iEnrg = 0; $iEnrg<count($aUtilisateurs); $iEnrg++){
 						echo "
-
 					   <tr>
                             <th> ".$aUtilisateurs[$iEnrg]->getNom()." </th>
                             <th>".$aUtilisateurs[$iEnrg]->getCourriel()." </th>
@@ -114,27 +108,8 @@
                            <th><a href=\"index.php?s=".$_GET['s']."&action=mod&iUtilisateur=".$aUtilisateurs[$iEnrg]->getIdUtilisateur()."\"><img src=\"../core/img/modifier.png\" width=\"25\" height=\"25\"></a></th>
 						<th><a href=\"#\" onclick=\"supprimerUnUtilisateur('Voulez-vous supprimer ce Utilisateurt', ".$_GET['s'].", 'sup',".$aUtilisateurs[$iEnrg]->getIdUtilisateur().")\"><img src=\"../core/img/supprimer.png\" width=\"25\" height=\"25\"></a> </th></tr>
 					";
-
-					   		<tr>
-	                            <td>".$aUtilisateurs[$iEnrg]->getNom()." </td>
-	                            <td>".$aUtilisateurs[$iEnrg]->getCourriel()." </td>
-	                            <td>".$aUtilisateurs[$iEnrg]->getMotDePasse()." </td>
-	                            <td>".$aUtilisateurs[$iEnrg]->getStatus()." </td>
-	                            <td>".$aUtilisateurs[$iEnrg]->getTypeUtilisateur()." </td>
-	                            <td>".$aUtilisateurs[$iEnrg]->getAvatar()." </td>
-                           		<td><a href=\"index.php?s=".$_GET['s']
-                           		."&action=mod&idUtilisateur=".$aUtilisateurs[$iEnrg]->getIdUtilisateur()."\"><img src=\"../core/img/modifier.png\" width=\"15\" height=\"15\"></a> |
-
-                           		<a href=\"#\" onclick=\"supprimerUnUtilisateur('Voulez-vous supprimer ce Utilisateurt', ".$_GET['s'].", 'sup',".$aUtilisateurs[$iEnrg]->getIdUtilisateur().")\">
-                           		<img src=\"../core/img/supprimer.png\" width=\"15\" height=\"15\"></a> </td>
-                       		</tr>
-							";
                     }
-					echo "								
-			         			</tbody>
-	   						</table>
-						</div>				
-						";
+					echo '</table>';
 					}else{
 						echo '<p>Aucun utilisateur n’est disponible à l’heure actuelle. Vous pouvez en ajouter un.</p>';
 				    }
@@ -164,8 +139,6 @@
 		}
         
         
-		} //fin de la fonction afficherListeUtilisateurs()
-
         
  /*------------------------------------------------------------------------------------------------------------*/
   public static function afficherAjouterUtilisateurAdmin($sMsg=""){
@@ -211,6 +184,8 @@
     
         
         
-    } // Fin de la classe ViewInscription()
+        
+        
+    }
 
 ?>
