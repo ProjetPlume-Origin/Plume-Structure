@@ -28,9 +28,7 @@
 				
 				switch($_GET['s']){
 
-					case 1: default://Accueil 
-                        VueAccueil::afficherListeDesCategories();						
-
+					
 					case 2: 
 						Controleur::gererRechercheAvancee();
 						break;
@@ -46,6 +44,8 @@
                     case 5: 
 						Controleur::gererDeconnectionUtilisateur();
 						break;	
+                    case 1: default://Accueil 
+                        VueAccueil::afficherListeDesCategories();						
 
 				}
 			}catch(Exception $e){

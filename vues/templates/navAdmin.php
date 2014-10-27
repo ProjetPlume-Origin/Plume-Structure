@@ -22,8 +22,8 @@
           <ul class="nav navbar-nav navbar-right">
                 <!-- <li><a href="#">Se connecter</a></li>
                 <li><a href="#">Créer un compte</a></li> -->                
-				        <li><a href="index.php?s=3"><button class="btn btn-blue btnNav">Se connecter</button></a></li>
-                <li><a href="index.php?s=4"><button class="btn btn-blue btnNav">Créer un compte</button></a></li>				
+				        <li><a href="index.php?s=5"><button class="btn btn-blue btnNav">déconnecter</button></a></li>
+               			
           </ul>
 
         </div><!-- navbar-collapse -->
