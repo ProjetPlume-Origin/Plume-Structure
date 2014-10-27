@@ -1,4 +1,4 @@
-	<!-- ENTETE DU SITE -->    
+	<!-- ENTETE DU core -->    
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container arriereLogoEntete">
         <div class="row navLogoPlume">
@@ -9,7 +9,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../../site/index.php"><img src="<?php echo RACINE.DS; ?>site/img/Logo/logoplume.png" alt="Logo Plume"></a>            
+            <a class="navbar-brand" href="../../core/index.php"><img src="<?php echo RACINE.DS; ?>site/img/Logo/logoplume.png" alt="Logo Plume"></a>            
           </div>
         </div>
         <div class="navbar-collapse collapse">
@@ -28,7 +28,7 @@
 
         </div><!-- navbar-collapse -->
       </div>
-    </div> <!-- FIN ENTETE DU SITE -->
+    </div> <!-- FIN ENTETE DU core -->
 
 
 
