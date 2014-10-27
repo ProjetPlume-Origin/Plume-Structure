@@ -77,7 +77,7 @@
                                 <?php
 
                                 Controleur::gererSiteOuvrage();
-                                include_once "../../vues/templates/footer.php"; 
+                                include_once "../vues/templates/footer.php"; 
                                 ?>
                             </div>                
                             
