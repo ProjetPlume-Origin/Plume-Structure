@@ -109,4 +109,5 @@ class VueOuvrage{
     }//fin de la classe VueOuvrage
 
     ?>     
-        
+        </main> <!-- /container -->
+      
