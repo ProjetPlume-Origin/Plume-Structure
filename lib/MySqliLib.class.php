@@ -26,7 +26,7 @@
     	const HOST ="localhost";
 		const USER ="root";
 		const PWD="";
-		const BDD="bd_projet_plume"; 
+		const BDD="projet_plume"; 
     	
 		
 		/** 
