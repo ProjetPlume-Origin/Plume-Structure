@@ -228,6 +228,18 @@
                                         $_SESSION["IdUtilisateur"] = $aUtilisateur[0]['idUtilisateur'];
                                         $_SESSION["sNomUtilisateur"] = $aUtilisateur[0]['sNomUtilisateur'];
 										$_SESSION["sTypeUtilisateur"] = $aUtilisateur[0]['sTypeUtilisateur'];
+                                        
+                                        //ajout des variables session des preferences par Alex
+                                        
+                                        
+                                        $_SESSION["sTypePolice"] = Preference::chargerPreference($aUtilisateur[0]['idUtilisateur'])['sTypePolice'];
+                                        $_SESSION["sTaillePolice"] = Preference::chargerPreference($aUtilisateur[0]['idUtilisateur'])['sTaillePolice'];
+                                        $_SESSION["sCouleurPolice"] = Preference::chargerPreference($aUtilisateur[0]['idUtilisateur'])['sCouleurPolice'];
+                                        $_SESSION["sCouleurFond"] = Preference::chargerPreference($aUtilisateur[0]['idUtilisateur'])['sCouleurFond'];
+                                        $_SESSION["idUtilisateur"] = Preference::chargerPreference($aUtilisateur[0]['idUtilisateur'])['idUtilisateur'];
+                                            
+                                        //Fin ajout des variables session des preferences par Alex
+                                        
                                        // echo $_SESSION["IdUtilisateur"]; 
 									    if($_SESSION["sTypeUtilisateur"] =='Membre'){
 											 header('Location:../site/index.php');
