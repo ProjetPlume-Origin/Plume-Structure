@@ -10,16 +10,20 @@ session_start();
 	/**
 	* Inclure les vues
 	*/
+	require_once("../vues/VueGenre.class.php");
 	require_once("../vues/VueAccueil.class.php");
 	require_once("../vues/VueRechercheAvancee.class.php");
  	require_once("../vues/ViewInscription.class.php");
-	require_once("../vues/VueOuvrage.class.php");	
+	require_once("../vues/VueOuvrage.class.php");
+
 		
 	/**
 	* Inclure les modèles
 	*/
+	require_once("../modeles/Genre.class.php");
 	require_once("../modeles/Utilisateur.class.php");
 	require_once("../modeles/Ouvrages.class.php");
+	
 	
 	
 	/**

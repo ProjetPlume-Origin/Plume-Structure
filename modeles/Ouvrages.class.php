@@ -298,7 +298,29 @@ return $oConnexion->executer($sRequete);
 	}
 
 
- 
+	/**
+	 * Rechercher tous les ouvrages de la base de données par genre cliqué
+	 * @author Julian Rendon
+	 * @return array ce tableau contient des objets Ouvrage
+	 */
+	 public static function rechercherListeDesOuvragesParGenre(){
+	 	//Connexion à la base de données
+	 	$oConnexion = new MySqliLib();
+	 	$sRequete = "SELECT * FROM ouvrage WHERE sGenre = '".$this->ouvrageGenre."';";
+	 	//Exécuter la requête
+	 	$oResult = $oConnexion->executer($sRequete);
+	 	//Récupérer le tableau des enregistrements
+	 	$aEnreg = $oConnexion->recupererTableau($oResult);
+		$aOuvrages = array();
+	 	//Pour tous les enregistrements
+	 	for($i=0; $i<count($aEnreg); $i++){
+	 		//affecter un objet à un élément du tableau
+	 		$aOuvrages[$i] =  new Ouvrage($aEnreg[$i]['idOuvrage'], $aEnreg[$i]['sTitreOuvrage'], $aEnreg[$i]['sCouvertureOuvrage'], $aEnreg[$i]['sGenre'], $aEnreg[$i]['idUtilisateur']);
+	 		
+	 	}
+	 	//retourner le tableau d'objets
+	 	return $aOuvrages;
+	 }//fin de la fonction rechercherListeDesOuvragesParGenre()
 
 }//fin de la classe Ouvrage
 ?>
