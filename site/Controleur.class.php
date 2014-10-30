@@ -103,7 +103,7 @@
                                            
                     case "lst": default:
                         VueAccueil::afficherListeDesCategories();
-                        VueAccueil::afficherRechercheAvancee();
+                        VueRechercheAvancee::afficherFormRechercheAvancee();
                         
                 }//fin du switch() sur $_GET['action']
             }catch(Exception $e){
