@@ -60,11 +60,10 @@
 
 
     /**
-     * Côté utilisateur - Afficher les oeuvres selon la categorie sélectionnée
-     * @param 
-     */
-    public static function rechercherListeDesOeuvres($sGenre=""){
-      //Connexion à la base de données
+     * Fonction qui affiche aléatoirement tous les oeuvres dans la bd
+     */      
+    public static function afficherOeuvresAccueil($sGenre=""){
+          
       $oConnexion = new MySqliLib();
       //Requête de recherche de tous les oeuvres
       if($sGenre){
@@ -76,37 +75,8 @@
         $sRequete = "SELECT * FROM ouvrage;"; 
 
       }
-      echo  $sRequete;
-      
-      //Exécuter la requête
-      $oResult = $oConnexion->executer($sRequete);
-      //Récupérer le tableau des enregistrements
-      $aEnreg = $oConnexion->recupererTableau($oResult);
-      $aOeuvres = array();
-      //Pour tous les enregistrements
-      for($iEnreg=0; $iEnreg<count($aEnreg); $iEnreg++){
-      //affecter un objet à un élément du tableau
-      $aOeuvres[$iEnreg] =  new Ouvrage($aEnreg[$iEnreg]['idOuvrage'], 
-                                       $aEnreg[$iEnreg]['sTitreOuvrage'], 
-                                       $aEnreg[$iEnreg]['sDateOuvrage'],
-                                       $aEnreg[$iEnreg]['sCouvertureOuvrage'],
-                                       $aEnreg[$iEnreg]['sGenre'],
-                                       $aEnreg[$iEnreg]['idUtilisateur']);
-                                            
-      }
-      //retourner le tableau d'objets
-      return $aOeuvres;
-    }//fin de la fonction rechercherListeDesOeuvres()
+      //echo  $sRequete;
 
-
-    /**
-     * Fonction qui affiche aléatoirement tous les oeuvres dans la bd
-     */      
-    public static function afficherOeuvresAccueil(){
-          
-      $oConnexion = new MySqliLib();
-    
-      $sRequete = "SELECT * FROM ouvrage;";
       $oResult = $oConnexion->executer($sRequete);
       $aOeuvre = $oConnexion->recupererTableau($oResult);
 
@@ -138,8 +108,6 @@
 
       echo"</div></div>";
     }
-
-
 
 
   } // fin de la classe VueAccueil()
