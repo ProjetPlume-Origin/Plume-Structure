@@ -31,7 +31,7 @@
 					 case 1:
                         VueAccueil::afficherLienRechercheAvance(); 
                         VueAccueil::afficherListeDesCategories();	
-                        VueAccueil::afficherOeuvresAccueil();
+                        self::gererAffichageAccueilParCategorie();
                         break;
 					case 2: 
 						self::gererRechercheAvancee();
@@ -74,17 +74,43 @@
 				  default://Accueil
                         VueAccueil::afficherLienRechercheAvance(); 
                         VueAccueil::afficherListeDesCategories();	
-                        VueAccueil::afficherOeuvresAccueil();
+                        self::gererAffichageAccueilParCategorie();
 
 				}
 			}catch(Exception $e){
 				echo "<p>".$e->getMessage()."</p>";
 			}	
 			
-		}
+		} //fin de la fonction gererSite()
+        
+
+
+/***************************************** PARTIE CONTROLEUR DE JULIAN ****************************************/ 
+        
+        /**
+        * @author Julian Rendon
+        * redirige selon l'action
+        */     
+        public static function gererAffichageAccueilParCategorie() {
+
+            try{
+                
+                if(isset($_POST['cmd']) == false){
+                    VueAccueil::afficherOeuvresAccueil();
+                }else{
+                    
+                        
+                }
+            }catch(Exception $e){
+                //repropose la saisie du numéro d'ouevrage, une erreur de type
+                VueAccueil::afficherOeuvresAccueil($e->getMessage());
+            }
+
+        } // fin de la fonction gererAffichageAccueilParCategorie()
 
 
         /**
+        * @author Julian Rendon
         * redirige selon l'action
         */     
         public static function gererRechercheAvancee() {
@@ -114,13 +140,14 @@
 
 
         /**
+         *  @author Julian Rendon
          * Rechercher et afficher les ouevrages
          */
         public static function gererRechercheOuevrage(){
             try{
                 
                 if(isset($_POST['cmd']) == false){
-                    VueAccueil::afficherRechercheAvancee();
+                    VueRechercheAvancee::afficherFormRechercheAvancee();
                 }else{
                     // print_r ("voila");
                     //Instancier un objet Ouevrage avec l'info saisi par l'internaute $_POST['txtNo']
@@ -130,21 +157,22 @@
                     //Si L'ouevrage existe
                     if($bTrouve == true){
                         //afficher l'ouevrage
-                        VueOuevrage::afficherUnOuevrage($oOuevrage);
+                        vueOuevrage::afficherUnOuevrage($oOuevrage);
                     }else//sinon
                     {
                         //afficher un message "Aucun ouevrage ne correspond à votre recherche"
-                        VueOuevrage::afficherRechercheAvancee("Aucun ouevrage ne correspond à votre recherche");
+                        vueOuevrage::afficherFormRechercheAvancee("Aucun ouevrage ne correspond à votre recherche");
                     }
                         
                 }
             }catch(Exception $e){
                 //repropose la saisie du numéro d'ouevrage, une erreur de type
-                VueOuevrage::afficherRechercheAvancee($e->getMessage());
+                VueOuevrage::afficherFormRechercheAvancee($e->getMessage());
             }
             
         }//fin de la function gererRechercheOuevrage()
 
+/***************************************** FIN PARTIE CONTROLEUR DE JULIAN ****************************************/ 
 
 			
 		/**
