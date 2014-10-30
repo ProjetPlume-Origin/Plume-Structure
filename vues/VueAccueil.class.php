@@ -153,51 +153,42 @@
 
       
       
-      public static function afficherOeuvresAccueil(){
+    public static function afficherOeuvresAccueil(){
           
-            $oConnexion = new MySqliLib();
-          
-            $sRequete = "SELECT * FROM ouvrage;";
-            $oResult = $oConnexion->executer($sRequete);
-            $aOeuvre = $oConnexion->recupererTableau($oResult);
-            
-          
-          
-            
-          
-          
-
-            echo'<div class="col-lg-9 col-sm-9 col-xs-12 ouevreAccueil">';
-          
-            for($iOeuvre=0; $iOeuvre<count($aOeuvre) ; $iOeuvre++)
-            {
-                $sRequeteNomUtilisateur = "SELECT sNomUtilisateur FROM utilisateur WHERE idUtilisateur =  ".$aOeuvre[$iOeuvre]["idUtilisateur"].";";
-            $oResultNom = $oConnexion->executer($sRequeteNomUtilisateur);
-          
-             $aNom = $oConnexion->recupererTableau($oResultNom);
-                echo'
-
-                
+      $oConnexion = new MySqliLib();
+    
+      $sRequete = "SELECT * FROM ouvrage;";
+      $oResult = $oConnexion->executer($sRequete);
+      $aOeuvre = $oConnexion->recupererTableau($oResult);
 
 
-                    <a href="index.php'.$aOeuvre[$iOeuvre]["idOuvrage"].'">
-                      <div class="col-lg-3 col-sm-6 col-xs-12 produit" >
-                        <div class="produit-image">
-                            <img src="../site/img/imgAccueil/default-book-cover.jpg">
-                        </div>
-                        <h2> '.$aOeuvre[$iOeuvre]["sTitreOuvrage"].'</h2>
-                        <p class="produit-date">'.$aOeuvre[$iOeuvre]["sDateOuvrage"].'</p>
-                        <p class="produit-auteur">Par: '.$aNom[0]['sNomUtilisateur'].'</p>
-                        <img src="img/imgAccueil/view-icon.png" width="20px"><span class="produit-vues"> 25</span>
-                        <img src="img/imgAccueil/comment-icon.png" width="13px"><span class="produit-commentaires"> 12</span>
-                      </div>
-                    </a>
-                
-                ';
-            }
-
-            echo"</div></div>";
+      echo'<div class="col-lg-9 col-sm-9 col-xs-12 ouevreAccueil">';
+    
+      for($iOeuvre=0; $iOeuvre<count($aOeuvre) ; $iOeuvre++)
+      {
+          $sRequeteNomUtilisateur = "SELECT sNomUtilisateur FROM utilisateur WHERE idUtilisateur =  ".$aOeuvre[$iOeuvre]["idUtilisateur"].";";
+      $oResultNom = $oConnexion->executer($sRequeteNomUtilisateur);
+    
+       $aNom = $oConnexion->recupererTableau($oResultNom);
+          echo'
+              <a href="index.php'.$aOeuvre[$iOeuvre]["idOuvrage"].'">
+                <div class="col-lg-3 col-sm-6 col-xs-12 produit" >
+                  <div class="produit-image">
+                      <td><img src='.$aOeuvre[$iOeuvre]["sCouvertureOuvrage"].'></td>
+                  </div>
+                  <h2> '.$aOeuvre[$iOeuvre]["sTitreOuvrage"].'</h2>
+                  <p class="produit-date">'.$aOeuvre[$iOeuvre]["sDateOuvrage"].'</p>
+                  <p class="produit-auteur">Par: '.$aNom[0]['sNomUtilisateur'].'</p>
+                  <img src="img/imgAccueil/view-icon.png" width="20px"><span class="produit-vues"> 25</span>
+                  <img src="img/imgAccueil/comment-icon.png" width="13px"><span class="produit-commentaires"> 12</span>
+                </div>
+              </a>
+          
+          ';
       }
+
+      echo"</div></div>";
+    }
 
 
 
