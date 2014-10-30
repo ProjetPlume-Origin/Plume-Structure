@@ -28,7 +28,8 @@
 				
 				switch($_GET['s']){
 
-					 case 1: 
+					 case 1:
+                        VueAccueil::afficherLienRechercheAvance(); 
                         VueAccueil::afficherListeDesCategories();	
                         VueAccueil::afficherOeuvresAccueil();
                         break;
@@ -70,7 +71,8 @@
                     
                     
                     
-				  default://Accueil 
+				  default://Accueil
+                        VueAccueil::afficherLienRechercheAvance(); 
                         VueAccueil::afficherListeDesCategories();	
                         VueAccueil::afficherOeuvresAccueil();
 
@@ -96,10 +98,11 @@
                 //il existe 1 possibilité : rech  
                 switch($_GET['action']){
                     case "rech":
-                        Controleur::gererRechercheOuevrage();
+                        self::gererRechercheOuevrage();
                         break;
                                            
                     case "lst": default:
+                        VueAccueil::afficherListeDesCategories();
                         VueAccueil::afficherRechercheAvancee();
                         
                 }//fin du switch() sur $_GET['action']
