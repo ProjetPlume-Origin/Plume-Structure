@@ -1,11 +1,12 @@
 <?php
   class VueAccueil {
+    
     /**
      * Côté utilisateur - Afficher la page d'accueil
      * @param 
      */
     
-    public static function afficherListeDesCategories($sMsg="&nbsp;") {
+    public static function afficherLienRechercheAvance($sMsg="&nbsp;") {
       echo "
         <p>".$sMsg."</p>
         <div class=\"row\">
@@ -16,13 +17,9 @@
                 recherche par genre <span class=\"caret\"></span>
               </button>
               <ul class=\"dropdown-menu\" role=\"menu\">
-                <li><a href=\"#\">Science-fiction et fantastique</a></li>
-                <li><a href=\"#\">Romans policiers</a></li>
-                <li><a href=\"#\">Romans d'épouvante</a></li>
-                <li><a href=\"#\">Poésie et théâtre</a></li>
-                <li><a href=\"#\">Littérature étrangèr</a></li>
-                <li><a href=\"#\">Littérature Québécoise</a></li>
-                <li><a href=\"#\">Littérature érotique</a></li>
+                <li><a href=\"#\">Amour</a></li>
+                <li><a href=\"#\">Suspense</a></li>
+                <li><a href=\"#\">Thriller</a></li>
               </ul>
             </div>
             <!-- Lien Recherche avancée -->
@@ -30,8 +27,19 @@
               <a href=\"index.php?s=2\">Recherche avancée</a>
             </div>
           </div>        
-        </div>  
+        </div> <!-- fin row -->
+      ";
+    }// fin de la function afficherLienRechercheAvance()  
 
+
+    /**
+     * Côté utilisateur - Afficher la page d'accueil
+     * @param 
+     */
+    
+    public static function afficherListeDesCategories($sMsg="&nbsp;") {
+      echo "
+        <p>".$sMsg."</p>
         <div class=\"row\">        
           <!-- COLONNE GAUCHE GENRES -->
           <div class=\"col-lg-3 col-sm-3 hidden-xs\">
@@ -40,16 +48,11 @@
             <div class=\"listeGenres\">
               <h2>Genres</h2>
               <ul>
-                <li><a href='index.php?s=6'>Science-fiction et fantastique</a></li>
-                <li><a href=\"#\">Romans policiers</a></li>
-                <li><a href=\"#\">Romans d'épouvante</a></li>
-                <li><a href=\"#\">Poésie et théâtre</a></li>
-                <li><a href=\"#\">Littérature étrangèr</a></li>
-                <li><a href=\"#\">Littérature Québécoise</a></li>
-                <li><a href=\"#\">Littérature érotique</a></li>
+                <li><a href=\"#\">Amour</a></li>
+                <li><a href=\"#\">Suspense</a></li>
+                <li><a href=\"#\">Thriller</a></li>
               </ul>
             </div>
-
           </div>  <!-- FIN COLONNE GAUCHE GENRES -->
               
       ";
@@ -96,63 +99,9 @@
     }//fin de la fonction rechercherListeDesOeuvres()
 
 
-    public function afficherRechercheAvancee() {
-      echo "
-
-        <div class=\"row\">
-
-          <!-- COLONNE GAUCHE GENRES -->
-          <div class=\"col-lg-3 col-sm-3 hidden-xs\">
-
-            <!-- recherche par genre -->
-            <div class=\"listeGenres\">
-              <h2>Genres</h2>
-              <ul>
-                <li><a href=\"\">Science-fiction et fantastique</a></li>
-                <li><a href=\"\">Romans policiers</a></li>
-                <li><a href=\"\">Romans d'épouvante</a></li>
-                <li><a href=\"\">Poésie et théâtre</a></li>
-                <li><a href=\"\">Littérature étrangèr</a></li>
-                <li><a href=\"\">Littérature Québécoise</a></li>
-                <li><a href=\"\">Littérature érotique</a></li>
-              </ul>
-            </div>
-
-          </div>  <!-- FIN COLONNE GAUCHE GENRES -->
-
-          <!-- COLONNE DROITE -->
-          <div class=\"col-lg-9 col-sm-9 col-xs-12\">
-            
-            <!-- Recherche Avancée -->
-            <div class=\"barreRecherche col-xs-12\">
-              <h1>Recherche Avancée</h1>
-
-              <form class=\"navbar-form navbar-left\" role=\"search\">
-                <div class=\"form-group\">
-                  <input type=\"text\" class=\"form-control\" placeholder=\"\">
-                </div>Rechercher par : 
-                <label class=\"radio-inline\">
-                  <input type=\"radio\" name=\"optradio\">Mot clé
-                </label>
-                <label class=\"radio-inline\">
-                  <input type=\"radio\" name=\"optradio\" checked=\"\">Titre
-                </label>
-                <label class=\"radio-inline\">
-                  <input type=\"radio\" name=\"optradio\">Auteur
-                </label>
-                <button type=\"submit\" class=\"btn btn-default\">Rechercher</button>
-              </form>
-
-            </div> <!-- Fin Recherche Avancée -->            
-
-          </div>  <!-- FIN COLONNE DROITE -->
-
-        </div>  <!-- Fin Row -->
-      ";
-    }// fin de la fonction afficherRechercheAvancee()
-
-      
-      
+    /**
+     * Fonction qui affiche aléatoirement tous les oeuvres dans la bd
+     */      
     public static function afficherOeuvresAccueil(){
           
       $oConnexion = new MySqliLib();
