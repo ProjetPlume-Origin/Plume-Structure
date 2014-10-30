@@ -32,9 +32,16 @@ session_start();
 	*/		
 	if(isset($_SESSION['IdUtilisateur']) == true){
 
+<<<<<<< HEAD
+	require_once("monCompte.php");
+} else {
+	require_once("gabarit.php");
+}
+=======
 		require_once("pages/monCompte.php");
 	} else {
 		require_once("gabarit.php");
 	}
+>>>>>>> upstream/master
 	
 ?>
