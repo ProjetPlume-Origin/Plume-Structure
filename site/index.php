@@ -10,26 +10,18 @@ session_start();
 	/**
 	* Inclure les vues
 	*/
-	//1èr cas : aucune option du menu n'a été sélectionné
 	require_once("../vues/VueAccueil.class.php");
-   // require_once("../vues/ViewInscription.class.php");	
-
-       if(isset($_GET['s']) == true){
-					
-			 require_once("../vues/ViewInscription.class.php");	
-	
-	
-		}
+	require_once("../vues/VueRechercheAvancee.class.php");
+ 	require_once("../vues/ViewInscription.class.php");
+	require_once("../vues/VueOuvrage.class.php");	
 		
 	/**
 	* Inclure les modèles
 	*/
 	require_once("../modeles/Utilisateur.class.php");
 	require_once("../modeles/Ouvrages.class.php");
-	/**
-	* Inclure la vue ouvrage
-	*/
-	require_once("../vues/VueOuvrage.class.php");
+	
+	
 	/**
 	* Inclure le contrôleur
 	*/
@@ -37,13 +29,19 @@ session_start();
 	 
 	/**
 	* Inclure le gabarit (nécessairement le dernier)
-	*/
-		
-if(isset($_SESSION['IdUtilisateur']) == true){
+	*/		
+	if(isset($_SESSION['IdUtilisateur']) == true){
 
+<<<<<<< HEAD
 	require_once("monCompte.php");
 } else {
 	require_once("gabarit.php");
 }
+=======
+		require_once("pages/monCompte.php");
+	} else {
+		require_once("gabarit.php");
+	}
+>>>>>>> upstream/master
 	
 ?>

@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"sessio",
+				"session_destroy"
+			],
+			[
+				"sess",
+				"session_destroy"
+			],
+			[
+				"vue",
+				"VueAccueil"
+			],
+			[
 				"ba",
 				"background-color"
 			],
@@ -502,35 +514,24 @@
 			[
 				"jo",
 				"joueurs"
-			],
-			[
-				"Jou",
-				"joueur"
-			],
-			[
-				"jouer",
-				"jouers"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "index.php",
+			"file": "site/Controleur.class.php",
 			"settings":
 			{
-				"buffer_size": 706,
+				"buffer_size": 22642,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"contents": "<?php\n    class Controleur{\n\n    	/**\n		 * redirige selon le choix de l'internaute\n		 */\n		public static function gererSite(){\n			\n			try{\n				//1èr cas : aucune option du menu n'a été sélectionné\n				if(isset($_GET['s']) == false){\n					$_GET['s']=1;\n				}\n				\n				switch($_GET['s']){\n\n					case 1: default://Accueil \n                        VueAccueil::afficherListeDesCategories();						\n\n					case 2: \n						Controleur::gererRechercheAvancee();\n						break;\n\n                    case 3: \n                        Controleur::gererConnexionUtilisateur();\n                        break; \n\n                    case 4: \n						Controleur::gererInscriptionUtilisateur();\n						break;	\n\n				}\n			}catch(Exception $e){\n				echo \"<p>\".$e->getMessage().\"</p>\";\n			}	\n			\n		}\n\n\n        /**\n        * redirige selon l'action\n        */     \n        public static function gererRechercheAvancee() {\n            try{\n                //1èr cas : aucune action n'a été sélectionné $_GET['action'] n'a pas affecté d'une valeur\n                if(isset($_GET['action']) == FALSE){\n                    $_GET['action']=\"lst\";\n                }\n                \n                //2e cas :L'administrateur a sélectionné une action, \n                //il existe 1 possibilité rech  \n                switch($_GET['action']){\n                    case \"rech\":\n                        Controleur::gererRecherche();\n                        break;\n                                           \n                    case \"lst\": default:\n                        Controleur::afficherListeDesCategories();\n                        \n                }//fin du switch() sur $_GET['action']\n            }catch(Exception $e){\n                echo \"<p>\".$e->getMessage().\"</p>\";\n            }           \n            \n        }//fin de la fonction gererRechercheAvancee()\n\n\n        /**\n         * Rechercher et afficher les ouevrages\n         */\n        public static function gererRechercheEtudiant(){\n            try{\n                \n                if(isset($_POST['cmd']) == false){\n                    VueEtudiant::afficherFormRechercheEtudiant();\n                }else{\n                    // print_r (\"voila\");\n                    //Instancier un objet Etudiant avec le numéro saisi par l'internaute $_POST['txtNo']\n                    $oEtudiant = new Etudiant($_POST['txtNo']);\n                    //Recherche l'étudiant par son numéro\n                    $bTrouve = $oEtudiant->rechercherUnEtudiant();                  \n                    //Si L'étudiant existe\n                    if($bTrouve == true){\n                        //afficher l'étudiant\n                        VueEtudiant::adm_afficherFormModificationEtudiant($oEtudiant);\n                    }else//sinon\n                    {\n                        //afficher un message \"Aucun étudiant ne correspond à votre recherche\"\n                        VueEtudiant::afficherFormRechercheEtudiant(\"Aucun étudiant ne correspond à votre recherche\");\n                    }\n                        \n                }\n            }catch(Exception $e){\n                //repropose la saisie du numéro d'étudiant, une erreur de type\n                VueEtudiant::afficherFormRechercheEtudiant($e->getMessage());\n            }\n            \n        }//fin de la function gererRechercheEtudiant()\n\n\n			\n		/**\n		 * afficher le formulaire d'ajout et sur submit ajouter du Produit dans la base de données\n		 */\n		public static function gererInscriptionUtilisateur(){\n			\n			try{\n				//1èr cas : aucun submit n'a été cliqué\n				if(isset($_POST['cmd']) == false) {\n					//afficher le formulaire\n                  if(isset($_GET['s'])){\n                                //\n                   echo\"je suis la\"   ;          //\n            					ViewInscription::afficherAjouterUtilisateur();\n            				//2e cas : le bouton submit Modifier a été cliqué\n                  }          //\n				}else{\n				\n                   /*$oUtilisateur = new Utilisateur(1,$_POST['txtNom'],    \n                                                        $_POST['txtCourriel'],$_POST['txtPass'],$_POST['txtPassConfirm']);*/\n                   \n                   // $oUtilisateur-> setMotDePasse(mysql_real_escape_string($_POST['txtPass']);\n                    //$oUtilisateur-> setConfirmation(mysql_real_escape_string($_POST['txtPassConfirm']);\n                     $oUtilisateur = new Utilisateur();\n                    $oUtilisateur-> setNom(mysql_real_escape_string($_POST['txtNom']));\n                    if($oUtilisateur->verificationNom()){\n                        \n                         $oUtilisateur-> setCourriel(mysql_real_escape_string($_POST['txtCourriel']));\n                         if($oUtilisateur->verificationcourriel()){\n                             $oUtilisateur-> setMotDePasse(mysql_real_escape_string($_POST['txtPass']));\n                             $oUtilisateur-> setConfirmation(mysql_real_escape_string($_POST['txtPassConfirm']));\n                                if($oUtilisateur->verificationMotPass()){\n                                    $oUtilisateur->ajouterUtilisateur();\n                                    $sMsg = \"L'ajout de l'utilisateur' - \".$oUtilisateur->getNom().\" - s'est déroulé avec succès.\";\n                                 }else{\n                                    $sMsg = 'Les 2 mots de passe sont différents.';\n                                 }\n                         }else{\n                             \n                             $sMsg = 'Un membre possède déjà ce Courriel.';\n                        }\n                        \n                    }else{\n                        \n                        $sMsg = 'Un membre possède déjà ce Nom.';\n                        \n                        \n                    }\n                                                    \n                                                    \n                   \n					ViewInscription::afficherAjouterUtilisateur($sMsg);\n				}\n			}catch(Exception $e){\n				ViewInscription::afficherAjouterUtilisateur($e->getMessage());\n			}\n		}//fin de la fonction afficherAjouterUtilisateur()\n		\n	\n/*----------------------------------------------------------------------------------------------------------------------------*/        \n        /**\n		 * afficher le formulaire de connexion et sur submit on se connecte a notre compte\n		 */\n     \n       \n           \n        public static function gererConnexionUtilisateur(){\n			\n			try{\n				//1èr cas : aucun submit n'a été cliqué\n                    if(isset($_POST['cmd']) == false){\n                        //afficher le formulaire\n                        ViewInscription::afficherConnexionUtilisateur();\n                    //2e cas : le bouton submit Modifier a été cliqué\n                    }else{\n                        echo \" je suis apres la clique de \";\n                        $oUtilisateur = new Utilisateur();                    \n                        $oUtilisateur-> setCourriel(mysql_real_escape_string($_POST['txtCourriel']));\n                             \n                             if(!($oUtilisateur->verificationcourriel())){\n                                 $oUtilisateur-> setMotDePasse(mysql_real_escape_string(md5($_POST['txtPass'])));\n                                // var_dump($oUtilisateur);\n                                 echo('motde passe').md5($_POST['txtPass']);\n                                    // $oUtilisateur->connexionUtilisateur();\n                                        \n                                       \n                                         \n                                         \n                                         $aUtilisateur = $oUtilisateur->connexionUtilisateur();\n                                    if(!empty($aUtilisateur)){\n                                         $sMsg = \"La connexion  - \".$oUtilisateur->getNom().\" - s'est déroulé avec succès.\";\n                                          echo $sMsg;\n                                         //var_dump($aUtilisateur);\n                                        // var_dump($aUtilisateur[0]['idUtilisateur']);\n                                        $_SESSION[\"IdUtilisateur\"] = $aUtilisateur[0]['idUtilisateur'];\n                                        $_SESSION[\"sNomUtilisateur\"] = $aUtilisateur[0]['sNomUtilisateur'];\n                                        echo $_SESSION[\"IdUtilisateur\"]; \n                                     }else{\n\n                                         $sMsg = 'Ce Courriel  ou  mot de passe n\\'existent pas dans notre base de données .';\n                                          echo $sMsg;\n                                     }\n                            }else{\n                                    $sMsg = 'Ce Courriel n\\'existe pas dans notre base de données .';\n\n                             }\n\n                     }\n			}catch(Exception $sMsg){\n				ViewInscription::afficherConnexionUtilisateur($sMsg);\n			}\n		}//fin de la fonction gererAjouterProduit()\n        \n        \n        \n        \n		\n		\n\n    }//fin de la classe Controleur\n?>",
-			"file": "Controleur.class.php",
-			"file_size": 7851,
-			"file_write_time": 130588069576143906,
+			"file": "vues/VueAccueil.class.php",
 			"settings":
 			{
-				"buffer_size": 9069,
+				"buffer_size": 3852,
 				"line_ending": "Windows"
 			}
 		}
@@ -687,21 +688,34 @@
 	},
 	"file_history":
 	[
-		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/site/julian-Plume.sublime-workspace",
-		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/site/gabarit.php",
-		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/vues/templates/julian-Plume.sublime-workspace",
 		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/vues/VueAccueil.class.php",
-		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/site/index.php",
+		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/vues/VueRechercheAvancee.class.php",
 		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/site/Controleur.class.php",
 		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/lib/MySqliLib.class.php",
+		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/site/index.php",
+		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/vues/VueRechercheAvancee.class",
+		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/site/pages/monCompte.php",
+		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/vues/vueOuvrage.class.php",
+		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/core/index.php",
+		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/site/css/main.css",
+		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/vues/templates/header.php",
+		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/julian-Plume.sublime-project",
+		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/modeles/Ouvrages.class.php",
+		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/site/gabarit.php",
+		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/vues/ViewInscription.class.php",
+		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/core/Controleur.class.php",
+		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/vues/templates/navAdmin.php",
+		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/modeles/Utilisateur.class.php",
+		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/vues/templates/nav.php",
+		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/vues/templates/navConnecte.php",
+		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/modeles/Commentaire.class.php",
+		"/C/Users/Julian/Downloads/Christhia_diaz_plume/Christhia_diaz_plume/plumestruct/modeles/Paragraphe.class.php",
+		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/site/julian-Plume.sublime-workspace",
+		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/vues/templates/julian-Plume.sublime-workspace",
 		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/db/bd_projet_plume.sql",
 		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/vues/templates/footer.php",
-		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/vues/templates/header.php",
-		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/vues/templates/nav.php",
 		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/vues/VueAccueil.php",
-		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/core/index.php",
 		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/core/gabarit.php",
-		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/core/Controleur.class.php",
 		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/README.md",
 		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/modeles/Paragraphe.class.php",
 		"/C/Users/Julian/Google Drive/GitHub/Plume-Structure/db/bdProjetPlume.txt",
@@ -801,20 +815,7 @@
 		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/Examen/Final/index.php",
 		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/Examen/Final/vues/ListeRealisateur.php",
 		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/Examen/Final/modele/Realisateur.php",
-		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/Exercices_du_cours/PHP-OO/mvc-contacts/controller/ContactsController.php",
-		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/TPs/TP2/vues/ListeSondage.php",
-		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/TPs/TP2/controleur/controleur.php",
-		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/TPs/TP2/modele/Sondage.php",
-		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/TPs/TP2/modele/Utilisateur.php",
-		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/TPs/TP2/modele/Reponse.php",
-		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/TPs/TP2/modele/Connexion.php",
-		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/Exercices_du_cours/URL_Rewriting/.htaccess",
-		"/U/AEC/Session 4/582-862-MA Mise En Page II/TPs/demo_bootstrap/index.html",
-		"/U/AEC/Session 4/582-862-MA Mise En Page II/TPs/demo_bootstrap/pages/projet_03/index1.html",
-		"/U/AEC/Session 4/582-862-MA Mise En Page II/TPs/demo_bootstrap/pages/projet_03/projet_03.html",
-		"/U/AEC/Session 4/582-862-MA Mise En Page II/TPs/demo_bootstrap/index1.html",
-		"/U/AEC/Session 4/582-862-MA Mise En Page II/TPs/TP2/pages/projet_03/projet_03_copy.html",
-		"/U/AEC/Session 4/582-862-MA Mise En Page II/Exercices/Exercice_4/css/exe4_cv.css"
+		"/E/EasyPHP/www/582-841-MA_Programmation_Orientee_Objet/Exercices_du_cours/PHP-OO/mvc-contacts/controller/ContactsController.php"
 	],
 	"find":
 	{
@@ -832,6 +833,25 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"afficherRechercheAvancee",
+			"afficherOeuvresAccueil",
+			"afficherRechercheAvancee",
+			"iProd",
+			"aProduits",
+			"container",
+			"main",
+			"container",
+			"main",
+			"th",
+			"afficherListeDesCategories",
+			"je sui",
+			"je suis",
+			"sess",
+			"mysql_real_escape_string",
+			"rechercherUnOuevrage",
+			"étudiant",
+			"Etudiant",
+			"gererRechercheEtudiant",
 			"gererProduit",
 			"\"",
 			"produits",
@@ -940,26 +960,7 @@
 			"IdDossier",
 			"idDossier",
 			"sPrenom",
-			"idDossier",
-			"IdDossier",
-			"idDossier",
-			"32",
-			"64",
-			"h3",
-			"h4",
-			"btn",
-			".ca\n.ca\n.ca\nnavbarprojet",
-			"shr",
-			".navbar-fixed-top.navbar-fixed-top-shrink {\n.navbar-fixed-top.navbar-fixed-top-shrink {\nshrink",
-			".navbar-fixed-top.navbar-fixed-top-shrink {\n.navbar-fixed-top.navbar-fixed-top-shrink {\n.navbar-fixed-top.navbar-fixed-top-shrink",
-			".navbar-fixed-top.navbar-fixed-top-shrink {\n.navbar-fixed-top.navbar-fixed-top-shrink {\n.navbar-fixed-top.navbar-fixed-top-shrin",
-			"nom",
-			"Nom",
-			"nom",
-			"Nom",
-			"singlebutton",
-			"textarea",
-			"textinput"
+			"idDossier"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -981,152 +982,18 @@
 			[
 				{
 					"buffer": 0,
-					"file": "index.php",
+					"file": "site/Controleur.class.php",
 					"settings":
 					{
-						"buffer_size": 706,
+						"buffer_size": 22642,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								454,
-								454
-							]
-						],
-						"settings":
-						{
-							"codeintel": true,
-							"codeintel_config":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2,
-									"codeintel_scan_files_in_project": false,
-									"javascriptExtraPaths":
-									[
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 5,
-									"codeintel_scan_files_in_project": false,
-									"phpExtraPaths":
-									[
-									]
-								},
-								"Python":
-								{
-									"env":
-									{
-									}
-								}
-							},
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_live": true,
-							"codeintel_live_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_max_recursive_dir_depth": 10,
-							"codeintel_scan_exclude_dir":
-							{
-								"JavaScript":
-								[
-									"/build/",
-									"/min/"
-								]
-							},
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-								"PyWin32",
-								"jQuery",
-								"Rails"
-							],
-							"codeintel_snippets": true,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"sublime_auto_complete": true,
-							"synced": false,
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "Controleur.class.php",
-					"settings":
-					{
-						"buffer_size": 9069,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1262,
-								1262
+								2154,
+								2154
 							]
 						],
 						"settings":
@@ -1243,7 +1110,142 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 294.0,
+						"translation.y": 2573.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "vues/VueAccueil.class.php",
+					"settings":
+					{
+						"buffer_size": 3852,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2377,
+								2377
+							]
+						],
+						"settings":
+						{
+							"codeintel": true,
+							"codeintel_config":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_files_in_project": false,
+									"javascriptExtraPaths":
+									[
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 5,
+									"codeintel_scan_files_in_project": false,
+									"phpExtraPaths":
+									[
+									]
+								},
+								"Python":
+								{
+									"env":
+									{
+									}
+								}
+							},
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_live": true,
+							"codeintel_live_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							{
+								"JavaScript":
+								[
+									"/build/",
+									"/min/"
+								]
+							},
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+								"PyWin32",
+								"jQuery",
+								"Rails"
+							],
+							"codeintel_snippets": true,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"sublime_auto_complete": true,
+							"synced": false,
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 972.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1315,6 +1317,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 279.0,
+	"side_bar_width": 210.0,
 	"status_bar_visible": true
 }
