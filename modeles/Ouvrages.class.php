@@ -303,7 +303,7 @@ return $oConnexion->executer($sRequete);
 	 * @author Julian Rendon
 	 * @return array ce tableau contient des objets Ouvrage
 	 */
-	 public static function rechercherListeDesOuvragesParGenre(){
+	public function rechercherListeDesOuvragesParGenre(){
 	 	//Connexion à la base de données
 	 	$oConnexion = new MySqliLib();
 	 	$sRequete = "SELECT * FROM ouvrage WHERE sGenre = '".$this->ouvrageGenre."';";
@@ -320,7 +320,8 @@ return $oConnexion->executer($sRequete);
 	 	}
 	 	//retourner le tableau d'objets
 	 	return $aOuvrages;
-	 }//fin de la fonction rechercherListeDesOuvragesParGenre()
+	}//fin de la fonction rechercherListeDesOuvragesParGenre()
 
 }//fin de la classe Ouvrage
+
 ?>

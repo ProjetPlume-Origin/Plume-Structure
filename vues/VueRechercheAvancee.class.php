@@ -9,7 +9,7 @@
 	      echo "
 	      
 	          <!-- COLONNE DROITE -->
-	          <div class=\"col-lg-9 col-sm-9 col-xs-12\">
+	          <div class=\"col-lg-12 col-sm-12 col-xs-12\">
 	            
 	            <!-- Recherche Avancée -->
 	            <div class=\"barreRecherche col-xs-12\">
