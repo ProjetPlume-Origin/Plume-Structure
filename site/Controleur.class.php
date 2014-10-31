@@ -28,11 +28,16 @@
 				
 				switch($_GET['s']){
 
-					 case 1:
-                        VueAccueil::afficherLienRechercheAvance(); 
-                        VueAccueil::afficherListeDesCategories();	
-                        self::gererAffichageAccueilParCategorie();
+					case 1:
+                    if(isset($_GET['display']) == false){
+                    $_GET['display']="defaut";
+                }
+                        $oGenre= new Genre();
+                        VueGenre::afficherMenuRechercheAvancee($oGenre);                        
+                        VueGenre::afficherListeDesGenres($oGenre);	
+                        self::gererAffichageParGenre();
                         break;
+
 					case 2: 
 						self::gererRechercheAvancee();
 						break;
@@ -49,64 +54,67 @@
 						self::gererDeconnectionUtilisateur();
 						break;
                     
-                  case 6: /////controleur christhian
+                    case 6: /////controleur christhian
 						Controleur::exampleOuvrage();
 						break;
 
-                  case 7: /////controleur christhian                           /*******du  contrelerue**/
+                    case 7: /////controleur christhian                           /*******du  contrelerue**/
 						self::exampleComment(); 
 						break;
 					
-				  case 8: /////controleur christhian
+				    case 8: /////controleur christhian
 						self::listeDesCommentaires();
 						break;
 						
-				  case 9: ////controleur christhian
+				    case 9: ////controleur christhian
 						self::switchCommentaire();
 						break;
                     
-                  case 10: 
+                    case 10: 
 						//TODO fonction qui redirige sur un affichage propre a un oeuvre
-						break;
+						break;                    
                     
-                    
-                    
-				  default://Accueil
-                        VueAccueil::afficherLienRechercheAvance(); 
-                        VueAccueil::afficherListeDesCategories();	
-                        self::gererAffichageAccueilParCategorie();
+    				default://Accueil
 
-				}
+				} // fin switch
+
 			}catch(Exception $e){
 				echo "<p>".$e->getMessage()."</p>";
 			}	
 			
 		} //fin de la fonction gererSite()
-        
+
 
 
 /***************************************** PARTIE CONTROLEUR DE JULIAN ****************************************/ 
         
         /**
         * @author Julian Rendon
-        * redirige selon l'action
+        * redirige selon le display
         */     
-        public static function gererAffichageAccueilParCategorie() {
+        public static function gererAffichageParGenre() {
 
-            try{
+            if (!isset($_GET['display'])) {
+
+                $_GET['display'] = "defaut";
                 
-                if(isset($_POST['cmd']) == false){
-                    VueAccueil::afficherOeuvresAccueil();
-                }else{
-                    
-                        
-                }
-            }catch(Exception $e){
-                //repropose la saisie du numéro d'ouevrage, une erreur de type
-                VueAccueil::afficherOeuvresAccueil($e->getMessage());
-            }
+            } else {
+                switch ($_GET['display']) {
 
-        } // fin de la fonction gererAffichageAccueilParCategorie()
+                    case 'afficherParGenre':
+                        $iGenre = $_GET['genre'];
+                        $oGenre = new Genre();
+                        $aGenres = $oGenre->getGenre();
+                        VueOuvrage::afficherOeuvresAccueil($aGenres[$iGenre]);
+                        break;
+
+                    case 'defaut': default:
+                        VueOuvrage::afficherOeuvresAccueil();
+                        break;
+                }
+            }                       
+
+        } // fin de la fonction gererAffichageParGenre()
 
 
         /**
@@ -128,7 +136,7 @@
                         break;
                                            
                     case "lst": default:
-                        VueAccueil::afficherListeDesCategories();
+                        // VueAccueil::afficherListeDesCategories();
                         VueRechercheAvancee::afficherFormRechercheAvancee();
                         
                 }//fin du switch() sur $_GET['action']
