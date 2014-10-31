@@ -13,7 +13,7 @@ session_start();
 	require_once("../vues/VueGenre.class.php");
 	require_once("../vues/VueRechercheAvancee.class.php");
  	require_once("../vues/ViewInscription.class.php");
-	require_once("../vues/VueOuvrage.class.php");
+	require_once("../vues/vueOuvrage.class.php");
 		
 	/**
 	* Inclure les modèles
