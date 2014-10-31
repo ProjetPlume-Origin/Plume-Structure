@@ -11,7 +11,6 @@ session_start();
 	* Inclure les vues
 	*/
 	require_once("../vues/VueGenre.class.php");
-	require_once("../vues/VueRechercheAvancee.class.php");
  	require_once("../vues/ViewInscription.class.php");
 	require_once("../vues/vueOuvrage.class.php");
 		

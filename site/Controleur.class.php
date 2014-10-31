@@ -105,7 +105,7 @@
                         $iGenre = $_GET['genre'];
                         $oGenre = new Genre();
                         $aGenres = $oGenre->getGenre();
-                        VueOuvrage::afficherOeuvresAccueil($aGenres[$iGenre]);
+                        VueOuvrage::afficherOeuvresAccueil($aGenres[$iGenre]); 
                         break;
 
                     case 'defaut': default:
@@ -124,22 +124,50 @@
         public static function gererRechercheAvancee() {
             try{
                 //1èr cas : aucune action n'a été sélectionné $_GET['action'] n'a pas affecté d'une valeur
-                if(isset($_GET['action']) == FALSE){
-                    $_GET['action']="lst";
-                }
+                if(isset($_POST['cmd']) == FALSE){
+                    VueOuvrage::afficherFormRechercheAvancee();
+                }else {
                 
-                //2e cas :L'utilisateur a sélectionné une action, 
-                //il existe 1 possibilité : rech  
-                switch($_GET['action']){
-                    case "rech":
-                        self::gererRechercheOuevrage();
-                        break;
-                                           
-                    case "lst": default:
-                        // VueAccueil::afficherListeDesCategories();
-                        VueRechercheAvancee::afficherFormRechercheAvancee();
-                        
-                }//fin du switch() sur $_GET['action']
+                    //2e cas :L'utilisateur a cliqué le button de recherche, 
+                    //il existe 1 possibilité : rech  
+                    switch($_POST['optradio']){
+                        case "auteur":
+                            //Connexion à la base de données
+                            $oConnexion = new MySqliLib();
+                            $sRequete= "SELECT * FROM utilisateur WHERE sNomUtilisateur LIKE '".$_POST['motCherche']."'
+                            ";
+                            $oRes = $oConnexion->executer($sRequete);
+                            $aResultat= $oConnexion->recupererTableau($oRes);
+
+                            for($iOeuvre=0; $iOeuvre<count($aOeuvre) ; $iOeuvre++) {
+                                $sRequeteNomUtilisateur = "SELECT sNomUtilisateur FROM utilisateur WHERE idUtilisateur =  ".$aOeuvre[$iOeuvre]["idUtilisateur"].";";
+                                $oResultNom = $oConnexion->executer($sRequeteNomUtilisateur);
+                            
+                               $aNom = $oConnexion->recupererTableau($oResultNom);
+                            }    
+
+
+                            $aOuvrages = array();
+                            //Pour tous les enregistrements
+                            for($i=0; $i<count($aResultat); $i++){
+                                //affecter un objet à un élément du tableau
+                                $aOuvrages[$i] =  new Ouvrage($aResultat[$i]['idOuvrage'], $aResultat[$i]['sTitreOuvrage'], $aResultat[$i]['sCouvertureOuvrage'], $aResultat[$i]['sGenre'], $aResultat[$i]['idUtilisateur']);
+                                
+                            }
+                            //retourner le tableau d'objets
+                            // return $aOuvrages;
+                            // var_dump($aResultat);
+                            VueOuvrage::afficherFormRechercheAvancee();
+                            VueOuvrage::afficherResultatsRechercheAvancee($aOuvrages,$sMsg="");
+                            // self::gererRechercheOuevrage("auteur");
+                            break;
+                                               
+                        case "lst": default:
+                            // VueAccueil::afficherListeDesCategories();
+                            VueOuvrage::afficherFormRechercheAvancee();
+                            
+                    }//fin du switch() sur $_POST['action']
+                }
             }catch(Exception $e){
                 echo "<p>".$e->getMessage()."</p>";
             }           
@@ -154,12 +182,11 @@
         public static function gererRechercheOuevrage(){
             try{
                 
-                if(isset($_POST['cmd']) == false){
-                    VueRechercheAvancee::afficherFormRechercheAvancee();
-                }else{
+                
                     // print_r ("voila");
                     //Instancier un objet Ouevrage avec l'info saisi par l'internaute $_POST['txtNo']
-                    $oOuevrage = new Ouevrage($_POST['txtNo']);
+                    // $oOuevrage = new Ouevrage($name);
+                    // $oOuevrage->setNom;
                     //Recherche les ouevrages par mot clé, titre ou auteur
                     $bTrouve = $oOuevrage->rechercherListeDesOeuvres();                  
                     //Si L'ouevrage existe
@@ -172,7 +199,7 @@
                         vueOuevrage::afficherFormRechercheAvancee("Aucun ouevrage ne correspond à votre recherche");
                     }
                         
-                }
+                
             }catch(Exception $e){
                 //repropose la saisie du numéro d'ouevrage, une erreur de type
                 VueOuevrage::afficherFormRechercheAvancee($e->getMessage());
