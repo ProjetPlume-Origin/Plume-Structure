@@ -171,10 +171,10 @@ class VueOuvrage{
         
         <div class=\"row\"> 
 
-          <!-- COLONNE DROITE -->
+          <!-- FORMULAIRE RECHERCHE AVANCEE -->
           <div class=\"col-lg-12 col-sm-12 col-xs-12\">
             
-            <!-- Recherche Avancée -->
+            <!-- Barre Recherche Avancée -->
             <div class=\"barreRecherche col-xs-12\">
               <h1>Recherche Avancée</h1>
 
@@ -194,11 +194,11 @@ class VueOuvrage{
                 <button type=\"submit\" class=\"btn btn-default\" name=\"cmd\">Rechercher</button>
               </form>
 
-            </div> <!-- Fin Recherche Avancée -->            
+            </div> <!-- Fin Barre Recherche Avancée -->            
 
-          </div>  <!-- FIN COLONNE DROITE -->
+          </div>  <!-- FIN FORMULAIRE RECHERCHE AVANCEE -->
 
-        </div>  <!-- Fin Row -->
+        </div>
       ";
     }// fin de la fonction afficherFormRechercheAvancee()
 
@@ -210,14 +210,36 @@ class VueOuvrage{
     public static function afficherResultatsRechercheAvancee($aResult,$sMsg){
       echo "
 
-        <p>".$sMsg."</p>
-        <--! <div class=\"row\"> -->
-        
+        <p>".$sMsg."</p>        
+        <div class=\"row\"> 
+
           <!-- RESULTATS RECHERCHE AVANCEE -->
           <div class=\"col-lg-12 col-sm-12 col-xs-12\">
       ";
-     
-      var_dump($aResult);
+        for($iOeuvre=0; $iOeuvre<count($aResult) ; $iOeuvre++)
+        {
+          $oAuteur = new Utilisateur($aResult[$iOeuvre]->getIdUtilisateur());
+          echo'
+              <a href="index.php'.$aResult[$iOeuvre]->getIdOuvrage().'">
+                <div class="col-lg-3 col-sm-6 col-xs-12 produit" >
+                  <div class="produit-image">
+                      <td><img src='.$aResult[$iOeuvre]->getOuvrageCouverture().'></td>
+                  </div>
+                  <h2> '.$aResult[$iOeuvre]->getOuvrageTitre().'</h2>
+                  <p class="produit-date">'.$aResult[$iOeuvre]->getOuvrageDate().'</p>
+                  <p class="produit-auteur">Par: '.$oAuteur->getNom().'</p>
+                  <img src="img/imgAccueil/view-icon.png" width="20px"><span class="produit-vues"> 25</span>
+                  <img src="img/imgAccueil/comment-icon.png" width="13px"><span class="produit-commentaires"> 12</span>
+                </div>
+              </a>
+          
+          ';
+        }
+          
+          // foreach($aResult as $value)
+          // {
+          //   print_r($value);
+          // }
       
           echo "
           </div>  <!-- FIN RESULTATS RECHERCHE AVANCEE -->

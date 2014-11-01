@@ -101,7 +101,7 @@
             } else {
                 switch ($_GET['display']) {
 
-                    case 'afficherParGenre':
+                    case 'affichageParGenre':
                         $iGenre = $_GET['genre'];
                         $oGenre = new Genre();
                         $aGenres = $oGenre->getGenre();
@@ -134,24 +134,27 @@
                         case "auteur":
                             //Connexion à la base de données
                             $oConnexion = new MySqliLib();
-                            $sRequete= "SELECT * FROM utilisateur WHERE sNomUtilisateur LIKE '".$_POST['motCherche']."'
+                            $sRequete= "SELECT * FROM `ouvrage` 
+                                        RIGHT JOIN `utilisateur` 
+                                        ON `ouvrage`.`idUtilisateur`= `utilisateur`.`idUtilisateur` 
+                                        WHERE `utilisateur`.`sNomUtilisateur` = '".$_POST['motCherche']."'
                             ";
                             $oRes = $oConnexion->executer($sRequete);
                             $aResultat= $oConnexion->recupererTableau($oRes);
-
-                            for($iOeuvre=0; $iOeuvre<count($aOeuvre) ; $iOeuvre++) {
-                                $sRequeteNomUtilisateur = "SELECT sNomUtilisateur FROM utilisateur WHERE idUtilisateur =  ".$aOeuvre[$iOeuvre]["idUtilisateur"].";";
-                                $oResultNom = $oConnexion->executer($sRequeteNomUtilisateur);
-                            
-                               $aNom = $oConnexion->recupererTableau($oResultNom);
-                            }    
-
-
+                            // var_dump($aResultat);  
+                            // 
                             $aOuvrages = array();
+
                             //Pour tous les enregistrements
                             for($i=0; $i<count($aResultat); $i++){
                                 //affecter un objet à un élément du tableau
-                                $aOuvrages[$i] =  new Ouvrage($aResultat[$i]['idOuvrage'], $aResultat[$i]['sTitreOuvrage'], $aResultat[$i]['sCouvertureOuvrage'], $aResultat[$i]['sGenre'], $aResultat[$i]['idUtilisateur']);
+                                $aOuvrages[$i] =  new Ouvrage($aResultat[$i]['idOuvrage'], 
+                                                $aResultat[$i]['sTitreOuvrage'], 
+                                                $aResultat[$i]['sDateOuvrage'], 
+                                                $aResultat[$i]['sCouvertureOuvrage'], 
+                                                $aResultat[$i]['sGenre'], 
+                                                " ",
+                                                $aResultat[$i]['idUtilisateur']);
                                 
                             }
                             //retourner le tableau d'objets

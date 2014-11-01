@@ -19,7 +19,7 @@
               <ul class=\"dropdown-menu\" role=\"menu\">";
             $aGenres = $oGenre->getGenre();
             for($iGenre=0;$iGenre<count($aGenres);$iGenre++){
-              echo "<li><a href=\"index.php?s=1&display=afficherParGenre&genre=".$iGenre."\">".$aGenres[$iGenre]."</a></li>";
+              echo "<li><a href=\"index.php?s=1&display=affichageParGenre&genre=".$iGenre."\">".$aGenres[$iGenre]."</a></li>";
             }
             echo "
               </ul>
@@ -53,7 +53,7 @@
               <ul>";
             $aGenres = $oGenre->getGenre();
             for($iGenre=0;$iGenre<count($aGenres);$iGenre++){
-              echo "<li><a href=\"index.php?s=1&display=afficherParGenre&genre=".$iGenre."\">".$aGenres[$iGenre]."</a></li>";
+              echo "<li><a href=\"index.php?s=1&display=affichageParGenre&genre=".$iGenre."\">".$aGenres[$iGenre]."</a></li>";
             }
             echo "
               </ul>
