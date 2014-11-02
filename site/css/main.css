@@ -9,6 +9,9 @@
  * 
  */
 
+
+/******************************** CODE FAIT PAR JULIAN ****************************/
+
 body {
 	font-family: "Montserrat",Helvetica,Arial,sans-serif;
 	font-size: 14px;
@@ -176,6 +179,8 @@ p {
 	margin-right: 5px;
 }
 
+/******************************** FIN CODE FAIT PAR JULIAN ****************************/
+
 /******************************************************* CONTENU ***************************************************/
 
 /* hanaa*/
@@ -205,10 +210,12 @@ margin-top: 15px;
     
 }
 
-
-
-
 /*fin hanaa*/
+
+
+
+
+/******************************** CODE FAIT PAR JULIAN ****************************/
 .conteneur {
 	margin-top: 140px;
 	/*background-color: rgba(0,0,0,0.3);*/
@@ -387,11 +394,27 @@ ul.social li {
 	margin-left: 10px;
 }
 
+.msgRecherche {
+	margin-top: 20px;
+}
+
+.resultatRecherche div{
+	margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+	.barreRecherche button {
+		margin-top: 10px;
+		margin-left: 0px;
+	}
+}
+
 
 /******************************************************* PRODUITS PAGE ACCUEIL ***************************************************/
 .ouevreAccueil {
 	margin-top: 20px;
 }
+
 .produit {
     width: 30.333333%;
 	min-height: 370px;
@@ -407,6 +430,7 @@ ul.social li {
 	margin-bottom: 20px;
 	margin-right: 20px;	
 }
+
 .produit-image {
 	width: 60%;
     overflow: hidden;
@@ -415,6 +439,7 @@ ul.social li {
     border: 1px solid #aaa;
     margin-bottom: 25px;
 }
+
 .produit-image img{
     width: 100%;
 }
@@ -424,6 +449,7 @@ ul.social li {
 		width: 45%;
 	}
 }
+
 @media (max-width: 320px) {
 	.produit {
 		width: 100%;
@@ -442,6 +468,8 @@ ul.social li {
     font-size: 12px;
     text-align: center;
 }
+
+/******************************** FIN CODE FAIT PAR JULIAN ****************************/
 
 
 

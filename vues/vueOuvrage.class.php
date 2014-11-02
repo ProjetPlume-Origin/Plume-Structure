@@ -110,11 +110,11 @@ class VueOuvrage{
 /***************************************** CODE FAIT PAR JULIAN ****************************************/ 
 
     /**
-     * Fonction qui affiche aléatoirement tous les oeuvres dans la bd
+     * Fonction qui affiche aléatoirement tous les oeuvres dans la page d'accueil
      * @author Alex Meyer et Julian Rendon
      * @return array ce tableau contient des objets Ouvrage
      */      
-    public static function afficherOeuvresAccueil($sGenre=""){
+    public static function afficherOeuvresAccueil($sGenre=" "){
           
       $oConnexion = new MySqliLib();
       //Requête de recherche de tous les oeuvres
@@ -163,9 +163,10 @@ class VueOuvrage{
 
     
     /**
-     * Côté utilisateur - Affiche le formulaire pour faire la recherce avancée
-     * @param 
-     */
+     * Fonction qui affiche le formulaire pour faire la recherce avancée
+     * @author Julian Rendon
+     * @return array ce tableau contient des objets Ouvrage
+     */      
     public static function afficherFormRechercheAvancee(){
       echo "        
         
@@ -198,54 +199,63 @@ class VueOuvrage{
 
           </div>  <!-- FIN FORMULAIRE RECHERCHE AVANCEE -->
 
-        </div>
+        </div> <!-- Fin Row -->
       ";
     }// fin de la fonction afficherFormRechercheAvancee()
 
 
     /**
-     * Côté utilisateur - Affiche le formulaire pour faire la recherce avancée
-     * @param 
-     */
-    public static function afficherResultatsRechercheAvancee($aResult,$sMsg){
-      echo "
+     * Fonction qui affiche le resultat de la recherce avancée
+     * @author Julian Rendon
+     * @return array ce tableau contient des objets Ouvrage
+     */     
+    public static function afficherResultatsRechercheAvancee($aResult){
 
-        <p>".$sMsg."</p>        
-        <div class=\"row\"> 
+      if(!(count($aResult) > 0)) {
 
-          <!-- RESULTATS RECHERCHE AVANCEE -->
-          <div class=\"col-lg-12 col-sm-12 col-xs-12\">
-      ";
-        for($iOeuvre=0; $iOeuvre<count($aResult) ; $iOeuvre++)
-        {
-          $oAuteur = new Utilisateur($aResult[$iOeuvre]->getIdUtilisateur());
-          echo'
-              <a href="index.php'.$aResult[$iOeuvre]->getIdOuvrage().'">
-                <div class="col-lg-3 col-sm-6 col-xs-12 produit" >
-                  <div class="produit-image">
-                      <td><img src='.$aResult[$iOeuvre]->getOuvrageCouverture().'></td>
+        echo "
+          <p class=\"alert alert-warning msgRecherche\">Aucun ouvrage ne correspond à votre recherche</p>
+          ";
+      }else {
+
+        echo "        
+          <div class=\"row resultatRecherche\"> 
+
+            <!-- RESULTATS RECHERCHE AVANCEE -->
+            <div class=\"col-lg-12 col-sm-12 col-xs-12\">
+        ";
+          for($iOeuvre=0; $iOeuvre<count($aResult) ; $iOeuvre++)
+          {
+            $oAuteur = new Utilisateur($aResult[$iOeuvre]->getIdUtilisateur());
+            $oAuteur->rechercherUnUtilisateur();
+            $oAuteur->getNom();
+            echo'
+                <a href="index.php'.$aResult[$iOeuvre]->getIdOuvrage().'">
+                  <div class="col-lg-3 col-sm-6 col-xs-12 produit" >
+                    <div class="produit-image">
+                        <td><img src='.$aResult[$iOeuvre]->getOuvrageCouverture().'></td>
+                    </div>
+                    <h2> '.$aResult[$iOeuvre]->getOuvrageTitre().'</h2>
+                    <p class="produit-date">Publié en: '.$aResult[$iOeuvre]->getOuvrageDate().'</p>
+                    <p class="produit-auteur">Par: '.$oAuteur->getNom().'</p>
+                    <img src="img/imgAccueil/view-icon.png" width="20px"><span class="produit-vues"> 25</span>
+                    <img src="img/imgAccueil/comment-icon.png" width="13px"><span class="produit-commentaires"> 12</span>
                   </div>
-                  <h2> '.$aResult[$iOeuvre]->getOuvrageTitre().'</h2>
-                  <p class="produit-date">'.$aResult[$iOeuvre]->getOuvrageDate().'</p>
-                  <p class="produit-auteur">Par: '.$oAuteur->getNom().'</p>
-                  <img src="img/imgAccueil/view-icon.png" width="20px"><span class="produit-vues"> 25</span>
-                  <img src="img/imgAccueil/comment-icon.png" width="13px"><span class="produit-commentaires"> 12</span>
-                </div>
-              </a>
-          
-          ';
-        }
-          
-          // foreach($aResult as $value)
-          // {
-          //   print_r($value);
-          // }
-      
-          echo "
-          </div>  <!-- FIN RESULTATS RECHERCHE AVANCEE -->
+                </a>
+            
+            ';
+          }            
+            // foreach($aResult as $value)
+            // {
+            //   print_r($value);
+            // }
+        
+            echo "
+            </div>  <!-- FIN RESULTATS RECHERCHE AVANCEE -->
 
-        </div>  <!-- Fin Row -->
-      ";
+          </div>  <!-- Fin Row -->
+        ";
+      }
     }// fin de la fonction afficherResultatsRechercheAvancee()
 
 /***************************************** FIN CODE FAIT PAR JULIAN ****************************************/ 
