@@ -23,22 +23,18 @@
 				{
 					include_once "../vues/templates/nav.php";
 					
-				}   
-				
+				}				
 				
 				switch($_GET['s']){
 
-					case 1:
-                    if(isset($_GET['display']) == false){
-                    $_GET['display']="defaut";
-                }
+					case 1: // Case module de Julian                    
                         $oGenre= new Genre();
-                        VueGenre::afficherMenuRechercheAvancee($oGenre);                        
+                        VueGenre::afficherGenresDeroulant($oGenre);                        
                         VueGenre::afficherListeDesGenres($oGenre);	
                         self::gererAffichageParGenre();
                         break;
 
-					case 2: 
+					case 2: // Case module de Julian
 						self::gererRechercheAvancee();
 						break;
 
@@ -89,9 +85,10 @@
 /***************************************** PARTIE CONTROLEUR DE JULIAN ****************************************/ 
         
         /**
-        * @author Julian Rendon
-        * redirige selon le display
-        */     
+         * Fonction qui gère l'affichage de tous les oeuvres dans la page d'accueil triés par genre
+         * @author Julian Rendon
+         * @return array ce tableau contient des objets Ouvrage
+         */          
         public static function gererAffichageParGenre() {
 
             if (!isset($_GET['display'])) {
@@ -118,18 +115,19 @@
 
 
         /**
-        * @author Julian Rendon
-        * redirige selon l'action
-        */     
+         * Fonction qui gère l'affichage du resultat de la recherche avancée
+         * @author Julian Rendon
+         * @return array ce tableau contient des objets Ouvrage
+         */      
         public static function gererRechercheAvancee() {
             try{
-                //1èr cas : aucune action n'a été sélectionné $_GET['action'] n'a pas affecté d'une valeur
+                //1èr cas : aucune recherche n'a été faite $_POST['cmd'] n'a pas affecté d'une valeur
                 if(isset($_POST['cmd']) == FALSE){
                     VueOuvrage::afficherFormRechercheAvancee();
                 }else {
                 
                     //2e cas :L'utilisateur a cliqué le button de recherche, 
-                    //il existe 1 possibilité : rech  
+                    //il existe 3 possibilités : auteur, titre et mot clé 
                     switch($_POST['optradio']){
                         case "auteur":
                             //Connexion à la base de données
@@ -138,11 +136,12 @@
                                         RIGHT JOIN `utilisateur` 
                                         ON `ouvrage`.`idUtilisateur`= `utilisateur`.`idUtilisateur` 
                                         WHERE `utilisateur`.`sNomUtilisateur` = '".$_POST['motCherche']."'
+                                        ORDER BY `sDateOuvrage` ASC
                             ";
                             $oRes = $oConnexion->executer($sRequete);
                             $aResultat= $oConnexion->recupererTableau($oRes);
                             // var_dump($aResultat);  
-                            // 
+                             
                             $aOuvrages = array();
 
                             //Pour tous les enregistrements
@@ -155,14 +154,19 @@
                                                 $aResultat[$i]['sGenre'], 
                                                 " ",
                                                 $aResultat[$i]['idUtilisateur']);
-                                
+                                // print_r($aOuvrages[$i]);
+                                // print_r("<br>");                                
                             }
                             //retourner le tableau d'objets
                             // return $aOuvrages;
                             // var_dump($aResultat);
+                            
                             VueOuvrage::afficherFormRechercheAvancee();
-                            VueOuvrage::afficherResultatsRechercheAvancee($aOuvrages,$sMsg="");
-                            // self::gererRechercheOuevrage("auteur");
+                            // if(count($aOuvrages)>0) {
+                            VueOuvrage::afficherResultatsRechercheAvancee($aOuvrages);
+                            // }else{
+                                // VueOuvrage::afficherResultatsRechercheAvancee($aOuvrages,$sMsg="Aucun resultat");
+                            // }
                             break;
                                                
                         case "lst": default:
@@ -177,38 +181,6 @@
             
         }//fin de la fonction gererRechercheAvancee()
 
-
-        /**
-         *  @author Julian Rendon
-         * Rechercher et afficher les ouevrages
-         */
-        public static function gererRechercheOuevrage(){
-            try{
-                
-                
-                    // print_r ("voila");
-                    //Instancier un objet Ouevrage avec l'info saisi par l'internaute $_POST['txtNo']
-                    // $oOuevrage = new Ouevrage($name);
-                    // $oOuevrage->setNom;
-                    //Recherche les ouevrages par mot clé, titre ou auteur
-                    $bTrouve = $oOuevrage->rechercherListeDesOeuvres();                  
-                    //Si L'ouevrage existe
-                    if($bTrouve == true){
-                        //afficher l'ouevrage
-                        vueOuevrage::afficherUnOuevrage($oOuevrage);
-                    }else//sinon
-                    {
-                        //afficher un message "Aucun ouevrage ne correspond à votre recherche"
-                        vueOuevrage::afficherFormRechercheAvancee("Aucun ouevrage ne correspond à votre recherche");
-                    }
-                        
-                
-            }catch(Exception $e){
-                //repropose la saisie du numéro d'ouevrage, une erreur de type
-                VueOuevrage::afficherFormRechercheAvancee($e->getMessage());
-            }
-            
-        }//fin de la function gererRechercheOuevrage()
 
 /***************************************** FIN PARTIE CONTROLEUR DE JULIAN ****************************************/ 
 

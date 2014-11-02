@@ -235,7 +235,7 @@ class Utilisateur {
 		$oConnexion = new MySqliLib();
 		//Réaliser la requête de recherche par le idEtudiant
 		$sRequete= "SELECT * FROM utilisateur WHERE idUtilisateur=".$this->getIdUtilisateur();
-		echo $sRequete;
+		// echo $sRequete;
 		//Exécuter la requête
 		$oResult = $oConnexion->executer($sRequete);
 		if($oResult != false){

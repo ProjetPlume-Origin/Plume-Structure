@@ -2,19 +2,19 @@
   class VueGenre{
     
     /**
-     * Côté utilisateur - Afficher la page d'accueil
-     * @param 
+     * Fonction qui affiche le menu deroulant dans les petits ecrans
+     * @author Julian Rendon
+     * @return array ce tableau contient des objets Genres
      */
-    
-    public static function afficherMenuRechercheAvancee(Genre $oGenre, $sMsg="&nbsp;") {
+    public static function afficherGenresDeroulant(Genre $oGenre, $sMsg="&nbsp;") {
       echo "
-        <p>".$sMsg."</p>
+        
         <div class=\"row\">
-          <!-- recherche par genre -->
+          <!-- Trier par genre -->
           <div class=\"btn-Categories\">
             <div class=\"btn-group hidden-lg hidden-sm col-xs-12\">
               <button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\">
-                recherche par genre <span class=\"caret\"></span>
+                Trier par genre <span class=\"caret\"></span>
               </button>
               <ul class=\"dropdown-menu\" role=\"menu\">";
             $aGenres = $oGenre->getGenre();
@@ -31,17 +31,17 @@
           </div>        
         </div> <!-- fin row -->
       ";
-    }// fin de la function afficherMenuRechercheAvancee()  
+    }// fin de la function afficherGenresDeroulant()  
 
 
     /**
-     * Côté utilisateur - Afficher la page d'accueil
-     * @param 
+     * Fonction qui affiche le menu avec la liste de genres
+     * @author Julian Rendon
+     * @return array ce tableau contient des objets Genres
      */
-    
     public static function afficherListeDesGenres(Genre $oGenre, $sMsg="&nbsp;") {
       echo "
-        <p>".$sMsg."</p>
+        
         <div class=\"row\">        
           <!-- COLONNE GAUCHE GENRES -->
           <div class=\"col-lg-3 col-sm-3 hidden-xs\">
