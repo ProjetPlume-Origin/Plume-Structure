@@ -12,7 +12,7 @@
 		/* Propriétés privées */
 		private $idOuvrage;
 		private $ouvrageTitre;
-		private $sOuvrageDate; // ajouté par Julian
+		private $ouvrageDate;
 		private $ouvrageCouverture;
 		private $ouvrageGenre;
 		private $ouvrageContenu;
@@ -20,14 +20,13 @@
 		
 	//Construction
 	
-	public function __construct($idOuvrage=0, $ouvrageTitre=" ", $sOuvrageDate=" ", $ouvrageCouverture=" ", $ouvrageGenre=" ", $ouvrageContenu=" ", $idUtilisateur=0){
+	public function __construct($idOuvrage=0, $ouvrageTitre=" ", $ouvrageCouverture=" ", $ouvrageGenre=" ", $ouvrageContenu=" ", $idUtilisateur=0){
 		$this->setidOuvrage($idOuvrage);
 		$this->setOuvrageTitre($ouvrageTitre);
 		$this->setOuvrageCouverture($ouvrageCouverture);
 		$this->setOuvrageGenre($ouvrageGenre);
 		$this->setOuvrageContenu($ouvrageContenu);
 		$this->setIdUtilisateur($idUtilisateur);
-		$this->setOuvrageDate($sOuvrageDate); // ajouté par Julian
 		
 	
 
@@ -82,36 +81,10 @@
 	 * @param string $ouvrageContenu
 	 */
 	public function setOuvrageContenu($ouvrageContenu){
-				
+		
 		$this->ouvrageContenu = $ouvrageContenu;
 	}
-
-
-/***************************************** CODE AJOUTÉ PAR JULIAN  **********************************/
-	/**
-	 * Permet d'affecter la valeur de la propriété privée OuvrageDate de l'ouvrage
-	 * @param string $sOuvrageDate - Date de création de l'ouvrage
-	 */
-	public function setOuvrageDate($sOuvrageDate) {
-		TypeException::estVide($sOuvrageDate);
-		TypeException::estString($sOuvrageDate);
-
-		$this->sOuvrageDate = $sOuvrageDate;
-	}//fin de la fonction setOuvrageDate()
-
-	/**
-	 * Permet de récupérer la valeur de la propriété privée soit la date de création de l'ouvrage
-	 * @return string la Date de création de l'ouvrage
-	 */
-	public function getOuvrageDate(){
- 
-		return htmlentities($this->sOuvrageDate);
-
-	}//fin de la fonction getOuvrageDate()
-
-/***************************************** FIN CODE AJOUTÉ PAR JULIAN  **********************************/
-
-
+	
 	
 	/*--------------------------------------------------------------------*/
 	/**
@@ -215,8 +188,6 @@
 	 */
 	function ajouterOuvrage(){
 		
-        
-        echo"hhhhhhhhhhhhhhhhhhhhhhhhhhh". $_SESSION["IdUtilisateur"];
 		//Connexion à la base de données
 		$oConnexion = new MySqliLib();
 		//Requete d'ajout de l'Ouvrage
@@ -234,7 +205,6 @@
 			$variable = $oConnexion->getConnect()->insert_id;
 			$_SESSION['id'] = $variable;
 		}
-
 }
 
 		
@@ -250,7 +220,17 @@ return $oConnexion->executer($sRequete);
 	
 	}
 
+public function modifierContenu(){
 
+        //Connecter à la base de données
+    	$oConnexion = new MySqliLib();
+	
+    	$sRequete = " INSERT INTO paragraphe values 
+    	(NULL,'".$oConnexion->getConnect()->escape_string($this->ouvrageContenu)."','".date("Y-m-d H:i:s") ."','".$this->idOuvrage."');";
+
+return $oConnexion->executer($sRequete);  
+	
+	}
 	
      /**
 	 * modifier un Ouvrage 
@@ -324,18 +304,18 @@ return $oConnexion->executer($sRequete);
 		return $oConnexion->executer($sRequete);
 	}
 
-
-/***************************************** CODE FAIT PAR JULIAN ****************************************/
-
-	/**
-	 * Rechercher tous les ouvrages de la base de données par genre cliqué
-	 * @author Julian Rendon
-	 * @return array ce tableau contient des objets Ouvrage
-	 */
-	public function rechercherListeDesOuvragesParGenre(){
-	 	//Connexion à la base de données
+/**
+	 * Rechercher un Ouvrage par son idOuvrage
+	 * @return boolean true si l'enregistrement est trouvé dans la BDD
+	 * false dans tous les autres cas
+	 */      
+	public static function rechercherTitreOuvrage(){
+		//Connexion à la base de données
 	 	$oConnexion = new MySqliLib();
-	 	$sRequete = "SELECT * FROM ouvrage WHERE sGenre = '".$this->ouvrageGenre."';";
+	 	//Requête de recherche de tous les Ouvrages
+	 	//".$_SESSION['IdUtilisateur']."
+	 	$sRequete = "
+	 		SELECT sTitreOuvrage FROM ouvrage ";
 	 	//Exécuter la requête
 	 	$oResult = $oConnexion->executer($sRequete);
 	 	//Récupérer le tableau des enregistrements
@@ -344,16 +324,14 @@ return $oConnexion->executer($sRequete);
 	 	//Pour tous les enregistrements
 	 	for($i=0; $i<count($aEnreg); $i++){
 	 		//affecter un objet à un élément du tableau
-	 		$aOuvrages[$i] =  new Ouvrage($aEnreg[$i]['idOuvrage'], $aEnreg[$i]['sTitreOuvrage'], $aEnreg[$i]['sCouvertureOuvrage'], $aEnreg[$i]['sGenre'], $aEnreg[$i]['idUtilisateur']);
-	 		
+	 		$aOuvrages[] =  $aEnreg[$i]['sTitreOuvrage'];
 	 	}
+
 	 	//retourner le tableau d'objets
 	 	return $aOuvrages;
-	}//fin de la fonction rechercherListeDesOuvragesParGenre()
-	
-
-/***************************************** FIN CODE FAIT PAR JULIAN ****************************************/	
+	 	
+	 }
+ 
 
 }//fin de la classe Ouvrage
-
 ?>
