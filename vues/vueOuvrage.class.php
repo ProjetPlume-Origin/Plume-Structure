@@ -170,7 +170,7 @@ class VueOuvrage{
       echo"</div></div>";
     } // fin de la fonction afficherOeuvresAccueil()
 
-
+    
     /**
      * Fonction qui affiche le formulaire pour faire la recherce avancée
      * @author Julian Rendon
@@ -268,7 +268,8 @@ class VueOuvrage{
 
 /***************************************** FIN CODE FAIT PAR JULIAN ****************************************/ 
 
-/*
+
+    /*
      * Afficher le formulaire de modification d'un Ouvrage
      * @param Ouvrage $oOuvrage 
      */public static function afficherOuvrage(Ouvrage $oOuvrage, $sMsg="&nbsp;"){
