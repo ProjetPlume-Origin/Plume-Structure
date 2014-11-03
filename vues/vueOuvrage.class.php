@@ -111,10 +111,10 @@ class VueOuvrage{
 
     /**
      * Fonction qui affiche aléatoirement tous les oeuvres dans la page d'accueil
-     * @author Alex Meyer et Julian Rendon
+     * @author Alex Mayer et Julian Rendon
      * @return array ce tableau contient des objets Ouvrage
      */      
-    public static function afficherOeuvresAccueil($sGenre=" "){
+    public static function afficherOeuvresAccueil($sGenre=""){
           
       $oConnexion = new MySqliLib();
       //Requête de recherche de tous les oeuvres
@@ -179,13 +179,10 @@ class VueOuvrage{
             <div class=\"barreRecherche col-xs-12\">
               <h1>Recherche Avancée</h1>
 
-              <form class=\"navbar-form navbar-left\" method=\"post\" action=\"index.php?s=2\" role=\"search\">
+              <form class=\"navbar-form navbar-left\" method=\"post\" action=\"index.php?s=rech_avancee\" role=\"search\">
                 <div class=\"form-group\">
                   <input type=\"text\" name=\"motCherche\" class=\"form-control\" placeholder=\"\" autofocus>
-                </div>Rechercher par : 
-                <label class=\"radio-inline\">
-                  <input type=\"radio\" name=\"optradio\" value=\"motCle\">Mot clé
-                </label>
+                </div>Rechercher par :                 
                 <label class=\"radio-inline\">
                   <input type=\"radio\" name=\"optradio\" value=\"titre\" checked=\"\">Titre
                 </label>
@@ -202,6 +199,8 @@ class VueOuvrage{
         </div> <!-- Fin Row -->
       ";
     }// fin de la fonction afficherFormRechercheAvancee()
+
+    //TODO: action=\"index.php?s=".$_GET['s']."&optradio=".$_POST['optradio']."\"
 
 
     /**
@@ -223,6 +222,9 @@ class VueOuvrage{
 
             <!-- RESULTATS RECHERCHE AVANCEE -->
             <div class=\"col-lg-12 col-sm-12 col-xs-12\">
+            <p class=\"alert alert-success\">Mot(s) cherché(s): <b>" 
+            .$_POST['motCherche']."</b>&nbsp&nbsp&nbsp&nbsp&nbsp"."Resultats trouvés: <b>".count($aResult)."</b>
+            </p>
         ";
           for($iOeuvre=0; $iOeuvre<count($aResult) ; $iOeuvre++)
           {
@@ -231,7 +233,7 @@ class VueOuvrage{
             $oAuteur->getNom();
             echo'
                 <a href="index.php'.$aResult[$iOeuvre]->getIdOuvrage().'">
-                  <div class="col-lg-3 col-sm-6 col-xs-12 produit" >
+                  <div class="col-lg-2 col-sm-4 col-xs-12 produitRechAvancee" >
                     <div class="produit-image">
                         <td><img src='.$aResult[$iOeuvre]->getOuvrageCouverture().'></td>
                     </div>
@@ -241,8 +243,7 @@ class VueOuvrage{
                     <img src="img/imgAccueil/view-icon.png" width="20px"><span class="produit-vues"> 25</span>
                     <img src="img/imgAccueil/comment-icon.png" width="13px"><span class="produit-commentaires"> 12</span>
                   </div>
-                </a>
-            
+                </a>            
             ';
           }            
             // foreach($aResult as $value)

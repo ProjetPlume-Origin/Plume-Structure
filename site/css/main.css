@@ -469,6 +469,29 @@ ul.social li {
     text-align: center;
 }
 
+.produitRechAvancee {
+	/*width: 30.333333%;*/
+	min-height: 305px;
+    background-color: #ffffff;
+    /*float: left;*/
+    border: 1px solid #d0d0d0;
+    /*margin: 10px;*/
+    color: #292929;
+    text-align: center;
+	-webkit-box-shadow: 8px 8px 12px -9px rgba(0,0,0,0.26);
+	-moz-box-shadow: 8px 8px 12px -9px rgba(0,0,0,0.26);
+	box-shadow: 8px 8px 12px -9px rgba(0,0,0,0.26);
+	margin-bottom: 20px;
+	margin-right: 20px;	
+}
+
+@media (max-width: 768px) {
+	.produitRechAvancee {
+		width: 30.333333%;
+	}
+}
+
+
 /******************************** FIN CODE FAIT PAR JULIAN ****************************/
 
 

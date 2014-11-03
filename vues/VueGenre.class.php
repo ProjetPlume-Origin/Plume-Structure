@@ -19,14 +19,14 @@
               <ul class=\"dropdown-menu\" role=\"menu\">";
             $aGenres = $oGenre->getGenre();
             for($iGenre=0;$iGenre<count($aGenres);$iGenre++){
-              echo "<li><a href=\"index.php?s=1&display=affichageParGenre&genre=".$iGenre."\">".$aGenres[$iGenre]."</a></li>";
+              echo "<li><a href=\"index.php?s=".$_GET['s']."$display=affichageParGenre&genre=".$iGenre."\">".$aGenres[$iGenre]."</a></li>";
             }
             echo "
               </ul>
             </div>
             <!-- Lien Recherche avancée -->
             <div class=\"col-lg-6 col-xs-12 rechercheAvance\">
-              <a href=\"index.php?s=2\">Recherche avancée</a>
+              <a href=\"index.php?s=rech_avancee\">Recherche avancée</a>
             </div>
           </div>        
         </div> <!-- fin row -->
@@ -53,7 +53,7 @@
               <ul>";
             $aGenres = $oGenre->getGenre();
             for($iGenre=0;$iGenre<count($aGenres);$iGenre++){
-              echo "<li><a href=\"index.php?s=1&display=affichageParGenre&genre=".$iGenre."\">".$aGenres[$iGenre]."</a></li>";
+              echo "<li><a href=\"index.php?s=".$_GET['s']."&display=affichageParGenre&genre=".$iGenre."\">".$aGenres[$iGenre]."</a></li>";
             }
             echo "
               </ul>
