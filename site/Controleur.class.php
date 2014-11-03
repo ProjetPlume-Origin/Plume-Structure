@@ -1,266 +1,169 @@
 <?php
-  class Controleur{
+    class Controleur{
 
-    /**
-	   * redirige selon le choix de l'internaute
-	   */
-		public static function gererSite(){
-			
-			try{
-				//1èr cas : aucune option du menu n'a été sélectionné
-				if(isset($_GET['s']) == false){
-					$_GET['s']=1;
-				}  				
-			
-				if(isset($_SESSION["IdUtilisateur"]))
-				{
-					include_once "../vues/templates/navConnecte.php";  					
-				}
-				
-				else
-				{
-					include_once "../vues/templates/nav.php";  					
-				}				
-				
-				switch($_GET['s']){
-
-					case 1: default:// Case module de Julian
-            if(isset($_GET['display']) == false){
-
-                 $_GET['display']="defaut";
-            } 
-
-            $oGenre= new Genre();
-            VueGenre::afficherGenresDeroulant($oGenre);                        
-            VueGenre::afficherListeDesGenres($oGenre);	
-            self::gererAffichageParGenre();
-            break;
-
-					case "rech_avancee": // Case module de Julian
-						self::gererRechercheAvancee();
-						break;
-
-          case 3: 
-            self::gererConnexionUtilisateur();
-            break; 
-
-          case 4: 
-            self::gererInscriptionUtilisateur();
-            break;  
-
-          case 5: 
-						self::gererDeconnectionUtilisateur();
-						break;
-                    
-          case 6: /////controleur christhian
-						Controleur::exampleOuvrage();
-						break;
-
-          case 7: /////controleur christhian                           /*******du  contrelerue**/
-						self::exampleComment(); 
-						break;
-					
-			    case 8: /////controleur christhian
-						self::listeDesCommentaires();
-						break;
-						
-			    case 9: ////controleur christhian
-						self::switchCommentaire();
-						break;
-
-          case 10: 
-						//TODO fonction qui redirige sur un affichage propre a un oeuvre
-						break;
-
-				}//fin switch
-
-			}catch(Exception $e){
-				echo "<p>".$e->getMessage()."</p>";
-			}	
-			
-		} //fin de la fonction gererSite()
-
-
-/***************************************** PARTIE CONTROLEUR DE JULIAN ****************************************/ 
-        
-    /**
-     * Fonction qui gère l'affichage de tous les oeuvres dans la page d'accueil triés par genre
-     * @author Julian Rendon
-     * @return array ce tableau contient des objets Ouvrage
-     */          
-    public static function gererAffichageParGenre() {
-
-      if (!isset($_GET['display'])) {
-
-          $_GET['display'] = "defaut";
-          
-      }else {
-
-        switch ($_GET['display']) {
-
-          case 'affichageParGenre':
-            $iGenre = $_GET['genre'];
-            $oGenre = new Genre();
-            $aGenres = $oGenre->getGenre();
-            VueOuvrage::afficherOeuvresAccueil($aGenres[$iGenre]); 
-            break;
-
-          case 'defaut': default:
-            VueOuvrage::afficherOeuvresAccueil();
-            break;
-
-        } // fin switch
-
-      }                       
-
-    } // fin de la fonction gererAffichageParGenre()
-
-
-    /**
-     * Fonction qui gère l'affichage du resultat de la recherche avancée
-     * @author Julian Rendon
-     * @return array ce tableau contient des objets Ouvrage
-     */      
-    public static function gererRechercheAvancee() {
-
+      /**
+     * redirige selon le choix de l'internaute
+     */
+    public static function gererSite(){
+      
       try{
-        //1èr cas : aucune recherche n'a été faite $_POST['cmd'] n'a pas affecté d'une valeur
-        if(isset($_POST['cmd']) == FALSE){
-            VueOuvrage::afficherFormRechercheAvancee();
-        }else {
+        //1èr cas : aucune option du menu n'a été sélectionné
+        if(isset($_GET['s']) == false){
+          $_GET['s']=1;
+        }
         
-          //2e cas :L'utilisateur a cliqué le button de recherche, 
-          //il existe 2 possibilités : auteur et titre 
-          switch($_POST['optradio']){
-
-            case "auteur":
-              //Connexion à la base de données
-              $oConnexion = new MySqliLib();
-              $sRequete= "SELECT * FROM `ouvrage` 
-                          RIGHT JOIN `utilisateur` 
-                          ON `ouvrage`.`idUtilisateur`= `utilisateur`.`idUtilisateur` 
-                          WHERE `utilisateur`.`sNomUtilisateur` LIKE '%".$oConnexion->getConnect()->real_escape_string($_POST['motCherche'])."%'
-                          ORDER BY `sTitreOuvrage` ASC                
-                        ";
-                       // die ($sRequete);
-
-              $oRes = $oConnexion->executer($sRequete);
-              $aResultat= $oConnexion->recupererTableau($oRes);
-              // var_dump($aResultat);  
-               
-              $aOuvrages = array();
-
-              //Pour tous les enregistrements
-              for($i=0; $i<count($aResultat); $i++){
-                //affecter un objet à un élément du tableau
-                $aOuvrages[$i] = new Ouvrage($aResultat[$i]['idOuvrage'], 
-                                $aResultat[$i]['sTitreOuvrage'], 
-                                $aResultat[$i]['sDateOuvrage'], 
-                                $aResultat[$i]['sCouvertureOuvrage'], 
-                                $aResultat[$i]['sGenre'], 
-                                " ",
-                                $aResultat[$i]['idUtilisateur']);
-                // print_r($aOuvrages[$i]);
-                // print_r("<br>");                                
-              }
-              //retourner le tableau d'objets
-              // return $aOuvrages;
-              // var_dump($aResultat);
               
-              VueOuvrage::afficherFormRechercheAvancee();
-              // if(count($aOuvrages)>0) {
-              VueOuvrage::afficherResultatsRechercheAvancee($aOuvrages);
-              // }else{
-                  // VueOuvrage::afficherResultatsRechercheAvancee($aOuvrages,$sMsg="Aucun resultat");
-              // }
-              break;
+        switch($_GET['s']){
 
-            case "titre":
-              //Connexion à la base de données
-              $oConnexion = new MySqliLib();
-              $sRequete= "SELECT * FROM `ouvrage` 
-                          RIGHT JOIN `utilisateur` 
-                          ON `ouvrage`.`idUtilisateur`= `utilisateur`.`idUtilisateur` 
-                          WHERE `ouvrage`.`sTitreOuvrage` LIKE '%".$oConnexion->getConnect()->real_escape_string($_POST['motCherche'])."%'
-                          ORDER BY `sTitreOuvrage` ASC                
-                        ";
-              $oRes = $oConnexion->executer($sRequete);
-              $aResultat= $oConnexion->recupererTableau($oRes);
-              // var_dump($aResultat);  
-               
-              $aOuvrages = array();
+           case 1: 
+                        VueAccueil::afficherListeDesCategories(); 
+                        VueAccueil::afficherOeuvresAccueil();
+                        break;
+          case 2: 
+            self::gererRechercheAvancee();
+            break;
 
-              //Pour tous les enregistrements
-              for($i=0; $i<count($aResultat); $i++){
-                  //affecter un objet à un élément du tableau
-                  $aOuvrages[$i] =  new Ouvrage($aResultat[$i]['idOuvrage'], 
-                                  $aResultat[$i]['sTitreOuvrage'], 
-                                  $aResultat[$i]['sDateOuvrage'], 
-                                  $aResultat[$i]['sCouvertureOuvrage'], 
-                                  $aResultat[$i]['sGenre'], 
-                                  " ",
-                                  $aResultat[$i]['idUtilisateur']);
-                  // print_r($aOuvrages[$i]);
-                  // print_r("<br>");                                
-              }
-              //retourner le tableau d'objets
-              // return $aOuvrages;
-              // var_dump($aResultat);
-              
-              VueOuvrage::afficherFormRechercheAvancee();
-              // if(count($aOuvrages)>0) {
-              VueOuvrage::afficherResultatsRechercheAvancee($aOuvrages);
-              // }else{
-                  // VueOuvrage::afficherResultatsRechercheAvancee($aOuvrages,$sMsg="Aucun resultat");
-              // }
-              break;
+                    case 3: 
+                        self::gererConnexionUtilisateur();
+                        break; 
 
-            default:
-                // VueAccueil::afficherListeDesCategories();
-                VueOuvrage::afficherFormRechercheAvancee();
-                  
-          }//fin du switch sur $_POST['optradio']
+                    case 4: 
+                        self::gererInscriptionUtilisateur();
+                        break;  
+
+                    case 5: 
+            self::gererDeconnectionUtilisateur();
+            break;
+                    
+                  case 6: /////controleur christhian
+            Controleur::exampleOuvrage();
+            break;
+
+                  case 7: /////controleur christhian                           /*******du  contrelerue**/
+            self::exampleComment(); 
+            break;
+          
+          case 8: /////controleur christhian
+            self::listeDesCommentaires();
+            break;
+            
+          case 9: ////controleur christhian
+            self::switchCommentaire();
+            break;
+                    
+                  case 10: 
+            //TODO fonction qui redirige sur un affichage propre a un oeuvre
+            break;
+
+                    case 'monCompte': 
+                    Controleur::gererOuvrage();
+                    break;
+                    
+                    
+          default://Accueil 
+                        VueAccueil::afficherListeDesCategories(); 
+                        VueAccueil::afficherOeuvresAccueil();
+
         }
       }catch(Exception $e){
-          echo "<p>".$e->getMessage()."</p>";
-      }           
+        echo "<p>".$e->getMessage()."</p>";
+      } 
       
-    }//fin de la fonction gererRechercheAvancee()
+    }
 
 
-/***************************************** FIN PARTIE CONTROLEUR DE JULIAN ****************************************/ 
+        /**
+        * redirige selon l'action
+        */     
+        public static function gererRechercheAvancee() {
+            try{
+                //1èr cas : aucune action n'a été sélectionné $_GET['action'] n'a pas affecté d'une valeur
+                if(isset($_GET['action']) == FALSE){
+                    $_GET['action']="lst";
+                }
+                
+                //2e cas :L'utilisateur a sélectionné une action, 
+                //il existe 1 possibilité : rech  
+                switch($_GET['action']){
+                    case "rech":
+                        Controleur::gererRechercheOuevrage();
+                        break;
+                                           
+                    case "lst": default:
+                        VueAccueil::afficherRechercheAvancee();
+                        
+                }//fin du switch() sur $_GET['action']
+            }catch(Exception $e){
+                echo "<p>".$e->getMessage()."</p>";
+            }           
+            
+        }//fin de la fonction gererRechercheAvancee()
 
-			
-		/**
-		 * afficher le formulaire d'ajout et sur submit ajouter du Produit dans la base de données
-		 */
-		public static function gererInscriptionUtilisateur(){
-			
-			try{
-				//1èr cas : aucun submit n'a été cliqué
-				if(isset($_POST['cmd']) == false) {
-					//afficher le formulaire
+
+        /**
+         * Rechercher et afficher les ouevrages
+         */
+        public static function gererRechercheOuevrage(){
+            try{
+                
+                if(isset($_POST['cmd']) == false){
+                    VueAccueil::afficherRechercheAvancee();
+                }else{
+                    // print_r ("voila");
+                    //Instancier un objet Ouevrage avec l'info saisi par l'internaute $_POST['txtNo']
+                    $oOuevrage = new Ouevrage($_POST['txtNo']);
+                    //Recherche les ouevrages par mot clé, titre ou auteur
+                    $bTrouve = $oOuevrage->rechercherListeDesOeuvres();                  
+                    //Si L'ouevrage existe
+                    if($bTrouve == true){
+                        //afficher l'ouevrage
+                        VueOuevrage::afficherUnOuevrage($oOuevrage);
+                    }else//sinon
+                    {
+                        //afficher un message "Aucun ouevrage ne correspond à votre recherche"
+                        VueOuevrage::afficherRechercheAvancee("Aucun ouevrage ne correspond à votre recherche");
+                    }
+                        
+                }
+            }catch(Exception $e){
+                //repropose la saisie du numéro d'ouevrage, une erreur de type
+                VueOuevrage::afficherRechercheAvancee($e->getMessage());
+            }
+            
+        }//fin de la function gererRechercheOuevrage()
+
+
+      
+    /**
+     * afficher le formulaire d'ajout et sur submit ajouter du Produit dans la base de données
+     */
+    public static function gererInscriptionUtilisateur(){
+      
+      try{
+        //1èr cas : aucun submit n'a été cliqué
+        if(isset($_POST['cmd']) == false) {
+          //afficher le formulaire
                   if(isset($_GET['s'])){
                                 //
                    
-            					ViewInscription::afficherAjouterUtilisateur();
-            				//2e cas : le bouton submit Modifier a été cliqué
+                      ViewInscription::afficherAjouterUtilisateur();
+                    //2e cas : le bouton submit Modifier a été cliqué
                   }          //
-				}else{
-				
+        }else{
+        
                    /*$oUtilisateur = new Utilisateur(1,$_POST['txtNom'],    
                                                         $_POST['txtCourriel'],$_POST['txtPass'],$_POST['txtPassConfirm']);*/
                    
                    // $oUtilisateur-> setMotDePasse(mysql_real_escape_string($_POST['txtPass']);
                     //$oUtilisateur-> setConfirmation(mysql_real_escape_string($_POST['txtPassConfirm']);
                      $oUtilisateur = new Utilisateur();
-                    $oUtilisateur-> setNom(mysql_real_escape_string($_POST['txtNom']));
+                    $oUtilisateur-> setNom($_POST['txtNom']);
                     if($oUtilisateur->verificationNom()){
                         
-                         $oUtilisateur-> setCourriel(mysql_real_escape_string($_POST['txtCourriel']));
+                         $oUtilisateur-> setCourriel($_POST['txtCourriel']);
                          if($oUtilisateur->verificationcourriel()){
-                             $oUtilisateur-> setMotDePasse(mysql_real_escape_string($_POST['txtPass']));
-                             $oUtilisateur-> setConfirmation(mysql_real_escape_string($_POST['txtPassConfirm']));
+                             $oUtilisateur-> setMotDePasse($_POST['txtPass']);
+                             $oUtilisateur-> setConfirmation($_POST['txtPassConfirm']);
                                 if($oUtilisateur->verificationMotPass()){
                                     $oUtilisateur->ajouterUtilisateur();
                                     $sMsg = "L'ajout de l'utilisateur' - ".$oUtilisateur->getNom()." - s'est déroulé avec succès.";
@@ -282,58 +185,46 @@
                     }
                                                     
                     ViewInscription::afficherAjouterUtilisateur($sMsg);
-				}
-			}catch(Exception $e){
-				ViewInscription::afficherAjouterUtilisateur($e->getMessage());
-			}
-		}//fin de la fonction afficherAjouterUtilisateur()
-		
-	
+        }
+      }catch(Exception $e){
+        ViewInscription::afficherAjouterUtilisateur($e->getMessage());
+      }
+    }//fin de la fonction afficherAjouterUtilisateur()
+    
+  
 /*----------------------------------------------------------------------------------------------------------------------------*/        
         /**
-		 * afficher le formulaire de connexion et sur submit on se connecte a notre compte
-		 */
+     * afficher le formulaire de connexion et sur submit on se connecte a notre compte
+     */
      
        
            
         public static function gererConnexionUtilisateur(){
-			
-			try{
-				//1èr cas : aucun submit n'a été cliqué
+      
+      try{
+        //1èr cas : aucun submit n'a été cliqué
                     if(isset($_POST['cmd']) == false){
                         //afficher le formulaire
                         ViewInscription::afficherConnexionUtilisateur();
                     //2e cas : le bouton submit Modifier a été cliqué
                     }else{
                         $oUtilisateur = new Utilisateur();                    
-                        $oUtilisateur-> setCourriel(mysql_real_escape_string($_POST['txtCourriel']));
+                        $oUtilisateur-> setCourriel($_POST['txtCourriel']);
                             if(!($oUtilisateur->verificationcourriel())){
-                                $oUtilisateur-> setMotDePasse(mysql_real_escape_string(md5($_POST['txtPass'])));
+                                $oUtilisateur-> setMotDePasse(md5($_POST['txtPass']));
                                 $aUtilisateur = $oUtilisateur->connexionUtilisateur();
                                     if(!empty($aUtilisateur)){
                                          $sMsg = "La connexion  - ".$oUtilisateur->getNom()." - s'est déroulé avec succès.";
                                         $_SESSION["IdUtilisateur"] = $aUtilisateur[0]['idUtilisateur'];
                                         $_SESSION["sNomUtilisateur"] = $aUtilisateur[0]['sNomUtilisateur'];
-										$_SESSION["sTypeUtilisateur"] = $aUtilisateur[0]['sTypeUtilisateur'];
-                                        
-                                        //ajout des variables session des preferences par Alex
-                                        
-                                        
-                                        $_SESSION["sTypePolice"] = Preference::chargerPreference($aUtilisateur[0]['idUtilisateur'])['sTypePolice'];
-                                        $_SESSION["sTaillePolice"] = Preference::chargerPreference($aUtilisateur[0]['idUtilisateur'])['sTaillePolice'];
-                                        $_SESSION["sCouleurPolice"] = Preference::chargerPreference($aUtilisateur[0]['idUtilisateur'])['sCouleurPolice'];
-                                        $_SESSION["sCouleurFond"] = Preference::chargerPreference($aUtilisateur[0]['idUtilisateur'])['sCouleurFond'];
-                                        $_SESSION["idUtilisateur"] = Preference::chargerPreference($aUtilisateur[0]['idUtilisateur'])['idUtilisateur'];
-                                            
-                                        //Fin ajout des variables session des preferences par Alex
-                                        
+                    $_SESSION["sTypeUtilisateur"] = $aUtilisateur[0]['sTypeUtilisateur'];
                                        // echo $_SESSION["IdUtilisateur"]; 
-									    if($_SESSION["sTypeUtilisateur"] =='Membre'){
-											 header('Location:../site/index.php');
-										}else{
-											header('Location:../core/index.php');
-										
-										}
+                      if($_SESSION["sTypeUtilisateur"] =='Membre'){
+                       header('Location:../site/index.php');
+                    }else{
+                      header('Location:../core/index.php');
+                    
+                    }
                                      }else{
 
                                          $sMsg = 'Ce Courriel  ou  mot de passe n\'existent pas dans notre base de données .';
@@ -341,15 +232,15 @@
                                      }
                             }else{
                                     $sMsg = 'Ce Courriel n\'existe pas dans notre base de données .';
-									ViewInscription::afficherConnexionUtilisateur($sMsg);
+                  ViewInscription::afficherConnexionUtilisateur($sMsg);
 
                              }
 
                      }
-			}catch(Exception $sMsg){
-				ViewInscription::afficherConnexionUtilisateur($sMsg);
-			}
-		}//fin de la fonction gererAjouterProduit()
+      }catch(Exception $sMsg){
+        ViewInscription::afficherConnexionUtilisateur($sMsg);
+      }
+    }//fin de la fonction gererAjouterProduit()
 
 
         /*----------------------------------------------------------------------------------------------------------------------------*/        
@@ -358,18 +249,23 @@
          */
 
         public static function gererDeconnectionUtilisateur() {
-
+            
             try {
 
                 //1èr cas : aucun submit n'a été cliqué
-                
+               
+                unset($_SESSION['idUtilisateur']);
                 session_destroy();
+                        
                 header('Location:../site/index.php');
+                exit();
+
                 
             } catch (Exception $e) {
 
             }
         }
+        
         
 
 
@@ -454,27 +350,12 @@
 			header('Location: index.php?s=6');
 		}/// fin function active et desative
 		
-     //*************************JALALControlleur ouvrage a ne pas toucher svp vous avez ecrasé mon code  *********************************************************************
      
-     
-     public static function gererSiteOuvrage(){
-            try {
-                //1èr cas : aucune option du menu n'a été sélectionné 
-                if(isset($_GET['s']) == FALSE){
-                    $_GET['s']='monCompte';
-                }
-                //2e cas :L'administrateur a sélectionné une option dans le menu
-                switch($_GET['s']){
-                    case 'monCompte': 
-                    Controleur::gererOuvrage();
-                    break;
-                    
-                }
-            }catch(Exception $e){
-                echo "<p>".$e->getMessage()."</p>";
-            }
 
-        }//fin de la fonction gererSite()
+
+     //*************************JALALControlleur ouvrage a ne pas toucher svp vous avez ecrasé mon code  *********************************************************************************************************************************************************************************************************************************************************
+     
+    
         
         public static function gererOuvrage(){
             try{
@@ -488,6 +369,9 @@
                 switch($_GET['action']){
                     case "add":
                     Controleur::gererAjouterOuvrage();
+                    break;
+                    case "aff":
+                    Controleur::gererAfficherOuvrage();
                     break;
                     case "mod":
                     Controleur::gererModifierOuvrage();
@@ -514,16 +398,24 @@
                 if(isset($_GET['bSup']) == true){
                     $sMsg ="La suppression s'est bien déroulée.";
                 }
+                if(isset($_GET['bMod']) == true){
+                    $sMsg ="La modification de L'ouvrage s'est déroulée avec succès.";
+                }
+                if(isset($_GET['bAjo']) == true){
+                    $sMsg ="L'ajout de l'ouvrage s'est déroulée avec succès.";
+                }
                  
                 //Rechercher la liste des Ouvrage
                 $aOuvrages = Ouvrage::rechercherListeDesOuvrages();
+                
                 //Afficher la liste des Ouvrage
                 VueOuvrage::afficherListeOuvrages($aOuvrages, $sMsg);
-
+        
             }catch(Exception $e){
                 echo "<p>".$e->getMessage()."</p>";
             }
         }//fin de la fonction gererListeDesOuvrage()
+        
         
         /**
          * afficher le formulaire d'ajout et sur submit ajouter l'Ouvrage dans la base de données
@@ -534,9 +426,12 @@
                 //1èr cas : aucun submit n'a été cliqué
                 if(isset($_POST['cmd']) == false){
                     //afficher le formulaire
+                    
                     VueOuvrage::afficherAjouterOuvrage();
                 //2e cas : le bouton submit Modifier a été cliqué
+
                 }else{
+
                 //permet de faire un explode de contenu pour le diviser
                     $dContenu = $_POST['txtContenu'];
                     $tabDivision = array();
@@ -546,18 +441,47 @@
                //apres la mise dans un tableau on fait l'insertion 
                     //ajout le info de l'ouvrage dans la base de données ouvrage
                     $oOuvrage = new Ouvrage($_POST['idOuvrage'], $_POST['txtTitre'],' ', $_POST['txtGenre']);
-                    $oOuvrage->ajouterOuvrage();
+                    $aOuvrages = Ouvrage::rechercherTitreOuvrage();
+            for ($i=0; $i < count($aOuvrages) ; $i++) { 
+                    if (in_array($_POST['txtTitre'], $aOuvrages)) {
+                        $ifExist  = 'Yes';
+                       
+                       } else {
+                       $ifExist  = 'No';
+                    }
+                                     }
+
+                        if ($ifExist  == 'Yes') {
+
+                       $sMsg = '<br><span class="messageErreur">Le titre '.$_POST['txtTitre'].' que vous avez choisis existe deja!<span>';
+                      
+                        VueOuvrage::afficherAjouterOuvrage($sMsg);
+                       
+
+                    } else {
+                            $oOuvrage->ajouterOuvrage();
+
+            if (empty($contenuDivision)) {
+                $contenuDivision = 'Aucun article pour le moment..';
+                $cOuvrage = new Ouvrage($_POST['idOuvrage'], $_POST['txtTitre'],' ', $_POST['txtGenre'],$contenuDivision);
+
+                                //ajout le contenu dans la base de données paragraphe
+                                    $cOuvrage->ajouterContenu();
+                                    header("Location:index.php?s=".$_GET['s']."&bAjo=");
+            } else {
                     for ($i = 0; $i < count($contenuDivision); $i++) { 
 
                         $cOuvrage = new Ouvrage($_POST['idOuvrage'], $_POST['txtTitre'],' ', $_POST['txtGenre'],$contenuDivision[$i]);
 
                     //ajout le contenu dans la base de données paragraphe
                         $cOuvrage->ajouterContenu();
-                    }
-                                        
-                    $sMsg = "L'ajout de  - ".$oOuvrage->getOuvrageTitre()." - s'est déroulé avec succès.";
-                    VueOuvrage::afficherAjouterOuvrage($sMsg);
-                }
+                        }
+                    
+                        header("Location:index.php?s=".$_GET['s']."&bAjo=");
+                       }
+                        }
+                        }
+               
             }catch(Exception $e){
                 VueOuvrage::afficherAjouterOuvrage($e->getMessage());
             }
@@ -579,6 +503,7 @@
                     //afficher le formulaire
                     VueOuvrage::afficherModifierOuvrage($oOuvrage);
                 //2e cas : le bouton submit Modifier a été cliqué
+
                 }else{
                 //permet de faire un explode de contenu pour le diviser
                     $dContenu = $_POST['txtContenu'];
@@ -594,15 +519,18 @@
                         $cOuvrage = new Ouvrage($_POST['idOuvrage'], $_POST['txtTitre'],' ', $_POST['txtGenre'], $tContenu[$i]);
                         
                         //appel a la fonction pour ajout des paragraphes
-                        $cOuvrage->ajouterContenu();
+                        $cOuvrage->modifierContenu();
                     }
                     
                     //modifier dans la base de données l'Ouvrage
                     $oOuvrage->modifierOuvrage();
                     
-                    $sMsg = "La modification de L'ouvrage - ".$oOuvrage->getOuvrageTitre()." - s'est déroulée avec succès.";
-                    $aOuvrage = Ouvrage::rechercherListeDesOuvrages();
-                    VueOuvrage::afficherListeOuvrages($aOuvrage, $sMsg);
+                    //$sMsg = "La modification de L'ouvrage - ".$oOuvrage->getOuvrageTitre()." - s'est déroulée avec succès.";
+                    // $aOuvrage = Ouvrage::rechercherListeDesOuvrages();
+                    // VueOuvrage::afficherListeOuvrages($aOuvrage, $sMsg);
+
+                   header("Location:index.php?s=".$_GET['s']."&bMod=");
+                    
                 }
             }catch(Exception $e){
                 $oOuvrage = new Ouvrage($_GET['idOuvrage']);
@@ -622,13 +550,41 @@
             try{
                 $oOuvrage = new Ouvrage($_GET['idOuvrage']);
                 //supprimer dans la base de données l'Ouvrage
-                $bResultat = $oOuvrage->supprimerOuvrage();     
+                $bResultat = $oOuvrage->supprimerOuvrage(); 
+                header("Location:index.php?s=".$_GET['s']."&bSup");
+                
+                 
             }catch(Exception $e){
                 return $e->getMessage();
             }
         }//fin de la fonction gererSupprimerOuvrage()
      
      
+     
+        /**
+         * afficher le formulaire de modification et sur submit modifier l'Ouvrage dans la base de données 
+         */
+        public static function gererAfficherOuvrage(){
+            
+            try{
+                //1èr cas : aucun submit n'a été cliqué
+                if(isset($_POST['cmd']) == false){
+                    $oOuvrage = new Ouvrage($_GET['idOuvrage']);
+
+                    $oOuvrage->rechercherOuvrage();
+                    $oOuvrage->rechercherContenu();
+
+                    //afficher le formulaire
+                    VueOuvrage::afficherOuvrage($oOuvrage);
+                //2e cas : le bouton submit Modifier a été cliqué
+
+                }
+            }catch(Exception $e){
+               
+                //afficher le formulaire
+                VueOuvrage::afficherOuvrage($oOuvrage, $e->getMessage());
+            }
+        }//fin de la fonction gererModifierOuvrage()
      
      
      

@@ -1,7 +1,4 @@
 
-
-    <!-- CONTENEUR PRINCIPAL -->
-    <main class="container">  
             
       <?php
 if(!isset($_SESSION)) 
@@ -16,33 +13,45 @@ class VueOuvrage{
      */
     public static function afficherListeOuvrages($aOuvrages, $sMsg="&nbsp;"){
       echo "
-      <h1>Liste des ouvrages <a href=\"index.php?s=".$_GET['s']."&action=add\"><button type=\"button\" class=\"btn btn-success\">Ajouter un ouvrage</button></a></h1>
+      <h1>Liste des ouvrages &nbsp;&nbsp;<a href=\"index.php?s=".$_GET['s']."&action=add\"><button type=\"button\" class=\"btn btn-success\">Ajouter un ouvrage</button></a></h1>
       <p>".$sMsg."</p>";
       if(count($aOuvrages) <= 0){
         echo "<p>Aucun ouvrage n'est disponible. Veuillez en ajouter un.</p>";
         return;
       }
+
       echo "        
-      <ul>";
+      <tr>";
         for($i=0; $i<count($aOuvrages); $i++){
           echo "
-          <li><img class=\"imageOuvrage\" src=". $aOuvrages[$i]->getOuvrageCouverture().">".$aOuvrages[$i]->getOuvrageTitre() 
-            ." <a href=\"index.php?s=".$_GET['s']
-            ."&action=mod&idOuvrage=".$aOuvrages[$i]->getIdOuvrage()."\">Modifier</a> |
-            <a href=\"#\" onclick=\"supprimerUnOuvrage('Voulez-vous supprimer cet ouvrage', ".$_GET['s'].", 'sup', ".$aOuvrages[$i]->getIdOuvrage().")\">Supprimer</a></li>
+          <table border=\"0\">
+          <tr>
+          <td>
+          <a href=\"index.php?s=".$_GET['s']
+            ."&action=aff&idOuvrage=".$aOuvrages[$i]->getIdOuvrage()."\"><img class=\"imageOuvrage\" src=". $aOuvrages[$i]->getOuvrageCouverture()."></a><a href=\"index.php?s=".$_GET['s']
+            ."&action=aff&idOuvrage=".$aOuvrages[$i]->getIdOuvrage()."\"><span class=\"titre\">".$aOuvrages[$i]->getOuvrageTitre() 
+            ." </span><td></a><a href=\"index.php?s=".$_GET['s']
+            ."&action=mod&idOuvrage=".$aOuvrages[$i]->getIdOuvrage()."\"><img src=\"img/modif.png\"></a></td> 
+            <td><a href=\"index.php?s=".$_GET['s']
+            ."&action=sup&idOuvrage=".$aOuvrages[$i]->getIdOuvrage()."\" onClick=\"return confirm('Voulez vous vraiment supprimer cet ouvrage!');\"><img src=\"img/supp.png\"></a>
+            </td>
+            </tr>
+            </table>
             ";
           }
           echo "
-        </ul>
+        </tr>
         ";
       } 
+
 
     /**
      * Afficher le formulaire de modification d'un Ouvrage
      * @param Ouvrage $oOuvrage 
      */public static function afficherModifierOuvrage(Ouvrage $oOuvrage, $sMsg="&nbsp;"){
-
+    //echo $oOuvrage->getIdOuvrage();
     echo "
+    <h1>Modification d'un ouvrage</h1>
     <p>".$sMsg."</p>
     <form class=\"formContact\" action=\"index.php?s=".$_GET['s']."&action=".$_GET['action']."&idOuvrage=".$oOuvrage->getIdOuvrage()."\" method=\"post\">
       <article class=\"form-group\">
@@ -69,7 +78,7 @@ class VueOuvrage{
         }
         echo "</textarea><br>
         </article>
-        <input type=\"submit\" name=\"cmd\" value=\"Enregistrer\">
+        <input type=\"submit\" name=\"cmd\" value=\"Mettre à jour\">
      </article>
 
     </form>
@@ -82,6 +91,7 @@ class VueOuvrage{
      */
     public static function afficherAjouterOuvrage($sMsg="&nbsp;"){
       echo "
+      <h1>Ajout d'un nouveau ouvrage</h1>
     <p>".$sMsg."</p>
     <form class=\"formContact\" action=\"index.php?s=".$_GET['s']."&action=".$_GET['action']."\" method=\"post\">
       <article class=\"form-group\">
@@ -105,7 +115,6 @@ class VueOuvrage{
         <br>
     ";
     }
-
 
 /***************************************** CODE FAIT PAR JULIAN ****************************************/ 
 
@@ -161,7 +170,7 @@ class VueOuvrage{
       echo"</div></div>";
     } // fin de la fonction afficherOeuvresAccueil()
 
-    
+
     /**
      * Fonction qui affiche le formulaire pour faire la recherce avancée
      * @author Julian Rendon
@@ -259,9 +268,28 @@ class VueOuvrage{
 
 /***************************************** FIN CODE FAIT PAR JULIAN ****************************************/ 
 
+/*
+     * Afficher le formulaire de modification d'un Ouvrage
+     * @param Ouvrage $oOuvrage 
+     */public static function afficherOuvrage(Ouvrage $oOuvrage, $sMsg="&nbsp;"){
+    //echo $oOuvrage->getIdOuvrage();
+    echo "
+    <h1>Affichage d'un ouvrage</h1>
+    <p>".$sMsg."</p>";
+      echo "<article class='visualiserOuvrage'>";
+      echo "Titre : <span class= 'titre'>".$oOuvrage->getOuvrageTitre()."</span><br>";
+      echo "Genre : ".$oOuvrage->getOuvrageGenre()."<br><br><br>";
+        if (isset($_SESSION['tContenu'])){
+        foreach ($_SESSION['tContenu'] as $valeur ) {
+          echo $valeur."<br><br>";
+        }
+        }
+       echo "</article>";
+    $_SESSION['tContenu'] = '';
+  }
+
 
     }//fin de la classe VueOuvrage
 
     ?>     
-        </main> <!-- /container -->
-      
+     
