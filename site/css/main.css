@@ -495,6 +495,14 @@ ul.social li {
 	}
 }
 
+@media (max-width: 325px) {
+	.produitRechAvancee {
+		width: 100%;
+	}
+}
+
+
+
 
 /******************************** FIN CODE FAIT PAR JULIAN ****************************/
 

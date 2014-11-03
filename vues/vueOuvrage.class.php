@@ -231,7 +231,7 @@ class VueOuvrage{
             $oAuteur->getNom();
             echo'
                 <a href="index.php'.$aResult[$iOeuvre]->getIdOuvrage().'">
-                  <div class="col-lg-2 col-sm-4 col-xs-12 produitRechAvancee" >
+                  <div class="col-lg-3 col-sm-4 col-xs-12 produitRechAvancee" >
                     <div class="produit-image">
                         <td><img src='.$aResult[$iOeuvre]->getOuvrageCouverture().'></td>
                     </div>
