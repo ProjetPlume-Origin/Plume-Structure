@@ -1,35 +1,35 @@
+	<?php
+		/* @author : JALAL Khair 
+	Class Ouvrage--> */
+     if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    }  
+    			
+	class Ouvrage {
+		
+		/* Propriétés privées */
+		private $idOuvrage;
+		private $ouvrageTitre;
+		private $sOuvrageDate; // ajouté par Julian
+		private $ouvrageCouverture;
+		private $ouvrageGenre;
+		private $ouvrageContenu;
+		private $idUtilisateur;
+		
 
-<?php
-	// @author : JALAL Khair 
-	// Class Ouvrage
-
-if(!isset($_SESSION)) 
-{ 
-	session_start(); 
-}  
-
-class Ouvrage {
-	
-	/* Propriétés privées */
-	private $idOuvrage;
-	private $ouvrageTitre;
-	private $ouvrageDate;
-	private $ouvrageCouverture;
-	private $ouvrageGenre;
-	private $ouvrageContenu;
-	private $idUtilisateur;
-	
 	//Construction
 	
-	public function __construct($idOuvrage=0, $ouvrageTitre=" ", $ouvrageCouverture=" ", $ouvrageGenre=" ", $ouvrageContenu=" ", $idUtilisateur=0){
+	public function __construct($idOuvrage=0, $ouvrageTitre=" ", $sOuvrageDate=" ", $ouvrageCouverture=" ", $ouvrageGenre=" ", $ouvrageContenu=" ", $idUtilisateur=0){
 		$this->setidOuvrage($idOuvrage);
 		$this->setOuvrageTitre($ouvrageTitre);
 		$this->setOuvrageCouverture($ouvrageCouverture);
 		$this->setOuvrageGenre($ouvrageGenre);
 		$this->setOuvrageContenu($ouvrageContenu);
 		$this->setIdUtilisateur($idUtilisateur);
-		
-		
+		$this->setOuvrageDate($sOuvrageDate); // ajouté par Julian
+	
+
 
 	} //fin du constructeur
 
@@ -85,7 +85,32 @@ class Ouvrage {
 		
 		$this->ouvrageContenu = $ouvrageContenu;
 	}
-	
+
+
+	/***************************************** CODE AJOUTÉ PAR JULIAN  **********************************/
+	/**
+	 * Permet d'affecter la valeur de la propriété privée OuvrageDate de l'ouvrage
+	 * @param string $sOuvrageDate - Date de création de l'ouvrage
+	 */
+	public function setOuvrageDate($sOuvrageDate) {
+		TypeException::estVide($sOuvrageDate);
+		TypeException::estString($sOuvrageDate);
+
+		$this->sOuvrageDate = $sOuvrageDate;
+	}//fin de la fonction setOuvrageDate()
+
+	/**
+	 * Permet de récupérer la valeur de la propriété privée soit la date de création de l'ouvrage
+	 * @return string la Date de création de l'ouvrage
+	 */
+	public function getOuvrageDate(){
+ 
+		return htmlentities($this->sOuvrageDate);
+
+	}//fin de la fonction getOuvrageDate()
+
+/***************************************** FIN CODE AJOUTÉ PAR JULIAN  **********************************/
+
 	
 	/*--------------------------------------------------------------------*/
 	/**

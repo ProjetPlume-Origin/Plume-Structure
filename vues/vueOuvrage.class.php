@@ -115,9 +115,160 @@ class VueOuvrage{
         ";
       }
 
+/***************************************** CODE FAIT PAR JULIAN ****************************************/ 
+
+    /**
+     * Fonction qui affiche aléatoirement tous les oeuvres dans la page d'accueil
+     * @author Alex Mayer et Julian Rendon
+     * @return array ce tableau contient des objets Ouvrage
+     */      
+    public static function afficherOeuvresAccueil($sGenre=""){
+          
+      $oConnexion = new MySqliLib();
+      //Requête de recherche de tous les oeuvres
+      if($sGenre){
+
+        $sRequete = "SELECT * FROM ouvrage WHERE sGenre = '$sGenre';";
+
+      }else{ 
+
+        $sRequete = "SELECT * FROM ouvrage;"; 
+
+      }
+      //echo  $sRequete;
+
+      $oResult = $oConnexion->executer($sRequete);
+      $aOeuvre = $oConnexion->recupererTableau($oResult);
+
+
+      echo'<div class="col-lg-9 col-sm-9 col-xs-12 ouevreAccueil">';
+    
+      for($iOeuvre=0; $iOeuvre<count($aOeuvre) ; $iOeuvre++)
+      {
+          $sRequeteNomUtilisateur = "SELECT sNomUtilisateur FROM utilisateur WHERE idUtilisateur =  ".$aOeuvre[$iOeuvre]["idUtilisateur"].";";
+      $oResultNom = $oConnexion->executer($sRequeteNomUtilisateur);
+    
+       $aNom = $oConnexion->recupererTableau($oResultNom);
+          echo'
+              <a href="index.php'.$aOeuvre[$iOeuvre]["idOuvrage"].'">
+                <div class="col-lg-3 col-sm-6 col-xs-12 produit" >
+                  <div class="produit-image">
+                      <td><img src='.$aOeuvre[$iOeuvre]["sCouvertureOuvrage"].'></td>
+                  </div>
+                  <h2> '.$aOeuvre[$iOeuvre]["sTitreOuvrage"].'</h2>
+                  <p class="produit-date">'.$aOeuvre[$iOeuvre]["sDateOuvrage"].'</p>
+                  <p class="produit-auteur">Par: '.$aNom[0]['sNomUtilisateur'].'</p>
+                  <img src="img/imgAccueil/view-icon.png" width="20px"><span class="produit-vues"> 25</span>
+                  <img src="img/imgAccueil/comment-icon.png" width="13px"><span class="produit-commentaires"> 12</span>
+                </div>
+              </a>
+          
+          ';
+      }
+
+      echo"</div></div>";
+    } // fin de la fonction afficherOeuvresAccueil()
+
+    
+    /**
+     * Fonction qui affiche le formulaire pour faire la recherce avancée
+     * @author Julian Rendon
+     * @return array ce tableau contient des objets Ouvrage
+     */      
+    public static function afficherFormRechercheAvancee(){
+      echo "        
+        
+        <div class=\"row\"> 
+
+          <!-- FORMULAIRE RECHERCHE AVANCEE -->
+          <div class=\"col-lg-12 col-sm-12 col-xs-12\">
+            
+            <!-- Barre Recherche Avancée -->
+            <div class=\"barreRecherche col-xs-12\">
+              <h1>Recherche Avancée</h1>
+
+              <form class=\"navbar-form navbar-left\" method=\"post\" action=\"index.php?s=rech_avancee\" role=\"search\">
+                <div class=\"form-group\">
+                  <input type=\"text\" name=\"motCherche\" class=\"form-control\" placeholder=\"\" autofocus>
+                </div>Rechercher par :                 
+                <label class=\"radio-inline\">
+                  <input type=\"radio\" name=\"optradio\" value=\"titre\" checked=\"\">Titre
+                </label>
+                <label class=\"radio-inline\">
+                  <input type=\"radio\" name=\"optradio\" value=\"auteur\">Auteur
+                </label>
+                <button type=\"submit\" class=\"btn btn-default\" name=\"cmd\">Rechercher</button>
+              </form>
+
+            </div> <!-- Fin Barre Recherche Avancée -->            
+
+          </div>  <!-- FIN FORMULAIRE RECHERCHE AVANCEE -->
+
+        </div> <!-- Fin Row -->
+      ";
+    }// fin de la fonction afficherFormRechercheAvancee()
 
 
     /**
+     * Fonction qui affiche le resultat de la recherce avancée
+     * @author Julian Rendon
+     * @return array ce tableau contient des objets Ouvrage
+     */     
+    public static function afficherResultatsRechercheAvancee($aResult){
+
+      if(!(count($aResult) > 0)) {
+
+        echo "
+          <p class=\"alert alert-warning msgRecherche\">Aucun ouvrage ne correspond à votre recherche</p>
+          ";
+      }else {
+
+        echo "        
+          <div class=\"row resultatRecherche\"> 
+
+            <!-- RESULTATS RECHERCHE AVANCEE -->
+            <div class=\"col-lg-12 col-sm-12 col-xs-12\">
+            <p class=\"alert alert-success\">Mot(s) cherché(s): <b>" 
+            .$_POST['motCherche']."</b>&nbsp&nbsp&nbsp&nbsp&nbsp"."Resultats trouvés: <b>".count($aResult)."</b>
+            </p>
+        ";
+          for($iOeuvre=0; $iOeuvre<count($aResult) ; $iOeuvre++)
+          {
+            $oAuteur = new Utilisateur($aResult[$iOeuvre]->getIdUtilisateur());
+            $oAuteur->rechercherUnUtilisateur();
+            $oAuteur->getNom();
+            echo'
+                <a href="index.php'.$aResult[$iOeuvre]->getIdOuvrage().'">
+                  <div class="col-lg-3 col-sm-4 col-xs-12 produitRechAvancee" >
+                    <div class="produit-image">
+                        <td><img src='.$aResult[$iOeuvre]->getOuvrageCouverture().'></td>
+                    </div>
+                    <h2> '.$aResult[$iOeuvre]->getOuvrageTitre().'</h2>
+                    <p class="produit-date">Publié en: '.$aResult[$iOeuvre]->getOuvrageDate().'</p>
+                    <p class="produit-auteur">Par: '.$oAuteur->getNom().'</p>
+                    <img src="img/imgAccueil/view-icon.png" width="20px"><span class="produit-vues"> 25</span>
+                    <img src="img/imgAccueil/comment-icon.png" width="13px"><span class="produit-commentaires"> 12</span>
+                  </div>
+                </a>            
+            ';
+          }            
+            // foreach($aResult as $value)
+            // {
+            //   print_r($value);
+            // }
+        
+            echo "
+            </div>  <!-- FIN RESULTATS RECHERCHE AVANCEE -->
+
+          </div>  <!-- Fin Row -->
+        ";
+      }
+    }// fin de la fonction afficherResultatsRechercheAvancee()
+
+/***************************************** FIN CODE FAIT PAR JULIAN ****************************************/ 
+
+
+    /*
      * Afficher le formulaire de modification d'un Ouvrage
      * @param Ouvrage $oOuvrage 
      */public static function afficherOuvrage(Ouvrage $oOuvrage, $sMsg="&nbsp;"){
@@ -137,7 +288,8 @@ class VueOuvrage{
     $_SESSION['tContenu'] = '';
   }
 
+
     }//fin de la classe VueOuvrage
 
     ?>     
-    
+
