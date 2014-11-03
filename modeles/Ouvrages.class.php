@@ -1,23 +1,24 @@
-<!-- @author : JALAL Khair 
-	Class Ouvrage-->
-	<?php
-		
-     if(!isset($_SESSION)) 
-    { 
-        session_start(); 
-    }  
-    			
-	class Ouvrage {
-		
-		/* Propriétés privées */
-		private $idOuvrage;
-		private $ouvrageTitre;
-		private $ouvrageDate;
-		private $ouvrageCouverture;
-		private $ouvrageGenre;
-		private $ouvrageContenu;
-		private $idUtilisateur;
-		
+
+<?php
+	// @author : JALAL Khair 
+	// Class Ouvrage
+
+if(!isset($_SESSION)) 
+{ 
+	session_start(); 
+}  
+
+class Ouvrage {
+	
+	/* Propriétés privées */
+	private $idOuvrage;
+	private $ouvrageTitre;
+	private $ouvrageDate;
+	private $ouvrageCouverture;
+	private $ouvrageGenre;
+	private $ouvrageContenu;
+	private $idUtilisateur;
+	
 	//Construction
 	
 	public function __construct($idOuvrage=0, $ouvrageTitre=" ", $ouvrageCouverture=" ", $ouvrageGenre=" ", $ouvrageContenu=" ", $idUtilisateur=0){
@@ -28,7 +29,7 @@
 		$this->setOuvrageContenu($ouvrageContenu);
 		$this->setIdUtilisateur($idUtilisateur);
 		
-	
+		
 
 	} //fin du constructeur
 
@@ -38,7 +39,7 @@
 	 * @param  $idOuvrage
 	 */
     public function setIdOuvrage($idOuvrage){
-    	    	
+    	
     	$this->idOuvrage = $idOuvrage;
     }
 
@@ -47,7 +48,7 @@
 	 * @param  $idOuvrage
 	 */
     public function setIdUtilisateur($idUtilisateur){
-    	    	
+    	
     	$this->idUtilisateur = $idUtilisateur;
     }
     
@@ -60,12 +61,12 @@
 		
 		$this->ouvrageTitre = $ouvrageTitre;
 	}
-		
+	
 	/**
 	 * @param string $ouvrageCouverture
 	 */
 	public function setOuvrageCouverture($ouvrageCouverture){
-				
+		
 		$this->ouvrageCouverture = $ouvrageCouverture;
 	}
 	/**
@@ -131,7 +132,7 @@
 		$oConnexion = new MySqliLib();
 		//Réaliser la requête de recherche par le idOuvrage
 		$sRequete= "SELECT * FROM  ouvrage WHERE idOuvrage=".$this->getIdOuvrage();
-				
+		
 		//Exécuter la requête
 		$oResult = $oConnexion->executer($sRequete);
 		if($oResult != false){
@@ -144,42 +145,42 @@
 				$this->setOuvrageTitre($aOuvrage[0]['sTitreOuvrage']);
 				$this->setOuvrageCouverture($aOuvrage[0]['sCouvertureOuvrage']);
 				$this->setOuvrageGenre($aOuvrage[0]['sGenre']);
-						
+				
 				//retourner true
 				return true;	
 			}
 
 			return false;
 		}
-	 }
+	}
 	
-   function rechercherContenu(){
+	function rechercherContenu(){
 		//Connexion à la base de données
-	 	$oConnexion = new MySqliLib();
+		$oConnexion = new MySqliLib();
 	 	//Requête de recherche de tous les Ouvrages
-	 	$sRequete= "SELECT * FROM  paragraphe WHERE idOuvrage=".$this->getIdOuvrage();
+		$sRequete= "SELECT * FROM  paragraphe WHERE idOuvrage=".$this->getIdOuvrage();
 	 	//Exécuter la requête
-	 	$oResult = $oConnexion->executer($sRequete);
+		$oResult = $oConnexion->executer($sRequete);
 	 	//Récupérer le tableau des enregistrements
-	 	$aEnreg = $oConnexion->recupererTableau($oResult);
+		$aEnreg = $oConnexion->recupererTableau($oResult);
 
 		$oOuvrage = array();
 		$papa = array();
 	 	//Pour tous les enregistrements
-	 	for($i=0; $i<count($aEnreg); $i++){
+		for($i=0; $i<count($aEnreg); $i++){
 	 		//affecter un objet à un élément du tableau
-	 		
-	 		$oOuvrage[$i] =  $aEnreg[$i]['sContenuParagraphe'];
-	 			 		 
-	 			$_SESSION['tContenu'] = $oOuvrage;
-	 	
-	 	}
-	 	$_SESSION['idContenu'] =  $aEnreg[0]['idParagraphe'];
+			
+			$oOuvrage[$i] =  $aEnreg[$i]['sContenuParagraphe'];
+			
+			$_SESSION['tContenu'] = $oOuvrage;
+			
+		}
+		$_SESSION['idContenu'] =  $aEnreg[0]['idParagraphe'];
 
 	 	//retourner le tableau d'objets
-	 	return $oOuvrage;
+		return $oOuvrage;
 		
-	 }
+	}
 
 	/**
 	 * Ajouter un Ouvrage
@@ -192,12 +193,12 @@
 		$oConnexion = new MySqliLib();
 		//Requete d'ajout de l'Ouvrage
 		$sRequete = "
-			INSERT INTO ouvrage
-			SET sTitreOuvrage = '".$oConnexion->getConnect()->escape_string($this->ouvrageTitre)."',
-			"."  sDateOuvrage = '".date("Y-m-d H:i:s")."',
-			"."  sCouvertureOuvrage = 'img/".strtolower($oConnexion->getConnect()->escape_string($this->ouvrageGenre)).".png',
-			"."  sGenre = '".$oConnexion->getConnect()->escape_string($this->ouvrageGenre)."',
-			"."  idUtilisateur = '".$_SESSION['IdUtilisateur']."'
+		INSERT INTO ouvrage
+		SET sTitreOuvrage = '".$oConnexion->getConnect()->escape_string($this->ouvrageTitre)."',
+		"."  sDateOuvrage = '".date("Y-m-d H:i:s")."',
+		"."  sCouvertureOuvrage = 'img/".strtolower($oConnexion->getConnect()->escape_string($this->ouvrageGenre)).".png',
+		"."  sGenre = '".$oConnexion->getConnect()->escape_string($this->ouvrageGenre)."',
+		"."  idUtilisateur = '".$_SESSION['IdUtilisateur']."'
 		";
 		
 		//Exécuter la requête
@@ -205,31 +206,31 @@
 			$variable = $oConnexion->getConnect()->insert_id;
 			$_SESSION['id'] = $variable;
 		}
-}
-
-		
-public function ajouterContenu(){
-
-        //Connecter à la base de données
-    	$oConnexion = new MySqliLib();
-	
-    	$sRequete = " INSERT INTO paragraphe values 
-    	(NULL,'".$oConnexion->getConnect()->escape_string($this->ouvrageContenu)."','".date("Y-m-d H:i:s") ."','{$_SESSION['id']}');";
-
-return $oConnexion->executer($sRequete);  
-	
 	}
 
-public function modifierContenu(){
+	
+	public function ajouterContenu(){
 
         //Connecter à la base de données
-    	$oConnexion = new MySqliLib();
-	
-    	$sRequete = " INSERT INTO paragraphe values 
-    	(NULL,'".$oConnexion->getConnect()->escape_string($this->ouvrageContenu)."','".date("Y-m-d H:i:s") ."','".$this->idOuvrage."');";
+		$oConnexion = new MySqliLib();
+		
+		$sRequete = " INSERT INTO paragraphe values 
+		(NULL,'".$oConnexion->getConnect()->escape_string($this->ouvrageContenu)."','".date("Y-m-d H:i:s") ."','{$_SESSION['id']}');";
 
-return $oConnexion->executer($sRequete);  
-	
+		return $oConnexion->executer($sRequete);  
+		
+	}
+
+	public function modifierContenu(){
+
+        //Connecter à la base de données
+		$oConnexion = new MySqliLib();
+		
+		$sRequete = " INSERT INTO paragraphe values 
+		(NULL,'".$oConnexion->getConnect()->escape_string($this->ouvrageContenu)."','".date("Y-m-d H:i:s") ."','".$this->idOuvrage."');";
+
+		return $oConnexion->executer($sRequete);  
+		
 	}
 	
      /**
@@ -249,89 +250,88 @@ return $oConnexion->executer($sRequete);
      	
      }
 
-	
+     
 	/**
 	 * Rechercher tous les Ouvrages de la base de données
 	 * @return array ce tableau contient des objets Ouvrage
 	 */
-	 public static function rechercherListeDesOuvrages(){
+	public static function rechercherListeDesOuvrages(){
 	 	//Connexion à la base de données
-	 	$oConnexion = new MySqliLib();
+		$oConnexion = new MySqliLib();
 	 	//Requête de recherche de tous les Ouvrages
 	 	//".$_SESSION['IdUtilisateur']."
-	 	$sRequete = "
-	 		SELECT * FROM ouvrage WHERE idUtilisateur = '".$_SESSION['IdUtilisateur']."' ORDER BY sDateOuvrage DESC
+		$sRequete = "
+		SELECT * FROM ouvrage WHERE idUtilisateur = '".$_SESSION['IdUtilisateur']."' ORDER BY sDateOuvrage DESC
 		";
 	 	//Exécuter la requête
-	 	$oResult = $oConnexion->executer($sRequete);
+		$oResult = $oConnexion->executer($sRequete);
 	 	//Récupérer le tableau des enregistrements
-	 	$aEnreg = $oConnexion->recupererTableau($oResult);
+		$aEnreg = $oConnexion->recupererTableau($oResult);
 		$aOuvrages = array();
 	 	//Pour tous les enregistrements
-	 	for($i=0; $i<count($aEnreg); $i++){
+		for($i=0; $i<count($aEnreg); $i++){
 	 		//affecter un objet à un élément du tableau
-	 		$aOuvrages[$i] =  new Ouvrage($aEnreg[$i]['idOuvrage'], $aEnreg[$i]['sTitreOuvrage'], $aEnreg[$i]['sCouvertureOuvrage'], $aEnreg[$i]['sGenre'], $aEnreg[$i]['idUtilisateur']);
-	 		
-	 	}
+			$aOuvrages[$i] =  new Ouvrage($aEnreg[$i]['idOuvrage'], $aEnreg[$i]['sTitreOuvrage'], $aEnreg[$i]['sCouvertureOuvrage'], $aEnreg[$i]['sGenre'], $aEnreg[$i]['idUtilisateur']);
+			
+		}
 
 	 	//retourner le tableau d'objets
-	 	return $aOuvrages;
+		return $aOuvrages;
 	 }//fin de la fonction rechercherListeDesOuvrages()
 
 
 
 	 function supprimerOuvrage(){
 		//Connexion à la base de données
-		$oConnexion = new MySqliLib();
+	 	$oConnexion = new MySqliLib();
 		//Requete de suppression d'Ouvrage identifié par son idOuvrage
-		$sRequete = "
-			DELETE FROM ouvrage
-			WHERE idOuvrage = ".$this->getIdOuvrage().";";
-		
+	 	$sRequete = "
+	 	DELETE FROM ouvrage
+	 	WHERE idOuvrage = ".$this->getIdOuvrage().";";
+	 	
 		//Exécuter la requête
-		return $oConnexion->executer($sRequete);
-	}
+	 	return $oConnexion->executer($sRequete);
+	 }
 
-	function supprimerContenu(){
+	 function supprimerContenu(){
 		//Connexion à la base de données
-		$oConnexion = new MySqliLib();
+	 	$oConnexion = new MySqliLib();
 		//Requete de suppression d'Ouvrage identifié par son idOuvrage
-		$sRequete = "
-			DELETE  FROM paragraphe
-			WHERE idOuvrage = ".$this->getIdOuvrage().";";
-		
+	 	$sRequete = "
+	 	DELETE  FROM paragraphe
+	 	WHERE idOuvrage = ".$this->getIdOuvrage().";";
+	 	
 		//Exécuter la requête
-		return $oConnexion->executer($sRequete);
-	}
+	 	return $oConnexion->executer($sRequete);
+	 }
 
 /**
 	 * Rechercher un Ouvrage par son idOuvrage
 	 * @return boolean true si l'enregistrement est trouvé dans la BDD
 	 * false dans tous les autres cas
 	 */      
-	public static function rechercherTitreOuvrage(){
+public static function rechercherTitreOuvrage(){
 		//Connexion à la base de données
-	 	$oConnexion = new MySqliLib();
+	$oConnexion = new MySqliLib();
 	 	//Requête de recherche de tous les Ouvrages
 	 	//".$_SESSION['IdUtilisateur']."
-	 	$sRequete = "
-	 		SELECT sTitreOuvrage FROM ouvrage ";
+	$sRequete = "
+	SELECT sTitreOuvrage FROM ouvrage ";
 	 	//Exécuter la requête
-	 	$oResult = $oConnexion->executer($sRequete);
+	$oResult = $oConnexion->executer($sRequete);
 	 	//Récupérer le tableau des enregistrements
-	 	$aEnreg = $oConnexion->recupererTableau($oResult);
-		$aOuvrages = array();
+	$aEnreg = $oConnexion->recupererTableau($oResult);
+	$aOuvrages = array();
 	 	//Pour tous les enregistrements
-	 	for($i=0; $i<count($aEnreg); $i++){
+	for($i=0; $i<count($aEnreg); $i++){
 	 		//affecter un objet à un élément du tableau
-	 		$aOuvrages[] =  $aEnreg[$i]['sTitreOuvrage'];
-	 	}
+		$aOuvrages[] =  $aEnreg[$i]['sTitreOuvrage'];
+	}
 
 	 	//retourner le tableau d'objets
-	 	return $aOuvrages;
-	 	
-	 }
- 
+	return $aOuvrages;
+	
+}
 
 }//fin de la classe Ouvrage
 ?>

@@ -501,126 +501,177 @@ ul.social li {
 
 
 
-/*jalal*/
-/*Admin ajout modifier supprimer oeuvrage **********************************/
-main {
-margin-bottom: 50px;
-}
-#mesOeuvres > div  div{
-    margin-top: 1%;
-    height: 250px;
-}
-#mesOeuvres > div > div > article > article > a{
-    visibility: hidden;
-}
-#mesOeuvres > div > div > article:hover a{
-    visibility: visible;
-}
-#mesOeuvres article.lienMesOeuvres{
-    text-align: center;
-    margin-top: -200px;
-}
-#mesOeuvres article.lienMesOeuvres a{
-    text-align: center;
-    font-size: 20px;
-    font-family: arial, serif;
-    font-weight: bolder;
-    color: #2E2E2E;
-}
-#mesOeuvres > div:nth-child(1) > div{
-    margin-top: 0%;
-}
-#mesOeuvres > div > div > h2 {
-    width: 100%;
-    text-align: center;
-    font-size: 20px;
-}
-/*le formulaire d'ajout*/
-#form {
-    margin-top: 2%;
-    font-family: 'Merriweather', serif;
-}
-#form > form > article:nth-child(1) > input, #form > form > article:nth-child(2) > input {
-    width: 40%;
-}
-body > main > div.container > article.col-md-12{
-   font-family: 'Merriweather', serif;
-}
+ /*jalal*/
+ /*Admin ajout modifier supprimer oeuvrage **********************************/
+ main {
+ 	margin-bottom: 50px;
+ }
+ #mesOeuvres > div  div{
+ 	margin-top: 1%;
+ 	height: 250px;
+ }
+ #mesOeuvres > div > div > article > article > a{
+ 	visibility: hidden;
+ }
+ #mesOeuvres > div > div > article:hover a{
+ 	visibility: visible;
+ }
+ #mesOeuvres article.lienMesOeuvres{
+ 	text-align: center;
+ 	margin-top: -200px;
+ }
+ #mesOeuvres article.lienMesOeuvres a{
+ 	text-align: center;
+ 	font-size: 20px;
+ 	font-family: arial, serif;
+ 	font-weight: bolder;
+ 	color: #2E2E2E;
+ }
+ #mesOeuvres > div:nth-child(1) > div{
+ 	margin-top: 0%;
+ }
+ #mesOeuvres > div > div > h2 {
+ 	width: 100%;
+ 	text-align: center;
+ 	font-size: 20px;
+ }
+ /*le formulaire d'ajout*/
+ body > div.container.conteneur > form {
+ 	margin-top: -2%;
+ }
+ #form > form > article:nth-child(1) > input, #form > form > article:nth-child(2) > input {
+ 	width: 40%;
+ }
+ body > main > div.container > article.col-md-12{
+ 	font-family: 'Merriweather', serif;
+ }
  
-body > main.container > article.col-md-12{
-margin: 180px 0 0 0;
-padding: 0 0 0 0;
-}
-body > main > div img.imageOuvrage{
-    width: 10%;
-    height: 160px;
-    margin-left: 5%;
-    margin-right: 2%;
-    margin-top: 1%;
-    margin-bottom: 1%;
-    box-shadow: 8px 8px 12px -9px rgba(0,0,0,0.26);
-}
-#mesOeuvres > div > div{
-    margin: 80px 0 0px 0;
-}
-#monCompte > article{
-    font-family: 'Merriweather', serif;
-    margin-top: 2%;
-    font-size: 20px;
-}
-#formModif > form > article:nth-child(1){
-margin-top: 20px;
-}
+ body > main.container > article.col-md-12{
+ 	margin: 180px 0 0 0;
+ 	padding: 0 0 0 0;
+ }
+ body > div.container.conteneur > table > tbody > tr > td > a  img.imageOuvrage{
+ 	width: 120px;
+ 	height: 160px;
+ 	margin-left: 0%;
+ 	margin-right: 2%;
+ 	margin-top: 1%;
+ 	margin-bottom: 1%;
+ 	box-shadow: 8px 8px 12px -9px rgba(0,0,0,0.26);
+ }
+ body > div.container.conteneur > table > tbody > tr > td > a  img.imageOuvrage:hover{
+ 	border: 3px solid #000;
+ }
+ body > div.container.conteneur > table > tbody > tr > td > a > span{
+ 	color : #A4A4A4;
+ 	text-decoration : underline;
+ }
+ body > div.container.conteneur > table > tbody > tr > td > a > span:hover{
+ 	color : #000;
+ 	text-decoration : underline;
+ }
+ body > div.container.conteneur > table > tbody > tr > td:nth-child(1){
+ 	width: 85%;
+ }
+ body > div.container.conteneur > table > tbody > tr > td{
+ 	border-bottom: 1px solid #A4A4A4;
+ 	padding-top: 1%;
+ 	padding-bottom: 1%;
+ }
+ .titre{
+ 	text-align: center;;
+ 	font-size: 25px;
+ 	font-weight: bolder;
+ }
+ body > div.container.conteneur > span.messageErreur{
+ 	color: red;
+ }
+ body > div.container.conteneur > table > tbody > tr > td{
+ 	width: 10%;
+ }
+ body > div.container.conteneur > table {
+ 	margin-left: 14%;
 
-    
-/*@media**********************************/
-@media (max-width: 768px) {
-    body > main > article > div img{
-    width: 50%;
-    height: auto;
-        margin-left: 25%;
-}
-	#mesOeuvres > div > div{
-    margin:8px 0 20px 0px;
-}
-    #mesOeuvres > div:nth-child(1) > div{
-    margin-top: 8px;}
-    
-}
-@media (max-width: 320px) {
-    body > main > article > div img{
-    width: 50%;
-    height: auto;
-    margin-left: 25%;
-}
-	#mesOeuvres > div > div{
-    margin:-30px 0 -30px 0;
-}
-    body > main > article > ul > li  a{
-        font-size: 11px;
-        margin-top: 10px;
-    }
-    #lienMesOeuvres a {
-        margin-top: 110px;
-        position: absolute;
-    }
-    
-    #mesOeuvres article.lienMesOeuvres {
-    margin-top: -120px;
-    }
+ }
+ #mesOeuvres > div > div{
+ 	margin: 80px 0 0px 0;
+ }
+ #monCompte > article{
+ 	font-family: 'Merriweather', serif;
+ 	margin-top: 2%;
+ 	font-size: 20px;
+ }
+ #formModif > form > article:nth-child(1){
+ 	margin-top: 20px;
+ }
 
-}
-ul li {
-	list-style: none;
-}
-/*#mesOeuvres > div > div > ul > li > a:nth-child(2){
-   	margin-left: 20%;
-   }*/
-   #mesOeuvres > div > div > ul > li{
-   	border-bottom: 1px solid #A4A4A4;
-   	background-color: #F5F6CE;
-   }
-/*fin jalal*/
+ 
+ /*@media**********************************/
+ @media (max-width: 768px) {
+ 	body > main > article > div img{
+ 		width: 50%;
+ 		height: auto;
+ 		margin-left: 25%;
+ 	}
+ 	#mesOeuvres > div > div{
+ 		margin:8px 0 20px 0px;
+ 	}
+ 	#mesOeuvres > div:nth-child(1) > div{
+ 		margin-top: 8px;}
+ 		
+ 	}
+ 	@media (max-width: 320px) {
+ 		body > main > article > div img{
+ 			width: 50%;
+ 			height: auto;
+ 			margin-left: 25%;
+ 		}
+ 		#mesOeuvres > div > div{
+ 			margin:-30px 0 -30px 0;
+ 		}
+ 		body > main > article > ul > li  a{
+ 			font-size: 11px;
+ 			margin-top: 10px;
+ 		}
+ 		#lienMesOeuvres a {
+ 			margin-top: 110px;
+ 			position: absolute;
+ 		}
+ 		
+ 		#mesOeuvres article.lienMesOeuvres {
+ 			margin-top: -120px;
+ 		}
+
+ 	}
+ 	ul li {
+ 		list-style: none;
+ 	}
+ 	body > div.container.conteneur > ul > li{
+ 		border-bottom: 1px solid #A4A4A4;
+ 		background-color: #F5F6CE;
+ 	}
+ 	
+ 	body > div.container.conteneur > h1{
+ 		margin-top: 20px;
+ 	}
+ 	.msgSupp{
+ 		margin-top: 25px;
+ 	}
+ 	.visualiserOuvrage{
+ 		border: 1px solid #A4A4A4;
+ 		padding: 5px 10px 5px 10px;
+ 	}
+ 	body > div.container.conteneur > table > tbody > tr > td:nth-child(2) > a > img{
+ 		width: 40px;
+ 		height: 25%;
+ 	}
+ 	body > div.container.conteneur > table > tbody > tr > td:nth-child(3) > a > img{
+ 		width: 40px;
+ 		height: 25%;
+ 	}
+
+ 	
+ 	/*fin jalal*/
 
 
 
