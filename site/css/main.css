@@ -345,7 +345,7 @@ ul.social li {
 }
 
 .listeGenres h2 {
-	margin: 20px auto;
+	margin: 15px auto;
 	text-align: center;
 }
 
@@ -415,8 +415,12 @@ ul.social li {
 	margin-top: 20px;
 }
 
+.affichAccueil {
+
+}
+
 .produit {
-    width: 30.333333%;
+    /*width: 30.333333%;*/
 	min-height: 370px;
     background-color: #ffffff;
     /*float: left;*/
