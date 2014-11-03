@@ -139,9 +139,10 @@
               $sRequete= "SELECT * FROM `ouvrage` 
                           RIGHT JOIN `utilisateur` 
                           ON `ouvrage`.`idUtilisateur`= `utilisateur`.`idUtilisateur` 
-                          WHERE `utilisateur`.`sNomUtilisateur` LIKE '%".$_POST['motCherche']."%'
+                          WHERE `utilisateur`.`sNomUtilisateur` LIKE '%".$oConnexion->getConnect()->real_escape_string($_POST['motCherche'])."%'
                           ORDER BY `sTitreOuvrage` ASC                
                         ";
+                       // die ($sRequete);
 
               $oRes = $oConnexion->executer($sRequete);
               $aResultat= $oConnexion->recupererTableau($oRes);
@@ -180,9 +181,9 @@
               $sRequete= "SELECT * FROM `ouvrage` 
                           RIGHT JOIN `utilisateur` 
                           ON `ouvrage`.`idUtilisateur`= `utilisateur`.`idUtilisateur` 
-                          WHERE `ouvrage`.`sTitreOuvrage` LIKE '%".$_POST['motCherche']."%'
+                          WHERE `ouvrage`.`sTitreOuvrage` LIKE '%".$oConnexion->getConnect()->real_escape_string($_POST['motCherche'])."%'
                           ORDER BY `sTitreOuvrage` ASC                
-              ";
+                        ";
               $oRes = $oConnexion->executer($sRequete);
               $aResultat= $oConnexion->recupererTableau($oRes);
               // var_dump($aResultat);  

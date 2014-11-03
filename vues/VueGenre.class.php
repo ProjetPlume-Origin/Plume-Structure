@@ -19,7 +19,7 @@
               <ul class=\"dropdown-menu\" role=\"menu\">";
             $aGenres = $oGenre->getGenre();
             for($iGenre=0;$iGenre<count($aGenres);$iGenre++){
-              echo "<li><a href=\"index.php?s=".$_GET['s']."$display=affichageParGenre&genre=".$iGenre."\">".$aGenres[$iGenre]."</a></li>";
+              echo "<li><a href=\"index.php?s=".$_GET['s']."&display=affichageParGenre&genre=".$iGenre."\">".$aGenres[$iGenre]."</a></li>";
             }
             echo "
               </ul>

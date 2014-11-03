@@ -200,8 +200,6 @@ class VueOuvrage{
       ";
     }// fin de la fonction afficherFormRechercheAvancee()
 
-    //TODO: action=\"index.php?s=".$_GET['s']."&optradio=".$_POST['optradio']."\"
-
 
     /**
      * Fonction qui affiche le resultat de la recherce avancée
