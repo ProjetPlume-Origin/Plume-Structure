@@ -1,0 +1,726 @@
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+@charset "utf-8";
+/** CSS Plume - Projet d'integration II
+ * 
+ * @author Julian Rendon
+ * 
+ */
+
+
+/******************************** CODE FAIT PAR JULIAN ****************************/
+
+body {
+	font-family: "Montserrat",Helvetica,Arial,sans-serif;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #333;
+	background-color: #FAFAFA;
+    overflow-x: hidden;
+}
+
+h1, h2 {
+  color: #333;
+  font-family: "Montserrat", Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  margin: 0 auto 20px auto;
+  width: auto;
+  letter-spacing: -0.05em;
+  font-weight: 700;
+}
+
+p {
+  font-family: "Esteban", Georgia, "Times New Roman", serif;
+  font-size: 15px;
+  line-height: 1.35em; 
+ 
+}
+
+/******************************************************* ENTETE ***************************************************/
+.arriereLogoEntete {
+	/*background-color: rgba(0,0,0,0.3);*/
+	box-shadow: 1px 0px 3px 0px black;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.navLogoPlume {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.navbar-inverse .navbar-brand {
+	color: #333;
+}
+
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+	border-color: transparent;
+	/*background-color: rgba(0,0,0,0.3);*/
+	padding: 10px;
+}
+
+.navbar-header {
+	text-align: center;
+	width: 100%;
+	margin: auto;
+}
+
+.navbar-brand {
+  float: none;
+}
+
+.navbar-header img {
+	width: 225px;
+	height: auto;
+}
+
+.navbar-inverse {
+	background-color: #FAFAFA;
+	border-width: 0 0 0px;
+	border-color: transparent;
+	background-image: none;
+	color: #333;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+	color: #333;
+}
+
+.nav>li>a {
+	position: relative;
+	display: block;
+	padding: 10px 0px;
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+.navbar-inverse .navbar-nav>li>a>button {
+	color: #333;	
+}
+
+.navbar-inverse .navbar-nav>li>a>button:hover {
+	color: #738BFF;	
+}
+
+.navPrincipal a {
+	padding-bottom: 4px;
+}
+
+.navPrincipal a:hover {	
+	border-bottom: 2px solid #738BFF;	
+	padding-bottom: 4px;
+}
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:hover, .navbar-inverse .navbar-nav>.active>a:focus {
+	color:#738BFF;
+	border-bottom: 2px solid #738BFF;
+	padding-bottom: 4px;
+	background-image: none;
+	background-color: transparent;
+}	
+
+.navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:focus {
+	color: #AAA;
+}
+
+@media (max-width: 767px) {
+	.navbar-header img {
+		width: 150px;
+		height: auto;
+	}
+	.navbar-nav {
+		margin: 7.5px 30px;
+	}
+	ul.navbar-nav li {
+		display: block;
+		float: none;
+	}
+	.navbar-toggle {
+	margin-right: 25px;
+	} 
+}
+
+@media (min-width: 768px) {
+	.navbar-left {
+		padding-top: 8px;
+	}
+}
+
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+	border-color: transparent;
+}
+
+.navbar-inverse .navbar-toggle {
+	border-color: #333; 
+}
+
+.navbar-inverse .navbar-toggle .icon-bar {
+	background-color: #333;
+}
+
+.navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+	background-color: #BEBEBE;
+}
+
+.navbar-nav>li {
+	display: inline-block;	
+	float: left;
+}
+
+.navbar-collapse {
+	border-top: 1px solid transparent;
+	box-shadow: inset 0 0px 0 rgba(255,255,255,.1); 
+}
+
+.btnNav {
+	margin-left: -25px;
+	margin-right: 5px;
+}
+
+/******************************** FIN CODE FAIT PAR JULIAN ****************************/
+
+/******************************************************* CONTENU ***************************************************/
+
+/* hanaa*/
+.moduleUtilisateur legend{
+
+color: #2a6496;
+
+}
+.moduleUtilisateur fieldset {
+margin-top:50px;
+margin-bottom:85px;
+}
+.moduleUtilisateur .btn-default{
+margin-top: -140px;
+}
+.moduleUtilisateur .auser{
+margin-top: -48px;
+}
+.nav-Scondaire>ul>li>a{
+
+margin-left:14px;
+
+}
+.admin_h1{
+    
+margin-top: 15px;
+    
+}
+
+/*fin hanaa*/
+
+
+
+
+/******************************** CODE FAIT PAR JULIAN ****************************/
+.conteneur {
+	margin-top: 140px;
+	/*background-color: rgba(0,0,0,0.3);*/
+	padding: 20px;
+	box-shadow: 1px 0px 3px 0px black;
+}
+
+.btn-Categories {
+	margin-top: 10px;
+}
+
+.rechercheAvance {
+	margin-left: 15px;
+	margin-top: 7px;
+	padding: 0 10px;
+}
+
+div > h2 {
+	font-size: 15px;
+	margin-top: 10px;
+	margin-right: 0;
+	margin-bottom: 3px;
+	margin-left: 0;
+	font-weight: 500;
+}
+
+div > h3 {
+	font-size: 12px;
+	margin-top: 7px;
+	margin-bottom: 7px;
+}
+
+div > h4 {
+	font-size: 12px;
+	margin-top: 5px;
+	margin-bottom: 2px;
+}
+
+@media (max-width: 767px) {
+
+	.conteneur {
+	margin-top: 30px;
+	}
+	div > h2 {
+		font-size: 13px;
+	}
+
+	div > h3 {
+		font-size: 11px;
+	}
+
+	div > h4 {
+		font-size: 11px;
+	}
+
+	div > h5 {
+		font-size: 11px;
+	}	
+}
+
+
+/******************************************************* PIE DE PAGE ***************************************************/
+footer {
+	padding: 25px 0;
+	margin-top: 15px;
+	text-align: center;
+	color: #8c9398;
+}
+
+footer.row {
+	margin-left: -20px;
+	margin-right: -20px;
+	margin-bottom: -20px;
+}
+
+@media (max-width: 768px) {
+	footer {
+		padding: 15px 0;
+	}
+}
+
+footer a { 
+	color: #777; 
+}
+
+footer p { 
+	color: #777; 
+}
+
+ul.icons { 
+	list-style: none;
+	color: #8c9398;
+	font-size: 14px;
+	margin: 20px auto;
+	padding: 0px !important;
+}
+
+ul.icons li {
+	display: inline-block;
+	padding: 0px 20px;
+	margin: 0px;
+}
+
+footer .fa {
+	padding-right: 5px;
+}
+
+footer .copy {
+	font-size: 11px; 
+	text-align: center; 
+	color: #777;
+}
+
+ul.social li {
+	padding: 0px 5px; 
+	font-size: 20px !important;
+}
+
+
+/******************************************************* LISTE GENRES ***************************************************/
+.listeGenres {
+	border: 1px solid #333;
+	border-radius: 5px;
+	padding: 20px 0;
+	margin-top: 20px;
+	background-color: #fff;
+}
+
+.listeGenres h2 {
+	margin: 15px auto;
+	text-align: center;
+}
+
+.listeGenres ul {	
+	list-style: none;
+	color: #428bca;
+	margin-left: -15px;
+	margin-right: 10px;
+}
+
+.listeGenres a {
+	color: #333;
+	text-decoration: none;
+}
+
+.listeGenres a:hover {
+	color: #428bca;
+}
+
+.listeGenres li { 
+	padding: 10px 0;
+}
+
+.barreRecherche {
+	border: 1px solid #333;
+	border-radius: 5px;
+	padding: 20px 10px;
+	margin-top: 20px;
+}
+
+.barreRecherche h1 {
+	padding-left: 20px;
+	margin-bottom: 10px;
+	font-weight: 500;
+}
+
+.form-group input {
+	margin-right: 10px;
+}
+
+.barreRecherche label:first-of-type {
+	margin-left: 10px;
+}
+
+.barreRecherche button {
+	margin-left: 10px;
+}
+
+.msgRecherche {
+	margin-top: 20px;
+}
+
+.resultatRecherche div{
+	margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+	.barreRecherche button {
+		margin-top: 10px;
+		margin-left: 0px;
+	}
+}
+
+
+/******************************************************* PRODUITS PAGE ACCUEIL ***************************************************/
+.ouevreAccueil {
+	margin-top: 20px;
+}
+
+.affichAccueil {
+
+}
+
+.produit {
+    /*width: 30.333333%;*/
+	min-height: 370px;
+    background-color: #ffffff;
+    /*float: left;*/
+    border: 1px solid #d0d0d0;
+    /*margin: 10px;*/
+    color: #292929;
+    text-align: center;
+	-webkit-box-shadow: 8px 8px 12px -9px rgba(0,0,0,0.26);
+	-moz-box-shadow: 8px 8px 12px -9px rgba(0,0,0,0.26);
+	box-shadow: 8px 8px 12px -9px rgba(0,0,0,0.26);
+	margin-bottom: 20px;
+	margin-right: 20px;	
+}
+
+.produit-image {
+	width: 60%;
+    overflow: hidden;
+    margin: auto;
+    margin-top: 30px;
+    border: 1px solid #aaa;
+    margin-bottom: 25px;
+}
+
+.produit-image img{
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+	.produit {
+		width: 45%;
+	}
+}
+
+@media (max-width: 320px) {
+	.produit {
+		width: 100%;
+	}
+}
+
+.produit h2{    
+    font-size: 20px;
+	font-family: 'Merriweather', serif;
+    text-align: center;
+    margin-bottom: 7px;
+}
+
+.produit-date{
+    margin-top: 7px;
+    font-size: 12px;
+    text-align: center;
+}
+
+.produitRechAvancee {
+	/*width: 30.333333%;*/
+	min-height: 305px;
+    background-color: #ffffff;
+    /*float: left;*/
+    border: 1px solid #d0d0d0;
+    /*margin: 10px;*/
+    color: #292929;
+    text-align: center;
+	-webkit-box-shadow: 8px 8px 12px -9px rgba(0,0,0,0.26);
+	-moz-box-shadow: 8px 8px 12px -9px rgba(0,0,0,0.26);
+	box-shadow: 8px 8px 12px -9px rgba(0,0,0,0.26);
+	margin-bottom: 20px;
+	margin-right: 20px;	
+}
+
+@media (max-width: 768px) {
+	.produitRechAvancee {
+		width: 30.333333%;
+	}
+}
+
+
+/******************************** FIN CODE FAIT PAR JULIAN ****************************/
+
+
+
+
+/*jalal*/
+/*Admin ajout modifier supprimer oeuvrage **********************************/
+main {
+margin-bottom: 50px;
+}
+#mesOeuvres > div  div{
+    margin-top: 1%;
+    height: 250px;
+}
+#mesOeuvres > div > div > article > article > a{
+    visibility: hidden;
+}
+#mesOeuvres > div > div > article:hover a{
+    visibility: visible;
+}
+#mesOeuvres article.lienMesOeuvres{
+    text-align: center;
+    margin-top: -200px;
+}
+#mesOeuvres article.lienMesOeuvres a{
+    text-align: center;
+    font-size: 20px;
+    font-family: arial, serif;
+    font-weight: bolder;
+    color: #2E2E2E;
+}
+#mesOeuvres > div:nth-child(1) > div{
+    margin-top: 0%;
+}
+#mesOeuvres > div > div > h2 {
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+}
+/*le formulaire d'ajout*/
+#form {
+    margin-top: 2%;
+    font-family: 'Merriweather', serif;
+}
+#form > form > article:nth-child(1) > input, #form > form > article:nth-child(2) > input {
+    width: 40%;
+}
+body > main > div.container > article.col-md-12{
+   font-family: 'Merriweather', serif;
+}
+ 
+body > main.container > article.col-md-12{
+margin: 180px 0 0 0;
+padding: 0 0 0 0;
+}
+body > main > div img.imageOuvrage{
+    width: 10%;
+    height: 160px;
+    margin-left: 5%;
+    margin-right: 2%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    box-shadow: 8px 8px 12px -9px rgba(0,0,0,0.26);
+}
+#mesOeuvres > div > div{
+    margin: 80px 0 0px 0;
+}
+#monCompte > article{
+    font-family: 'Merriweather', serif;
+    margin-top: 2%;
+    font-size: 20px;
+}
+#formModif > form > article:nth-child(1){
+margin-top: 20px;
+}
+
+    
+/*@media**********************************/
+@media (max-width: 768px) {
+    body > main > article > div img{
+    width: 50%;
+    height: auto;
+        margin-left: 25%;
+}
+	#mesOeuvres > div > div{
+    margin:8px 0 20px 0px;
+}
+    #mesOeuvres > div:nth-child(1) > div{
+    margin-top: 8px;}
+    
+}
+@media (max-width: 320px) {
+    body > main > article > div img{
+    width: 50%;
+    height: auto;
+    margin-left: 25%;
+}
+	#mesOeuvres > div > div{
+    margin:-30px 0 -30px 0;
+}
+    body > main > article > ul > li  a{
+        font-size: 11px;
+        margin-top: 10px;
+    }
+    #lienMesOeuvres a {
+        margin-top: 110px;
+        position: absolute;
+    }
+    
+    #mesOeuvres article.lienMesOeuvres {
+    margin-top: -120px;
+    }
+
+}
+ul li {
+	list-style: none;
+}
+/*#mesOeuvres > div > div > ul > li > a:nth-child(2){
+   	margin-left: 20%;
+   }*/
+   #mesOeuvres > div > div > ul > li{
+   	border-bottom: 1px solid #A4A4A4;
+   	background-color: #F5F6CE;
+   }
+/*fin jalal*/
+
+
+
+/*
+
+Classes changement de preference
+*/
+
+
+/*type police*/
+
+.lobster p{
+    font-family: 'Lobster', cursive;
+}
+
+.oswald p{
+    font-family: 'Oswald', sans-serif;
+}
+
+.playfair p{
+font-family: 'Playfair Display', serif;
+}
+
+.shadow p{
+font-family: 'Shadows Into Light', cursive;
+}
+
+
+/*grandeur police*/
+
+.grandeur12 p{
+ font-size: 12px;
+}
+
+.grandeur14 p{
+ font-size: 14px;
+}
+
+.grandeur16 p{
+ font-size: 16px;
+}
+
+.grandeur18 p{
+ font-size: 18px;
+}
+
+.grandeur20 p{
+ font-size: 20px;
+}
+
+.grandeur22 p{
+ font-size: 22px;
+}
+
+.grandeur24 p{
+ font-size: 24px;
+}
+
+/*luminosité police*/
+
+.textLumino1 p{
+    color:#fff;
+}
+
+.textLumino2 p{
+    color:#bfbfbf;
+}
+
+.textLumino3 p{
+    color:#7c7c7c;
+}
+
+.textLumino4 p{
+    color:#454545;
+}
+
+.textLumino5 p{
+    color:#000;
+}
+
+
+/*luminosité fond d'écran*/
+
+.bgLumino1{
+    background-color:#fff;
+}
+
+.bgLumino2{
+    background-color:#bfbfbf;
+}
+
+.bgLumino3{
+    background-color:#7c7c7c;
+}
+
+.bgLumino4{
+    background-color:#454545;
+}
+
+.bgLumino5{
+    background-color:#000;
+}
+

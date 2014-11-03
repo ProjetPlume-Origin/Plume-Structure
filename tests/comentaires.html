@@ -1,0 +1,446 @@
+<?php 
+
+// Déclaration de constantes
+	define('DS', '/'); // Le séparateur de dossier
+	define('TEST', dirname($_SERVER['SCRIPT_NAME'])); // La base du site
+	define('RACINE', dirname(TEST)); // La racine
+	define('SYSTEME', RACINE.DS."systeme");
+	define('SITE', RACINE.DS."site");
+
+?>
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> 
+<html class="no-js"> <!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Plume</title>
+		<meta name="description" content="">
+		<meta name="author" content="Julian Rendon">
+
+		<!-- Bootstrap CSS -->
+		<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../site/css/bootstrap.min.css" rel="stylesheet">
+		<style>
+            body {
+                padding-top: 50px;
+                padding-bottom: 20px;
+            }
+        </style>
+		<link rel="stylesheet" href="../site/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="../site/css/main.css">
+		<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Esteban' rel='stylesheet' type='text/css'>
+        
+<!--        Fonts pour affichage avec les preferences-->
+        
+        <link href='http://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet' type='text/css'>
+<!--        font-family: 'Playfair Display', serif;-->
+        
+        <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+<!--        font-family: 'Oswald', sans-serif;-->
+        
+        <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+<!--        font-family: 'Lobster', cursive;-->
+        
+        <link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
+<!--        font-family: 'Shadows Into Light', cursive;-->
+        
+        
+        
+<!--       FIN Fonts pour affichage avec les preferences--> 
+        
+        <script src="../js/vendor/jquery-1.11.0.min.js"></script>
+        <script src="../js/preference.js"></script>
+        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+        <script src="..js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body id="body">
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <!-- ENTETE DU SITE -->
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container arriereLogoEntete">
+            <div class="row navLogoPlume">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">
+                        <img src="../site/img/logoplume.png" alt="Logo Plume">
+                    </a>
+                </div>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-left navPrincipal">
+                    <li>
+                        <a href="../index.html">Accueil</a>
+                    </li>
+                    <li>
+                     
+                    </li>
+                    <li>
+                        <a href="#">Écrivains</a>
+                    </li>
+                    <li>
+                        <a href="contact.html">Contact</a>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- <li><a href="#">Se connecter</a></li>
+                <li><a href="#">Créer un compte</a></li> -->
+                    <li>
+                        <a href="Connexion.html">
+                            <button class="btn btn-blue btnNav">Se connecter</button>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="inscription.html">
+                            <button class="btn btn-blue btnNav">Créer un compte</button>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+            <!-- navbar-collapse -->
+        </div>
+    </div>
+    <!-- FIN ENTETE DU SITE -->
+
+    <!-- CONTENEUR PRINCIPAL -->
+    <div class="container conteneur">
+
+        <div class="row">
+            <!-- recherche par genre -->
+            <div class="btn-Categories">
+                <div class="btn-group hidden-lg hidden-sm col-xs-12">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        recherche par genre
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            
+                            <a href="#">Science-fiction et fantastique</a>
+                        </li>
+                        <li>
+                            <a href="#">Romans policiers</a>
+                        </li>
+                        <li>
+                            <a href="#">Romans d'épouvante</a>
+                        </li>
+                        <li>
+                            <a href="#">Poésie et théâtre</a>
+                        </li>
+                        <li>
+                            <a href="#">Littérature étrangèr</a>
+                        </li>
+                        <li>
+                            <a href="#">Littérature Québécoise</a>
+                        </li>
+                        <li>
+                            <a href="#">Littérature érotique</a>
+                        </li>
+                    </ul>
+                    
+<!--                    options dans le dropdown-->
+                    
+
+                </div>
+                <!-- Lien Recherche avancée -->
+                <div class="col-lg-6 col-xs-12 rechercheAvance">
+                    <a href="pages/recherche.html">Recherche avancée</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- COLONNE GAUCHE GENRES -->
+            <div class="col-lg-3 col-sm-3 hidden-xs">
+
+                <!-- recherche par genre -->
+                <div class="listeGenres">
+                    <h2>Genres</h2>
+                    <ul>
+                        <li>
+                            <a href="">Science-fiction et fantastique</a>
+                        </li>
+                        <li>
+                            <a href="">Romans policiers</a>
+                        </li>
+                        <li>
+                            <a href="">Romans d'épouvante</a>
+                        </li>
+                        <li>
+                            <a href="">Poésie et théâtre</a>
+                        </li>
+                        <li>
+                            <a href="">Littérature étrangèr</a>
+                        </li>
+                        <li>
+                            <a href="">Littérature Québécoise</a>
+                        </li>
+                        <li>
+                            <a href="">Littérature érotique</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <!-- FIN COLONNE GAUCHE GENRES -->
+
+
+
+            <!-- COLONNE DROITE -->
+            <div class="col-lg-6 col-sm-6 col-xs-12 ouevreAccueil" id="lecture">
+
+                <h1>Préparation de la vengeance</h1>
+
+
+                <p data-table="le text est formidable">Se faisant passer auprès de Caderousse – le moins impliqué (l'ivresse aidant) dans le complot – pour un abbé italien qui aurait assisté aux derniers moments de Dantès, il se fait raconter l'incroyable destinée de ses ennemis et leur fulgurante ascension sociale.<!---type-->
+ <img src="../img/imgAccueil/small_comment.jpg" id="commentBtn"> 
+<div id="sectionComment"> 
+
+<type id="tiptrois"   data-placement="left" title="Je suis decu">
+<img src="../img/imgAccueil/images.jpg" width="20px" id="avatar1">
+ </type>
+ 
+<type id="tipdos"   data-placement="left" title="Je suis impressionne">
+<img src="../img/imgAccueil/avatar.jpg" width="20px" id="avatar2">
+ </type>
+ 
+<type id="tip"   data-placement="left" title="J'adore le paragaraphe">
+<img src="../img/imgAccueil/default_avatar.png" width="20px" id="avatar3">
+ </type>
+</div>
+
+
+              
+
+                
+
+        <!---    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"><img src="img/plume_smal.jpg"> </button> -->
+</p>
+                <div id="aff"></div>
+
+                <p   data-table="le text est orirginal"    >Il donne enfin à Caderousse le diamant prétendument légué par Edmond. Il sauve ensuite de la ruine, sous les traits de lord Wilmore, l'armateur Morrel, qui a aidé son père et avait voulu, quatorze ans plus tôt, le nommer capitaine du Pharaon
+               
+<!---type-->
+
+
+
+
+ <!--- fin de toltip-->
+
+              
+
+             
+
+</p>
+
+
+                <p>Puis il part pour l'Orient où il va, plusieurs années durant, étendre encore l'immense culture que lui avait donnée Faria, augmenter sa fortune colossale et mettre minutieusement au point sa vengeance.  </p>
+ <img src="../img/imgAccueil/small_comment.jpg" id="commentBtntrois"> 
+<div id="sectionCommenttrois"> 
+<type id="tipsept"   data-placement="left" title="Magnifique">
+<img src="../img/imgAccueil/redmatrix_logo_smiley.jpg" width="20px" id="avatar1">
+ </type>
+<type id="tiphuit"   data-placement="left" title="Je suis impressionne ">
+<img src="../img/imgAccueil/krilin.jpg" width="20px" id="avatar2">
+ </type>
+<type id="tipneuf"   data-placement="left" title="J'aime  ton travaille ">
+<img src="../img/imgAccueil/default_avatar.png" width="20px" id="avatar3">
+ </type>
+</div>
+            
+                    
+
+                <p>En 1838, soit vingt-trois ans après son emprisonnement et neuf après son évasion, celui qui se fait appeler désormais le comte de Monte-Cristo a quarante-deux ans </p>
+
+                <p>En Italie, il organise l'enlèvement puis la libération du fils de Mercédès, le jeune vicomte de Morcerf, tombé dans les griffes du bandit romain Luigi Vampa. 
+                
+ <img src="../img/imgAccueil/small_comment.jpg" id="commentBtndeux"> 
+<div id="sectionCommentdeux"> 
+<type id="tipquatre"   data-placement="left" title="Je ne veux pas plus de ton literature">
+<img src="../img/imgAccueil/redmatrix_logo_smiley.jpg" width="20px" id="avatar1">
+ </type>
+<type id="tipcinq"   data-placement="left" title="Je suis surpris">
+<img src="../img/imgAccueil/th.jpg" width="20px" id="avatar2">
+ </type>
+<type id="tipsix"   data-placement="left" title="J'adore le paragaraphe">
+<img src="../img/imgAccueil/default_avatar.png" width="20px" id="avatar3">
+ </type>
+</div>
+            
+                    
+                     
+                      
+                       
+                        
+                         
+                           </p>
+                
+                
+                
+                
+                <br>
+                <form role="form" class="clearfix">
+
+
+                    <div class="col-md-12 form-group">
+                        <label class="sr-only" for="email">Commentaire</label>
+                        <textarea class="form-control" id="comment" placeholder="Commentaire"></textarea>
+                    </div>
+
+                    <div class="col-md-12 form-group text-right">
+                        <button type="submit" class="">Envoyer</button>
+                    </div>
+
+                </form>
+         
+         
+         
+         
+         
+         
+        </div>  <!-- FIN COLONNE DROITE -->
+            <div class="hidden-xs col-md-3 col-sm-3 col-lg-3">
+      <div class="tabbable tabs-right">
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#1" data-toggle="tab"><img src="../site/img/imgAccueil/font.jpg" width="25px"></a></li>
+          <li><a href="#2" data-toggle="tab"><img src="../site/img/imgAccueil/Gear_icon.png" width="22px"></a></li>
+          <li><a href="#3" data-toggle="tab"><img src="../site/img/imgAccueil/comment-icon.png" width="20px"></a></li>
+        </ul>
+        <div class="tab-content">
+         <div class="tab-pane active" id="1">
+             <p>Police d'affichage</p>
+             <select id="typePolice" name="typePolice">
+                <option value="playfair">Playfair</option>
+                 <option value="oswald">Oswald</option>
+                 <option value="lobster">Lobster</option>
+                 <option value="shadow">Shadows Into Light</option>
+             </select>
+             </br>
+            </br>
+            <p>Taille de la police</p>
+             <select id="taillePolice" name="taillePolice">
+                <option value="12">12 pt</option>
+                 <option value="14">14 pt</option>
+                <option value="16">16 pt</option>
+                 <option value="18">18 pt</option>
+                <option value="20">20 pt</option>
+                 <option value="22">22 pt</option>
+                <option value="24">24 pt</option>
+             </select>
+             </br>
+            </br>
+    
+        <p>Luminositée de la police</p>
+              <select id="couleurPolice" name="couleurPolice">
+                 <option value="textLumino1">1</option>
+                 <option value="textLumino2">2</option>
+                 <option value="textLumino3">3</option>
+                 <option value="textLumino4">4</option>
+                 <option value="textLumino5">5</option>
+             </select>
+            <p>Luminositée du fond d'écran</p>
+              <select id="couleurFond" name="couleurFond">
+                 <option value="bgLumino1">1</option>
+                 <option value="bgLumino2">2</option>
+                 <option value="bgLumino3">3</option>
+                 <option value="bgLumino4">4</option>
+                 <option value="bgLumino5">5</option>
+             </select>
+            </br>
+            </br>
+            <input type="button" value="Sauvegarder">
+         </div>
+         <div class="tab-pane" id="2">
+            <input type="button" value="ajouter un signet">
+             </br>
+             </br>
+        <input type="button" value="Plein écran">
+                 </br>
+             </br>
+        <input type="button" value="partager">
+        </div>
+         <div class="tab-pane" id="3">
+            <input type="checkbox">Toujours afficher les commentaires.
+             </br>
+             </br>
+        <input type="checkbox">Commentaires compactes.
+             </br>
+             </br>
+        <input type="checkbox">Ne pas m'offrir d'écrire de commentaires.
+            </br>
+            </br>
+<input type="button" value="Sauvegarder">
+        </div>
+        </div>
+      </div>
+
+        </div>  <!-- FIN COLONNE DROITE -->
+
+      </div>  <!-- Fin Row -->      
+      
+      <!-- Pie de Page --> 
+      <footer class="row">       
+            <div class="col-md-12">              
+              <ul class="icons social">
+                <li><a href="#"><span class="fa fa-twitter"></span></a></li>
+                <li><a href="#"><span class="fa fa-facebook"></span></a></li>
+                <li><a href="#"><span class="fa fa-envelope-o"></span></a></li>
+              </ul>
+              <p class="copy">&copy; Plume 2014</p>
+            </div>
+      </footer><!-- Fin Pie de Page --> 
+      
+
+    
+        
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </div> <!-- /container -->        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
+
+        <script src="../js/vendor/bootstrap.min.js"></script>
+
+        <script src="../js/main.js"></script>
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X');ga('send','pageview');
+        </script>
+    </body>
+</html>
