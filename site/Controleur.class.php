@@ -1,78 +1,78 @@
 <?php
-    class Controleur{
+  class Controleur{
 
-    	/**
-		 * redirige selon le choix de l'internaute
-		 */
+    /**
+	   * redirige selon le choix de l'internaute
+	   */
 		public static function gererSite(){
 			
 			try{
 				//1èr cas : aucune option du menu n'a été sélectionné
 				if(isset($_GET['s']) == false){
 					$_GET['s']=1;
-				}
-				
+				}  				
 			
 				if(isset($_SESSION["IdUtilisateur"]))
 				{
-					include_once "../vues/templates/navConnecte.php";
-					
+					include_once "../vues/templates/navConnecte.php";  					
 				}
 				
 				else
 				{
-					include_once "../vues/templates/nav.php";
-					
+					include_once "../vues/templates/nav.php";  					
 				}				
 				
 				switch($_GET['s']){
 
-					case 1: // Case module de Julian                    
-                        $oGenre= new Genre();
-                        VueGenre::afficherGenresDeroulant($oGenre);                        
-                        VueGenre::afficherListeDesGenres($oGenre);	
-                        self::gererAffichageParGenre();
-                        break;
+					case 1: default:// Case module de Julian
+            if(isset($_GET['display']) == false){
 
-					case 2: // Case module de Julian
+                 $_GET['display']="defaut";
+            } 
+
+            $oGenre= new Genre();
+            VueGenre::afficherGenresDeroulant($oGenre);                        
+            VueGenre::afficherListeDesGenres($oGenre);	
+            self::gererAffichageParGenre();
+            break;
+
+					case "rech_avancee": // Case module de Julian
 						self::gererRechercheAvancee();
 						break;
 
-                    case 3: 
-                        self::gererConnexionUtilisateur();
-                        break; 
+          case 3: 
+            self::gererConnexionUtilisateur();
+            break; 
 
-                    case 4: 
-                        self::gererInscriptionUtilisateur();
-                        break;  
+          case 4: 
+            self::gererInscriptionUtilisateur();
+            break;  
 
-                    case 5: 
+          case 5: 
 						self::gererDeconnectionUtilisateur();
 						break;
                     
-                    case 6: /////controleur christhian
+          case 6: /////controleur christhian
 						Controleur::exampleOuvrage();
 						break;
 
-                    case 7: /////controleur christhian                           /*******du  contrelerue**/
+          case 7: /////controleur christhian                           /*******du  contrelerue**/
 						self::exampleComment(); 
 						break;
 					
-				    case 8: /////controleur christhian
+			    case 8: /////controleur christhian
 						self::listeDesCommentaires();
 						break;
 						
-				    case 9: ////controleur christhian
+			    case 9: ////controleur christhian
 						self::switchCommentaire();
 						break;
-                    
-                    case 10: 
-						//TODO fonction qui redirige sur un affichage propre a un oeuvre
-						break;                    
-                    
-    				default://Accueil
 
-				} // fin switch
+          case 10: 
+						//TODO fonction qui redirige sur un affichage propre a un oeuvre
+						break;
+
+				}//fin switch
 
 			}catch(Exception $e){
 				echo "<p>".$e->getMessage()."</p>";
@@ -81,105 +81,150 @@
 		} //fin de la fonction gererSite()
 
 
-
 /***************************************** PARTIE CONTROLEUR DE JULIAN ****************************************/ 
         
-        /**
-         * Fonction qui gère l'affichage de tous les oeuvres dans la page d'accueil triés par genre
-         * @author Julian Rendon
-         * @return array ce tableau contient des objets Ouvrage
-         */          
-        public static function gererAffichageParGenre() {
+    /**
+     * Fonction qui gère l'affichage de tous les oeuvres dans la page d'accueil triés par genre
+     * @author Julian Rendon
+     * @return array ce tableau contient des objets Ouvrage
+     */          
+    public static function gererAffichageParGenre() {
 
-            if (!isset($_GET['display'])) {
+      if (!isset($_GET['display'])) {
 
-                $_GET['display'] = "defaut";
-                
-            } else {
-                switch ($_GET['display']) {
+          $_GET['display'] = "defaut";
+          
+      }else {
 
-                    case 'affichageParGenre':
-                        $iGenre = $_GET['genre'];
-                        $oGenre = new Genre();
-                        $aGenres = $oGenre->getGenre();
-                        VueOuvrage::afficherOeuvresAccueil($aGenres[$iGenre]); 
-                        break;
+        switch ($_GET['display']) {
 
-                    case 'defaut': default:
-                        VueOuvrage::afficherOeuvresAccueil();
-                        break;
-                }
-            }                       
+          case 'affichageParGenre':
+            $iGenre = $_GET['genre'];
+            $oGenre = new Genre();
+            $aGenres = $oGenre->getGenre();
+            VueOuvrage::afficherOeuvresAccueil($aGenres[$iGenre]); 
+            break;
 
-        } // fin de la fonction gererAffichageParGenre()
+          case 'defaut': default:
+            VueOuvrage::afficherOeuvresAccueil();
+            break;
+
+        } // fin switch
+
+      }                       
+
+    } // fin de la fonction gererAffichageParGenre()
 
 
-        /**
-         * Fonction qui gère l'affichage du resultat de la recherche avancée
-         * @author Julian Rendon
-         * @return array ce tableau contient des objets Ouvrage
-         */      
-        public static function gererRechercheAvancee() {
-            try{
-                //1èr cas : aucune recherche n'a été faite $_POST['cmd'] n'a pas affecté d'une valeur
-                if(isset($_POST['cmd']) == FALSE){
-                    VueOuvrage::afficherFormRechercheAvancee();
-                }else {
-                
-                    //2e cas :L'utilisateur a cliqué le button de recherche, 
-                    //il existe 3 possibilités : auteur, titre et mot clé 
-                    switch($_POST['optradio']){
-                        case "auteur":
-                            //Connexion à la base de données
-                            $oConnexion = new MySqliLib();
-                            $sRequete= "SELECT * FROM `ouvrage` 
-                                        RIGHT JOIN `utilisateur` 
-                                        ON `ouvrage`.`idUtilisateur`= `utilisateur`.`idUtilisateur` 
-                                        WHERE `utilisateur`.`sNomUtilisateur` = '".$_POST['motCherche']."'
-                                        ORDER BY `sDateOuvrage` ASC
-                            ";
-                            $oRes = $oConnexion->executer($sRequete);
-                            $aResultat= $oConnexion->recupererTableau($oRes);
-                            // var_dump($aResultat);  
-                             
-                            $aOuvrages = array();
+    /**
+     * Fonction qui gère l'affichage du resultat de la recherche avancée
+     * @author Julian Rendon
+     * @return array ce tableau contient des objets Ouvrage
+     */      
+    public static function gererRechercheAvancee() {
 
-                            //Pour tous les enregistrements
-                            for($i=0; $i<count($aResultat); $i++){
-                                //affecter un objet à un élément du tableau
-                                $aOuvrages[$i] =  new Ouvrage($aResultat[$i]['idOuvrage'], 
-                                                $aResultat[$i]['sTitreOuvrage'], 
-                                                $aResultat[$i]['sDateOuvrage'], 
-                                                $aResultat[$i]['sCouvertureOuvrage'], 
-                                                $aResultat[$i]['sGenre'], 
-                                                " ",
-                                                $aResultat[$i]['idUtilisateur']);
-                                // print_r($aOuvrages[$i]);
-                                // print_r("<br>");                                
-                            }
-                            //retourner le tableau d'objets
-                            // return $aOuvrages;
-                            // var_dump($aResultat);
-                            
-                            VueOuvrage::afficherFormRechercheAvancee();
-                            // if(count($aOuvrages)>0) {
-                            VueOuvrage::afficherResultatsRechercheAvancee($aOuvrages);
-                            // }else{
-                                // VueOuvrage::afficherResultatsRechercheAvancee($aOuvrages,$sMsg="Aucun resultat");
-                            // }
-                            break;
-                                               
-                        case "lst": default:
-                            // VueAccueil::afficherListeDesCategories();
-                            VueOuvrage::afficherFormRechercheAvancee();
-                            
-                    }//fin du switch() sur $_POST['action']
-                }
-            }catch(Exception $e){
-                echo "<p>".$e->getMessage()."</p>";
-            }           
-            
-        }//fin de la fonction gererRechercheAvancee()
+      try{
+        //1èr cas : aucune recherche n'a été faite $_POST['cmd'] n'a pas affecté d'une valeur
+        if(isset($_POST['cmd']) == FALSE){
+            VueOuvrage::afficherFormRechercheAvancee();
+        }else {
+        
+          //2e cas :L'utilisateur a cliqué le button de recherche, 
+          //il existe 2 possibilités : auteur et titre 
+          switch($_POST['optradio']){
+
+            case "auteur":
+              //Connexion à la base de données
+              $oConnexion = new MySqliLib();
+              $sRequete= "SELECT * FROM `ouvrage` 
+                          RIGHT JOIN `utilisateur` 
+                          ON `ouvrage`.`idUtilisateur`= `utilisateur`.`idUtilisateur` 
+                          WHERE `utilisateur`.`sNomUtilisateur` LIKE '%".$_POST['motCherche']."%'
+                          ORDER BY `sTitreOuvrage` ASC                
+                        ";
+
+              $oRes = $oConnexion->executer($sRequete);
+              $aResultat= $oConnexion->recupererTableau($oRes);
+              // var_dump($aResultat);  
+               
+              $aOuvrages = array();
+
+              //Pour tous les enregistrements
+              for($i=0; $i<count($aResultat); $i++){
+                //affecter un objet à un élément du tableau
+                $aOuvrages[$i] = new Ouvrage($aResultat[$i]['idOuvrage'], 
+                                $aResultat[$i]['sTitreOuvrage'], 
+                                $aResultat[$i]['sDateOuvrage'], 
+                                $aResultat[$i]['sCouvertureOuvrage'], 
+                                $aResultat[$i]['sGenre'], 
+                                " ",
+                                $aResultat[$i]['idUtilisateur']);
+                // print_r($aOuvrages[$i]);
+                // print_r("<br>");                                
+              }
+              //retourner le tableau d'objets
+              // return $aOuvrages;
+              // var_dump($aResultat);
+              
+              VueOuvrage::afficherFormRechercheAvancee();
+              // if(count($aOuvrages)>0) {
+              VueOuvrage::afficherResultatsRechercheAvancee($aOuvrages);
+              // }else{
+                  // VueOuvrage::afficherResultatsRechercheAvancee($aOuvrages,$sMsg="Aucun resultat");
+              // }
+              break;
+
+            case "titre":
+              //Connexion à la base de données
+              $oConnexion = new MySqliLib();
+              $sRequete= "SELECT * FROM `ouvrage` 
+                          RIGHT JOIN `utilisateur` 
+                          ON `ouvrage`.`idUtilisateur`= `utilisateur`.`idUtilisateur` 
+                          WHERE `ouvrage`.`sTitreOuvrage` LIKE '%".$_POST['motCherche']."%'
+                          ORDER BY `sTitreOuvrage` ASC                
+              ";
+              $oRes = $oConnexion->executer($sRequete);
+              $aResultat= $oConnexion->recupererTableau($oRes);
+              // var_dump($aResultat);  
+               
+              $aOuvrages = array();
+
+              //Pour tous les enregistrements
+              for($i=0; $i<count($aResultat); $i++){
+                  //affecter un objet à un élément du tableau
+                  $aOuvrages[$i] =  new Ouvrage($aResultat[$i]['idOuvrage'], 
+                                  $aResultat[$i]['sTitreOuvrage'], 
+                                  $aResultat[$i]['sDateOuvrage'], 
+                                  $aResultat[$i]['sCouvertureOuvrage'], 
+                                  $aResultat[$i]['sGenre'], 
+                                  " ",
+                                  $aResultat[$i]['idUtilisateur']);
+                  // print_r($aOuvrages[$i]);
+                  // print_r("<br>");                                
+              }
+              //retourner le tableau d'objets
+              // return $aOuvrages;
+              // var_dump($aResultat);
+              
+              VueOuvrage::afficherFormRechercheAvancee();
+              // if(count($aOuvrages)>0) {
+              VueOuvrage::afficherResultatsRechercheAvancee($aOuvrages);
+              // }else{
+                  // VueOuvrage::afficherResultatsRechercheAvancee($aOuvrages,$sMsg="Aucun resultat");
+              // }
+              break;
+
+            default:
+                // VueAccueil::afficherListeDesCategories();
+                VueOuvrage::afficherFormRechercheAvancee();
+                  
+          }//fin du switch sur $_POST['optradio']
+        }
+      }catch(Exception $e){
+          echo "<p>".$e->getMessage()."</p>";
+      }           
+      
+    }//fin de la fonction gererRechercheAvancee()
 
 
 /***************************************** FIN PARTIE CONTROLEUR DE JULIAN ****************************************/ 
