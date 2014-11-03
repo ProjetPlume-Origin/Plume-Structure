@@ -235,7 +235,7 @@ class Utilisateur {
 		$oConnexion = new MySqliLib();
 		//Réaliser la requête de recherche par le idEtudiant
 		$sRequete= "SELECT * FROM utilisateur WHERE idUtilisateur=".$this->getIdUtilisateur();
-		echo $sRequete;
+		// echo $sRequete;
 		//Exécuter la requête
 		$oResult = $oConnexion->executer($sRequete);
 		if($oResult != false){
@@ -425,7 +425,7 @@ class Utilisateur {
 		//Connexion à la base de données
 		$oConnexion = new MySqliLib();
 		// on recherche si ce courriel est déja utilise par un autre membre
-         $sRequete = 'SELECT * FROM utilisateur WHERE   sNomUtilisateur = "'.mysql_real_escape_string($_POST['txtNom']).'"'  ;                                          
+         $sRequete = 'SELECT * FROM utilisateur WHERE   sNomUtilisateur = "'.$oConnexion->getConnect()->escape_string($_POST['txtNom']).'"'  ;                                          
         // echo $sRequete;
         $oResult = $oConnexion->executer($sRequete);
         $aResult = $oConnexion->recupererTableau($oResult);
