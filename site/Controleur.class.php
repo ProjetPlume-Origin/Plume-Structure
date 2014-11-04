@@ -525,9 +525,11 @@
               $cDivision = explode("\r\n", $dContenu);
               $contenuDivision = array_values(array_filter ($cDivision));
 
+              var_dump($_POST);
+              //die('ici');
                //apres la mise dans un tableau on fait l'insertion 
                     //ajout le info de l'ouvrage dans la base de données ouvrage
-              $oOuvrage = new Ouvrage($_POST['idOuvrage'], $_POST['txtTitre'],' ', $_POST['txtGenre']);
+              $oOuvrage = new Ouvrage($_POST['idOuvrage'], $_POST['txtTitre'],' ', ' ', $_POST['txtGenre'], ' ', $_SESSION['IdUtilisateur']);
 
               //ca permet de verifier si le titre existe deja 
               $aOuvrages = Ouvrage::rechercherTitreOuvrage();
@@ -552,7 +554,7 @@
 
               if (empty($contenuDivision)) {
                 $contenuDivision = 'Aucun article pour le moment..';
-                $cOuvrage = new Ouvrage($_POST['idOuvrage'], $_POST['txtTitre'],' ', $_POST['txtGenre'],$contenuDivision);
+                $cOuvrage = new Ouvrage($_POST['idOuvrage'], $_POST['txtTitre'],' ', ' ', $_POST['txtGenre'],$contenuDivision);
 
                 //ajout le contenu dans la base de données paragraphe
                 $cOuvrage->ajouterContenu();
@@ -561,7 +563,7 @@
               } else {
                 for ($i = 0; $i < count($contenuDivision); $i++) { 
 
-                  $cOuvrage = new Ouvrage($_POST['idOuvrage'], $_POST['txtTitre'],' ', $_POST['txtGenre'],$contenuDivision[$i]);
+                  $cOuvrage = new Ouvrage($_POST['idOuvrage'], $_POST['txtTitre'],' ', ' ', $_POST['txtGenre'],$contenuDivision[$i]);
 
                     //ajout le contenu dans la base de données paragraphe
                   $cOuvrage->ajouterContenu();
