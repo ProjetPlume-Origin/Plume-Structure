@@ -28,7 +28,7 @@
 		$this->setOuvrageContenu($ouvrageContenu);
 		$this->setIdUtilisateur($idUtilisateur);
 		$this->setOuvrageDate($sOuvrageDate); // ajouté par Julian
-	
+		
 
 
 	} //fin du constructeur
@@ -296,7 +296,7 @@
 	 	//Pour tous les enregistrements
 		for($i=0; $i<count($aEnreg); $i++){
 	 		//affecter un objet à un élément du tableau
-			$aOuvrages[$i] =  new Ouvrage($aEnreg[$i]['idOuvrage'], $aEnreg[$i]['sTitreOuvrage'], $aEnreg[$i]['sCouvertureOuvrage'], $aEnreg[$i]['sGenre'], $aEnreg[$i]['idUtilisateur']);
+			$aOuvrages[$i] =  new Ouvrage($aEnreg[$i]['idOuvrage'], $aEnreg[$i]['sTitreOuvrage'], $aEnreg[$i]['sDateOuvrage'], $aEnreg[$i]['sCouvertureOuvrage'], $aEnreg[$i]['sGenre'], $aEnreg[$i]['idUtilisateur']);
 			
 		}
 
