@@ -69,6 +69,7 @@
 				if(isset($_GET['bSup']) == true){
 					$sMsg ="La suppression s'est bien déroulée.";
 				}
+              
 				//Rechercher la liste des utilisateurs
 				$aUtilisateurs = Utilisateur::rechercherListeDesUtilisateurs();
 				//var_dump($aUtilisateurs);
@@ -97,46 +98,49 @@
 		 * afficher le formulaire d'ajout et sur submit ajouter du Utilisateur dans la base de données
 		 */
 		public static function gererAjouterUtilisateurAdmin(){
-             
-			try{
+           
+            try{
                	//1èr cas : aucun submit n'a été cliqué
-				if(isset($_POST['cmd']) == false){
-					//afficher le formulaire
+				if((isset($_POST['cmd']) == false) &&(isset($_GET['valid'])!= 'valid')){
+                   	//afficher le formulaire
 					ViewInscription::afficherAjouterUtilisateurAdmin();
-				//2e cas : le bouton submit Modifier a été cliqué
+				//2e cas : le bouton submit ajouter a été cliqué
 				}else{
-                  
+                    
                     $oUtilisateur = new Utilisateur();
-                    $oUtilisateur-> setNom(mysql_real_escape_string($_POST['txtNom']));
+                    $oUtilisateur-> setNom($_POST['txtNom']);
                     if($oUtilisateur->verificationNom()){
                         
-                         $oUtilisateur-> setCourriel(mysql_real_escape_string($_POST['txtCourriel']));
-                         if($oUtilisateur->verificationcourriel()){
-                             $oUtilisateur-> setMotDePasse(mysql_real_escape_string($_POST['txtPass']));
-                             $oUtilisateur-> setConfirmation(mysql_real_escape_string($_POST['txtPassConfirm']));
+                         $oUtilisateur-> setCourriel($_POST['txtCourriel']);
+                         if($oUtilisateur->verificationCourriel()){
+                             $oUtilisateur-> setMotDePasse($_POST['txtPass']);
+                             $oUtilisateur-> setConfirmation($_POST['txtPassConfirm']);
                                 if($oUtilisateur->verificationMotPass()){
                                     $oUtilisateur->ajouterUtilisateur();
-                                    $sMsg = "L'ajout de l'utilisateur' - ".$oUtilisateur->getNom()." - s'est déroulé avec succès.";echo $sMsg;
+                                    $sMsg = "L'ajout de l'utilisateur' - ".$oUtilisateur->getNom()." - s'est déroulé avec succès.";//echo $sMsg;
                                     $aUtilisateurs = Utilisateur::rechercherListeDesUtilisateurs();
                                     ViewInscription::afficherListeUtilisateurs($aUtilisateurs,$sMsg);
                                 
                                 
                                 }else{
                                     $sMsg = 'Les 2 mots de passe sont différents.';
-                                      $aUtilisateurs = Utilisateur::rechercherListeDesUtilisateurs();
-                                    ViewInscription::afficherListeUtilisateurs($aUtilisateurs,$sMsg);
+                                   // $aUtilisateurs = Utilisateur::rechercherListeDesUtilisateurs();
+                                    //ViewInscription::afficherListeUtilisateurs($aUtilisateurs,$sMsg);
+                                    ViewInscription::afficherAjouterUtilisateur($sMsg);
                                  }
                          }else{
                              
                              $sMsg = 'Un membre possède déjà ce Courriel.';
-                               $aUtilisateurs = Utilisateur::rechercherListeDesUtilisateurs();
-                             ViewInscription::afficherListeUtilisateurs($aUtilisateurs,$sMsg);
+                              ViewInscription::afficherAjouterUtilisateur($sMsg);
+                            // $aUtilisateurs = Utilisateur::rechercherListeDesUtilisateurs();
+                            // ViewInscription::afficherListeUtilisateurs($aUtilisateurs,$sMsg);
                         }
                         
                     }else{
                         
                         $sMsg = 'Un membre possède déjà ce Nom.';
-                        $aUtilisateurs = Utilisateur::rechercherListeDesUtilisateurs();                                                                   ViewInscription::afficherListeUtilisateurs($aUtilisateurs,$sMsg);
+                         ViewInscription::afficherAjouterUtilisateur($sMsg);
+                        //$aUtilisateurs = Utilisateur::rechercherListeDesUtilisateurs();                                                                  // ViewInscription::afficherListeUtilisateurs($aUtilisateurs,$sMsg);
                         
                     }
                  
@@ -152,7 +156,9 @@
 			
 			try{
 				//1èr cas : aucun submit n'a été cliqué
-				if(isset($_POST['cmd']) == false){
+                
+               // var_dump($_POST['cmd']);
+				if((isset($_POST['cmd']) == false) &&(isset($_GET['valid'])!= 'valid')){    
 					$oUtilisateur = new Utilisateur($_GET['idUtilisateur']);
                    // var_dump($oUtilisateur);
 					$oUtilisateur->rechercherUnUtilisateur();
@@ -169,7 +175,7 @@
                     $oUtilisateur -> setStatus($_POST['txtStatus']);
                    //modifier dans la base de données l'étudiant
 					$oUtilisateur->modifierUnUtilisateur();
-					$sMsg = "La modification de utilisateur - ".$oUtilisateur->getNom()." - s'est déroulée avec succès.";
+					$sMsg = "La modification d'utilisateur - ".$oUtilisateur->getNom()." - s'est déroulée avec succès.";
 					$oUtilisateur = Utilisateur::rechercherListeDesUtilisateurs();
 					ViewInscription::afficherListeUtilisateurs($oUtilisateur, $sMsg);
 				}
@@ -194,14 +200,12 @@
 			try{
 				$oUtilisateur = new Utilisateur($_GET['idUtilisateur']);
 				$oUtilisateur->rechercherUnUtilisateur();
-                var_dump($oUtilisateur);
-                var_dump($oUtilisateur);
-                 var_dump($oUtilisateur);
-                var_dump($oUtilisateur);
-                 var_dump($oUtilisateur);
-                var_dump($oUtilisateur);
+              //  var_dump($oUtilisateur);
+              //  var_dump($oUtilisateur);
+               
 				//supprimer dans la base de données d Utilisateur
-				return $oUtilisateur->supprimerUnUtilisateur();				
+				return $oUtilisateur->supprimerUnUtilisateur();	
+              
 			}catch(Exception $e){
 				return $e->getMessage();
 			}

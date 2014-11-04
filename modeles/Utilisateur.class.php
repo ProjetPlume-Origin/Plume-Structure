@@ -96,7 +96,7 @@ class Utilisateur {
 	*/
     
 	public function setConfirmation($sConfirmation){
-		TypeException::estString($sConfirmation);
+		//TypeException::estString($sConfirmation);
 		TypeException::estVide($sConfirmation);
 		
 		$this->sConfirmation = $sConfirmation;
@@ -235,7 +235,7 @@ class Utilisateur {
 		$oConnexion = new MySqliLib();
 		//Réaliser la requête de recherche par le idEtudiant
 		$sRequete= "SELECT * FROM utilisateur WHERE idUtilisateur=".$this->getIdUtilisateur();
-		// echo $sRequete;
+		echo $sRequete;
 		//Exécuter la requête
 		$oResult = $oConnexion->executer($sRequete);
 		if($oResult != false){
@@ -310,8 +310,9 @@ class Utilisateur {
 	 	$oConnexion = new MySqliLib();
 	 	//Requête de recherche de tous les Utilisateurs
 	 	$sRequete = "
-	 		SELECT * FROM Utilisateur
+	 		SELECT * FROM utilisateur
 	 	";
+        // echo  $sRequete;
 	 	//Exécuter la requête
 	 	$oResult = $oConnexion->executer($sRequete);
 	 	//Récupérer le tableau des enregistrements
@@ -323,12 +324,12 @@ class Utilisateur {
 	 		//affecter un objet à un élément du tableau
              $aUtilisateurs[$iEnreg] =  new Utilisateur($aEnreg[$iEnreg]['idUtilisateur'], 
                                                         $aEnreg[$iEnreg]['sNomUtilisateur'],
-                                                       $aEnreg[$iEnreg]['sCourrielUtilisateur'],
-                                                      $aEnreg[$iEnreg]['sMotPassUtilisateur'],
-                                                       $aEnreg[$iEnreg]['sMotPassUtilisateur'],
-                                                       $aEnreg[$iEnreg]['sTypeUtilisateur'],
-                                                       $aEnreg[$iEnreg]['sAvatarUtilisateur'],
-                                                       $aEnreg[$iEnreg]['sStatut']
+                                                        $aEnreg[$iEnreg]['sCourrielUtilisateur'],
+                                                        $aEnreg[$iEnreg]['sMotPassUtilisateur'],
+                                                        $aEnreg[$iEnreg]['sMotPassUtilisateur'],
+                                                        $aEnreg[$iEnreg]['sTypeUtilisateur'],
+                                                        $aEnreg[$iEnreg]['sAvatarUtilisateur'],
+                                                        $aEnreg[$iEnreg]['sStatut']
                                                        );
 	 	}
 	 	//retourner le tableau d'objets
@@ -353,7 +354,7 @@ class Utilisateur {
             ."  sMotPassUtilisateur = '".$oConnexion->getConnect()->escape_string(md5($this->sMotDePasse))."',"     
             ."  sAvatarUtilisateur = '".$oConnexion->getConnect()->escape_string($this->sAvatar)."',"
             ."  sTypeUtilisateur= '".$oConnexion->getConnect()->escape_string($this->sTypeUtilisateur)."',"
-            ."  sStatut= 'Inactive'
+            ."  sStatut= 'active'
           ";
 		//Exécuter la requête
         // echo $sRequete;
@@ -383,8 +384,9 @@ class Utilisateur {
          $oConnexion = new MySqliLib();                                              
         $sRequete = "SELECT * FROM utilisateur WHERE sCourrielUtilisateur ='$courriel'
                                                         and
-                                                    sMotPassUtilisateur = '$motDepasse'     "; 
-			
+                                                    sMotPassUtilisateur = '$motDepasse'     
+			                                             and
+                                                    sStatut= 'active' ";
 		// echo $sRequete;
         $oResult = $oConnexion->executer($sRequete);
         $aResult = $oConnexion->recupererTableau($oResult);
@@ -456,7 +458,26 @@ class Utilisateur {
     }
     
     	
-  /*****------------------------------------------------------------------------------------------------------------------*****/        
+  /*****------------------------------------------------------------------------------------------------------------------*****/     
+    function RechercheParCourriel(){
+		//Connexion à la base de données
+		$oConnexion = new MySqliLib();
+		// on recherche si ce courriel est déja utilise par un autre membre
+        $sRequete ='SELECT * FROM utilisateur WHERE   sCourrielUtilisateur = "'.$oConnexion->getConnect()->escape_string($_POST['txtCourriel']).'"'  ;                      
+        // echo $sRequete;
+        $oResult = $oConnexion->executer($sRequete);
+        $aResult = $oConnexion->recupererTableau($oResult);
+        //var_dump($aResult);
+       
+        
+        return $aResult;
+        
+    }
+    
+    
+    
+  /*---------------------------------------------------------------*/
+    
     
     function supprimerUnUtilisateur(){
 		//Connexion à la base de données
@@ -476,7 +497,26 @@ class Utilisateur {
     
     
     
-    
+    /*****------------------------------------------------------------------------------------------------------------------*****/   	
+	/**
+	 * Modifier un utilisateur
+	 * @return boolean true si la modification s'est bien déroulé
+	 * false dans tous les autres cas.
+	 */
+	function modifierMotDePasseUnUtilisateur(){
+		//Connexion à la base de données
+		$oConnexion = new MySqliLib();
+		//Requete de modification de l'étudiant
+		$sRequete = "
+			UPDATE utilisateur
+			SET sMotPassUtilisateur = '".$oConnexion->getConnect()->escape_string(md5($this->sMotDePasse))."'
+            WHERE idUtilisateur = ".$this->idUtilisateur."
+		";
+       echo $sRequete;
+		//Exécuter la requête
+		return $oConnexion->executer($sRequete);
+	}
+	
     
     
     
