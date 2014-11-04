@@ -59,13 +59,15 @@
             self::switchCommentaire();
             break;
                     
-                  case 10: 
-            //TODO fonction qui redirige sur un affichage propre a un oeuvre
-            break;
+            case 10: 
+            //fonction qui redirige sur un affichage propre a un oeuvre
+                Controleur::gererAfficherOuvrage();
+                break;
 
                     case 'monCompte': 
                     Controleur::gererOuvrage();
                     break;
+            
         }
       }catch(Exception $e){
         echo "<p>".$e->getMessage()."</p>";
@@ -673,7 +675,10 @@
           }
         }//fin de la fonction gererModifierOuvrage()
      
-     
+    
+        
+        
+
      
      
     }//fin de la classe Controleur
