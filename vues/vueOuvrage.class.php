@@ -170,7 +170,7 @@ class VueOuvrage{
     
        $aNom = $oConnexion->recupererTableau($oResultNom);
           echo'
-              <a href="index.php?s=10&oeuvre='.$aOeuvre[$iOeuvre]["idOuvrage"].'">
+              <a href="index.php?s=10&idOuvrage='.$aOeuvre[$iOeuvre]["idOuvrage"].'">
                 <div class="col-lg-3 col-sm-6 col-xs-12 produit" >
                   <div class="produit-image">
                       <td><img src='.$aOeuvre[$iOeuvre]["sCouvertureOuvrage"].'></td>
@@ -301,7 +301,7 @@ class VueOuvrage{
     echo "Genre : ".$oOuvrage->getOuvrageGenre()."<br><br><br>";
     if (isset($_SESSION['tContenu'])){
       foreach ($_SESSION['tContenu'] as $valeur ) {
-        echo "<p>".$valeur."</p><br><br>";
+        echo "<p>".$valeur."</p><br>";
       }
     }
     echo "</article>";

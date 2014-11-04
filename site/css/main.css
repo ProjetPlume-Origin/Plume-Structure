@@ -790,3 +790,10 @@ font-family: 'Shadows Into Light', cursive;
     background-color:#000;
 }
 
+/*S'applique seulement quand un utilisateur entre un mot trop long. Word break casse le mot pour qu'il ne s'entende pas à l'infinit. par alex*/
+
+#lecture p{
+    word-break: break-all;
+}
+
+/*fin word break*/
