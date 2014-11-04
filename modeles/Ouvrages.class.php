@@ -196,8 +196,10 @@
 	 		//affecter un objet à un élément du tableau
 			
 			$oOuvrage[$i] =  $aEnreg[$i]['sContenuParagraphe'];
+            
 			
 			$_SESSION['tContenu'] = $oOuvrage;
+           
 			
 		}
 		$_SESSION['idContenu'] =  $aEnreg[0]['idParagraphe'];

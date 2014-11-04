@@ -294,14 +294,14 @@ class VueOuvrage{
      */public static function afficherOuvrage(Ouvrage $oOuvrage, $sMsg="&nbsp;"){
     //echo $oOuvrage->getIdOuvrage();
     echo "
-    <h1>Affichage d'un ouvrage</h1>
     <p>".$sMsg."</p>";
     echo "<article class='visualiserOuvrage col-xs-12 col-md-9 col-lg-9' id='lecture'>";
     echo "<span class= 'titre'>".$oOuvrage->getOuvrageTitre()."</span><br>";
     echo "Genre : ".$oOuvrage->getOuvrageGenre()."<br><br><br>";
     if (isset($_SESSION['tContenu'])){
       foreach ($_SESSION['tContenu'] as $valeur ) {
-        echo "<p>".$valeur."</p><br>";
+        echo  "<p>".$valeur."</p><br>";
+        //commentaires 
       }
     }
     echo "</article>";
