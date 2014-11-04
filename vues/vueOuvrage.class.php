@@ -11,6 +11,7 @@ class VueOuvrage{
      * @param array $aOuvrage tableau d'objets Ouvrage
      */
     public static function afficherListeOuvrages($aOuvrages, $sMsg="&nbsp;"){
+     
       echo "
       <h1>Liste des ouvrages &nbsp;&nbsp;<a href=\"index.php?s=".$_GET['s']."&action=add\"><button type=\"button\" class=\"btn btn-success\">Ajouter un ouvrage</button></a></h1>
       <p>".$sMsg."</p>";
@@ -24,24 +25,43 @@ class VueOuvrage{
         for($i=0; $i<count($aOuvrages); $i++){
           echo "
           <table border=\"0\">
-            <tr>
-              <td>
-                <a href=\"index.php?s=".$_GET['s']
-                ."&action=aff&idOuvrage=".$aOuvrages[$i]->getIdOuvrage()."\"><img class=\"imageOuvrage\" src=". $aOuvrages[$i]->getOuvrageCouverture()."></a><a href=\"index.php?s=".$_GET['s']
-                ."&action=aff&idOuvrage=".$aOuvrages[$i]->getIdOuvrage()."\"><span class=\"titre\">".$aOuvrages[$i]->getOuvrageTitre() 
-                ." </span><td></a><a href=\"index.php?s=".$_GET['s']
-                ."&action=mod&idOuvrage=".$aOuvrages[$i]->getIdOuvrage()."\"><img src=\"img/modif.png\"></a></td> 
-                <td><a href=\"index.php?s=".$_GET['s']
-                  ."&action=sup&idOuvrage=".$aOuvrages[$i]->getIdOuvrage()."\" onClick=\"return confirm('Voulez vous vraiment supprimer cet ouvrage!');\"><img src=\"img/supp.png\"></a>
-                </td>
-              </tr>
+          <tr>
+          <td>
+          <a href=\"index.php?s=".$_GET['s']
+            ."&action=aff&idOuvrage=".$aOuvrages[$i]->getIdOuvrage()."\"><img class=\"imageOuvrage\" src=". $aOuvrages[$i]->getOuvrageCouverture()."></a><a href=\"index.php?s=".$_GET['s']
+            ."&action=aff&idOuvrage=".$aOuvrages[$i]->getIdOuvrage()."\"><span class=\"titre\">".$aOuvrages[$i]->getOuvrageTitre() 
+            ." </span><td></a><a href=\"index.php?s=".$_GET['s']
+            ."&action=mod&idOuvrage=".$aOuvrages[$i]->getIdOuvrage()."\"><img src=\"img/modif.png\"></a></td> 
+            <td><a href=\"#myModal\" data-toggle='modal'><img src=\"img/supp.png\"></a>
+            <div id='myModal' class='modal fade'>
+        <div class='modal-dialog'>
+            <div class='modal-content'>
+                <div class='modal-header'>
+                    <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
+                    <h2 class='modal-title'>Confirmation de suppression</h2>
+                </div>
+                <div class='modal-body'>
+                    <p>Voulez vous vraiment supprimer cet ouvrage : <span class=\"titreSupp\">".$aOuvrages[$i]->getOuvrageTitre() 
+            ."</span>?</p>
+                </div>
+                <div class='modal-footer'>
+                    <a href=\"index.php?s=".$_GET['s']
+            ."&action=sup&idOuvrage=".$aOuvrages[$i]->getIdOuvrage()."\"><button type='button' class='btn btn-primary'>Supprimer</button></a>
+            <button type='button' class='btn btn-default' data-dismiss='modal'>Annuler</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>     
+            </td>
+            </tr>
             </table>
             ";
           }
           echo "
         </tr>
         ";
-      } 
+      }  
 
 
     /**
