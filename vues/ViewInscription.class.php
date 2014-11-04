@@ -261,7 +261,7 @@
 						</div>
                         
                         <div class=\"form-group\">
-							<p>Courriel électronique</label>
+							<label>Courriel électronique</label>
 							<input type=\"email\" id=\"email\"  class=\"form-control\"  placeholder=\"Courriel électronique\"  name=\"txtCourriel\"><span class=\"erreur\"></span>
 						</div>
 						
@@ -301,9 +301,9 @@
 							<label for=\"exampleInputPassword1\"> Confirmation Mot de Passe</label>
 							<input type=\"password\"  id=\"passcon\" class=\"form-control\" name=\"txtPassConfirm\"  placeholder=\"Confirmation mot de passe\"><span class=\"erreur\"></span>
 						</div>
-						
+						<input type=\"button\" name=\"cmd\" value=\"Envoyer\" id=\"RedefinitionMotPass\">
 					</fieldset>	
-                    <input type=\"button\" name=\"cmd\" value=\"Envoyer\" id=\"RedefinitionMotPass\">
+                    
 					
 					
 				</form>
