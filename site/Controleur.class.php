@@ -59,13 +59,15 @@
             self::switchCommentaire();
             break;
                     
-                  case 10: 
-            //TODO fonction qui redirige sur un affichage propre a un oeuvre
-            break;
+            case 10: 
+            //fonction qui redirige sur un affichage propre a un oeuvre
+                Controleur::gererAfficherOuvrage();
+                break;
 
                     case 'monCompte': 
                     Controleur::gererOuvrage();
                     break;
+            
         }
       }catch(Exception $e){
         echo "<p>".$e->getMessage()."</p>";
@@ -654,7 +656,7 @@
           try{
                 //1èr cas : aucun submit n'a été cliqué
             if(isset($_POST['cmd']) == false){
-              $oOuvrage = new Ouvrage($_GET['idOuvrage']);
+              $oOuvrage = new Ouvrage($_GET['oeuvre']);
 
               $oOuvrage->rechercherOuvrage();
               $oOuvrage->rechercherContenu();
@@ -671,7 +673,10 @@
           }
         }//fin de la fonction gererModifierOuvrage()
      
-     
+    
+        
+        
+
      
      
     }//fin de la classe Controleur

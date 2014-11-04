@@ -150,7 +150,7 @@ class VueOuvrage{
     
        $aNom = $oConnexion->recupererTableau($oResultNom);
           echo'
-              <a href="index.php'.$aOeuvre[$iOeuvre]["idOuvrage"].'">
+              <a href="index.php?s=10&oeuvre='.$aOeuvre[$iOeuvre]["idOuvrage"].'">
                 <div class="col-lg-3 col-sm-6 col-xs-12 produit" >
                   <div class="produit-image">
                       <td><img src='.$aOeuvre[$iOeuvre]["sCouvertureOuvrage"].'></td>
@@ -276,19 +276,100 @@ class VueOuvrage{
     echo "
     <h1>Affichage d'un ouvrage</h1>
     <p>".$sMsg."</p>";
-    echo "<article class='visualiserOuvrage'>";
-    echo "Titre : <span class= 'titre'>".$oOuvrage->getOuvrageTitre()."</span><br>";
+    echo "<article class='visualiserOuvrage col-xs-12 col-md-9 col-lg-9' id='lecture'>";
+    echo "<span class= 'titre'>".$oOuvrage->getOuvrageTitre()."</span><br>";
     echo "Genre : ".$oOuvrage->getOuvrageGenre()."<br><br><br>";
     if (isset($_SESSION['tContenu'])){
       foreach ($_SESSION['tContenu'] as $valeur ) {
-        echo $valeur."<br><br>";
+        echo "<p>".$valeur."</p><br><br>";
       }
     }
     echo "</article>";
     $_SESSION['tContenu'] = '';
-  }
+         
+        echo '            <div class="hidden-xs col-md-3 col-sm-3 col-lg-3">
+      <div class="tabbable tabs-right">
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#1" data-toggle="tab"><img src="../site/img/imgAccueil/font.jpg" width="25px"></a></li>
+          <li><a href="#2" data-toggle="tab"><img src="../site/img/imgAccueil/Gear_icon.png" width="22px"></a></li>
+          <li><a href="#3" data-toggle="tab"><img src="../site/img/imgAccueil/comment-icon.png" width="20px"></a></li>
+        </ul>
+        <div class="tab-content">
+         <div class="tab-pane active" id="1">
+             <p>Police d\'affichage</p>
+             <select id="typePolice" name="typePolice">
+                <option value="playfair">Playfair</option>
+                 <option value="oswald">Oswald</option>
+                 <option value="lobster">Lobster</option>
+                 <option value="shadow">Shadows Into Light</option>
+             </select>
+             </br>
+            </br>
+            <p>Taille de la police</p>
+             <select id="taillePolice" name="taillePolice">
+                <option value="12">12 pt</option>
+                 <option value="14">14 pt</option>
+                <option value="16">16 pt</option>
+                 <option value="18">18 pt</option>
+                <option value="20">20 pt</option>
+                 <option value="22">22 pt</option>
+                <option value="24">24 pt</option>
+             </select>
+             </br>
+            </br>
+    
+        <p>Luminositée de la police</p>
+              <select id="couleurPolice" name="couleurPolice">
+                 <option value="textLumino1">1</option>
+                 <option value="textLumino2">2</option>
+                 <option value="textLumino3">3</option>
+                 <option value="textLumino4">4</option>
+                 <option value="textLumino5">5</option>
+             </select>
+            <p>Luminositée du fond d\'écran</p>
+              <select id="couleurFond" name="couleurFond">
+                 <option value="bgLumino1">1</option>
+                 <option value="bgLumino2">2</option>
+                 <option value="bgLumino3">3</option>
+                 <option value="bgLumino4">4</option>
+                 <option value="bgLumino5">5</option>
+             </select>
+            </br>
+            </br>
+            <input type="button" value="Sauvegarder">
+         </div>
+         <div class="tab-pane" id="2">
+            <input type="button" value="ajouter un signet">
+             </br>
+             </br>
+        <input type="button" value="Plein écran">
+                 </br>
+             </br>
+        <input type="button" value="partager">
+        </div>
+         <div class="tab-pane" id="3">
+            <input type="checkbox">Toujours afficher les commentaires.
+             </br>
+             </br>
+        <input type="checkbox">Commentaires compactes.
+             </br>
+             </br>
+        <input type="checkbox">Ne pas m\'offrir d\'écrire de commentaires.
+            </br>
+            </br>
+<input type="button" value="Sauvegarder">
+        </div>
+        </div>
+      </div>
+
+        </div>  <!-- FIN COLONNE DROITE -->';
+    }
 
 
+    
+
+    
+    
     }//fin de la classe VueOuvrage
 
     ?>     
