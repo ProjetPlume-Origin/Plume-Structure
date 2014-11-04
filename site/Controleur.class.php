@@ -658,7 +658,7 @@
           try{
                 //1èr cas : aucun submit n'a été cliqué
             if(isset($_POST['cmd']) == false){
-              $oOuvrage = new Ouvrage($_GET['oeuvre']);
+              $oOuvrage = new Ouvrage($_GET['idOuvrage']);
 
               $oOuvrage->rechercherOuvrage();
               $oOuvrage->rechercherContenu();
