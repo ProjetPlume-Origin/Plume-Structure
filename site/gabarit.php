@@ -17,3 +17,4 @@
 
 	include_once "../vues/templates/footer.php"; 
 ?>
+    <script src="../js/principale.js"></script>

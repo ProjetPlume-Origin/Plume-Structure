@@ -68,6 +68,14 @@
                     Controleur::gererOuvrage();
                     break;
             
+            case 20: 
+                self::gererOublierMotDePasseUtilisateur();
+                break; 
+                    
+            case 21: 
+                self::gererRedefinirMotDePasseUtilisateur();
+                break;
+            
         }
       }catch(Exception $e){
         echo "<p>".$e->getMessage()."</p>";
@@ -224,42 +232,40 @@
 
 
 /***************************************** FIN PARTIE CONTROLEUR DE JULIAN ****************************************/ 
-     
-    /**
-     * afficher le formulaire d'ajout et sur submit ajouter du Produit dans la base de données
-     */
-    public static function gererInscriptionUtilisateur(){
-      
-      try{
-        //1èr cas : aucun submit n'a été cliqué
-        if(isset($_POST['cmd']) == false) {
-          //afficher le formulaire
+        
+/******************************************************************************************************************/
+/***************************************** debut PARTIE CONTROLEUR DE Hanaa ****************************************/    
+    	/**
+		 * afficher le formulaire d'ajout et sur submit ajouter du Produit dans la base de données
+		 */
+		public static function gererInscriptionUtilisateur(){
+			
+			try{
+				//1èr cas : aucun submit n'a été cliqué
+				//if(isset($_POST['cmd']) == false) {
+                if((isset($_POST['cmd']) == false) &&(isset($_GET['valid'])!= 'valid')){    
+					//afficher le formulaire
                   if(isset($_GET['s'])){
                                 //
                    
-                      ViewInscription::afficherAjouterUtilisateur();
-                    //2e cas : le bouton submit Modifier a été cliqué
-                  }          //
-        }else{
-        
-                   /*$oUtilisateur = new Utilisateur(1,$_POST['txtNom'],    
-                                                        $_POST['txtCourriel'],$_POST['txtPass'],$_POST['txtPassConfirm']);*/
-                   
-                   // $oUtilisateur-> setMotDePasse(mysql_real_escape_string($_POST['txtPass']);
-                    //$oUtilisateur-> setConfirmation(mysql_real_escape_string($_POST['txtPassConfirm']);
-                     $oUtilisateur = new Utilisateur();
+            					ViewInscription::afficherAjouterUtilisateur();
+           
+                  }   
+                 //2e cas : le bouton submit Modifier a été cliqué
+				}else{
+				    $oUtilisateur = new Utilisateur();
                     $oUtilisateur-> setNom($_POST['txtNom']);
                     if($oUtilisateur->verificationNom()){
                         
                          $oUtilisateur-> setCourriel($_POST['txtCourriel']);
-                         if($oUtilisateur->verificationcourriel()){
+                         if($oUtilisateur->verificationCourriel()){
                              $oUtilisateur-> setMotDePasse($_POST['txtPass']);
                              $oUtilisateur-> setConfirmation($_POST['txtPassConfirm']);
                                 if($oUtilisateur->verificationMotPass()){
                                     $oUtilisateur->ajouterUtilisateur();
                                     $sMsg = "L'ajout de l'utilisateur' - ".$oUtilisateur->getNom()." - s'est déroulé avec succès.";
                                     header('Location:../site/index.php?s=3');
-                                    // ViewInscription::afficherConnexionUtilisateur($sMsg);
+                                   // ViewInscription::afficherConnexionUtilisateur($sMsg);
                                  }else{
                                     $sMsg = 'Les 2 mots de passe sont différents.';
                                  }
@@ -276,46 +282,47 @@
                     }
                                                     
                     ViewInscription::afficherAjouterUtilisateur($sMsg);
-        }
-      }catch(Exception $e){
-        ViewInscription::afficherAjouterUtilisateur($e->getMessage());
-      }
-    }//fin de la fonction afficherAjouterUtilisateur()
-    
-  
+				}
+			}catch(Exception $e){
+				ViewInscription::afficherAjouterUtilisateur($e->getMessage());
+			}
+		}//fin de la fonction afficherAjouterUtilisateur()
+		
+	
 /*----------------------------------------------------------------------------------------------------------------------------*/        
         /**
-     * afficher le formulaire de connexion et sur submit on se connecte a notre compte
-     */
+		 * afficher le formulaire de connexion et sur submit on se connecte a notre compte
+		 */
      
        
            
         public static function gererConnexionUtilisateur(){
-      
-      try{
-        //1èr cas : aucun submit n'a été cliqué
-                    if(isset($_POST['cmd']) == false){
+			
+			try{
+				//1èr cas : aucun submit n'a été cliqué
+                   // if(isset($_POST['cmd']) == false){
+                    if((isset($_POST['cmd']) == false) &&(isset($_GET['valid'])!= 'valid')){
                         //afficher le formulaire
                         ViewInscription::afficherConnexionUtilisateur();
                     //2e cas : le bouton submit Modifier a été cliqué
                     }else{
                         $oUtilisateur = new Utilisateur();                    
                         $oUtilisateur-> setCourriel($_POST['txtCourriel']);
-                            if(!($oUtilisateur->verificationcourriel())){
+                            if(!($oUtilisateur->verificationCourriel())){
                                 $oUtilisateur-> setMotDePasse(md5($_POST['txtPass']));
                                 $aUtilisateur = $oUtilisateur->connexionUtilisateur();
                                     if(!empty($aUtilisateur)){
                                          $sMsg = "La connexion  - ".$oUtilisateur->getNom()." - s'est déroulé avec succès.";
                                         $_SESSION["IdUtilisateur"] = $aUtilisateur[0]['idUtilisateur'];
                                         $_SESSION["sNomUtilisateur"] = $aUtilisateur[0]['sNomUtilisateur'];
-                    $_SESSION["sTypeUtilisateur"] = $aUtilisateur[0]['sTypeUtilisateur'];
+										$_SESSION["sTypeUtilisateur"] = $aUtilisateur[0]['sTypeUtilisateur'];
                                        // echo $_SESSION["IdUtilisateur"]; 
-                      if($_SESSION["sTypeUtilisateur"] =='Membre'){
-                       header('Location:../site/index.php');
-                    }else{
-                      header('Location:../core/index.php');
-                    
-                    }
+									    if($_SESSION["sTypeUtilisateur"] =='Membre'){
+											 header('Location:../site/index.php');
+										}else{
+											header('Location:../core/index.php');
+										
+										}
                                      }else{
 
                                          $sMsg = 'Ce Courriel  ou  mot de passe n\'existent pas dans notre base de données .';
@@ -323,21 +330,93 @@
                                      }
                             }else{
                                     $sMsg = 'Ce Courriel n\'existe pas dans notre base de données .';
-                  ViewInscription::afficherConnexionUtilisateur($sMsg);
+									ViewInscription::afficherConnexionUtilisateur($sMsg);
 
                              }
 
                      }
-      }catch(Exception $sMsg){
-        ViewInscription::afficherConnexionUtilisateur($sMsg);
-      }
-    }//fin de la fonction gererAjouterProduit()
+			}catch(Exception $sMsg){
+				ViewInscription::afficherConnexionUtilisateur($sMsg);
+			}
+		}//fin de la fonction gererAjouterUtilisateur()
 
 
-        /*----------------------------------------------------------------------------------------------------------------------------*/        
-        /**
-         * afficher le formulaire de deconnexion et sur submit on deconnecte notre compte
-         */
+		
+		
+		 /*
+       *afficher le formulaire du mot de passe 
+       */
+        
+        public static function gererOublierMotDePasseUtilisateur() {
+
+            try {
+               
+                if(isset($_POST['txtCourriel'])){
+                   // if((isset($_POST['txtCourriel'])) &&(isset($_GET['valid'])!= 'valid')){
+                    $oUtilisateur = new Utilisateur();                    
+                    $oUtilisateur-> setCourriel($_POST['txtCourriel']);
+                    //$var=$oUtilisateur->RechercheParCourriel();
+                   // var_dump($var);
+                    if(!($oUtilisateur->verificationCourriel())){
+                         $aUtilisateur=$oUtilisateur->RechercheParCourriel();
+                        //var_dump($Utilisateur);
+                        //exit;
+                         ViewInscription::afficherRedefinirMotDePasseUtilisateur($aUtilisateur);
+                        
+                    }
+                    else{
+                        
+                    $sMsg = 'Ce Courriel n\'existe pas dans notre base de données  .';
+                     ViewInscription::afficherOublierMotDePasseUtilisateur($sMsg);   
+                        
+                    }
+                }else{
+                    
+                    
+                      ViewInscription::afficherOublierMotDePasseUtilisateur();
+                    
+                }
+            } catch (Exception $e) {
+                ViewInscription::afficherConnexionUtilisateur($e);
+            }
+        }
+    /*
+    *afficher le formulaire du mot de passe 
+    */
+        
+        public static function gererRedefinirMotDePasseUtilisateur() {
+
+            try {
+                  echo 'JE SUIS LA 1';
+               //if(isset($_POST['cmd'])){
+                
+                     echo 'JE SUIS LA 2';
+                    $oUtilisateur = new Utilisateur();
+                    $oUtilisateur-> setIdUtilisateur($_POST['idUtilisateur']);// recuperation du hidden
+                    $oUtilisateur-> setMotDePasse($_POST['txtPass']);
+                    $oUtilisateur-> setConfirmation($_POST['txtPassConfirm']);
+                        if($oUtilisateur->verificationMotPass()){
+                            $oUtilisateur->modifierMotDePasseUnUtilisateur();
+                            $sMsg = "La mise a jour  du mot passe  s'est déroulé avec succès.";
+                           // echo $sMsg;
+                            //exit;
+                            header('Location:../site/index.php?s=3');
+                   
+                        }else{
+                                
+                            $sMsg = 'Les 2 mots de passe sont différents.';
+                            ViewInscription::afficherRedefinirMotDePasseUtilisateur(0,$sMsg);
+
+                        }
+               // }
+            } catch (Exception $e) {
+                ViewInscription::afficherRedefinirMotDePasseUtilisateur($e);
+            }
+        }
+        
+ /**
+ * afficher le formulaire de deconnexion et sur submit on deconnecte notre compte
+ */
 
         public static function gererDeconnectionUtilisateur() {
             
@@ -357,12 +436,10 @@
             }
         }
         
-        
 
+/*------------------------------------------------fin partie hanaa----------------------------------------------------------------*/        
 
        
-
-        
         public static function exampleOuvrage(){
         	echo "
 			<h1>Lorem Ipsum</h1>
