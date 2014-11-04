@@ -1,16 +1,17 @@
 <?php
-	session_start();				
+	session_start();
+	ob_start();				
     /**
 	 * Inclure les librairies
 	 */	
 	 require_once("../lib/TypeException.class.php");
-	 require_once("../lib/MysqliException.class.php");
-	 require_once("../lib/MysqliLib.class.php");
+	 require_once("../lib/MySqliException.class.php");
+	 require_once("../lib/MySqliLib.class.php");
 	 /**
 	 * Inclure les vues
 	 */
      
-     require_once("../Vues/ViewInscription.class.php");
+     require_once("../vues/ViewInscription.class.php");
 	
 	 require_once("../modeles/Utilisateur.class.php");
 		
