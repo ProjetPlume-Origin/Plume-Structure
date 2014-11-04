@@ -677,7 +677,14 @@ ul.social li {
  		width: 40px;
  		height: 25%;
  	}
-
+.bs-example{
+        margin: 20px;
+    }
+ .titreSupp{
+ 	font-size: 18px;
+ 	font-weight: bolder;
+ 	color: blue;
+ }
  	
  	/*fin jalal*/
 
