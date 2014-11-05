@@ -365,7 +365,7 @@ class Utilisateur {
         // echo $sRequete;
 		if($oConnexion->executer($sRequete) == true){
             $dernierIdUtilisateur = $oConnexion->getConnect()->insert_id;
-            $sRequeteReglage = 'INSERT INTO reglage (idUtilisateur) VALUES ('.$dernierIdUtilisateur.')';
+            $sRequeteReglage = 'INSERT INTO reglage (idUtilisateur, sCouleurFond, sCouleurPolice, sTaillePolice, sTypePolice) VALUES ('.$dernierIdUtilisateur.', "bgLumino1", "textLumino5", "16", "playfair" )';
             
             var_dump($sRequeteReglage);
             $oConnexion->executer($sRequeteReglage);
