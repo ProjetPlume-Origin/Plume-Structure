@@ -11,9 +11,36 @@ class VueOuvrage{
      * @param array $aOuvrage tableau d'objets Ouvrage
      */
     public static function afficherListeOuvrages($aOuvrages, $sMsg="&nbsp;"){
+
+      echo "
+<div class=\"modal fade\" id=\"confirm-delete\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">
+        <div class=\"modal-dialog\">
+            <div class=\"modal-content\">
+            
+                <div class=\"modal-header\">
+                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>
+                    <h4 class=\"modal-title\" id=\"myModalLabel\">Confirmation de suppression</h4>
+                </div>
+            
+                <div class=\"modal-body\">
+                    <p>Voulez vous vraiment supprimer cet ouvrage?</p>
+                    <p class=\"debug-url\"></p>
+                </div>
+                
+                <div class=\"modal-footer\">
+                    <button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">Annuler</button>
+                    <a href=\"#\" class=\"btn btn-danger danger\">Supprimer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+      ";
+
+
+
      
       echo "
-      <h1>Liste des ouvrages &nbsp;&nbsp;<a href=\"index.php?s=".$_GET['s']."&action=add\"><button type=\"button\" class=\"btn btn-success\">Ajouter un ouvrage</button></a></h1>
+      <h1>Liste des ouvrages &nbsp;&nbsp;<a href=\"index.php?s=".$_GET['s']."&action=add\"><button type=\"button\" class=\"btn btn-primary\">Ajouter un ouvrage</button></a></h1>
       <p>".$sMsg."</p>";
       if(count($aOuvrages) <= 0){
         echo "<p>Aucun ouvrage n'est disponible. Veuillez en ajouter un.</p>";
@@ -32,35 +59,18 @@ class VueOuvrage{
             ."&action=aff&idOuvrage=".$aOuvrages[$i]->getIdOuvrage()."\"><span class=\"titre\">".$aOuvrages[$i]->getOuvrageTitre() 
             ." </span><td></a><a href=\"index.php?s=".$_GET['s']
             ."&action=mod&idOuvrage=".$aOuvrages[$i]->getIdOuvrage()."\"><img src=\"img/modif.png\"></a></td> 
-            <td><a href=\"#myModal\" data-toggle='modal'><img src=\"img/supp.png\"></a>
-            <div id='myModal' class='modal fade'>
-        <div class='modal-dialog'>
-            <div class='modal-content'>
-                <div class='modal-header'>
-                    <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
-                    <h2 class='modal-title'>Confirmation de suppression</h2>
-                </div>
-                <div class='modal-body'>
-                    <p>Voulez vous vraiment supprimer cet ouvrage : <span class=\"titreSupp\">".$aOuvrages[$i]->getOuvrageTitre() 
-            ."</span>?</p>
-                </div>
-                <div class='modal-footer'>
-                    <a href=\"index.php?s=".$_GET['s']
-            ."&action=sup&idOuvrage=".$aOuvrages[$i]->getIdOuvrage()."\"><button type='button' class='btn btn-primary'>Supprimer</button></a>
-            <button type='button' class='btn btn-default' data-dismiss='modal'>Annuler</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>     
+            <td>
+            <a href=\"index.php?s=".$_GET['s']
+            ."&action=sup&idOuvrage=".$aOuvrages[$i]->getIdOuvrage()."\"><img src=\"img/supp.png\"></a><br>
+
+            <a data-href=\"http:/www.google.ca\" data-toggle=\"modal\" data-target=\"#confirm-delete\" href=\"#\">SUPPRIMER</a>
+
             </td>
             </tr>
             </table>
             ";
           }
-          echo "
-        </tr>
-        ";
+      
       }  
 
 
@@ -97,7 +107,7 @@ class VueOuvrage{
           }
           echo "</textarea><br>
         </article>
-        <input type=\"submit\" name=\"cmd\" value=\"Mettre à jour\">
+        <input type=\"submit\" name=\"cmd\" class=\"btn btn-primary\" value=\"Mettre à jour\">
       </article>
 
     </form>
@@ -128,7 +138,7 @@ class VueOuvrage{
           <article class=\"form-group\">
             <label for=\"contenu\"></label><textarea rows=\"20\" cols=\"50\" name=\"txtContenu\" id=\"contenu\" class=\"form-control\" placeholder=\"Article\"></textarea><br>
           </article>    
-          <input type=\"submit\" name=\"cmd\" value=\"Enregistrer\" > 
+          <input type=\"submit\" name=\"cmd\" class=\"btn btn-primary\" value=\"Enregistrer\" > 
           
         </form>
         <br>
@@ -301,7 +311,7 @@ class VueOuvrage{
     echo "Genre : ".$oOuvrage->getOuvrageGenre()."<br><br><br>";
     if (isset($_SESSION['tContenu'])){
       foreach ($_SESSION['tContenu'] as $valeur ) {
-        echo "<p>".$valeur."</p><br>";
+        echo "<p>".$valeur."</p>";
       }
     }
     echo "</article>";

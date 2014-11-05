@@ -1,6 +1,5 @@
 	<?php
-		/* @author : JALAL Khair 
-	Class Ouvrage--> */
+		
      if(!isset($_SESSION)) 
     { 
         session_start(); 

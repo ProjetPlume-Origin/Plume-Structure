@@ -565,10 +565,10 @@
               $sMsg ="La suppression s'est bien déroulée.";
             }
             if(isset($_GET['bMod']) == true){
-              $sMsg ="La modification de L'ouvrage s'est déroulée avec succès.";
+              $sMsg ="La modification de l'ouvrage s'est déroulée avec succès.";
             }
             if(isset($_GET['bAjo']) == true){
-              $sMsg ="L'ajout de l'ouvrage s'est déroulée avec succès.";
+              $sMsg ="L'ajout de l'ouvrage s'est déroulé avec succès.";
             }
 
                 //Rechercher la liste des Ouvrage
@@ -604,8 +604,8 @@
               $cDivision = explode("\r\n", $dContenu);
               $contenuDivision = array_values(array_filter ($cDivision));
 
-              var_dump($_POST);
-              //die('ici');
+              //Prof : var_dump($_POST);
+             
                //apres la mise dans un tableau on fait l'insertion 
                     //ajout le info de l'ouvrage dans la base de données ouvrage
               $oOuvrage = new Ouvrage($_POST['idOuvrage'], $_POST['txtTitre'],' ', ' ', $_POST['txtGenre'], ' ', $_SESSION['IdUtilisateur']);
@@ -622,7 +622,7 @@
              }
 
              if ($ifExist  == 'Yes') {
-
+              //affichage de message de comfirmation de suppression
                $sMsg = '<br><span class="messageErreur">Le titre '.$_POST['txtTitre'].' que vous avez choisis existe deja!<span>';
 
                VueOuvrage::afficherAjouterOuvrage($sMsg);
@@ -682,12 +682,12 @@
               $cDivision = explode("\r\n", $dContenu);
               $tContenu = array_values(array_filter($cDivision));
 
-              $oOuvrage = new Ouvrage($_POST['idOuvrage'], $_POST['txtTitre'],' ', $_POST['txtGenre']);
+              $oOuvrage = new Ouvrage($_POST['idOuvrage'], $_POST['txtTitre'],' ', ' ', $_POST['txtGenre']);
                     //appel a la fonction pour ajout des paragraphes
               $oOuvrage->supprimerContenu();
                     //apres la mise dans un tableau on fait l'insertion 
               for ($i = 0; $i < count($tContenu); $i++) { 
-                $cOuvrage = new Ouvrage($_POST['idOuvrage'], $_POST['txtTitre'],' ', $_POST['txtGenre'], $tContenu[$i]);
+                $cOuvrage = new Ouvrage($_POST['idOuvrage'], $_POST['txtTitre'],' ', ' ', $_POST['txtGenre'], $tContenu[$i]);
 
                         //appel a la fonction pour ajout des paragraphes
                 $cOuvrage->modifierContenu();
@@ -728,7 +728,7 @@
 
 
         /**
-         * afficher le formulaire de modification et sur submit modifier l'Ouvrage dans la base de données 
+         * afficher la consultation des Ouvrages 
          */
         public static function gererAfficherOuvrage(){
 
@@ -752,7 +752,7 @@
           }
         }//fin de la fonction gererModifierOuvrage()
      
-    
+    //*************************************************************************************************************Fin Controleur JALAL****************************************************************************************************************************************
         
         
 
