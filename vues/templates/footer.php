@@ -2,9 +2,9 @@
 			<footer class="row">       
 				<div class="col-md-12">              
 					<ul class="icons social">
-						<li><a href="#"><span class="fa fa-twitter"></span></a></li>
-						<li><a href="#"><span class="fa fa-facebook"></span></a></li>
-						<li><a href="#"><span class="fa fa-envelope-o"></span></a></li>
+						<li><a href="<?php echo RACINE.DS; ?>vues/mediasSociaux/twitter.html" target="_blank"><span class="fa fa-twitter"></span></a></li>
+						<li><a href="<?php echo RACINE.DS; ?>vues/mediasSociaux/facebook.html"><span class="fa fa-facebook"></span></a></li>
+						<li><a href=index.php?s=contact><span class="fa fa-envelope-o"></span></a></li>
 					</ul>
 					<p class="copy">&copy; Plume 2014</p>
 				</div>
@@ -23,7 +23,7 @@
 		<script src="<?php echo RACINE.DS; ?>js/main.js"></script>
 		<script src="<?php echo RACINE.DS; ?>js/valider.js"></script>
 
-		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. 
 		<script>
 		(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
 			function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
@@ -31,6 +31,6 @@
 		e.src='//www.google-analytics.com/analytics.js';
 		r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
 		ga('create','UA-XXXXX-X');ga('send','pageview');
-		</script>
+		</script> -->
 	</body>
 </html>

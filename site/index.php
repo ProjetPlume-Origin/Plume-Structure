@@ -14,6 +14,7 @@ ob_start();
 	require_once("../vues/VueGenre.class.php");
  	require_once("../vues/ViewInscription.class.php");
 	require_once("../vues/vueOuvrage.class.php");
+	require_once("../vues/VueContact.php");
 		
 	/**
 	* Inclure les modèles
@@ -30,10 +31,8 @@ ob_start();
 	 
 	/**
 	* Inclure le gabarit (nécessairement le dernier)
-	*/		
-	
-		
-		require_once("gabarit.php");
+	*/	
+	require_once("gabarit.php");
 
 
 ?>
