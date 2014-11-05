@@ -4,7 +4,6 @@
 class Preference {
 	
 	
-	/* Propriétés privées */
 	public $idUtilisateur;
 	public $sFontFamily;
 	public $sFontColor;
@@ -92,7 +91,7 @@ class Preference {
 	}
 	
     
-    /****** Fonctions ********/
+    /****** Static functions ********/
     
     
     
@@ -124,7 +123,82 @@ class Preference {
     }
     
     
+    public static function selectedOptionTypePolice()
+    {
     
+        $aSelectPreferenceTypePoliceCheck = ["playfair","oswald","lobster","shadow"];
+        $aSelectPreferenceTypePoliceResult = ["","","",""];
+        
+        if(isset($_SESSION["IdUtilisateur"]))
+        {
+            for ($i=0 ; $i<count($aSelectPreferenceTypePoliceCheck) ; $i++)
+            {
+
+                if( $aSelectPreferenceTypePoliceCheck[$i] == $_SESSION["sTypePolice"])
+                {
+                    $aSelectPreferenceTypePoliceResult[$i] = "selected='selected'";
+                }
+
+            }
+        }
+        
+         return $aSelectPreferenceTypePoliceResult;
+        
+    }
+    
+    public static function selectedOptionTaillePolice()
+    {
+    
+        $aSelectPreferenceTaillePoliceCheck = ["12","14","16","18","20","22","24"];
+        $aSelectPreferenceTaillePoliceResult = ["","","selected='selected'","","","",""];
+        
+        if(isset($_SESSION["IdUtilisateur"]))
+        {
+            
+            for ($i=0 ; $i<count($aSelectPreferenceTaillePoliceCheck) ; $i++)
+            {
+                
+                if( $aSelectPreferenceTaillePoliceCheck[$i] == $_SESSION["sTaillePolice"])
+                {
+                    $aSelectPreferenceTaillePoliceResult[2]="";
+                    $aSelectPreferenceTaillePoliceResult[$i] = "selected='selected'";
+                }
+
+            }
+        }
+        
+        
+         return $aSelectPreferenceTaillePoliceResult;
+        
+    }
+    
+    
+    
+    public static function selectedOptionTextLumino()
+    {
+    
+        $aSelectPreferenceTextLuminoCheck = ["1","2","3","4","5"];
+        $aSelectPreferenceTextLuminoResult = ["","","","","selected='selected'"];
+        
+        if(isset($_SESSION["IdUtilisateur"]))
+        {
+            
+            for ($i=0 ; $i<count($aSelectPreferenceTextLuminoCheck) ; $i++)
+            {
+                
+                if( $aSelectPreferenceTextLuminoCheck[$i] == $_SESSION["sCouleurPolice"])
+                {
+                    $aSelectPreferenceTextLuminoResult[5]="";
+                    $aSelectPreferenceTextLuminoResult[$i] = "selected='selected'";
+                }
+
+            }
+        }
+        
+        
+         return $aSelectPreferenceTextLuminoResult;
+        
+    }
     
     
     

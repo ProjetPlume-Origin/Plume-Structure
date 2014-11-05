@@ -1,7 +1,7 @@
 <?php
     class Controleur{
 
-    /**
+      /**
      * redirige selon le choix de l'internaute
      */
     public static function gererSite(){
@@ -10,16 +10,15 @@
         //1èr cas : aucune option du menu n'a été sélectionné
         if(isset($_GET['s']) == false){
           $_GET['s']=1;
-        }        
+        }
+        
               
         switch($_GET['s']){
 
           case 1: default:// Case module de Julian
-
             if(isset($_GET['display']) == false){
 
-              $_GET['display']="defaut";
-
+                 $_GET['display']="defaut";
             } 
 
             $oGenre= new Genre();
@@ -32,23 +31,23 @@
             self::gererRechercheAvancee();
             break;
 
-          case 3: 
-              self::gererConnexionUtilisateur();
-              break; 
+                    case 3: 
+                        self::gererConnexionUtilisateur();
+                        break; 
 
-          case 4: 
-              self::gererInscriptionUtilisateur();
-              break;  
+                    case 4: 
+                        self::gererInscriptionUtilisateur();
+                        break;  
 
-          case 5: 
+                    case 5: 
             self::gererDeconnectionUtilisateur();
             break;
                     
-          case 6: /////controleur christhian
+                  case 6: /////controleur christhian
             Controleur::exampleOuvrage();
             break;
 
-          case 7: /////controleur christhian                           /*******du  contrelerue**/
+                  case 7: /////controleur christhian                           /*******du  contrelerue <---HAHAHAHAHAH **/
             self::exampleComment(); 
             break;
           
@@ -60,29 +59,24 @@
             self::switchCommentaire();
             break;
                     
-          case 10: 
+            case 10: 
             //fonction qui redirige sur un affichage propre a un oeuvre
-            Controleur::gererAfficherOuvrage();
-            break;
+                Controleur::gererAfficherOuvrage();
+                break;
 
-          case 'monCompte': 
-            Controleur::gererOuvrage();
-            break;
-
-          case 'contact': // Vue fait par Julian
-            VueContact::afficherFormContact();
-            break;
+                    case 'monCompte': 
+                    Controleur::gererOuvrage();
+                    break;
             
-          case 20: 
-            self::gererOublierMotDePasseUtilisateur();
-            break; 
+            case 20: 
+                self::gererOublierMotDePasseUtilisateur();
+                break; 
                     
-          case 21: 
-            self::gererRedefinirMotDePasseUtilisateur();
-            break;
-
+            case 21: 
+                self::gererRedefinirMotDePasseUtilisateur();
+                break;
+            
         }
-
       }catch(Exception $e){
         echo "<p>".$e->getMessage()."</p>";
       } 
@@ -269,6 +263,7 @@
                              $oUtilisateur-> setConfirmation($_POST['txtPassConfirm']);
                                 if($oUtilisateur->verificationMotPass()){
                                     $oUtilisateur->ajouterUtilisateur();
+                                    
                                     $sMsg = "L'ajout de l'utilisateur' - ".$oUtilisateur->getNom()." - s'est déroulé avec succès.";
                                     header('Location:../site/index.php?s=3');
                                    // ViewInscription::afficherConnexionUtilisateur($sMsg);
@@ -322,9 +317,21 @@
                                         $_SESSION["IdUtilisateur"] = $aUtilisateur[0]['idUtilisateur'];
                                         $_SESSION["sNomUtilisateur"] = $aUtilisateur[0]['sNomUtilisateur'];
 										$_SESSION["sTypeUtilisateur"] = $aUtilisateur[0]['sTypeUtilisateur'];
-                                       // echo $_SESSION["IdUtilisateur"]; 
+                                       // echo $_SESSION["IdUtilisateur"];
+                                        
+                                        
+                                        //chargement des preferences
+                                        $_SESSION["sTypePolice"] = Preference::chargerPreference($aUtilisateur[0]['idUtilisateur'])['sTypePolice'];
+                                        $_SESSION["sTaillePolice"] = Preference::chargerPreference($aUtilisateur[0]['idUtilisateur'])['sTaillePolice'];
+                                        $_SESSION["sCouleurPolice"] = Preference::chargerPreference($aUtilisateur[0]['idUtilisateur'])['sCouleurPolice'];
+                                        $_SESSION["sCouleurFond"] = Preference::chargerPreference($aUtilisateur[0]['idUtilisateur'])['sCouleurFond'];
+                                        
+                                        
+                                        //fin chargement des préférences
+                                        
 									    if($_SESSION["sTypeUtilisateur"] =='Membre'){
 											 header('Location:../site/index.php');
+
 										}else{
 											header('Location:../core/index.php');
 										
@@ -748,7 +755,12 @@
 
                     //afficher le formulaire
               VueOuvrage::afficherOuvrage($oOuvrage);
-                //2e cas : le bouton submit Modifier a été cliqué
+                
+            if(isset($_GET["boutton"]))
+            {
+                
+            }
+                
 
             }
           }catch(Exception $e){
