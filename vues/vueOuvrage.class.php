@@ -310,12 +310,26 @@ class VueOuvrage{
         
         <br>
         
-        <div>
+<h2>Example Comment</h2>
+<form method='post' action='index.php?s=7'>
+
+	<div>
 		<label for='sContenuCommentaire'>Ajouter Commentaire</label>
 		<textarea name='sContenuCommentaire'></textarea>
 	</div>
 
-        
+
+
+	<!--Estas dos vars deben ser tomadas del parrafo
+		y de la session respectivamente-->
+
+
+    <input name='idUtilisateur' value='5' type='text'>
+
+    <input name='idParagraphe' value=''  type='text'>
+
+    <input type= 'submit'     id=  value='Salvar'>
+</form>
         ";
       }
     }

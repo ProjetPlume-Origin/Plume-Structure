@@ -25,12 +25,7 @@ class Commentaire {
      *
 	 */
 	 
-	 /*
-	public function __construct($idUtilisateur=0, $sNom=" ", $sCourriel="hh@hotmail.com", $sMotDePasse="aa",$sConfirmation="aa",$sTypeUtilisateur="Membre",$sAvatar=" ",$sStatus="Inactive"){
-		       	
-		
-	} //fin du constructeur
-	*/
+
 
 	
  	/* ---------- methodes ------------*/
@@ -65,10 +60,15 @@ class Commentaire {
 	 *
 	 */
 	public static function ajouterCommentaire($comment)
-	{	 
+	{	
+		  echo "La clave recuperada de la variable de sesión:".$_SESSION['idUtilisateur'];
+		
+		
+	
+		
 		$sContenuCommentaire = $_POST['sContenuCommentaire'];
 		$idParagraphe        = $_POST['idParagraphe'];
-		$idUtilisateur       = $_POST['idUtilisateur'];
+	 //  $idUtilisateur       = $_POST['idUtilisateur']; 
 		
 		$oConnexion = new MySqliLib();
 		//Requete d'ajout de l'utilisateur

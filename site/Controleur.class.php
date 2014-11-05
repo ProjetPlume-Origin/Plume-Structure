@@ -402,9 +402,16 @@
 		*
 		****/
 		public  static function exampleComment()
+		
 		{
+			
+  /*echo"faire la session como id utilisatur".$_SESSION['idContenu'] ; */
+			
+			
+			
 			if (!empty ($_POST)){
 					
+				
 				$resultat = Commentaire::ajouterCommentaire($_POST);
 				                    
                 if ($resultat !== false) {
