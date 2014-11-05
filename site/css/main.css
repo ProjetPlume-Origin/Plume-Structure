@@ -47,8 +47,8 @@ p {
 }
 
 .navLogoPlume {
-	margin-top: 10px;
-	margin-bottom: 10px;
+	/*margin-top: 10px;*/
+	margin-bottom: 3px;
 }
 
 .navbar-inverse .navbar-brand {
@@ -185,10 +185,13 @@ p {
 
 /* hanaa*/
 .moduleUtilisateur legend{
-
 color: #2a6496;
-
 }
+
+.moduleUtilisateur p {
+   margin-top:20px;   
+}
+
 .moduleUtilisateur fieldset {
 margin-top:50px;
 margin-bottom:85px;
@@ -209,7 +212,10 @@ margin-left:14px;
 margin-top: 15px;
     
 }
-
+.erreur{
+    
+    color: red;
+}
 /*fin hanaa*/
 
 
@@ -420,7 +426,7 @@ ul.social li {
 }
 
 .produit {
-    /*width: 30.333333%;*/
+    width: 30.333333%;
 	min-height: 370px;
     background-color: #ffffff;
     /*float: left;*/
@@ -475,7 +481,7 @@ ul.social li {
 
 .produitRechAvancee {
 	/*width: 30.333333%;*/
-	min-height: 305px;
+	min-height: 370px;
     background-color: #ffffff;
     /*float: left;*/
     border: 1px solid #d0d0d0;
@@ -499,6 +505,11 @@ ul.social li {
 	.produitRechAvancee {
 		width: 100%;
 	}
+}
+
+.facebook img {
+	margin-top: -8px;
+	margin-left: -8px;
 }
 
 

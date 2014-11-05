@@ -33,6 +33,7 @@
         </style>
 		<link rel="stylesheet" href="<?php echo SITE.DS; ?>css/bootstrap-theme.min.css">
 		<link rel="stylesheet" href="<?php echo SITE.DS; ?>css/main.css">
+<!--		<link rel="stylesheet" href="<?php echo SITE.DS; ?>css/tab_right.css">-->
 		<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Esteban' rel='stylesheet' type='text/css'>
         
