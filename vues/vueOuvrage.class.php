@@ -17,6 +17,7 @@ class VueOuvrage{
       <p>".$sMsg."</p>";
       if(count($aOuvrages) <= 0){
         echo "<p>Aucun ouvrage n'est disponible. Veuillez en ajouter un.</p>";
+        
         return;
       }
 
@@ -53,6 +54,8 @@ class VueOuvrage{
         </div>
     </div>
 </div>     
+        
+        
             </td>
             </tr>
             </table>
@@ -180,9 +183,10 @@ class VueOuvrage{
                   <p class="produit-auteur">Par: '.$aNom[0]['sNomUtilisateur'].'</p>
                   <img src="img/imgAccueil/view-icon.png" width="20px"><span class="produit-vues"> 25</span>
                   <img src="img/imgAccueil/comment-icon.png" width="13px"><span class="produit-commentaires"> 12</span>
+                  
                 </div>
               </a>
-          
+           
           ';
       }
 
@@ -269,7 +273,8 @@ class VueOuvrage{
                     <img src="img/imgAccueil/view-icon.png" width="20px"><span class="produit-vues"> 25</span>
                     <img src="img/imgAccueil/comment-icon.png" width="13px"><span class="produit-commentaires"> 12</span>
                   </div>
-                </a>            
+                </a>
+                            
             ';
           }            
             // foreach($aResult as $value)
@@ -296,15 +301,28 @@ class VueOuvrage{
     echo "
     <h1>Affichage d'un ouvrage</h1>
     <p>".$sMsg."</p>";
-    echo "<article class='visualiserOuvrage col-xs-12 col-md-9 col-lg-9' id='lecture'>";
+    echo "<article class='visualiserOuvrage col-xs-12 col-md-9 col-lg-9' id='lecture'>   ";
     echo "<span class= 'titre'>".$oOuvrage->getOuvrageTitre()."</span><br>";
     echo "Genre : ".$oOuvrage->getOuvrageGenre()."<br><br><br>";
     if (isset($_SESSION['tContenu'])){
       foreach ($_SESSION['tContenu'] as $valeur ) {
-        echo "<p>".$valeur."</p><br>";
+        echo "<p>".$valeur."</p>
+        
+        <br>
+        
+        <div>
+		<label for='sContenuCommentaire'>Ajouter Commentaire</label>
+		<textarea name='sContenuCommentaire'></textarea>
+	</div>
+
+        
+        ";
       }
     }
-    echo "</article>";
+    echo "</article>
+    
+    
+    ";
     $_SESSION['tContenu'] = '';
          
         echo '            <div class="hidden-xs col-md-3 col-sm-3 col-lg-3">
@@ -372,6 +390,7 @@ class VueOuvrage{
              </br>
              </br>
         <input type="checkbox">Commentaires compactes.
+             
              </br>
              </br>
         <input type="checkbox">Ne pas m\'offrir d\'écrire de commentaires.
@@ -381,8 +400,16 @@ class VueOuvrage{
         </div>
         </div>
       </div>
+      
 
-        </div>  <!-- FIN COLONNE DROITE -->';
+        </div>  <!-- FIN COLONNE DROITE -->'
+        
+        
+        
+        
+        
+        
+        ;
     }
 
 
