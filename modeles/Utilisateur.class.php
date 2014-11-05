@@ -235,7 +235,7 @@ class Utilisateur {
 		$oConnexion = new MySqliLib();
 		//Réaliser la requête de recherche par le idEtudiant
 		$sRequete= "SELECT * FROM utilisateur WHERE idUtilisateur=".$this->getIdUtilisateur();
-		echo $sRequete;
+		//echo $sRequete;
 		//Exécuter la requête
 		$oResult = $oConnexion->executer($sRequete);
 		if($oResult != false){
@@ -272,7 +272,7 @@ class Utilisateur {
 		$sRequete = "
 			DELETE FROM utilisateur
 			WHERE idUtilisateur = ".$this->getIdUtilisateur().";";
-		echo $sRequete;
+		//echo $sRequete;
 		//Exécuter la requête
 		return $oConnexion->executer($sRequete);
 	}
@@ -512,7 +512,7 @@ class Utilisateur {
 			SET sMotPassUtilisateur = '".$oConnexion->getConnect()->escape_string(md5($this->sMotDePasse))."'
             WHERE idUtilisateur = ".$this->idUtilisateur."
 		";
-       echo $sRequete;
+       //echo $sRequete;
 		//Exécuter la requête
 		return $oConnexion->executer($sRequete);
 	}
