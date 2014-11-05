@@ -47,7 +47,7 @@
             Controleur::exampleOuvrage();
             break;
 
-                  case 7: /////controleur christhian                           /*******du  contrelerue**/
+                  case 7: /////controleur christhian                           /*******du  contrelerue <---HAHAHAHAHAH **/
             self::exampleComment(); 
             break;
           
@@ -317,9 +317,21 @@
                                         $_SESSION["IdUtilisateur"] = $aUtilisateur[0]['idUtilisateur'];
                                         $_SESSION["sNomUtilisateur"] = $aUtilisateur[0]['sNomUtilisateur'];
 										$_SESSION["sTypeUtilisateur"] = $aUtilisateur[0]['sTypeUtilisateur'];
-                                       // echo $_SESSION["IdUtilisateur"]; 
+                                       // echo $_SESSION["IdUtilisateur"];
+                                        
+                                        
+                                        //chargement des preferences
+                                        $_SESSION["sTypePolice"] = Preference::chargerPreference($aUtilisateur[0]['idUtilisateur'])['sTypePolice'];
+                                        $_SESSION["sTaillePolice"] = Preference::chargerPreference($aUtilisateur[0]['idUtilisateur'])['sTaillePolice'];
+                                        $_SESSION["sCouleurPolice"] = Preference::chargerPreference($aUtilisateur[0]['idUtilisateur'])['sCouleurPolice'];
+                                        $_SESSION["sCouleurFond"] = Preference::chargerPreference($aUtilisateur[0]['idUtilisateur'])['sCouleurFond'];
+                                        
+                                        
+                                        //fin chargement des préférences
+                                        
 									    if($_SESSION["sTypeUtilisateur"] =='Membre'){
 											 header('Location:../site/index.php');
+
 										}else{
 											header('Location:../core/index.php');
 										
@@ -743,7 +755,12 @@
 
                     //afficher le formulaire
               VueOuvrage::afficherOuvrage($oOuvrage);
-                //2e cas : le bouton submit Modifier a été cliqué
+                
+            if(isset($_GET["boutton"]))
+            {
+                
+            }
+                
 
             }
           }catch(Exception $e){
