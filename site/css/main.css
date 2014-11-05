@@ -47,8 +47,8 @@ p {
 }
 
 .navLogoPlume {
-	margin-top: 10px;
-	margin-bottom: 10px;
+	/*margin-top: 10px;*/
+	margin-bottom: 3px;
 }
 
 .navbar-inverse .navbar-brand {
