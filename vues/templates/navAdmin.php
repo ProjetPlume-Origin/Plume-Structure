@@ -14,8 +14,7 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-left navPrincipal">
-              <li><a href="index.php?s=1">Accueil</a></li>
-         
+              <li><a href="index.php?s=1">Accueil</a></li>         
               <li><a href="index.php?s=2">Utilisateur</a></li>
               <li><a href="index.php?s=8">Commentaires</a></li>
           </ul>
