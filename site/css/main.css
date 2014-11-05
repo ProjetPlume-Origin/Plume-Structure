@@ -48,7 +48,7 @@ p {
 
 .navLogoPlume {
 	/*margin-top: 10px;*/
-	margin-bottom: 3px;
+	/*margin-bottom: 3px;*/
 }
 
 .navbar-inverse .navbar-brand {
@@ -72,7 +72,7 @@ p {
 }
 
 .navbar-header img {
-	width: 225px;
+	width: 200px;
 	height: auto;
 }
 
@@ -104,6 +104,18 @@ p {
 	color: #738BFF;	
 }
 
+.liensNavPrincipal {
+	margin-bottom: -20px;
+}
+
+.navPrincipal {
+	margin-top: -20px; 
+}
+
+.navPrincipalDroite {
+	margin-top: -20px;
+}
+
 .navPrincipal a {
 	padding-bottom: 4px;
 }
@@ -125,10 +137,15 @@ p {
 	color: #AAA;
 }
 
+.boutonBurger {
+	margin-top: 20px;
+}
+
 @media (max-width: 767px) {
 	.navbar-header img {
-		width: 150px;
+		width: 125px;
 		height: auto;
+		padding-bottom: 5px;
 	}
 	.navbar-nav {
 		margin: 7.5px 30px;
@@ -223,14 +240,15 @@ margin-top: 15px;
 
 /******************************** CODE FAIT PAR JULIAN ****************************/
 .conteneur {
-	margin-top: 140px;
+	margin-top: 97px;
+	/*margin-top: 140px;*/
 	/*background-color: rgba(0,0,0,0.3);*/
 	padding: 20px;
 	box-shadow: 1px 0px 3px 0px black;
 }
 
 .btn-Categories {
-	margin-top: 10px;
+	/*margin-top: 10px;*/
 }
 
 .rechercheAvance {
@@ -263,7 +281,7 @@ div > h4 {
 @media (max-width: 767px) {
 
 	.conteneur {
-	margin-top: 30px;
+	margin-top: 19px;
 	}
 	div > h2 {
 		font-size: 13px;
