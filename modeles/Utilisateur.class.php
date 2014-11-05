@@ -356,16 +356,31 @@ class Utilisateur {
             ."  sTypeUtilisateur= '".$oConnexion->getConnect()->escape_string($this->sTypeUtilisateur)."',"
             ."  sStatut= 'active'
           ";
+        
+            
+
+       
+        
 		//Exécuter la requête
         // echo $sRequete;
 		if($oConnexion->executer($sRequete) == true){
-			return $oConnexion->getConnect()->insert_id;
+            $dernierIdUtilisateur = $oConnexion->getConnect()->insert_id;
+            $sRequeteReglage = 'INSERT INTO reglage (idUtilisateur) VALUES ('.$dernierIdUtilisateur.')';
+            
+            var_dump($sRequeteReglage);
+            $oConnexion->executer($sRequeteReglage);
+            
+            
+            
+			return $dernierIdUtilisateur;
+            
+            
 		}
 		return false;
 	}
     
     
-    
+
 /*****------------------------------------------------------------------------------------------------------------------*****/       
     
     

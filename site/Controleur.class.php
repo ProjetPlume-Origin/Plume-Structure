@@ -263,6 +263,7 @@
                              $oUtilisateur-> setConfirmation($_POST['txtPassConfirm']);
                                 if($oUtilisateur->verificationMotPass()){
                                     $oUtilisateur->ajouterUtilisateur();
+                                    
                                     $sMsg = "L'ajout de l'utilisateur' - ".$oUtilisateur->getNom()." - s'est déroulé avec succès.";
                                     header('Location:../site/index.php?s=3');
                                    // ViewInscription::afficherConnexionUtilisateur($sMsg);

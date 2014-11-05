@@ -4,7 +4,6 @@
 class Preference {
 	
 	
-	/* Propriétés privées */
 	public $idUtilisateur;
 	public $sFontFamily;
 	public $sFontColor;

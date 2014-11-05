@@ -21,6 +21,7 @@ ob_start();
 	require_once("../modeles/Genre.class.php");
 	require_once("../modeles/Utilisateur.class.php");
 	require_once("../modeles/Ouvrages.class.php");	
+	require_once("../modeles/Preference.class.php");	
 	
 	/**
 	* Inclure le contrôleur
