@@ -3,7 +3,7 @@
 				<div class="col-md-12">              
 					<ul class="icons social">
 						<li><a href="#"><span class="fa fa-twitter"></span></a></li>
-						<li><a href="#"><span class="fa fa-facebook"></span></a></li>
+						<li><a href="<?php echo RACINE.DS; ?>vues/mediasSociaux/facebook.html"><span class="fa fa-facebook"></span></a></li>
 						<li><a href=index.php?s=contact><span class="fa fa-envelope-o"></span></a></li>
 					</ul>
 					<p class="copy">&copy; Plume 2014</p>

@@ -69,7 +69,7 @@
             Controleur::gererOuvrage();
             break;
 
-          case 'contact': 
+          case 'contact': // Vue fait par Julian
             VueContact::afficherFormContact();
             break;
             

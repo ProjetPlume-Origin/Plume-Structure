@@ -22,7 +22,7 @@
               </div>
 
               <div class=\"form-group\">
-                <textarea rows=\"20\" cols=\"40\" class=\"form-control\" placeholder=\"message\"></textarea>
+                <textarea rows=\"8\" cols=\"20\" class=\"form-control\" placeholder=\"message\"></textarea>
               </div>
               
               <button type=\"button\" name=\"cmd\" value=\"envoyer\" id=\"envoyer\">Envoyer</button>

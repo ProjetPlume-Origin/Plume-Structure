@@ -16,8 +16,7 @@
 
           <ul class="nav navbar-nav navbar-left navPrincipal">
               <li><a href="<?php echo TEST.DS; ?>index.php?s=1">Accueil</a></li>
-              <li><a href="index.php?s=monCompte">Mes oeuvres</a></li>
-              <li><a href="#">Mon compte</a></li>
+              <li><a href="index.php?s=monCompte">Mes oeuvres</a></li>              
               <li><a href="#">Contact</a></li>
           </ul>
 
