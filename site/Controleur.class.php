@@ -10,8 +10,7 @@
         //1èr cas : aucune option du menu n'a été sélectionné
         if(isset($_GET['s']) == false){
           $_GET['s']=1;
-        }
-        
+        }        
               
         switch($_GET['s']){
 
@@ -31,23 +30,23 @@
             self::gererRechercheAvancee();
             break;
 
-                    case 3: 
-                        self::gererConnexionUtilisateur();
-                        break; 
+          case 3: 
+              self::gererConnexionUtilisateur();
+              break; 
 
-                    case 4: 
-                        self::gererInscriptionUtilisateur();
-                        break;  
+          case 4: 
+              self::gererInscriptionUtilisateur();
+              break;  
 
-                    case 5: 
+          case 5: 
             self::gererDeconnectionUtilisateur();
             break;
                     
-                  case 6: /////controleur christhian
+          case 6: /////controleur christhian
             Controleur::exampleOuvrage();
             break;
 
-                  case 7: /////controleur christhian                           /*******du  contrelerue <---HAHAHAHAHAH **/
+          case 7: /////controleur christhian                           /*******du  contrelerue <---HAHAHAHAHAH **/
             self::exampleComment(); 
             break;
           
@@ -59,22 +58,26 @@
             self::switchCommentaire();
             break;
                     
-            case 10: 
-            //fonction qui redirige sur un affichage propre a un oeuvre
-                Controleur::gererAfficherOuvrage();
-                break;
+          case 10: 
+          //fonction qui redirige sur un affichage propre a un oeuvre
+            Controleur::gererAfficherOuvrage();
+            break;
 
-                    case 'monCompte': 
-                    Controleur::gererOuvrage();
-                    break;
+          case 'monCompte': 
+            Controleur::gererOuvrage();
+            break;
+
+          case 'contact': // Vue fait par Julian
+            VueContact::afficherFormContact();
+            break;
             
-            case 20: 
-                self::gererOublierMotDePasseUtilisateur();
-                break; 
+          case 20: 
+              self::gererOublierMotDePasseUtilisateur();
+              break; 
                     
-            case 21: 
-                self::gererRedefinirMotDePasseUtilisateur();
-                break;
+          case 21: 
+              self::gererRedefinirMotDePasseUtilisateur();
+              break;
             
         }
       }catch(Exception $e){
