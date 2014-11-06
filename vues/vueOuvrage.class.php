@@ -297,15 +297,11 @@ class VueOuvrage{
      */public static function afficherOuvrage(Ouvrage $oOuvrage, $sMsg="&nbsp;"){
     //echo $oOuvrage->getIdOuvrage();
     echo "
-<<<<<<< HEAD
-    <h1>Affichage d'un ouvrage</h1>
-    <p>".$sMsg."</p>";
-    echo "<article class='visualiserOuvrage col-xs-12 col-md-9 col-lg-9' id='lecture'>   ";
-=======
+
     <p>".$sMsg."</p>
     <h1>Visualisation d'un ouvrage</h1>";
     echo "<article class='visualiserOuvrage col-xs-12 col-md-9 col-lg-9' id='lecture'>";
->>>>>>> upstream/master
+
     echo "<span class= 'titre'>".$oOuvrage->getOuvrageTitre()."</span><br>";
     echo "Genre : ".$oOuvrage->getOuvrageGenre()."<br><br><br>";
    
@@ -313,7 +309,7 @@ class VueOuvrage{
       
       if (isset($_SESSION['tContenu'])){
       foreach ($_SESSION['tContenu'] as $valeur ) {
-<<<<<<< HEAD
+
         
       
            echo "
@@ -340,11 +336,7 @@ class VueOuvrage{
              echo "<p>" . $comment['sNomUtilisateur'] . ": " . $comment['sContenuCommentaire'] . "</p>";
          }
          
-        
-=======
-        echo  "<p>".$valeur."</p>";
-        //commentaires 
->>>>>>> upstream/master
+
       }
     }
     echo "</article>
