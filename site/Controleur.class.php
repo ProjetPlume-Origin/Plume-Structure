@@ -149,30 +149,30 @@
                           ORDER BY `sTitreOuvrage` ASC                
                         ";
                        // die ($sRequete);
-
+                      
               $oRes = $oConnexion->executer($sRequete);
               $aResultat= $oConnexion->recupererTableau($oRes);
-              // var_dump($aResultat);  
-               
               $aOuvrages = array();
-
-              //Pour tous les enregistrements
-              for($i=0; $i<count($aResultat); $i++){
-                //affecter un objet à un élément du tableau
-                $aOuvrages[$i] = new Ouvrage($aResultat[$i]['idOuvrage'], 
-                                $aResultat[$i]['sTitreOuvrage'], 
-                                $aResultat[$i]['sDateOuvrage'], 
-                                $aResultat[$i]['sCouvertureOuvrage'], 
-                                $aResultat[$i]['sGenre'], 
-                                " ",
-                                $aResultat[$i]['idUtilisateur']);
-                // print_r($aOuvrages[$i]);
-                // print_r("<br>");                                
+              if(!empty($aResultat)) {
+                if($aResultat[0]['idOuvrage']) {
+                  //Pour tous les enregistrements
+                  for($i=0; $i<count($aResultat); $i++){
+                    //affecter un objet à un élément du tableau
+                    $aOuvrages[$i] = new Ouvrage($aResultat[$i]['idOuvrage'], 
+                                    $aResultat[$i]['sTitreOuvrage'], 
+                                    $aResultat[$i]['sDateOuvrage'], 
+                                    $aResultat[$i]['sCouvertureOuvrage'], 
+                                    $aResultat[$i]['sGenre'], 
+                                    " ",
+                                    $aResultat[$i]['idUtilisateur']);
+                    // print_r($aOuvrages[$i]);
+                    // print_r("<br>");                                
+                  }
+                //retourner le tableau d'objets
+                // return $aOuvrages;
+                // var_dump($aResultat);
+                }
               }
-              //retourner le tableau d'objets
-              // return $aOuvrages;
-              // var_dump($aResultat);
-              
               VueOuvrage::afficherFormRechercheAvancee();
               // if(count($aOuvrages)>0) {
               VueOuvrage::afficherResultatsRechercheAvancee($aOuvrages);
