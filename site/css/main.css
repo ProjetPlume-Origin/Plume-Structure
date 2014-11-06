@@ -235,8 +235,14 @@ margin-top: 15px;
 }
 /*fin hanaa*/
 
+.buttonDesactiver { 
+    color: #DAD1D1;
 
-
+}
+.colorCore{
+   background-color: #E6E6E1;
+    
+}
 
 /******************************** CODE FAIT PAR JULIAN ****************************/
 .conteneur {

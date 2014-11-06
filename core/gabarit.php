@@ -2,13 +2,13 @@
 	include_once "../vues/templates/header.php";
 	include_once "../vues/templates/navAdmin.php"; 
 ?>
-		<article class="container conteneur">		
-			<div class="row">
+		<div class="container conteneur colorCore">		
+			
 
 				<?php
 					Controleur::gererSite();
 				?>
-			</div>
+
 		<script src="../js/vendor/jquery-2.1.1.min.js"></script>
 		<script src="../js/scripts.js"></script>
        <script src="../js/principale.js"></script>  

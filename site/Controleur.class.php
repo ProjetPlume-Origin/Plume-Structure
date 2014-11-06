@@ -31,12 +31,13 @@
             break;
 
           case 3: 
-              self::gererConnexionUtilisateur();
-              break; 
+
+            self::gererConnexionUtilisateur();
+            break; 
 
           case 4: 
-              self::gererInscriptionUtilisateur();
-              break;  
+            self::gererInscriptionUtilisateur();
+            break;  
 
           case 5: 
             self::gererDeconnectionUtilisateur();
@@ -46,7 +47,7 @@
             Controleur::exampleOuvrage();
             break;
 
-          case 7: /////controleur christhian                           /*******du  contrelerue <---HAHAHAHAHAH **/
+          case 7: /////controleur christhian                           /*******du  contrelerue**/
             self::exampleComment(); 
             break;
           
@@ -59,6 +60,7 @@
             break;
                     
           case 10: 
+<<<<<<< HEAD
           //fonction qui redirige sur un affichage propre a un oeuvre
             Controleur::gererAfficherOuvrage();
             break;
@@ -85,7 +87,6 @@
       } 
       
     }//fin de la fonction gererSite()
-
 
 /***************************************** PARTIE CONTROLEUR DE JULIAN ****************************************/ 
         
@@ -238,6 +239,7 @@
         
 /******************************************************************************************************************/
 /***************************************** debut PARTIE CONTROLEUR DE Hanaa ****************************************/    
+    	
       /**
      * afficher le formulaire d'ajout et sur submit ajouter du Produit dans la base de données
      */
@@ -246,6 +248,7 @@
       try{
         //1èr cas : aucun submit n'a été cliqué
         //if(isset($_POST['cmd']) == false) {
+
                 if((isset($_POST['cmd']) == false) &&(isset($_GET['valid'])!= 'valid')){    
           //afficher le formulaire
                   if(isset($_GET['s'])){
@@ -351,10 +354,12 @@
                              }
 
                      }
-      }catch(Exception $sMsg){
-        ViewInscription::afficherConnexionUtilisateur($sMsg);
-      }
-    }//fin de la fonction gererAjouterUtilisateur()
+
+			}catch(Exception $sMsg){
+				ViewInscription::afficherConnexionUtilisateur($sMsg);
+			}
+		}//fin de la fonction gererConnexionUtilisateur()
+
 
 
     
@@ -403,10 +408,9 @@
         public static function gererRedefinirMotDePasseUtilisateur() {
 
             try {
-                  echo 'JE SUIS LA 1';
+                  
                //if(isset($_POST['cmd'])){
-                
-                     echo 'JE SUIS LA 2';
+                                    
                     $oUtilisateur = new Utilisateur();
                     $oUtilisateur-> setIdUtilisateur($_POST['idUtilisateur']);// recuperation du hidden
                     $oUtilisateur-> setMotDePasse($_POST['txtPass']);

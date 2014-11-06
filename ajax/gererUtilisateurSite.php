@@ -14,7 +14,7 @@
 	 /**
 	 * Inclure le contrôleur
 	 */
-	 require_once("../core/Controleur.class.php");
+	 require_once("../site/Controleur.class.php");
     
    // $bDelete = Controleur::gererSupprimerUtilisateurAdmin();
 	//header("Location:../core/index.php?s=".$_GET['s']."&bSup=".$bDelete);
