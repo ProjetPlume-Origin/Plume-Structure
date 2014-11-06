@@ -22,7 +22,7 @@
           <ul class="nav navbar-nav navbar-right navPrincipalDroite">
                 <!-- <li><a href="#">Se connecter</a></li>
                 <li><a href="#">Créer un compte</a></li> --> 
-                    <li><a><?php echo $_SESSION['sNomUtilisateur']?></a></li>
+                    <li><a class="user"><img src="<?php echo RACINE.DS; ?>site/img/Avatars/avatar.png" width="20" height="auto" alt="Utilisateur"><?php echo $_SESSION['sNomUtilisateur']?></a></li>
 				      <li><a href="index.php?s=5"><button class="btn btn-blue btnNav">Deconnecter</button></a></li>			
           </ul>
 

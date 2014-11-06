@@ -104,7 +104,7 @@
                             <td>".$aUtilisateurs[$iEnrg]->getStatus()." </td>
                             <td>".$aUtilisateurs[$iEnrg]->getTypeUtilisateur()." </td>
                             <td><a href=\"index.php?s=".$_GET['s']
-                       		."&action=mod&idUtilisateur=".$aUtilisateurs[$iEnrg]->getIdUtilisateur()."\"><img src=\"../core/img/modifier.png\" width=\"15\" height=\"15\"></a> 
+                       		."&action=mod&idUtilisateur=".$aUtilisateurs[$iEnrg]->getIdUtilisateur()."\"><img src=\"../core/img/modifier.png\" width=\"15\" height=\"15\"></a>&nbsp; 
 
                        		<a href=\"#\" onclick=\"supprimerUnUtilisateur('Voulez-vous supprimer ce utilisateur', ".$_GET['s'].", 'sup',".$aUtilisateurs[$iEnrg]->getIdUtilisateur().")\">
                        		<img src=\"../core/img/supprimer.png\" width=\"15\" height=\"15\"></a> </td>
