@@ -769,8 +769,14 @@
                 $_SESSION["sTaillePolice"] = Preference::chargerPreference($_SESSION['IdUtilisateur'])['sTaillePolice'];
                 $_SESSION["sCouleurPolice"] = Preference::chargerPreference($_SESSION['IdUtilisateur'])['sCouleurPolice'];
                 $_SESSION["sCouleurFond"] = Preference::chargerPreference($_SESSION['IdUtilisateur'])['sCouleurFond'];
-                
-                header('Location:index.php?s=10&idOuvrage='.$_GET['idOuvrage'].'');
+                if(isset($_GET['action']))
+                {
+                    header('Location:index.php?s='.$_GET['s'].'&action='.$_GET['action'].'&idOuvrage='.$_GET['idOuvrage'].'');
+                }
+                else
+                {
+                    header('Location:index.php?s=10&idOuvrage='.$_GET['idOuvrage'].'');
+                }
             }
                 
 
