@@ -10,8 +10,7 @@
         //1èr cas : aucune option du menu n'a été sélectionné
         if(isset($_GET['s']) == false){
           $_GET['s']=1;
-        }
-        
+        }        
               
         switch($_GET['s']){
 
@@ -32,6 +31,7 @@
             break;
 
           case 3: 
+
             self::gererConnexionUtilisateur();
             break; 
 
@@ -60,21 +60,26 @@
             break;
                     
           case 10: 
-            //fonction qui redirige sur un affichage propre a un oeuvre
+<<<<<<< HEAD
+          //fonction qui redirige sur un affichage propre a un oeuvre
             Controleur::gererAfficherOuvrage();
             break;
 
           case 'monCompte': 
             Controleur::gererOuvrage();
             break;
+
+          case 'contact': // Vue fait par Julian
+            VueContact::afficherFormContact();
+            break;
             
           case 20: 
-                self::gererOublierMotDePasseUtilisateur();
-                break; 
+              self::gererOublierMotDePasseUtilisateur();
+              break; 
                     
           case 21: 
-                self::gererRedefinirMotDePasseUtilisateur();
-                break;
+              self::gererRedefinirMotDePasseUtilisateur();
+              break;
             
         }
       }catch(Exception $e){
@@ -234,34 +239,27 @@
         
 /******************************************************************************************************************/
 /***************************************** debut PARTIE CONTROLEUR DE Hanaa ****************************************/    
-    	/**
-		 * afficher le formulaire d'ajout et sur submit ajouter du Produit dans la base de données
-		 */
-        
-       
-        
-        
-       
-        
-        
-        
-        
-		public static function gererInscriptionUtilisateur(){
-			
-			try{
-				//1èr cas : aucun submit n'a été cliqué
-				//if(isset($_POST['cmd']) == false) {
+    	
+      /**
+     * afficher le formulaire d'ajout et sur submit ajouter du Produit dans la base de données
+     */
+    public static function gererInscriptionUtilisateur(){
+      
+      try{
+        //1èr cas : aucun submit n'a été cliqué
+        //if(isset($_POST['cmd']) == false) {
+
                 if((isset($_POST['cmd']) == false) &&(isset($_GET['valid'])!= 'valid')){    
-					//afficher le formulaire
+          //afficher le formulaire
                   if(isset($_GET['s'])){
                                 //
                    
-            					ViewInscription::afficherAjouterUtilisateur();
+                      ViewInscription::afficherAjouterUtilisateur();
            
                   }   
                  //2e cas : le bouton submit Modifier a été cliqué
-				}else{
-				    $oUtilisateur = new Utilisateur();
+        }else{
+            $oUtilisateur = new Utilisateur();
                     $oUtilisateur-> setNom($_POST['txtNom']);
                     if($oUtilisateur->verificationNom()){
                         
@@ -271,6 +269,7 @@
                              $oUtilisateur-> setConfirmation($_POST['txtPassConfirm']);
                                 if($oUtilisateur->verificationMotPass()){
                                     $oUtilisateur->ajouterUtilisateur();
+                                    
                                     $sMsg = "L'ajout de l'utilisateur' - ".$oUtilisateur->getNom()." - s'est déroulé avec succès.";
                                     header('Location:../site/index.php?s=3');
                                    // ViewInscription::afficherConnexionUtilisateur($sMsg);
@@ -290,24 +289,24 @@
                     }
                                                     
                     ViewInscription::afficherAjouterUtilisateur($sMsg);
-				}
-			}catch(Exception $e){
-				ViewInscription::afficherAjouterUtilisateur($e->getMessage());
-			}
-		}//fin de la fonction afficherAjouterUtilisateur()
-		
-	
+        }
+      }catch(Exception $e){
+        ViewInscription::afficherAjouterUtilisateur($e->getMessage());
+      }
+    }//fin de la fonction afficherAjouterUtilisateur()
+    
+  
 /*----------------------------------------------------------------------------------------------------------------------------*/        
         /**
-		 * afficher le formulaire de connexion et sur submit on se connecte a notre compte
-		 */
+     * afficher le formulaire de connexion et sur submit on se connecte a notre compte
+     */
      
        
            
         public static function gererConnexionUtilisateur(){
-			
-			try{
-				//1èr cas : aucun submit n'a été cliqué
+      
+      try{
+        //1èr cas : aucun submit n'a été cliqué
                    // if(isset($_POST['cmd']) == false){
                     if((isset($_POST['cmd']) == false) &&(isset($_GET['valid'])!= 'valid')){
                         //afficher le formulaire
@@ -323,14 +322,26 @@
                                          $sMsg = "La connexion  - ".$oUtilisateur->getNom()." - s'est déroulé avec succès.";
                                         $_SESSION["IdUtilisateur"] = $aUtilisateur[0]['idUtilisateur'];
                                         $_SESSION["sNomUtilisateur"] = $aUtilisateur[0]['sNomUtilisateur'];
-										$_SESSION["sTypeUtilisateur"] = $aUtilisateur[0]['sTypeUtilisateur'];
-                                       // echo $_SESSION["IdUtilisateur"]; 
-									    if($_SESSION["sTypeUtilisateur"] =='Membre'){
-											 header('Location:../site/index.php');
-										}else{
-											header('Location:../core/index.php');
-										
-										}
+                    $_SESSION["sTypeUtilisateur"] = $aUtilisateur[0]['sTypeUtilisateur'];
+                                       // echo $_SESSION["IdUtilisateur"];
+                                        
+                                        
+                                        //chargement des preferences
+                                        $_SESSION["sTypePolice"] = Preference::chargerPreference($aUtilisateur[0]['idUtilisateur'])['sTypePolice'];
+                                        $_SESSION["sTaillePolice"] = Preference::chargerPreference($aUtilisateur[0]['idUtilisateur'])['sTaillePolice'];
+                                        $_SESSION["sCouleurPolice"] = Preference::chargerPreference($aUtilisateur[0]['idUtilisateur'])['sCouleurPolice'];
+                                        $_SESSION["sCouleurFond"] = Preference::chargerPreference($aUtilisateur[0]['idUtilisateur'])['sCouleurFond'];
+                                        
+                                        
+                                        //fin chargement des préférences
+                                        
+                      if($_SESSION["sTypeUtilisateur"] =='Membre'){
+                       header('Location:../site/index.php');
+
+                    }else{
+                      header('Location:../core/index.php');
+                    
+                    }
                                      }else{
 
                                          $sMsg = 'Ce Courriel  ou  mot de passe n\'existent pas dans notre base de données .';
@@ -338,20 +349,22 @@
                                      }
                             }else{
                                     $sMsg = 'Ce Courriel n\'existe pas dans notre base de données .';
-									ViewInscription::afficherConnexionUtilisateur($sMsg);
+                  ViewInscription::afficherConnexionUtilisateur($sMsg);
 
                              }
 
                      }
+
 			}catch(Exception $sMsg){
 				ViewInscription::afficherConnexionUtilisateur($sMsg);
 			}
 		}//fin de la fonction gererConnexionUtilisateur()
 
 
-		
-		
-		 /*
+
+    
+    
+     /*
        *afficher le formulaire du mot de passe 
        */
         
@@ -448,70 +461,70 @@
 
        
         public static function exampleOuvrage(){
-        	echo "
-			<h1>Lorem Ipsum</h1>
-			
-			<div class='paragraph data-pid='1'>
-				<div class='textpar'>
-					Paragraph One
-				</div>
-				
-				<div class='comments'>
-					<div class='comment' data-uid=''></div>
-					<div class='comment comm-two'></div>
-					<div class='comment comm-thr'></div>
-				
-					<div class='add-comment'>
-						Add
-					</div>
-				</div>
-				
-				
-			
-			</div>
-			<p class='paragraph' data-pid='2'>
-				Paragraph Two
-			</p>
-			<p class='paragraph' data-pid='3'>
-				Paragraph Three
-			</p>
-        	";
+          echo "
+      <h1>Lorem Ipsum</h1>
+      
+      <div class='paragraph data-pid='1'>
+        <div class='textpar'>
+          Paragraph One
+        </div>
+        
+        <div class='comments'>
+          <div class='comment' data-uid=''></div>
+          <div class='comment comm-two'></div>
+          <div class='comment comm-thr'></div>
+        
+          <div class='add-comment'>
+            Add
+          </div>
+        </div>
+        
+        
+      
+      </div>
+      <p class='paragraph' data-pid='2'>
+        Paragraph Two
+      </p>
+      <p class='paragraph' data-pid='3'>
+        Paragraph Three
+      </p>
+          ";
         }  ///fin exampe ouvrage
-		
+    
      
      
-     	/*****
-		*functionexampleComment
-		*@Christhian Diaz
-		*
-		****/
-		public  static function exampleComment()
-		{
-			if (!empty ($_POST)){
-					
-				$resultat = Commentaire::ajouterCommentaire($_POST);
-				                    
+      /*****
+    *functionexampleComment
+    *@Christhian Diaz
+    *
+    ****/
+    public  static function exampleComment()
+    {
+      if (!empty ($_POST)){
+          
+        $resultat = Commentaire::ajouterCommentaire($_POST);
+                            
                 if ($resultat !== false) {
-					//echo "Saved as ID: $resultat";
+          //echo "Saved as ID: $resultat";
                     echo"Comment".$_POST['sContenuCommentaire']."saved.";
-				} else {
-					echo "Error Saving";
-					include("../vues/commentaires/add.php");
-				}
-								
-			} else {
-				include("../vues/commentaires/add.php");	
-			}
-		}/////////fin example comment christhian diaz 
+        } else {
+          echo "Error Saving";
+          include("../vues/commentaires/add.php");
+        }
+                
+      } else {
+        include("../vues/commentaires/add.php");  
+      }
+    }/////////fin example comment christhian diaz 
 
         //*******afiicher la liste de commentaries***/
-		public static function listeDesCommentaires()
-		{
-				
-			$data = Commentaire::index();
-			
-			include("../vues/commentaires/index.php");
-		}//fin affiche liste commentaries
+    public static function listeDesCommentaires()
+    {
+        
+      $data = Commentaire::index();
+      
+      include("../vues/commentaires/index.php");
+    }//fin affiche liste commentaries
 
 
         /***
@@ -519,12 +532,12 @@
          * Active et desative le commentaires
          *  Christhian Diaz
          */
-		public static function switchCommentaire()
-		{
-			Commentaire::setActive($_GET['cid'],$_GET['st']);
-			header('Location: index.php?s=6');
-		}/// fin function active et desative
-		
+    public static function switchCommentaire()
+    {
+      Commentaire::setActive($_GET['cid'],$_GET['st']);
+      header('Location: index.php?s=6');
+    }/// fin function active et desative
+    
      
 
 
@@ -546,11 +559,17 @@
           case "aff":
           Controleur::gererAfficherOuvrage();
           break;
+          case "affUn":
+          Controleur::gererAfficherUnOuvrage();
+          break;
           case "mod":
           Controleur::gererModifierOuvrage();
           break;
           case "sup":
           Controleur::gererSupprimerOuvrage();
+          break;
+          case "affSupp":
+          Controleur::gererAfficherConfirmerOuvrage();
           break;
           case "lst": default:
           Controleur::gererListeDesOuvrages();
@@ -572,10 +591,10 @@
               $sMsg ="La suppression s'est bien déroulée.";
             }
             if(isset($_GET['bMod']) == true){
-              $sMsg ="La modification de L'ouvrage s'est déroulée avec succès.";
+              $sMsg ="La modification de l'ouvrage s'est déroulée avec succès.";
             }
             if(isset($_GET['bAjo']) == true){
-              $sMsg ="L'ajout de l'ouvrage s'est déroulée avec succès.";
+              $sMsg ="L'ajout de l'ouvrage s'est déroulé avec succès.";
             }
 
                 //Rechercher la liste des Ouvrage
@@ -611,7 +630,7 @@
               $cDivision = explode("\r\n", $dContenu);
               $contenuDivision = array_values(array_filter ($cDivision));
 
-              var_dump($_POST);
+              //var_dump($_POST);
               //die('ici');
                //apres la mise dans un tableau on fait l'insertion 
                     //ajout le info de l'ouvrage dans la base de données ouvrage
@@ -676,7 +695,7 @@
               $oOuvrage = new Ouvrage($_GET['idOuvrage']);
 
               $oOuvrage->rechercherOuvrage();
-              $oOuvrage->rechercherContenu();
+              $oOuvrage->rechercherContenuParagraphe();
 
                     //afficher le formulaire
               VueOuvrage::afficherModifierOuvrage($oOuvrage);
@@ -689,12 +708,12 @@
               $cDivision = explode("\r\n", $dContenu);
               $tContenu = array_values(array_filter($cDivision));
 
-              $oOuvrage = new Ouvrage($_POST['idOuvrage'], $_POST['txtTitre'],' ', $_POST['txtGenre']);
+              $oOuvrage = new Ouvrage($_POST['idOuvrage'], $_POST['txtTitre'],' ', ' ', $_POST['txtGenre']);
                     //appel a la fonction pour ajout des paragraphes
               $oOuvrage->supprimerContenu();
                     //apres la mise dans un tableau on fait l'insertion 
               for ($i = 0; $i < count($tContenu); $i++) { 
-                $cOuvrage = new Ouvrage($_POST['idOuvrage'], $_POST['txtTitre'],' ', $_POST['txtGenre'], $tContenu[$i]);
+                $cOuvrage = new Ouvrage($_POST['idOuvrage'], $_POST['txtTitre'],' ', ' ', $_POST['txtGenre'], $tContenu[$i]);
 
                         //appel a la fonction pour ajout des paragraphes
                 $cOuvrage->modifierContenu();
@@ -709,7 +728,7 @@
           }catch(Exception $e){
             $oOuvrage = new Ouvrage($_GET['idOuvrage']);
             $oOuvrage->rechercherOuvrage();
-            $oOuvrage->rechercherContenu();
+            $oOuvrage->rechercherContenuPragraphe();
                 //afficher le formulaire
             VueOuvrage::afficherModifierOuvrage($oOuvrage, $e->getMessage());
           }
@@ -749,7 +768,24 @@
 
                     //afficher le formulaire
               VueOuvrage::afficherOuvrage($oOuvrage);
-                //2e cas : le bouton submit Modifier a été cliqué
+                
+            if(isset($_POST["submitPreference"])&& $_SESSION['IdUtilisateur'])
+            {
+                Preference::sauvegarderPreference($_SESSION['IdUtilisateur'], $_POST['typePolice'], $_POST['couleurPolice'], $_POST['taillePolice']);
+                $_SESSION["sTypePolice"] = Preference::chargerPreference($_SESSION['IdUtilisateur'])['sTypePolice'];
+                $_SESSION["sTaillePolice"] = Preference::chargerPreference($_SESSION['IdUtilisateur'])['sTaillePolice'];
+                $_SESSION["sCouleurPolice"] = Preference::chargerPreference($_SESSION['IdUtilisateur'])['sCouleurPolice'];
+                $_SESSION["sCouleurFond"] = Preference::chargerPreference($_SESSION['IdUtilisateur'])['sCouleurFond'];
+                if(isset($_GET['action']))
+                {
+                    header('Location:index.php?s='.$_GET['s'].'&action='.$_GET['action'].'&idOuvrage='.$_GET['idOuvrage'].'');
+                }
+                else
+                {
+                    header('Location:index.php?s=10&idOuvrage='.$_GET['idOuvrage'].'');
+                }
+            }
+                
 
             }
           }catch(Exception $e){
@@ -757,11 +793,59 @@
                 //afficher le formulaire
             VueOuvrage::afficherOuvrage($oOuvrage, $e->getMessage());
           }
-        }//fin de la fonction gererModifierOuvrage()
+        }//fin de la fonction gererAfficherOuvrage()
      
+     /**
+         * afficher conformation suppression l'Ouvrage dans la base de données 
+         */
+        public static function gererAfficherConfirmerOuvrage(){
+            
+            try{
+                //1èr cas : aucun submit n'a été cliqué
+                if(isset($_POST['cmd']) == false){
+                    $oOuvrage = new Ouvrage($_GET['idOuvrage']);
+
+                    $oOuvrage->rechercherOuvrage();
+                    $oOuvrage->rechercherContenuParagraphe();
+
+                    //afficher le formulaire
+                    VueOuvrage::confirmerSuppOuvrage($oOuvrage);
+                //2e cas : le bouton submit Modifier a été cliqué
+
+                }
+            }catch(Exception $e){
+               
+                //afficher le formulaire
+                VueOuvrage::confirmerSuppOuvrage($oOuvrage, $e->getMessage());
+            }
+        }//fin de la fonction conformation suppression()
     
         
-        
+         /**
+         * afficher le formulaire de modification et sur submit modifier l'Ouvrage dans la base de données 
+         */
+        public static function gererAfficherUnOuvrage(){
+
+          try{
+                //1èr cas : aucun submit n'a été cliqué
+            if(isset($_POST['cmd']) == false){
+              $oOuvrage = new Ouvrage($_GET['idOuvrage']);
+
+              $oOuvrage->rechercherOuvrage();
+              $oOuvrage->rechercherContenuParagraphe();
+
+                    //afficher le formulaire
+              VueOuvrage::afficherUnOuvrage($oOuvrage);
+                
+                          
+
+            }
+          }catch(Exception $e){
+
+                //afficher le formulaire
+            VueOuvrage::afficherUnOuvrage($oOuvrage, $e->getMessage());
+          }
+        }//fin de la fonction gererAfficherOuvrage()
 
      
      

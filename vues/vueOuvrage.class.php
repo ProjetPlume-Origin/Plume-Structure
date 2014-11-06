@@ -13,7 +13,7 @@ class VueOuvrage{
     public static function afficherListeOuvrages($aOuvrages, $sMsg="&nbsp;"){
      
       echo "
-      <h1>Liste des ouvrages &nbsp;&nbsp;<a href=\"index.php?s=".$_GET['s']."&action=add\"><button type=\"button\" class=\"btn btn-success\">Ajouter un ouvrage</button></a></h1>
+      <h1>Liste des ouvrages &nbsp;&nbsp;<a href=\"index.php?s=".$_GET['s']."&action=add\"><button type=\"button\" class=\"btn btn-primary\">Ajouter un ouvrage</button></a></h1>
       <p>".$sMsg."</p>";
       if(count($aOuvrages) <= 0){
         echo "<p>Aucun ouvrage n'est disponible. Veuillez en ajouter un.</p>";
@@ -28,40 +28,114 @@ class VueOuvrage{
           <tr>
           <td>
           <a href=\"index.php?s=".$_GET['s']
-            ."&action=aff&idOuvrage=".$aOuvrages[$i]->getIdOuvrage()."\"><img class=\"imageOuvrage\" src=". $aOuvrages[$i]->getOuvrageCouverture()."></a><a href=\"index.php?s=".$_GET['s']
-            ."&action=aff&idOuvrage=".$aOuvrages[$i]->getIdOuvrage()."\"><span class=\"titre\">".$aOuvrages[$i]->getOuvrageTitre() 
+            ."&action=affUn&idOuvrage=".$aOuvrages[$i]->getIdOuvrage()."\"><img class=\"imageOuvrage\" src=". $aOuvrages[$i]->getOuvrageCouverture()."></a><a href=\"index.php?s=".$_GET['s']
+            ."&action=affUn&idOuvrage=".$aOuvrages[$i]->getIdOuvrage()."\"><span class=\"titre\">".$aOuvrages[$i]->getOuvrageTitre() 
             ." </span><td></a><a href=\"index.php?s=".$_GET['s']
             ."&action=mod&idOuvrage=".$aOuvrages[$i]->getIdOuvrage()."\"><img src=\"img/modif.png\"></a></td> 
-            <td><a href=\"#myModal\" data-toggle='modal'><img src=\"img/supp.png\"></a>
-            <div id='myModal' class='modal fade'>
-        <div class='modal-dialog'>
-            <div class='modal-content'>
-                <div class='modal-header'>
-                    <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
-                    <h2 class='modal-title'>Confirmation de suppression</h2>
-                </div>
-                <div class='modal-body'>
-                    <p>Voulez vous vraiment supprimer cet ouvrage : <span class=\"titreSupp\">".$aOuvrages[$i]->getOuvrageTitre() 
-            ."</span>?</p>
-                </div>
-                <div class='modal-footer'>
-                    <a href=\"index.php?s=".$_GET['s']
-            ."&action=sup&idOuvrage=".$aOuvrages[$i]->getIdOuvrage()."\"><button type='button' class='btn btn-primary'>Supprimer</button></a>
-            <button type='button' class='btn btn-default' data-dismiss='modal'>Annuler</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>     
+            <td>
+            <a href=\"index.php?s=".$_GET['s']
+            ."&action=affSupp&idOuvrage=".$aOuvrages[$i]->getIdOuvrage()."\"><img src=\"img/supp.png\"></a><br>
+            
             </td>
             </tr>
             </table>
             ";
           }
-          echo "
-        </tr>
-        ";
+          
+          
       }  
+
+      /*
+     * Afficher le formulaire de modification d'un Ouvrage
+     * @param Ouvrage $oOuvrage 
+     */public static function afficherUnOuvrage(Ouvrage $oOuvrage, $sMsg="&nbsp;"){
+    //echo $oOuvrage->getIdOuvrage();
+    echo "
+    <p>".$sMsg."</p>
+    <h1>Visualisation d'un ouvrage</h1>";
+    echo "<article class='visualiserOuvrage col-xs-12 col-md-9 col-lg-9' id='lecture'>";
+    echo "<span class= 'titre'>".$oOuvrage->getOuvrageTitre()."</span><br>";
+    echo "Genre : ".$oOuvrage->getOuvrageGenre()."<br><br><br>";
+    if (isset($_SESSION['tContenu'])){
+      foreach ($_SESSION['tContenu'] as $valeur ) {
+        echo  "<p>".$valeur."</p>";
+        //commentaires 
+      }
+    }
+    echo "</article>";
+    $_SESSION['tContenu'] = '';
+     echo '            <div class="hidden-xs col-md-3 col-sm-3 col-lg-3">
+      <div class="tabbable tabs-right">
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#1" data-toggle="tab"><img src="../site/img/imgAccueil/font.jpg" width="25px"></a></li>
+          <li><a href="#2" data-toggle="tab"><img src="../site/img/imgAccueil/Gear_icon.png" width="22px"></a></li>
+          <li><a href="#3" data-toggle="tab"><img src="../site/img/imgAccueil/comment-icon.png" width="20px"></a></li>
+        </ul>
+        <div class="tab-content">
+         <div class="tab-pane active" id="1">
+         <form action="index.php?s=10" method="GET">
+             <p>Police d\'affichage</p>
+             <select id="typePolice" name="typePolice">
+                <option '.Preference::selectedOptionTypePolice()[0].' value="playfair">Playfair</option>
+                 <option '.Preference::selectedOptionTypePolice()[1].' value="oswald">Oswald</option>
+                 <option '.Preference::selectedOptionTypePolice()[2].' value="lobster">Lobster</option>
+                 <option '.Preference::selectedOptionTypePolice()[3].' value="shadow">Shadows Into Light</option>
+             </select>
+             </br>
+            </br>
+            <p>Taille de la police</p>
+             <select id="taillePolice" name="taillePolice">
+                <option '.Preference::selectedOptionTaillePolice()[0].' value="12">12 pt</option>
+                 <option '.Preference::selectedOptionTaillePolice()[1].' value="14">14 pt</option>
+                <option '.Preference::selectedOptionTaillePolice()[2].' value="16">16 pt</option>
+                 <option '.Preference::selectedOptionTaillePolice()[3].' value="18">18 pt</option>
+                <option '.Preference::selectedOptionTaillePolice()[4].' value="20">20 pt</option>
+                 <option '.Preference::selectedOptionTaillePolice()[5].' value="22">22 pt</option>
+                <option '.Preference::selectedOptionTaillePolice()[6].' value="24">24 pt</option>
+             </select>
+             </br>
+            </br>
+    
+        <p>Luminositée de la police</p>
+              <select id="couleurPolice" name="couleurPolice">
+                 <option '.Preference::selectedOptionTextLumino()[0].' value="textLumino1">1</option>
+                 <option '.Preference::selectedOptionTextLumino()[1].' value="textLumino2">2</option>
+                 <option '.Preference::selectedOptionTextLumino()[2].' value="textLumino3">3</option>
+                 <option '.Preference::selectedOptionTextLumino()[3].' value="textLumino4">4</option>
+                 <option '.Preference::selectedOptionTextLumino()[4].' value="textLumino5">5</option>
+             </select>
+
+            </br>
+            </br>
+            <input type="submit" name="submitPreference" value="Sauvegarder">
+        </form>
+         </div>
+         <div class="tab-pane" id="2">
+            <input type="button" value="ajouter un signet">
+             </br>
+             </br>
+        <input type="button" value="Plein écran">
+                 </br>
+             </br>
+        <input type="button" value="partager">
+        </div>
+         <div class="tab-pane" id="3">
+            <input type="checkbox">Toujours afficher les commentaires.
+             </br>
+             </br>
+        <input type="checkbox">Commentaires compactes.
+             </br>
+             </br>
+        <input type="checkbox">Ne pas m\'offrir d\'écrire de commentaires.
+            </br>
+            </br>
+<input type="button" value="Sauvegarder">
+        </div>
+        </div>
+      </div>
+
+        </div>  <!-- FIN COLONNE DROITE -->';
+  }
 
 
     /**
@@ -97,7 +171,7 @@ class VueOuvrage{
           }
           echo "</textarea><br>
         </article>
-        <input type=\"submit\" name=\"cmd\" value=\"Mettre à jour\">
+        <input type=\"submit\" name=\"cmd\" class=\"btn btn-primary\" value=\"Mettre à jour\">
       </article>
 
     </form>
@@ -128,7 +202,7 @@ class VueOuvrage{
           <article class=\"form-group\">
             <label for=\"contenu\"></label><textarea rows=\"20\" cols=\"50\" name=\"txtContenu\" id=\"contenu\" class=\"form-control\" placeholder=\"Article\"></textarea><br>
           </article>    
-          <input type=\"submit\" name=\"cmd\" value=\"Enregistrer\" > 
+          <input type=\"submit\" name=\"cmd\" class=\"btn btn-primary\" value=\"Enregistrer\" > 
           
         </form>
         <br>
@@ -294,19 +368,26 @@ class VueOuvrage{
      */public static function afficherOuvrage(Ouvrage $oOuvrage, $sMsg="&nbsp;"){
     //echo $oOuvrage->getIdOuvrage();
     echo "
-    <h1>Affichage d'un ouvrage</h1>
-    <p>".$sMsg."</p>";
+    <p>".$sMsg."</p>
+    <h1>Visualisation d'un ouvrage</h1>";
     echo "<article class='visualiserOuvrage col-xs-12 col-md-9 col-lg-9' id='lecture'>";
     echo "<span class= 'titre'>".$oOuvrage->getOuvrageTitre()."</span><br>";
     echo "Genre : ".$oOuvrage->getOuvrageGenre()."<br><br><br>";
     if (isset($_SESSION['tContenu'])){
       foreach ($_SESSION['tContenu'] as $valeur ) {
-        echo "<p>".$valeur."</p><br>";
+          
+        echo  "<p>".$valeur['cont']."</p>";
+          
+        //commentaires 
       }
     }
     echo "</article>";
     $_SESSION['tContenu'] = '';
+    
+
          
+
+    
         echo '            <div class="hidden-xs col-md-3 col-sm-3 col-lg-3">
       <div class="tabbable tabs-right">
         <ul class="nav nav-tabs">
@@ -315,48 +396,51 @@ class VueOuvrage{
           <li><a href="#3" data-toggle="tab"><img src="../site/img/imgAccueil/comment-icon.png" width="20px"></a></li>
         </ul>
         <div class="tab-content">
-         <div class="tab-pane active" id="1">
-             <p>Police d\'affichage</p>
+         <div class="tab-pane active" id="1">';
+         
+         if(isset($_GET['action']))
+         {
+            echo '<form action="index.php?s='.$_GET['s'].'&action='.$_GET['action'].'&idOuvrage='.$_GET['idOuvrage'].'" method="POST">';
+         }
+         else
+         {
+            echo '<form action="index.php?s='.$_GET['s'].'&idOuvrage='.$_GET['idOuvrage'].'" method="POST">';
+         }
+             echo '<p>Police d\'affichage</p>
              <select id="typePolice" name="typePolice">
-                <option value="playfair">Playfair</option>
-                 <option value="oswald">Oswald</option>
-                 <option value="lobster">Lobster</option>
-                 <option value="shadow">Shadows Into Light</option>
+                <option '.Preference::selectedOptionTypePolice()[0].' value="playfair">Playfair</option>
+                 <option '.Preference::selectedOptionTypePolice()[1].' value="oswald">Oswald</option>
+                 <option '.Preference::selectedOptionTypePolice()[2].' value="lobster">Lobster</option>
+                 <option '.Preference::selectedOptionTypePolice()[3].' value="shadow">Shadows Into Light</option>
              </select>
              </br>
             </br>
             <p>Taille de la police</p>
              <select id="taillePolice" name="taillePolice">
-                <option value="12">12 pt</option>
-                 <option value="14">14 pt</option>
-                <option value="16">16 pt</option>
-                 <option value="18">18 pt</option>
-                <option value="20">20 pt</option>
-                 <option value="22">22 pt</option>
-                <option value="24">24 pt</option>
+                <option '.Preference::selectedOptionTaillePolice()[0].' value="12">12 pt</option>
+                 <option '.Preference::selectedOptionTaillePolice()[1].' value="14">14 pt</option>
+                <option '.Preference::selectedOptionTaillePolice()[2].' value="16">16 pt</option>
+                 <option '.Preference::selectedOptionTaillePolice()[3].' value="18">18 pt</option>
+                <option '.Preference::selectedOptionTaillePolice()[4].' value="20">20 pt</option>
+                 <option '.Preference::selectedOptionTaillePolice()[5].' value="22">22 pt</option>
+                <option '.Preference::selectedOptionTaillePolice()[6].' value="24">24 pt</option>
              </select>
              </br>
             </br>
     
         <p>Luminositée de la police</p>
               <select id="couleurPolice" name="couleurPolice">
-                 <option value="textLumino1">1</option>
-                 <option value="textLumino2">2</option>
-                 <option value="textLumino3">3</option>
-                 <option value="textLumino4">4</option>
-                 <option value="textLumino5">5</option>
+                 <option '.Preference::selectedOptionTextLumino()[0].' value="textLumino1">1</option>
+                 <option '.Preference::selectedOptionTextLumino()[1].' value="textLumino2">2</option>
+                 <option '.Preference::selectedOptionTextLumino()[2].' value="textLumino3">3</option>
+                 <option '.Preference::selectedOptionTextLumino()[3].' value="textLumino4">4</option>
+                 <option '.Preference::selectedOptionTextLumino()[4].' value="textLumino5">5</option>
              </select>
-            <p>Luminositée du fond d\'écran</p>
-              <select id="couleurFond" name="couleurFond">
-                 <option value="bgLumino1">1</option>
-                 <option value="bgLumino2">2</option>
-                 <option value="bgLumino3">3</option>
-                 <option value="bgLumino4">4</option>
-                 <option value="bgLumino5">5</option>
-             </select>
+
             </br>
             </br>
-            <input type="button" value="Sauvegarder">
+            <input type="submit" '.Preference::disableSubmit().' name="submitPreference" value="Sauvegarder">
+        </form>
          </div>
          <div class="tab-pane" id="2">
             <input type="button" value="ajouter un signet">
@@ -385,7 +469,27 @@ class VueOuvrage{
         </div>  <!-- FIN COLONNE DROITE -->';
     }
 
-
+     /**
+     * Afficher confirmation suppression
+     * @param Ouvrage $oOuvrage 
+     */public static function confirmerSuppOuvrage(Ouvrage $oOuvrage, $sMsg="&nbsp;"){
+    //echo $oOuvrage->getIdOuvrage();
+    echo "
+    <h1>Confirmation de suppression!</h1>
+    <p>".$sMsg."</p>";
+    
+      echo '<p>Voulez vous vraiment supprimer cet ouvrage?</p>';
+      echo "<article>";
+      echo "Titre : <span class= 'titre'>".$oOuvrage->getOuvrageTitre()."</span><br>";
+      echo "Genre : ".$oOuvrage->getOuvrageGenre()."<br><br>";
+      
+       echo "</article>
+       <a href=\"index.php?s=".$_GET['s']
+            ."&action=sup&idOuvrage=".$oOuvrage->getIdOuvrage()."\"><button type=\"button\" class=\"btn btn-danger\">Supprimer</button></a>
+    <a href=\"index.php?s=".$_GET['s']."&aff=\"><button type=\"button\" class=\"btn btn-primary\" href=\"#\">Annuler</button></a>
+       ";
+    
+  }
     
 
     

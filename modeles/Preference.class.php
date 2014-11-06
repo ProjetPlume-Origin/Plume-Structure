@@ -4,7 +4,6 @@
 class Preference {
 	
 	
-	/* Propriétés privées */
 	public $idUtilisateur;
 	public $sFontFamily;
 	public $sFontColor;
@@ -92,18 +91,25 @@ class Preference {
 	}
 	
     
-    /****** Fonctions ********/
+    /****** Static functions ********/
     
     
     
-    public static function sauvegarderPreference($idUtilisateur, $sFontFamily, $sFontColor, $iFontsize, $sBackgroundColor)
+    public static function sauvegarderPreference($idUtilisateur, $sFontFamily, $sFontColor, $iFontsize)
     {
-    
+        $bRes = false;
+        
         $oConnexion = new MySqliLib();
 		
-		$sRequete= "UPDATE reglage SET sTypePolice = '".$sFontFamily."',sTaillePolice = '".$iFontsize."',sCouleurPolice = '".$sFontColor."',sCouleurFond = '".$sBackgroundColor."'WHERE idUtilisateur = '".$idUtilisateur."';";
+		$sRequete= "UPDATE reglage SET sTypePolice = '".$sFontFamily."',sTaillePolice = '".$iFontsize."',sCouleurPolice = '".$sFontColor."' WHERE idUtilisateur = '".$idUtilisateur."';";
         
-        $oResult = $oConnexion->executer($sRequete);
+        if($oResult = $oConnexion->executer($sRequete) == true)
+        {
+            $oResult = $oConnexion->executer($sRequete);
+             $bRes = true;
+        }
+             
+        return $bRes;
     }
     
     
@@ -124,9 +130,97 @@ class Preference {
     }
     
     
+    public static function selectedOptionTypePolice()
+    {
+    
+        $aSelectPreferenceTypePoliceCheck = ["playfair","oswald","lobster","shadow"];
+        $aSelectPreferenceTypePoliceResult = ["","","",""];
+        
+        if(isset($_SESSION["IdUtilisateur"]))
+        {
+            for ($i=0 ; $i<count($aSelectPreferenceTypePoliceCheck) ; $i++)
+            {
+
+                if( $aSelectPreferenceTypePoliceCheck[$i] == $_SESSION["sTypePolice"])
+                {
+                    $aSelectPreferenceTypePoliceResult[$i] = "selected='selected'";
+                }
+
+            }
+        }
+        
+         return $aSelectPreferenceTypePoliceResult;
+        
+    }
+    
+    public static function selectedOptionTaillePolice()
+    {
+    
+        $aSelectPreferenceTaillePoliceCheck = ["12","14","16","18","20","22","24"];
+        $aSelectPreferenceTaillePoliceResult = ["","","selected='selected'","","","",""];
+        
+        if(isset($_SESSION["IdUtilisateur"]))
+        {
+            
+            for ($i=0 ; $i<count($aSelectPreferenceTaillePoliceCheck) ; $i++)
+            {
+                
+                if( $aSelectPreferenceTaillePoliceCheck[$i] == $_SESSION["sTaillePolice"])
+                {
+                    $aSelectPreferenceTaillePoliceResult[2]="";
+                    $aSelectPreferenceTaillePoliceResult[$i] = "selected='selected'";
+                }
+
+            }
+        }
+        
+        
+         return $aSelectPreferenceTaillePoliceResult;
+        
+    }
     
     
     
+    public static function selectedOptionTextLumino()
+    {
+        $aSelectPreferenceTextLuminoCheck = ["textLumino1","textLumino2","textLumino3","textLumino4","textLumino5"];
+        $aSelectPreferenceTextLuminoResult = ["","","","","selected='selected'"];
+        
+        if(isset($_SESSION["IdUtilisateur"]))
+        {
+            
+            for ($i=0 ; $i<count($aSelectPreferenceTextLuminoCheck) ; $i++)
+            {
+                
+                if( $aSelectPreferenceTextLuminoCheck[$i] == $_SESSION["sCouleurPolice"])
+                {
+                    $aSelectPreferenceTextLuminoResult[4]="";
+                    $aSelectPreferenceTextLuminoResult[$i] = "selected='selected'";
+                }
+
+            }
+        }
+        
+        
+         return $aSelectPreferenceTextLuminoResult;
+        
+    }
+    
+    
+    
+    public static function disableSubmit()
+    {
+        $sDisabled = "disabled";
+        
+        if(isset($_SESSION["IdUtilisateur"]))
+        {
+            
+            $sDisabled = "";
+    
+        }
+    
+        return $sDisabled;
+    }
     
     
     
