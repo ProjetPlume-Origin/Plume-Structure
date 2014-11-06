@@ -28,8 +28,8 @@ class VueOuvrage{
           <tr>
           <td>
           <a href=\"index.php?s=".$_GET['s']
-            ."&action=aff&idOuvrage=".$aOuvrages[$i]->getIdOuvrage()."\"><img class=\"imageOuvrage\" src=". $aOuvrages[$i]->getOuvrageCouverture()."></a><a href=\"index.php?s=".$_GET['s']
-            ."&action=aff&idOuvrage=".$aOuvrages[$i]->getIdOuvrage()."\"><span class=\"titre\">".$aOuvrages[$i]->getOuvrageTitre() 
+            ."&action=affUn&idOuvrage=".$aOuvrages[$i]->getIdOuvrage()."\"><img class=\"imageOuvrage\" src=". $aOuvrages[$i]->getOuvrageCouverture()."></a><a href=\"index.php?s=".$_GET['s']
+            ."&action=affUn&idOuvrage=".$aOuvrages[$i]->getIdOuvrage()."\"><span class=\"titre\">".$aOuvrages[$i]->getOuvrageTitre() 
             ." </span><td></a><a href=\"index.php?s=".$_GET['s']
             ."&action=mod&idOuvrage=".$aOuvrages[$i]->getIdOuvrage()."\"><img src=\"img/modif.png\"></a></td> 
             <td>
@@ -44,6 +44,99 @@ class VueOuvrage{
           
           
       }  
+
+      /*
+     * Afficher le formulaire de modification d'un Ouvrage
+     * @param Ouvrage $oOuvrage 
+     */public static function afficherUnOuvrage(Ouvrage $oOuvrage, $sMsg="&nbsp;"){
+    //echo $oOuvrage->getIdOuvrage();
+    echo "
+    <p>".$sMsg."</p>
+    <h1>Visualisation d'un ouvrage</h1>";
+    echo "<article class='visualiserOuvrage col-xs-12 col-md-9 col-lg-9' id='lecture'>";
+    echo "<span class= 'titre'>".$oOuvrage->getOuvrageTitre()."</span><br>";
+    echo "Genre : ".$oOuvrage->getOuvrageGenre()."<br><br><br>";
+    if (isset($_SESSION['tContenu'])){
+      foreach ($_SESSION['tContenu'] as $valeur ) {
+        echo  "<p>".$valeur."</p>";
+        //commentaires 
+      }
+    }
+    echo "</article>";
+    $_SESSION['tContenu'] = '';
+
+    echo '            <div class="hidden-xs col-md-3 col-sm-3 col-lg-3">
+      <div class="tabbable tabs-right">
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#1" data-toggle="tab"><img src="../site/img/imgAccueil/font.jpg" width="25px"></a></li>
+          <li><a href="#2" data-toggle="tab"><img src="../site/img/imgAccueil/Gear_icon.png" width="22px"></a></li>
+          <li><a href="#3" data-toggle="tab"><img src="../site/img/imgAccueil/comment-icon.png" width="20px"></a></li>
+        </ul>
+        <div class="tab-content">
+         <div class="tab-pane active" id="1">
+         <form action="index.php?s=10" method="GET">
+             <p>Police d\'affichage</p>
+             <select id="typePolice" name="typePolice">
+                <option '.Preference::selectedOptionTypePolice()[0].' value="playfair">Playfair</option>
+                 <option '.Preference::selectedOptionTypePolice()[1].' value="oswald">Oswald</option>
+                 <option '.Preference::selectedOptionTypePolice()[2].' value="lobster">Lobster</option>
+                 <option '.Preference::selectedOptionTypePolice()[3].' value="shadow">Shadows Into Light</option>
+             </select>
+             </br>
+            </br>
+            <p>Taille de la police</p>
+             <select id="taillePolice" name="taillePolice">
+                <option '.Preference::selectedOptionTaillePolice()[0].' value="12">12 pt</option>
+                 <option '.Preference::selectedOptionTaillePolice()[1].' value="14">14 pt</option>
+                <option '.Preference::selectedOptionTaillePolice()[2].' value="16">16 pt</option>
+                 <option '.Preference::selectedOptionTaillePolice()[3].' value="18">18 pt</option>
+                <option '.Preference::selectedOptionTaillePolice()[4].' value="20">20 pt</option>
+                 <option '.Preference::selectedOptionTaillePolice()[5].' value="22">22 pt</option>
+                <option '.Preference::selectedOptionTaillePolice()[6].' value="24">24 pt</option>
+             </select>
+             </br>
+            </br>
+    
+        <p>Luminositée de la police</p>
+              <select id="couleurPolice" name="couleurPolice">
+                 <option '.Preference::selectedOptionTextLumino()[0].' value="textLumino1">1</option>
+                 <option '.Preference::selectedOptionTextLumino()[1].' value="textLumino2">2</option>
+                 <option '.Preference::selectedOptionTextLumino()[2].' value="textLumino3">3</option>
+                 <option '.Preference::selectedOptionTextLumino()[3].' value="textLumino4">4</option>
+                 <option '.Preference::selectedOptionTextLumino()[4].' value="textLumino5">5</option>
+             </select>
+
+            </br>
+            </br>
+            <input type="submit" name="submitPreference" value="Sauvegarder">
+        </form>
+         </div>
+         <div class="tab-pane" id="2">
+            <input type="button" value="ajouter un signet">
+             </br>
+             </br>
+        <input type="button" value="Plein écran">
+                 </br>
+             </br>
+        <input type="button" value="partager">
+        </div>
+         <div class="tab-pane" id="3">
+            <input type="checkbox">Toujours afficher les commentaires.
+             </br>
+             </br>
+        <input type="checkbox">Commentaires compactes.
+             </br>
+             </br>
+        <input type="checkbox">Ne pas m\'offrir d\'écrire de commentaires.
+            </br>
+            </br>
+<input type="button" value="Sauvegarder">
+        </div>
+        </div>
+      </div>
+
+        </div>  <!-- FIN COLONNE DROITE -->';
+  }
 
 
     /**

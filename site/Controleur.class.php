@@ -555,6 +555,9 @@
           case "aff":
           Controleur::gererAfficherOuvrage();
           break;
+          case "affUn":
+          Controleur::gererAfficherUnOuvrage();
+          break;
           case "mod":
           Controleur::gererModifierOuvrage();
           break;
@@ -802,7 +805,31 @@
         }//fin de la fonction conformation suppression()
     
         
-        
+         /**
+         * afficher le formulaire de modification et sur submit modifier l'Ouvrage dans la base de données 
+         */
+        public static function gererAfficherUnOuvrage(){
+
+          try{
+                //1èr cas : aucun submit n'a été cliqué
+            if(isset($_POST['cmd']) == false){
+              $oOuvrage = new Ouvrage($_GET['idOuvrage']);
+
+              $oOuvrage->rechercherOuvrage();
+              $oOuvrage->rechercherContenu();
+
+                    //afficher le formulaire
+              VueOuvrage::afficherUnOuvrage($oOuvrage);
+                
+                          
+
+            }
+          }catch(Exception $e){
+
+                //afficher le formulaire
+            VueOuvrage::afficherUnOuvrage($oOuvrage, $e->getMessage());
+          }
+        }//fin de la fonction gererAfficherOuvrage()
 
      
      
