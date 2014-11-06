@@ -695,12 +695,12 @@
               $cDivision = explode("\r\n", $dContenu);
               $tContenu = array_values(array_filter($cDivision));
 
-              $oOuvrage = new Ouvrage($_POST['idOuvrage'], $_POST['txtTitre'],' ', $_POST['txtGenre']);
+              $oOuvrage = new Ouvrage($_POST['idOuvrage'], $_POST['txtTitre'],' ', ' ', $_POST['txtGenre']);
                     //appel a la fonction pour ajout des paragraphes
               $oOuvrage->supprimerContenu();
                     //apres la mise dans un tableau on fait l'insertion 
               for ($i = 0; $i < count($tContenu); $i++) { 
-                $cOuvrage = new Ouvrage($_POST['idOuvrage'], $_POST['txtTitre'],' ', $_POST['txtGenre'], $tContenu[$i]);
+                $cOuvrage = new Ouvrage($_POST['idOuvrage'], $_POST['txtTitre'],' ', ' ', $_POST['txtGenre'], $tContenu[$i]);
 
                         //appel a la fonction pour ajout des paragraphes
                 $cOuvrage->modifierContenu();
