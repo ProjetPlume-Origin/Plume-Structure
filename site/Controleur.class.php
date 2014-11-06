@@ -691,7 +691,7 @@
               $oOuvrage = new Ouvrage($_GET['idOuvrage']);
 
               $oOuvrage->rechercherOuvrage();
-              $oOuvrage->rechercherContenu();
+              $oOuvrage->rechercherContenuPragraphe();
 
                     //afficher le formulaire
               VueOuvrage::afficherModifierOuvrage($oOuvrage);
@@ -724,7 +724,7 @@
           }catch(Exception $e){
             $oOuvrage = new Ouvrage($_GET['idOuvrage']);
             $oOuvrage->rechercherOuvrage();
-            $oOuvrage->rechercherContenu();
+            $oOuvrage->rechercherContenuPragraphe();
                 //afficher le formulaire
             VueOuvrage::afficherModifierOuvrage($oOuvrage, $e->getMessage());
           }
@@ -790,7 +790,7 @@
                     $oOuvrage = new Ouvrage($_GET['idOuvrage']);
 
                     $oOuvrage->rechercherOuvrage();
-                    $oOuvrage->rechercherContenu();
+                    $oOuvrage->rechercherContenuParagraphe();
 
                     //afficher le formulaire
                     VueOuvrage::confirmerSuppOuvrage($oOuvrage);
@@ -816,7 +816,7 @@
               $oOuvrage = new Ouvrage($_GET['idOuvrage']);
 
               $oOuvrage->rechercherOuvrage();
-              $oOuvrage->rechercherContenu();
+              $oOuvrage->rechercherContenuParagraphe();
 
                     //afficher le formulaire
               VueOuvrage::afficherUnOuvrage($oOuvrage);

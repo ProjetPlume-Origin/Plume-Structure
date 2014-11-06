@@ -64,8 +64,7 @@ class VueOuvrage{
     }
     echo "</article>";
     $_SESSION['tContenu'] = '';
-
-    echo '            <div class="hidden-xs col-md-3 col-sm-3 col-lg-3">
+     echo '            <div class="hidden-xs col-md-3 col-sm-3 col-lg-3">
       <div class="tabbable tabs-right">
         <ul class="nav nav-tabs">
           <li class="active"><a href="#1" data-toggle="tab"><img src="../site/img/imgAccueil/font.jpg" width="25px"></a></li>
