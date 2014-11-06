@@ -202,6 +202,20 @@ class Preference {
     
     
     
+    public static function disableSubmit()
+    {
+        $sDisabled = "disabled";
+        
+        if(isset($_SESSION["IdUtilisateur"]))
+        {
+            
+            $sDisabled = "";
+    
+        }
+    
+        return $sDisabled;
+    }
+    
     
     
     

@@ -354,7 +354,7 @@ class VueOuvrage{
 
             </br>
             </br>
-            <input type="submit" name="submitPreference" value="Sauvegarder">
+            <input type="submit" '.Preference::disableSubmit().' name="submitPreference" value="Sauvegarder">
         </form>
          </div>
          <div class="tab-pane" id="2">
