@@ -691,7 +691,7 @@
               $oOuvrage = new Ouvrage($_GET['idOuvrage']);
 
               $oOuvrage->rechercherOuvrage();
-              $oOuvrage->rechercherContenuPragraphe();
+              $oOuvrage->rechercherContenuParagraphe();
 
                     //afficher le formulaire
               VueOuvrage::afficherModifierOuvrage($oOuvrage);
