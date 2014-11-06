@@ -318,8 +318,11 @@ class VueOuvrage{
         */
         
         
-        echo "<p class='parag' data-pid='".$valeur['id']."'>".$valeur['cont']."</p>
+        //echo "<p class='parag' data-pid='".$valeur['id']."'>".$valeur['cont']."</p>
+         
+           echo "<p class='parag' data-pid='".$valeur['id']."'>".$valeur['cont']."</p>
         
+       
         <br>
         
             <h2>Example Comment</h2>
@@ -343,7 +346,7 @@ class VueOuvrage{
              echo "<p>" . $comment['sNomUtilisateur'] . ": " . $comment['sContenuCommentaire'] . "</p>";
          }
          
-         echo "---";
+         echo "---je suis la";
       }
     }
     echo "</article>

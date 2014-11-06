@@ -211,7 +211,11 @@
 		
 	}
 	
-	
+	/*
+	*function rechercherCommentaires
+	  param$paragrapheId 
+	* @uthorChristhian
+	*/
 	
 	function rechercherCommentaires($paragrapheId){
 		//Connexion à la base de données
@@ -247,7 +251,7 @@
 	 	//retourner le tableau d'objets
 		return $comments;
 		
-	}
+	}//fin function 
 	
 	
 	
