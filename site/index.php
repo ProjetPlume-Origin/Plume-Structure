@@ -22,8 +22,9 @@ ob_start();
 	require_once("../modeles/Genre.class.php");
 	require_once("../modeles/Utilisateur.class.php");
 	require_once("../modeles/Ouvrages.class.php");	
-	require_once("../modeles/Preference.class.php");	
-	
+	require_once("../modeles/Commentaire.class.php");
+	require_once("../modeles/Preference.class.php");
+
 	/**
 	* Inclure le contrôleur
 	*/
@@ -31,7 +32,9 @@ ob_start();
 	 
 	/**
 	* Inclure le gabarit (nécessairement le dernier)
-	*/	
+	*/		
+	
+		
 	require_once("gabarit.php");
 
 

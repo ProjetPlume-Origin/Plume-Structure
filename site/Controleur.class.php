@@ -238,25 +238,25 @@
         
 /******************************************************************************************************************/
 /***************************************** debut PARTIE CONTROLEUR DE Hanaa ****************************************/    
-    	/**
-		 * afficher le formulaire d'ajout et sur submit ajouter du Produit dans la base de données
-		 */
-		public static function gererInscriptionUtilisateur(){
-			
-			try{
-				//1èr cas : aucun submit n'a été cliqué
-				//if(isset($_POST['cmd']) == false) {
+      /**
+     * afficher le formulaire d'ajout et sur submit ajouter du Produit dans la base de données
+     */
+    public static function gererInscriptionUtilisateur(){
+      
+      try{
+        //1èr cas : aucun submit n'a été cliqué
+        //if(isset($_POST['cmd']) == false) {
                 if((isset($_POST['cmd']) == false) &&(isset($_GET['valid'])!= 'valid')){    
-					//afficher le formulaire
+          //afficher le formulaire
                   if(isset($_GET['s'])){
                                 //
                    
-            					ViewInscription::afficherAjouterUtilisateur();
+                      ViewInscription::afficherAjouterUtilisateur();
            
                   }   
                  //2e cas : le bouton submit Modifier a été cliqué
-				}else{
-				    $oUtilisateur = new Utilisateur();
+        }else{
+            $oUtilisateur = new Utilisateur();
                     $oUtilisateur-> setNom($_POST['txtNom']);
                     if($oUtilisateur->verificationNom()){
                         
@@ -286,24 +286,24 @@
                     }
                                                     
                     ViewInscription::afficherAjouterUtilisateur($sMsg);
-				}
-			}catch(Exception $e){
-				ViewInscription::afficherAjouterUtilisateur($e->getMessage());
-			}
-		}//fin de la fonction afficherAjouterUtilisateur()
-		
-	
+        }
+      }catch(Exception $e){
+        ViewInscription::afficherAjouterUtilisateur($e->getMessage());
+      }
+    }//fin de la fonction afficherAjouterUtilisateur()
+    
+  
 /*----------------------------------------------------------------------------------------------------------------------------*/        
         /**
-		 * afficher le formulaire de connexion et sur submit on se connecte a notre compte
-		 */
+     * afficher le formulaire de connexion et sur submit on se connecte a notre compte
+     */
      
        
            
         public static function gererConnexionUtilisateur(){
-			
-			try{
-				//1èr cas : aucun submit n'a été cliqué
+      
+      try{
+        //1èr cas : aucun submit n'a été cliqué
                    // if(isset($_POST['cmd']) == false){
                     if((isset($_POST['cmd']) == false) &&(isset($_GET['valid'])!= 'valid')){
                         //afficher le formulaire
@@ -319,7 +319,7 @@
                                          $sMsg = "La connexion  - ".$oUtilisateur->getNom()." - s'est déroulé avec succès.";
                                         $_SESSION["IdUtilisateur"] = $aUtilisateur[0]['idUtilisateur'];
                                         $_SESSION["sNomUtilisateur"] = $aUtilisateur[0]['sNomUtilisateur'];
-										$_SESSION["sTypeUtilisateur"] = $aUtilisateur[0]['sTypeUtilisateur'];
+                    $_SESSION["sTypeUtilisateur"] = $aUtilisateur[0]['sTypeUtilisateur'];
                                        // echo $_SESSION["IdUtilisateur"];
                                         
                                         
@@ -332,13 +332,13 @@
                                         
                                         //fin chargement des préférences
                                         
-									    if($_SESSION["sTypeUtilisateur"] =='Membre'){
-											 header('Location:../site/index.php');
+                      if($_SESSION["sTypeUtilisateur"] =='Membre'){
+                       header('Location:../site/index.php');
 
-										}else{
-											header('Location:../core/index.php');
-										
-										}
+                    }else{
+                      header('Location:../core/index.php');
+                    
+                    }
                                      }else{
 
                                          $sMsg = 'Ce Courriel  ou  mot de passe n\'existent pas dans notre base de données .';
@@ -346,20 +346,20 @@
                                      }
                             }else{
                                     $sMsg = 'Ce Courriel n\'existe pas dans notre base de données .';
-									ViewInscription::afficherConnexionUtilisateur($sMsg);
+                  ViewInscription::afficherConnexionUtilisateur($sMsg);
 
                              }
 
                      }
-			}catch(Exception $sMsg){
-				ViewInscription::afficherConnexionUtilisateur($sMsg);
-			}
-		}//fin de la fonction gererAjouterUtilisateur()
+      }catch(Exception $sMsg){
+        ViewInscription::afficherConnexionUtilisateur($sMsg);
+      }
+    }//fin de la fonction gererAjouterUtilisateur()
 
 
-		
-		
-		 /*
+    
+    
+     /*
        *afficher le formulaire du mot de passe 
        */
         
@@ -457,70 +457,70 @@
 
        
         public static function exampleOuvrage(){
-        	echo "
-			<h1>Lorem Ipsum</h1>
-			
-			<div class='paragraph data-pid='1'>
-				<div class='textpar'>
-					Paragraph One
-				</div>
-				
-				<div class='comments'>
-					<div class='comment' data-uid=''></div>
-					<div class='comment comm-two'></div>
-					<div class='comment comm-thr'></div>
-				
-					<div class='add-comment'>
-						Add
-					</div>
-				</div>
-				
-				
-			
-			</div>
-			<p class='paragraph' data-pid='2'>
-				Paragraph Two
-			</p>
-			<p class='paragraph' data-pid='3'>
-				Paragraph Three
-			</p>
-        	";
+          echo "
+      <h1>Lorem Ipsum</h1>
+      
+      <div class='paragraph data-pid='1'>
+        <div class='textpar'>
+          Paragraph One
+        </div>
+        
+        <div class='comments'>
+          <div class='comment' data-uid=''></div>
+          <div class='comment comm-two'></div>
+          <div class='comment comm-thr'></div>
+        
+          <div class='add-comment'>
+            Add
+          </div>
+        </div>
+        
+        
+      
+      </div>
+      <p class='paragraph' data-pid='2'>
+        Paragraph Two
+      </p>
+      <p class='paragraph' data-pid='3'>
+        Paragraph Three
+      </p>
+          ";
         }  ///fin exampe ouvrage
-		
+    
      
      
-     	/*****
-		*functionexampleComment
-		*@Christhian Diaz
-		*
-		****/
-		public  static function exampleComment()
-		{
-			if (!empty ($_POST)){
-					
-				$resultat = Commentaire::ajouterCommentaire($_POST);
-				                    
+      /*****
+    *functionexampleComment
+    *@Christhian Diaz
+    *
+    ****/
+    public  static function exampleComment()
+    {
+      if (!empty ($_POST)){
+          
+        $resultat = Commentaire::ajouterCommentaire($_POST);
+                            
                 if ($resultat !== false) {
-					//echo "Saved as ID: $resultat";
+          //echo "Saved as ID: $resultat";
                     echo"Comment".$_POST['sContenuCommentaire']."saved.";
-				} else {
-					echo "Error Saving";
-					include("../vues/commentaires/add.php");
-				}
-								
-			} else {
-				include("../vues/commentaires/add.php");	
-			}
-		}/////////fin example comment christhian diaz 
+        } else {
+          echo "Error Saving";
+          include("../vues/commentaires/add.php");
+        }
+                
+      } else {
+        include("../vues/commentaires/add.php");  
+      }
+    }/////////fin example comment christhian diaz 
 
         //*******afiicher la liste de commentaries***/
-		public static function listeDesCommentaires()
-		{
-				
-			$data = Commentaire::index();
-			
-			include("../vues/commentaires/index.php");
-		}//fin affiche liste commentaries
+    public static function listeDesCommentaires()
+    {
+        
+      $data = Commentaire::index();
+      
+      include("../vues/commentaires/index.php");
+    }//fin affiche liste commentaries
 
 
         /***
@@ -528,12 +528,12 @@
          * Active et desative le commentaires
          *  Christhian Diaz
          */
-		public static function switchCommentaire()
-		{
-			Commentaire::setActive($_GET['cid'],$_GET['st']);
-			header('Location: index.php?s=6');
-		}/// fin function active et desative
-		
+    public static function switchCommentaire()
+    {
+      Commentaire::setActive($_GET['cid'],$_GET['st']);
+      header('Location: index.php?s=6');
+    }/// fin function active et desative
+    
      
 
 
