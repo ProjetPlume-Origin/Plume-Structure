@@ -60,8 +60,7 @@
             break;
                     
           case 10: 
-<<<<<<< HEAD
-          //fonction qui redirige sur un affichage propre a un oeuvre
+            //fonction qui redirige sur un affichage propre a un oeuvre
             Controleur::gererAfficherOuvrage();
             break;
 
