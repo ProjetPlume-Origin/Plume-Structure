@@ -313,7 +313,7 @@ class VueOuvrage{
       if(!(count($aResult) > 0)) {
 
         echo "
-          <p class=\"alert alert-warning msgRecherche\">Aucun ouvrage ne correspond à votre recherche</p>
+          <p class=\"alert alert-success msgRecherche\">Aucun ouvrage ne correspond à votre recherche</p>
           ";
       }else {
 
