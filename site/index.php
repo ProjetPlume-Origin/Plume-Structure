@@ -14,7 +14,6 @@ ob_start();
 	require_once("../vues/VueGenre.class.php");
  	require_once("../vues/ViewInscription.class.php");
 	require_once("../vues/vueOuvrage.class.php");
-	require_once("../vues/VueContact.php");
 		
 	/**
 	* Inclure les modèles
@@ -22,8 +21,7 @@ ob_start();
 	require_once("../modeles/Genre.class.php");
 	require_once("../modeles/Utilisateur.class.php");
 	require_once("../modeles/Ouvrages.class.php");	
-	require_once("../modeles/Preference.class.php");	
-	
+	require_once("../modeles/Commentaire.class.php");	
 	/**
 	* Inclure le contrôleur
 	*/
@@ -31,8 +29,10 @@ ob_start();
 	 
 	/**
 	* Inclure le gabarit (nécessairement le dernier)
-	*/	
-	require_once("gabarit.php");
+	*/		
+	
+		
+		require_once("gabarit.php");
 
 
 ?>

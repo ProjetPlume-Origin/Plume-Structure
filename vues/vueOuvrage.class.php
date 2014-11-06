@@ -17,6 +17,7 @@ class VueOuvrage{
       <p>".$sMsg."</p>";
       if(count($aOuvrages) <= 0){
         echo "<p>Aucun ouvrage n'est disponible. Veuillez en ajouter un.</p>";
+        
         return;
       }
 
@@ -32,10 +33,31 @@ class VueOuvrage{
             ."&action=aff&idOuvrage=".$aOuvrages[$i]->getIdOuvrage()."\"><span class=\"titre\">".$aOuvrages[$i]->getOuvrageTitre() 
             ." </span><td></a><a href=\"index.php?s=".$_GET['s']
             ."&action=mod&idOuvrage=".$aOuvrages[$i]->getIdOuvrage()."\"><img src=\"img/modif.png\"></a></td> 
-            <td>
-            <a href=\"index.php?s=".$_GET['s']
-            ."&action=affSupp&idOuvrage=".$aOuvrages[$i]->getIdOuvrage()."\"><img src=\"img/supp.png\"></a><br>
-            
+<<<<<<< HEAD
+            <td><a href=\"#myModal\" data-toggle='modal'><img src=\"img/supp.png\"></a>
+            <div id='myModal' class='modal fade'>
+        <div class='modal-dialog'>
+            <div class='modal-content'>
+                <div class='modal-header'>
+                    <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
+                    <h2 class='modal-title'>Confirmation de suppression</h2>
+                </div>
+                <div class='modal-body'>
+                    <p>Voulez vous vraiment supprimer cet ouvrage : <span class=\"titreSupp\">".$aOuvrages[$i]->getOuvrageTitre() 
+            ."</span>?</p>
+                </div>
+                <div class='modal-footer'>
+                    <a href=\"index.php?s=".$_GET['s']
+            ."&action=sup&idOuvrage=".$aOuvrages[$i]->getIdOuvrage()."\"><button type='button' class='btn btn-primary'>Supprimer</button></a>
+            <button type='button' class='btn btn-default' data-dismiss='modal'>Annuler</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>     
+        
+        
+         
             </td>
             </tr>
             </table>
@@ -162,9 +184,10 @@ class VueOuvrage{
                   <p class="produit-auteur">Par: '.$aNom[0]['sNomUtilisateur'].'</p>
                   <img src="img/imgAccueil/view-icon.png" width="20px"><span class="produit-vues"> 25</span>
                   <img src="img/imgAccueil/comment-icon.png" width="13px"><span class="produit-commentaires"> 12</span>
+                  
                 </div>
               </a>
-          
+           
           ';
       }
 
@@ -251,13 +274,11 @@ class VueOuvrage{
                     <img src="img/imgAccueil/view-icon.png" width="20px"><span class="produit-vues"> 25</span>
                     <img src="img/imgAccueil/comment-icon.png" width="13px"><span class="produit-commentaires"> 12</span>
                   </div>
-                </a>            
+                </a>
+                            
             ';
           }            
-            // foreach($aResult as $value)
-            // {
-            //   print_r($value);
-            // }
+            
         
             echo "
             </div>  <!-- FIN RESULTATS RECHERCHE AVANCEE -->
@@ -276,24 +297,62 @@ class VueOuvrage{
      */public static function afficherOuvrage(Ouvrage $oOuvrage, $sMsg="&nbsp;"){
     //echo $oOuvrage->getIdOuvrage();
     echo "
+<<<<<<< HEAD
+    <h1>Affichage d'un ouvrage</h1>
+    <p>".$sMsg."</p>";
+    echo "<article class='visualiserOuvrage col-xs-12 col-md-9 col-lg-9' id='lecture'>   ";
+=======
     <p>".$sMsg."</p>
     <h1>Visualisation d'un ouvrage</h1>";
     echo "<article class='visualiserOuvrage col-xs-12 col-md-9 col-lg-9' id='lecture'>";
+>>>>>>> upstream/master
     echo "<span class= 'titre'>".$oOuvrage->getOuvrageTitre()."</span><br>";
     echo "Genre : ".$oOuvrage->getOuvrageGenre()."<br><br><br>";
-    if (isset($_SESSION['tContenu'])){
+   
+      
+      
+      if (isset($_SESSION['tContenu'])){
       foreach ($_SESSION['tContenu'] as $valeur ) {
+<<<<<<< HEAD
+        
+      
+           echo "
+       
+        <br>
+        
+            <form method='post' action='index.php?s=7'>
+            
+                <div>
+                    <label for='sContenuCommentaire'>Ajouter Commentaire</label>
+                    <textarea name='sContenuCommentaire'></textarea>
+                </div>
+            
+        
+                <input name='idParagraphe' value='".$valeur['id']."'  type='hidden'>
+            
+                <input type= 'submit' value='Salvar'>
+            </form>
+            
+         <br>
+         <h2>Commentaires</h2>";
+         
+         foreach ($valeur['commentaires'] as $comment) {
+             echo "<p>" . $comment['sNomUtilisateur'] . ": " . $comment['sContenuCommentaire'] . "</p>";
+         }
+         
+        
+=======
         echo  "<p>".$valeur."</p>";
         //commentaires 
+>>>>>>> upstream/master
       }
     }
-    echo "</article>";
+    echo "</article>
+    
+    
+    ";
     $_SESSION['tContenu'] = '';
-    
-
          
-
-    
         echo '            <div class="hidden-xs col-md-3 col-sm-3 col-lg-3">
       <div class="tabbable tabs-right">
         <ul class="nav nav-tabs">
@@ -303,42 +362,47 @@ class VueOuvrage{
         </ul>
         <div class="tab-content">
          <div class="tab-pane active" id="1">
-         <form action="index.php?s=10" method="GET">
              <p>Police d\'affichage</p>
              <select id="typePolice" name="typePolice">
-                <option '.Preference::selectedOptionTypePolice()[0].' value="playfair">Playfair</option>
-                 <option '.Preference::selectedOptionTypePolice()[1].' value="oswald">Oswald</option>
-                 <option '.Preference::selectedOptionTypePolice()[2].' value="lobster">Lobster</option>
-                 <option '.Preference::selectedOptionTypePolice()[3].' value="shadow">Shadows Into Light</option>
+                <option value="playfair">Playfair</option>
+                 <option value="oswald">Oswald</option>
+                 <option value="lobster">Lobster</option>
+                 <option value="shadow">Shadows Into Light</option>
              </select>
              </br>
             </br>
             <p>Taille de la police</p>
              <select id="taillePolice" name="taillePolice">
-                <option '.Preference::selectedOptionTaillePolice()[0].' value="12">12 pt</option>
-                 <option '.Preference::selectedOptionTaillePolice()[1].' value="14">14 pt</option>
-                <option '.Preference::selectedOptionTaillePolice()[2].' value="16">16 pt</option>
-                 <option '.Preference::selectedOptionTaillePolice()[3].' value="18">18 pt</option>
-                <option '.Preference::selectedOptionTaillePolice()[4].' value="20">20 pt</option>
-                 <option '.Preference::selectedOptionTaillePolice()[5].' value="22">22 pt</option>
-                <option '.Preference::selectedOptionTaillePolice()[6].' value="24">24 pt</option>
+                <option value="12">12 pt</option>
+                 <option value="14">14 pt</option>
+                <option value="16">16 pt</option>
+                 <option value="18">18 pt</option>
+                <option value="20">20 pt</option>
+                 <option value="22">22 pt</option>
+                <option value="24">24 pt</option>
              </select>
              </br>
             </br>
     
         <p>Luminositée de la police</p>
               <select id="couleurPolice" name="couleurPolice">
-                 <option '.Preference::selectedOptionTextLumino()[0].' value="textLumino1">1</option>
-                 <option '.Preference::selectedOptionTextLumino()[1].' value="textLumino2">2</option>
-                 <option '.Preference::selectedOptionTextLumino()[2].' value="textLumino3">3</option>
-                 <option '.Preference::selectedOptionTextLumino()[3].' value="textLumino4">4</option>
-                 <option '.Preference::selectedOptionTextLumino()[4].' value="textLumino5">5</option>
+                 <option value="textLumino1">1</option>
+                 <option value="textLumino2">2</option>
+                 <option value="textLumino3">3</option>
+                 <option value="textLumino4">4</option>
+                 <option value="textLumino5">5</option>
              </select>
-
+            <p>Luminositée du fond d\'écran</p>
+              <select id="couleurFond" name="couleurFond">
+                 <option value="bgLumino1">1</option>
+                 <option value="bgLumino2">2</option>
+                 <option value="bgLumino3">3</option>
+                 <option value="bgLumino4">4</option>
+                 <option value="bgLumino5">5</option>
+             </select>
             </br>
             </br>
-            <input type="submit" name="submitPreference" value="Sauvegarder">
-        </form>
+            <input type="button" value="Sauvegarder">
          </div>
          <div class="tab-pane" id="2">
             <input type="button" value="ajouter un signet">
@@ -354,6 +418,7 @@ class VueOuvrage{
              </br>
              </br>
         <input type="checkbox">Commentaires compactes.
+             
              </br>
              </br>
         <input type="checkbox">Ne pas m\'offrir d\'écrire de commentaires.
@@ -363,8 +428,16 @@ class VueOuvrage{
         </div>
         </div>
       </div>
+      
 
-        </div>  <!-- FIN COLONNE DROITE -->';
+        </div>  <!-- FIN COLONNE DROITE -->'
+        
+        
+        
+        
+        
+        
+        ;
     }
 
      /**

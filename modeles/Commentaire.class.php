@@ -25,17 +25,8 @@ class Commentaire {
      *
 	 */
 	 
-	 /*
-	public function __construct($idUtilisateur=0, $sNom=" ", $sCourriel="hh@hotmail.com", $sMotDePasse="aa",$sConfirmation="aa",$sTypeUtilisateur="Membre",$sAvatar=" ",$sStatus="Inactive"){
-		       	
-		
-	} //fin du constructeur
-	*/
-	
-    /*--------------------------------------setting-Affectation---------------------------------------------------*/
-    
-    
-    /*--------------------------------------getting----------------------------------------------------*/
+
+
 	
  	/* ---------- methodes ------------*/
 	/*
@@ -69,10 +60,13 @@ class Commentaire {
 	 *
 	 */
 	public static function ajouterCommentaire($comment)
-	{	 
+	{	
+		
+		
 		$sContenuCommentaire = $_POST['sContenuCommentaire'];
 		$idParagraphe        = $_POST['idParagraphe'];
-		$idUtilisateur       = $_POST['idUtilisateur'];
+	    $idUtilisateur       = $_SESSION['IdUtilisateur'];
+	  
 		
 		$oConnexion = new MySqliLib();
 		//Requete d'ajout de l'utilisateur

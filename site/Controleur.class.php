@@ -495,9 +495,16 @@
 		*
 		****/
 		public  static function exampleComment()
+		
 		{
+			
+  /*echo"faire la session como id utilisatur".$_SESSION['idContenu'] ; */
+			
+			
+			
 			if (!empty ($_POST)){
 					
+				
 				$resultat = Commentaire::ajouterCommentaire($_POST);
 				                    
                 if ($resultat !== false) {
@@ -623,7 +630,7 @@
               $cDivision = explode("\r\n", $dContenu);
               $contenuDivision = array_values(array_filter ($cDivision));
 
-              //var_dump($_POST);
+
               //die('ici');
                //apres la mise dans un tableau on fait l'insertion 
                     //ajout le info de l'ouvrage dans la base de données ouvrage
