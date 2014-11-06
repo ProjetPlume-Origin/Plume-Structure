@@ -328,7 +328,7 @@ class VueOuvrage{
         </ul>
         <div class="tab-content">
          <div class="tab-pane active" id="1">
-         <form action="index.php?s=10" method="GET">
+         <form action="index.php?s=10&idOuvrage='.$_GET['idOuvrage'].'" method="POST">
              <p>Police d\'affichage</p>
              <select id="typePolice" name="typePolice">
                 <option '.Preference::selectedOptionTypePolice()[0].' value="playfair">Playfair</option>

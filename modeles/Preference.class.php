@@ -95,14 +95,21 @@ class Preference {
     
     
     
-    public static function sauvegarderPreference($idUtilisateur, $sFontFamily, $sFontColor, $iFontsize, $sBackgroundColor)
+    public static function sauvegarderPreference($idUtilisateur, $sFontFamily, $sFontColor, $iFontsize)
     {
-    
+        $bRes = false;
+        
         $oConnexion = new MySqliLib();
 		
-		$sRequete= "UPDATE reglage SET sTypePolice = '".$sFontFamily."',sTaillePolice = '".$iFontsize."',sCouleurPolice = '".$sFontColor."',sCouleurFond = '".$sBackgroundColor."'WHERE idUtilisateur = '".$idUtilisateur."';";
+		$sRequete= "UPDATE reglage SET sTypePolice = '".$sFontFamily."',sTaillePolice = '".$iFontsize."',sCouleurPolice = '".$sFontColor."' WHERE idUtilisateur = '".$idUtilisateur."';";
         
-        $oResult = $oConnexion->executer($sRequete);
+        if($oResult = $oConnexion->executer($sRequete) == true)
+        {
+            $oResult = $oConnexion->executer($sRequete);
+             $bRes = true;
+        }
+             
+        return $bRes;
     }
     
     
@@ -176,8 +183,7 @@ class Preference {
     
     public static function selectedOptionTextLumino()
     {
-    
-        $aSelectPreferenceTextLuminoCheck = ["1","2","3","4","5"];
+        $aSelectPreferenceTextLuminoCheck = ["textLumino1","textLumino2","textLumino3","textLumino4","textLumino5"];
         $aSelectPreferenceTextLuminoResult = ["","","","","selected='selected'"];
         
         if(isset($_SESSION["IdUtilisateur"]))
@@ -188,7 +194,7 @@ class Preference {
                 
                 if( $aSelectPreferenceTextLuminoCheck[$i] == $_SESSION["sCouleurPolice"])
                 {
-                    $aSelectPreferenceTextLuminoResult[5]="";
+                    $aSelectPreferenceTextLuminoResult[4]="";
                     $aSelectPreferenceTextLuminoResult[$i] = "selected='selected'";
                 }
 
