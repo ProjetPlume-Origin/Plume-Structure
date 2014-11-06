@@ -301,7 +301,7 @@ class VueOuvrage{
     echo "Genre : ".$oOuvrage->getOuvrageGenre()."<br><br><br>";
     if (isset($_SESSION['tContenu'])){
       foreach ($_SESSION['tContenu'] as $valeur ) {
-        echo "<p>".$valeur."</p><br>";
+        echo "<p>".$valeur."</p>";
       }
     }
     echo "</article>";
