@@ -277,10 +277,7 @@ class VueOuvrage{
                             
             ';
           }            
-            // foreach($aResult as $value)
-            // {
-            //   print_r($value);
-            // }
+            
         
             echo "
             </div>  <!-- FIN RESULTATS RECHERCHE AVANCEE -->
@@ -304,28 +301,17 @@ class VueOuvrage{
     echo "<article class='visualiserOuvrage col-xs-12 col-md-9 col-lg-9' id='lecture'>   ";
     echo "<span class= 'titre'>".$oOuvrage->getOuvrageTitre()."</span><br>";
     echo "Genre : ".$oOuvrage->getOuvrageGenre()."<br><br><br>";
-    print_r($_SESSION);
+   
+      
+      
       if (isset($_SESSION['tContenu'])){
       foreach ($_SESSION['tContenu'] as $valeur ) {
         
-        /**
-        En jquery::
-        
-        $(".parag").click(function(){
-            alert("El id es: " + $(this).data('pid'));
-        })
-        
-        */
-        
-        
-        //echo "<p class='parag' data-pid='".$valeur['id']."'>".$valeur['cont']."</p>
-         
-           echo "<p class='parag' data-pid='".$valeur['id']."'>".$valeur['cont']."</p>
-        
+      
+           echo "
        
         <br>
         
-            <h2>Example Comment</h2>
             <form method='post' action='index.php?s=7'>
             
                 <div>
@@ -346,7 +332,7 @@ class VueOuvrage{
              echo "<p>" . $comment['sNomUtilisateur'] . ": " . $comment['sContenuCommentaire'] . "</p>";
          }
          
-         echo "---je suis la";
+        
       }
     }
     echo "</article>
