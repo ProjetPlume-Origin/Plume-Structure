@@ -596,7 +596,6 @@ ul.social li {
  	text-align: center;;
  	font-size: 25px;
  	font-weight: bolder;
- 	color: #676C8E;
  }
  body > div.container.conteneur > span.messageErreur{
  	color: red;
@@ -690,7 +689,7 @@ ul.social li {
  .titreSupp{
  	font-size: 18px;
  	font-weight: bolder;
- 	color: #FA5858;
+ 	color: blue;
  }
  	
  	/*fin jalal*/

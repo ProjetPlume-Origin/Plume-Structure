@@ -1,4 +1,3 @@
-
 <?php 
 	include_once "../vues/templates/header.php";
 	
@@ -19,4 +18,3 @@
 	include_once "../vues/templates/footer.php"; 
 ?>
     <script src="../js/principale.js"></script>
-    <script src="../js/suppOuvrage.js"></script>

@@ -58,7 +58,7 @@
         <script src="../js/preference.js"></script>
         <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
         <script src="<?php echo RACINE.DS; ?>js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-		<script src="../js/suppOuvrage.js"></script>
+
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 		<!--[if lt IE 9]>
