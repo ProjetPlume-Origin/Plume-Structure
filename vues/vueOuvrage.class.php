@@ -13,7 +13,7 @@ class VueOuvrage{
     public static function afficherListeOuvrages($aOuvrages, $sMsg="&nbsp;"){
      
       echo "
-      <h1>Liste des ouvrages &nbsp;&nbsp;<a href=\"index.php?s=".$_GET['s']."&action=add\"><button type=\"button\" class=\"btn btn-success\">Ajouter un ouvrage</button></a></h1>
+      <h1>Liste des ouvrages &nbsp;&nbsp;<a href=\"index.php?s=".$_GET['s']."&action=add\"><button type=\"button\" class=\"btn btn-primary\">Ajouter un ouvrage</button></a></h1>
       <p>".$sMsg."</p>";
       if(count($aOuvrages) <= 0){
         echo "<p>Aucun ouvrage n'est disponible. Veuillez en ajouter un.</p>";
@@ -33,6 +33,7 @@ class VueOuvrage{
             ."&action=aff&idOuvrage=".$aOuvrages[$i]->getIdOuvrage()."\"><span class=\"titre\">".$aOuvrages[$i]->getOuvrageTitre() 
             ." </span><td></a><a href=\"index.php?s=".$_GET['s']
             ."&action=mod&idOuvrage=".$aOuvrages[$i]->getIdOuvrage()."\"><img src=\"img/modif.png\"></a></td> 
+<<<<<<< HEAD
             <td><a href=\"#myModal\" data-toggle='modal'><img src=\"img/supp.png\"></a>
             <div id='myModal' class='modal fade'>
         <div class='modal-dialog'>
@@ -56,14 +57,14 @@ class VueOuvrage{
 </div>     
         
         
+         
             </td>
             </tr>
             </table>
             ";
           }
-          echo "
-        </tr>
-        ";
+          
+          
       }  
 
 
@@ -100,7 +101,7 @@ class VueOuvrage{
           }
           echo "</textarea><br>
         </article>
-        <input type=\"submit\" name=\"cmd\" value=\"Mettre à jour\">
+        <input type=\"submit\" name=\"cmd\" class=\"btn btn-primary\" value=\"Mettre à jour\">
       </article>
 
     </form>
@@ -131,7 +132,7 @@ class VueOuvrage{
           <article class=\"form-group\">
             <label for=\"contenu\"></label><textarea rows=\"20\" cols=\"50\" name=\"txtContenu\" id=\"contenu\" class=\"form-control\" placeholder=\"Article\"></textarea><br>
           </article>    
-          <input type=\"submit\" name=\"cmd\" value=\"Enregistrer\" > 
+          <input type=\"submit\" name=\"cmd\" class=\"btn btn-primary\" value=\"Enregistrer\" > 
           
         </form>
         <br>
@@ -296,9 +297,15 @@ class VueOuvrage{
      */public static function afficherOuvrage(Ouvrage $oOuvrage, $sMsg="&nbsp;"){
     //echo $oOuvrage->getIdOuvrage();
     echo "
+<<<<<<< HEAD
     <h1>Affichage d'un ouvrage</h1>
     <p>".$sMsg."</p>";
     echo "<article class='visualiserOuvrage col-xs-12 col-md-9 col-lg-9' id='lecture'>   ";
+=======
+    <p>".$sMsg."</p>
+    <h1>Visualisation d'un ouvrage</h1>";
+    echo "<article class='visualiserOuvrage col-xs-12 col-md-9 col-lg-9' id='lecture'>";
+>>>>>>> upstream/master
     echo "<span class= 'titre'>".$oOuvrage->getOuvrageTitre()."</span><br>";
     echo "Genre : ".$oOuvrage->getOuvrageGenre()."<br><br><br>";
    
@@ -306,6 +313,7 @@ class VueOuvrage{
       
       if (isset($_SESSION['tContenu'])){
       foreach ($_SESSION['tContenu'] as $valeur ) {
+<<<<<<< HEAD
         
       
            echo "
@@ -333,6 +341,10 @@ class VueOuvrage{
          }
          
         
+=======
+        echo  "<p>".$valeur."</p>";
+        //commentaires 
+>>>>>>> upstream/master
       }
     }
     echo "</article>
@@ -428,7 +440,27 @@ class VueOuvrage{
         ;
     }
 
-
+     /**
+     * Afficher confirmation suppression
+     * @param Ouvrage $oOuvrage 
+     */public static function confirmerSuppOuvrage(Ouvrage $oOuvrage, $sMsg="&nbsp;"){
+    //echo $oOuvrage->getIdOuvrage();
+    echo "
+    <h1>Confirmation de suppression!</h1>
+    <p>".$sMsg."</p>";
+    
+      echo '<p>Voulez vous vraiment supprimer cet ouvrage?</p>';
+      echo "<article>";
+      echo "Titre : <span class= 'titre'>".$oOuvrage->getOuvrageTitre()."</span><br>";
+      echo "Genre : ".$oOuvrage->getOuvrageGenre()."<br><br>";
+      
+       echo "</article>
+       <a href=\"index.php?s=".$_GET['s']
+            ."&action=sup&idOuvrage=".$oOuvrage->getIdOuvrage()."\"><button type=\"button\" class=\"btn btn-danger\">Supprimer</button></a>
+    <a href=\"index.php?s=".$_GET['s']."&aff=\"><button type=\"button\" class=\"btn btn-primary\" href=\"#\">Annuler</button></a>
+       ";
+    
+  }
     
 
     

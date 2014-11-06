@@ -10,8 +10,7 @@
         //1èr cas : aucune option du menu n'a été sélectionné
         if(isset($_GET['s']) == false){
           $_GET['s']=1;
-        }
-        
+        }        
               
         switch($_GET['s']){
 
@@ -31,23 +30,23 @@
             self::gererRechercheAvancee();
             break;
 
-                    case 3: 
-                        self::gererConnexionUtilisateur();
-                        break; 
+          case 3: 
+              self::gererConnexionUtilisateur();
+              break; 
 
-                    case 4: 
-                        self::gererInscriptionUtilisateur();
-                        break;  
+          case 4: 
+              self::gererInscriptionUtilisateur();
+              break;  
 
-                    case 5: 
+          case 5: 
             self::gererDeconnectionUtilisateur();
             break;
                     
-                  case 6: /////controleur christhian
+          case 6: /////controleur christhian
             Controleur::exampleOuvrage();
             break;
 
-                  case 7: /////controleur christhian                           /*******du  contrelerue <---HAHAHAHAHAH **/
+          case 7: /////controleur christhian                           /*******du  contrelerue <---HAHAHAHAHAH **/
             self::exampleComment(); 
             break;
           
@@ -59,22 +58,26 @@
             self::switchCommentaire();
             break;
                     
-            case 10: 
-            //fonction qui redirige sur un affichage propre a un oeuvre
-                Controleur::gererAfficherOuvrage();
-                break;
+          case 10: 
+          //fonction qui redirige sur un affichage propre a un oeuvre
+            Controleur::gererAfficherOuvrage();
+            break;
 
-                    case 'monCompte': 
-                    Controleur::gererOuvrage();
-                    break;
+          case 'monCompte': 
+            Controleur::gererOuvrage();
+            break;
+
+          case 'contact': // Vue fait par Julian
+            VueContact::afficherFormContact();
+            break;
             
-            case 20: 
-                self::gererOublierMotDePasseUtilisateur();
-                break; 
+          case 20: 
+              self::gererOublierMotDePasseUtilisateur();
+              break; 
                     
-            case 21: 
-                self::gererRedefinirMotDePasseUtilisateur();
-                break;
+          case 21: 
+              self::gererRedefinirMotDePasseUtilisateur();
+              break;
             
         }
       }catch(Exception $e){
@@ -565,6 +568,9 @@
           case "sup":
           Controleur::gererSupprimerOuvrage();
           break;
+          case "affSupp":
+          Controleur::gererAfficherConfirmerOuvrage();
+          break;
           case "lst": default:
           Controleur::gererListeDesOuvrages();
                 }//fin du switch() sur $_GET['action']
@@ -585,10 +591,10 @@
               $sMsg ="La suppression s'est bien déroulée.";
             }
             if(isset($_GET['bMod']) == true){
-              $sMsg ="La modification de L'ouvrage s'est déroulée avec succès.";
+              $sMsg ="La modification de l'ouvrage s'est déroulée avec succès.";
             }
             if(isset($_GET['bAjo']) == true){
-              $sMsg ="L'ajout de l'ouvrage s'est déroulée avec succès.";
+              $sMsg ="L'ajout de l'ouvrage s'est déroulé avec succès.";
             }
 
                 //Rechercher la liste des Ouvrage
@@ -624,7 +630,11 @@
               $cDivision = explode("\r\n", $dContenu);
               $contenuDivision = array_values(array_filter ($cDivision));
 
+<<<<<<< HEAD
           
+=======
+              //var_dump($_POST);
+>>>>>>> upstream/master
               //die('ici');
                //apres la mise dans un tableau on fait l'insertion 
                     //ajout le info de l'ouvrage dans la base de données ouvrage
@@ -702,12 +712,12 @@
               $cDivision = explode("\r\n", $dContenu);
               $tContenu = array_values(array_filter($cDivision));
 
-              $oOuvrage = new Ouvrage($_POST['idOuvrage'], $_POST['txtTitre'],' ', $_POST['txtGenre']);
+              $oOuvrage = new Ouvrage($_POST['idOuvrage'], $_POST['txtTitre'],' ', ' ', $_POST['txtGenre']);
                     //appel a la fonction pour ajout des paragraphes
               $oOuvrage->supprimerContenu();
                     //apres la mise dans un tableau on fait l'insertion 
               for ($i = 0; $i < count($tContenu); $i++) { 
-                $cOuvrage = new Ouvrage($_POST['idOuvrage'], $_POST['txtTitre'],' ', $_POST['txtGenre'], $tContenu[$i]);
+                $cOuvrage = new Ouvrage($_POST['idOuvrage'], $_POST['txtTitre'],' ', ' ', $_POST['txtGenre'], $tContenu[$i]);
 
                         //appel a la fonction pour ajout des paragraphes
                 $cOuvrage->modifierContenu();
@@ -775,8 +785,32 @@
                 //afficher le formulaire
             VueOuvrage::afficherOuvrage($oOuvrage, $e->getMessage());
           }
-        }//fin de la fonction gererModifierOuvrage()
+        }//fin de la fonction gererAfficherOuvrage()
      
+     /**
+         * afficher conformation suppression l'Ouvrage dans la base de données 
+         */
+        public static function gererAfficherConfirmerOuvrage(){
+            
+            try{
+                //1èr cas : aucun submit n'a été cliqué
+                if(isset($_POST['cmd']) == false){
+                    $oOuvrage = new Ouvrage($_GET['idOuvrage']);
+
+                    $oOuvrage->rechercherOuvrage();
+                    $oOuvrage->rechercherContenu();
+
+                    //afficher le formulaire
+                    VueOuvrage::confirmerSuppOuvrage($oOuvrage);
+                //2e cas : le bouton submit Modifier a été cliqué
+
+                }
+            }catch(Exception $e){
+               
+                //afficher le formulaire
+                VueOuvrage::confirmerSuppOuvrage($oOuvrage, $e->getMessage());
+            }
+        }//fin de la fonction conformation suppression()
     
         
         
