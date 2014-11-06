@@ -438,5 +438,11 @@ public static function rechercherTitreOuvrage(){
 	
 }
 
+
+
+
+
+
+
 }//fin de la classe Ouvrage
 ?>

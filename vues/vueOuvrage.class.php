@@ -379,6 +379,44 @@ class VueOuvrage{
         echo  "<p>".$valeur['cont']."</p>";
           
         //commentaires 
+        
+       
+
+
+                  //echo "<p class='parag' data-pid='".$valeur['id']."'>".$valeur['cont']."</p>
+
+                  echo "<p class='parag' data-pid='".$valeur['id']."'>".$valeur['cont']."</p>
+
+
+        <br>
+
+            <form method='post' action='index.php?s=7'>
+
+                <div>
+                    <label for='sContenuCommentaire'>Ajouter Commentaire</label>
+                    <textarea name='sContenuCommentaire'></textarea>
+                </div>
+
+
+                <input name='idParagraphe' value='".$valeur['id']."'  type='hidden'>
+
+                <input type= 'submit' value='Envoyer'>
+            </form>
+
+         <br>
+         <h2>Commentaires</h2>";
+
+                  foreach ($valeur['commentaires'] as $comment) {
+                      echo "<p>" . $comment['sNomUtilisateur'] . ": " . $comment['sContenuCommentaire'] . "</p>";
+                  }
+
+                  
+        
+        
+        
+        
+        
+        
       }
     }
     echo "</article>";

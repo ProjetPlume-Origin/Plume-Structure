@@ -18,6 +18,9 @@
 						self::gererDeconnectionUtilisateur();
 						break;	
                     
+              /*   case 8: /////controleur christhian
+                self::listeDesCommentaires();
+                 break;*/
                     case 1 : default :
 						self::gererUtilisateur();
 				}
