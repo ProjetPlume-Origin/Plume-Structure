@@ -194,20 +194,64 @@
 	 	//Pour tous les enregistrements
 		for($i=0; $i<count($aEnreg); $i++){
 	 		//affecter un objet à un élément du tableau
-			
-			$oOuvrage[$i] =  $aEnreg[$i]['sContenuParagraphe'];
+			///id paraffo
+			$oOuvrage[$i]['id'] =  $aEnreg[$i]['idParagraphe'];
             
-			
-			$_SESSION['tContenu'] = $oOuvrage;
-           
-			
+            $oOuvrage[$i]['cont'] =  $aEnreg[$i]['sContenuParagraphe'];
+            
+            $oOuvrage[$i]['commentaires'] = $this->rechercherCommentaires($aEnreg[$i]['idParagraphe']);
+            
 		}
-		$_SESSION['idContenu'] =  $aEnreg[0]['idParagraphe'];
+		
+		$_SESSION['tContenu'] = $oOuvrage;
+		//$_SESSION['idContenu'] =  $aEnreg[0]['idParagraphe'];
 
 	 	//retourner le tableau d'objets
 		return $oOuvrage;
 		
 	}
+	
+	
+	
+	function rechercherCommentaires($paragrapheId){
+		//Connexion à la base de données
+		$oConnexion = new MySqliLib();
+	 	//Requête de recherche de tous les Ouvrages
+		
+        $sRequete = "SELECT c.sContenuCommentaire, u.sNomUtilisateur
+                     FROM `commentaire` AS c
+                     INNER JOIN utilisateur AS u ON u.idUtilisateur = c.idUtilisateur
+                     WHERE idParagraphe = " . $paragrapheId;
+                    
+	 	//Exécuter la requête
+		$oResult = $oConnexion->executer($sRequete);
+	 	//Récupérer le tableau des enregistrements
+		$aEnreg = $oConnexion->recupererTableau($oResult);
+
+		$comments = array();
+		
+	 	//Pour tous les enregistrements
+		$i = 0;
+        foreach($aEnreg as $commRow){
+	 		//affecter un objet à un élément du tableau
+			///id paraffo
+			$comments[$i]['sNomUtilisateur'] =  $commRow['sNomUtilisateur'];
+            
+            $comments[$i]['sContenuCommentaire']  =  $commRow['sContenuCommentaire'];
+            
+            $i++;
+		}
+		
+		//$_SESSION['idContenu'] =  $aEnreg[0]['idParagraphe'];
+
+	 	//retourner le tableau d'objets
+		return $comments;
+		
+	}
+	
+	
+	
+	
 
 	/**
 	 * Ajouter un Ouvrage

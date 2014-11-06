@@ -304,33 +304,46 @@ class VueOuvrage{
     echo "<article class='visualiserOuvrage col-xs-12 col-md-9 col-lg-9' id='lecture'>   ";
     echo "<span class= 'titre'>".$oOuvrage->getOuvrageTitre()."</span><br>";
     echo "Genre : ".$oOuvrage->getOuvrageGenre()."<br><br><br>";
-    if (isset($_SESSION['tContenu'])){
+    print_r($_SESSION);
+      if (isset($_SESSION['tContenu'])){
       foreach ($_SESSION['tContenu'] as $valeur ) {
-        echo "<p>".$valeur."</p>
+        
+        /**
+        En jquery::
+        
+        $(".parag").click(function(){
+            alert("El id es: " + $(this).data('pid'));
+        })
+        
+        */
+        
+        
+        echo "<p class='parag' data-pid='".$valeur['id']."'>".$valeur['cont']."</p>
         
         <br>
         
-<h2>Example Comment</h2>
-<form method='post' action='index.php?s=7'>
-
-	<div>
-		<label for='sContenuCommentaire'>Ajouter Commentaire</label>
-		<textarea name='sContenuCommentaire'></textarea>
-	</div>
-
-
-
-	<!--Estas dos vars deben ser tomadas del parrafo
-		y de la session respectivamente-->
-
-
-    <input name='idUtilisateur' value='5' type='text'>
-
-    <input name='idParagraphe' value=''  type='text'>
-
-    <input type= 'submit'     id=  value='Salvar'>
-</form>
-        ";
+            <h2>Example Comment</h2>
+            <form method='post' action='index.php?s=7'>
+            
+                <div>
+                    <label for='sContenuCommentaire'>Ajouter Commentaire</label>
+                    <textarea name='sContenuCommentaire'></textarea>
+                </div>
+            
+        
+                <input name='idParagraphe' value='".$valeur['id']."'  type='hidden'>
+            
+                <input type= 'submit' value='Salvar'>
+            </form>
+            
+         <br>
+         <h2>Commentaires</h2>";
+         
+         foreach ($valeur['commentaires'] as $comment) {
+             echo "<p>" . $comment['sNomUtilisateur'] . ": " . $comment['sContenuCommentaire'] . "</p>";
+         }
+         
+         echo "---";
       }
     }
     echo "</article>

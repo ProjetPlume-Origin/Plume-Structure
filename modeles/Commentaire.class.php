@@ -61,14 +61,13 @@ class Commentaire {
 	 */
 	public static function ajouterCommentaire($comment)
 	{	
-		  echo "La clave recuperada de la variable de sesión:".$_SESSION['idUtilisateur'];
-		
-		
-	
+		// echo "La clave recuperada de la variable de sesión:".$_SESSION['idUtilisateur'];
+		//print_r($_POST); die();
 		
 		$sContenuCommentaire = $_POST['sContenuCommentaire'];
 		$idParagraphe        = $_POST['idParagraphe'];
-	 //  $idUtilisateur       = $_POST['idUtilisateur']; 
+	    $idUtilisateur       = $_SESSION['IdUtilisateur'];
+	    //$idUtilisateur       = $_POST['idUtilisateur']; 
 		
 		$oConnexion = new MySqliLib();
 		//Requete d'ajout de l'utilisateur
