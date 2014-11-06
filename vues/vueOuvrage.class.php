@@ -394,9 +394,17 @@ class VueOuvrage{
           <li><a href="#3" data-toggle="tab"><img src="../site/img/imgAccueil/comment-icon.png" width="20px"></a></li>
         </ul>
         <div class="tab-content">
-         <div class="tab-pane active" id="1">
-         <form action="index.php?s=10" method="GET">
-             <p>Police d\'affichage</p>
+         <div class="tab-pane active" id="1">';
+         
+         if(isset($_GET['action']))
+         {
+            echo '<form action="index.php?s='.$_GET['s'].'&action='.$_GET['action'].'&idOuvrage='.$_GET['idOuvrage'].'" method="POST">';
+         }
+         else
+         {
+            echo '<form action="index.php?s='.$_GET['s'].'&idOuvrage='.$_GET['idOuvrage'].'" method="POST">';
+         }
+             echo '<p>Police d\'affichage</p>
              <select id="typePolice" name="typePolice">
                 <option '.Preference::selectedOptionTypePolice()[0].' value="playfair">Playfair</option>
                  <option '.Preference::selectedOptionTypePolice()[1].' value="oswald">Oswald</option>
@@ -429,7 +437,7 @@ class VueOuvrage{
 
             </br>
             </br>
-            <input type="submit" name="submitPreference" value="Sauvegarder">
+            <input type="submit" '.Preference::disableSubmit().' name="submitPreference" value="Sauvegarder">
         </form>
          </div>
          <div class="tab-pane" id="2">

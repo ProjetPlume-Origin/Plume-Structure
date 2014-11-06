@@ -765,9 +765,21 @@
                     //afficher le formulaire
               VueOuvrage::afficherOuvrage($oOuvrage);
                 
-            if(isset($_GET["boutton"]))
+            if(isset($_POST["submitPreference"])&& $_SESSION['IdUtilisateur'])
             {
-                
+                Preference::sauvegarderPreference($_SESSION['IdUtilisateur'], $_POST['typePolice'], $_POST['couleurPolice'], $_POST['taillePolice']);
+                $_SESSION["sTypePolice"] = Preference::chargerPreference($_SESSION['IdUtilisateur'])['sTypePolice'];
+                $_SESSION["sTaillePolice"] = Preference::chargerPreference($_SESSION['IdUtilisateur'])['sTaillePolice'];
+                $_SESSION["sCouleurPolice"] = Preference::chargerPreference($_SESSION['IdUtilisateur'])['sCouleurPolice'];
+                $_SESSION["sCouleurFond"] = Preference::chargerPreference($_SESSION['IdUtilisateur'])['sCouleurFond'];
+                if(isset($_GET['action']))
+                {
+                    header('Location:index.php?s='.$_GET['s'].'&action='.$_GET['action'].'&idOuvrage='.$_GET['idOuvrage'].'');
+                }
+                else
+                {
+                    header('Location:index.php?s=10&idOuvrage='.$_GET['idOuvrage'].'');
+                }
             }
                 
 
