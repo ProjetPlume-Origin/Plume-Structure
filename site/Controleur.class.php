@@ -561,6 +561,9 @@
           case "sup":
           Controleur::gererSupprimerOuvrage();
           break;
+          case "affSupp":
+          Controleur::gererAfficherConfirmerOuvrage();
+          break;
           case "lst": default:
           Controleur::gererListeDesOuvrages();
                 }//fin du switch() sur $_GET['action']
@@ -581,10 +584,10 @@
               $sMsg ="La suppression s'est bien déroulée.";
             }
             if(isset($_GET['bMod']) == true){
-              $sMsg ="La modification de L'ouvrage s'est déroulée avec succès.";
+              $sMsg ="La modification de l'ouvrage s'est déroulée avec succès.";
             }
             if(isset($_GET['bAjo']) == true){
-              $sMsg ="L'ajout de l'ouvrage s'est déroulée avec succès.";
+              $sMsg ="L'ajout de l'ouvrage s'est déroulé avec succès.";
             }
 
                 //Rechercher la liste des Ouvrage
@@ -620,7 +623,7 @@
               $cDivision = explode("\r\n", $dContenu);
               $contenuDivision = array_values(array_filter ($cDivision));
 
-              var_dump($_POST);
+              //var_dump($_POST);
               //die('ici');
                //apres la mise dans un tableau on fait l'insertion 
                     //ajout le info de l'ouvrage dans la base de données ouvrage
@@ -777,8 +780,32 @@
                 //afficher le formulaire
             VueOuvrage::afficherOuvrage($oOuvrage, $e->getMessage());
           }
-        }//fin de la fonction gererModifierOuvrage()
+        }//fin de la fonction gererAfficherOuvrage()
      
+     /**
+         * afficher conformation suppression l'Ouvrage dans la base de données 
+         */
+        public static function gererAfficherConfirmerOuvrage(){
+            
+            try{
+                //1èr cas : aucun submit n'a été cliqué
+                if(isset($_POST['cmd']) == false){
+                    $oOuvrage = new Ouvrage($_GET['idOuvrage']);
+
+                    $oOuvrage->rechercherOuvrage();
+                    $oOuvrage->rechercherContenu();
+
+                    //afficher le formulaire
+                    VueOuvrage::confirmerSuppOuvrage($oOuvrage);
+                //2e cas : le bouton submit Modifier a été cliqué
+
+                }
+            }catch(Exception $e){
+               
+                //afficher le formulaire
+                VueOuvrage::confirmerSuppOuvrage($oOuvrage, $e->getMessage());
+            }
+        }//fin de la fonction conformation suppression()
     
         
         

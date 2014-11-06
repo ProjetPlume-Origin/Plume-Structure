@@ -12,32 +12,6 @@ class VueOuvrage{
      */
     public static function afficherListeOuvrages($aOuvrages, $sMsg="&nbsp;"){
      
-     echo "
-<div class=\"modal fade\" id=\"confirm-delete\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">
-        <div class=\"modal-dialog\">
-            <div class=\"modal-content\">
-            
-                <div class=\"modal-header\">
-                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>
-                    <h4 class=\"modal-title\" id=\"myModalLabel\">Confirmation de suppression</h4>
-                </div>
-            
-                <div class=\"modal-body\">
-                    <p>Voulez vous vraiment supprimer cet ouvrage?</p>
-                    <p class=\"debug-url\"></p>
-                </div>
-                
-                <div class=\"modal-footer\">
-                    <button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">Annuler</button>
-                    <a href=\"#\" class=\"btn btn-danger danger\">Supprimer</a>
-                </div>
-            </div>
-        </div>
-    </div>
-      ";
-
-
-
       echo "
       <h1>Liste des ouvrages &nbsp;&nbsp;<a href=\"index.php?s=".$_GET['s']."&action=add\"><button type=\"button\" class=\"btn btn-primary\">Ajouter un ouvrage</button></a></h1>
       <p>".$sMsg."</p>";
@@ -60,14 +34,14 @@ class VueOuvrage{
             ."&action=mod&idOuvrage=".$aOuvrages[$i]->getIdOuvrage()."\"><img src=\"img/modif.png\"></a></td> 
             <td>
             <a href=\"index.php?s=".$_GET['s']
-            ."&action=sup&idOuvrage=".$aOuvrages[$i]->getIdOuvrage()."\"><img src=\"img/supp.png\"></a><br>
+            ."&action=affSupp&idOuvrage=".$aOuvrages[$i]->getIdOuvrage()."\"><img src=\"img/supp.png\"></a><br>
             
             </td>
             </tr>
             </table>
             ";
           }
-          echo "<a data-href=\"http:/www.google.ca\" data-toggle=\"modal\" data-target=\"#confirm-delete\" href=\"#\">SUPPRIMER</a>  ";
+          
           
       }  
 
@@ -302,7 +276,8 @@ class VueOuvrage{
      */public static function afficherOuvrage(Ouvrage $oOuvrage, $sMsg="&nbsp;"){
     //echo $oOuvrage->getIdOuvrage();
     echo "
-    <p>".$sMsg."</p>";
+    <p>".$sMsg."</p>
+    <h1>Visualisation d'un ouvrage</h1>";
     echo "<article class='visualiserOuvrage col-xs-12 col-md-9 col-lg-9' id='lecture'>";
     echo "<span class= 'titre'>".$oOuvrage->getOuvrageTitre()."</span><br>";
     echo "Genre : ".$oOuvrage->getOuvrageGenre()."<br><br><br>";
@@ -392,7 +367,27 @@ class VueOuvrage{
         </div>  <!-- FIN COLONNE DROITE -->';
     }
 
-
+     /**
+     * Afficher confirmation suppression
+     * @param Ouvrage $oOuvrage 
+     */public static function confirmerSuppOuvrage(Ouvrage $oOuvrage, $sMsg="&nbsp;"){
+    //echo $oOuvrage->getIdOuvrage();
+    echo "
+    <h1>Confirmation de suppression!</h1>
+    <p>".$sMsg."</p>";
+    
+      echo '<p>Voulez vous vraiment supprimer cet ouvrage?</p>';
+      echo "<article>";
+      echo "Titre : <span class= 'titre'>".$oOuvrage->getOuvrageTitre()."</span><br>";
+      echo "Genre : ".$oOuvrage->getOuvrageGenre()."<br><br>";
+      
+       echo "</article>
+       <a href=\"index.php?s=".$_GET['s']
+            ."&action=sup&idOuvrage=".$oOuvrage->getIdOuvrage()."\"><button type=\"button\" class=\"btn btn-danger\">Supprimer</button></a>
+    <a href=\"index.php?s=".$_GET['s']."&aff=\"><button type=\"button\" class=\"btn btn-primary\" href=\"#\">Annuler</button></a>
+       ";
+    
+  }
     
 
     
