@@ -45,11 +45,11 @@
 						Controleur::gererModifierUtilisateurAdmin();
 						break;
 					case "sup":
-						Controleur::gererSupprimerUtilisateurAdmin();
+						//Controleur::gererSupprimerUtilisateurAdmin();
 						break;
 					case "lst": default:
 						Controleur::gererListeDesUtilisateurs();
-						
+					break;	
 						
 				}//fin du switch() sur $_GET['action']
 			}catch(Exception $e){
@@ -58,6 +58,41 @@
 			
 			
 		}//fin de la fonction gererListeDesUtilisateurs()
+        
+        public static function ajax_gererUtilisateur(){
+			try{
+				//1èr cas : aucune action n'a été sélectionné $_GET['action'] n'a pas affecté d'une valeur
+              
+                if(isset($_POST['action']) == FALSE){
+					$_POST['action']="sup";
+				}
+				
+				//2e cas :L'administrateur a sélectionné une action, 
+				//il existe 3 possibilités add, mod, sup ou la liste des étudiants 
+                
+				switch($_POST['action']){
+					case "add":
+						Controleur::ajax_gererAjouterUtilisateur();
+						break;
+					case "mod":
+						Controleur::ajax_gererModifierUtilisateurAdmin();
+						break;
+					case "sup":
+						Controleur::gererSupprimerUtilisateurAdmin();
+						break;
+					
+						
+				}//fin du switch() sur $_GET['action']
+			}catch(Exception $e){
+				echo "<p>".$e->getMessage()."</p>";
+			}
+			
+			
+		}//fin de la fonction ajax_gererutilisateur()
+        
+        
+        
+        
 /*-------------------------------------------------------------------------------------------------------------*/		
 		/**
 		 * afficher la liste des Utilisateurs qui vont pouvoir être modifier ou supprimer et ajouter
@@ -151,8 +186,52 @@
 		}//fin de la fonction afficherAjouterUtilisateur()
 
 /*-------------------------------------------------------------------------------------------------------------------------------*/
+     public static function gererModifierUtilisateurAdmin(){
+			
+			try{				
+				$oUtilisateur = new Utilisateur($_GET['idUtilisateur']);
+                $oUtilisateur->rechercherUnUtilisateur();
+                //afficher le formulaire
+				ViewInscription::afficherModifierUtilisateurAdmin($oUtilisateur);			
+			}catch(Exception $e){
+			    $oUtilisateur = new Utilisateur($_GET['idUtilisateur']);
+                $oUtilisateur->rechercherUnUtilisateur();
+				//afficher le formulaire
+				ViewInscription::afficherModifierUtilisateurAdmin($oUtilisateur, $e->getMessage());
+			}
+		}//fin de la fonction gererModifierUtilisateur()   
+        
+        
+        public static function ajax_gererModifierUtilisateurAdmin(){
+			
+			try{	$oUtilisateur = new Utilisateur();
+                    $oUtilisateur -> setIdUtilisateur($_POST['iUtilisateur']);
+                    $oUtilisateur -> setNom($_POST['txtNom']);
+                    $oUtilisateur -> setTypeUtilisateur($_POST['txtType']);
+                    $oUtilisateur -> setStatus($_POST['txtStatus']);
+                   //modifier dans la base de données l'étudiant
+					$oUtilisateur->modifierUnUtilisateur();
+					$sMsg = "La modification d'utilisateur - ".$oUtilisateur->getNom()." - s'est déroulée avec succès.";
+					//$aUtilisateurs = Utilisateur::rechercherListeDesUtilisateurs();
+                    ViewInscription::afficherMessage($sMsg);
+                    
+                //header('Location:../core/index.php?s=2');
+					//ViewInscription::afficherListeUtilisateurs($aUtilisateurs, $sMsg);	
+			}catch(Exception $e){
+				$oUtilisateur = new Utilisateur($_GET['idUtilisateur']);
+				$oUtilisateur->rechercherUnUtilisateur();
+				//afficher le formulaire
+				ViewInscription::afficherModifierUtilisateurAdmin($oUtilisateur, $e->getMessage());
+			}
+		}//fin de la fonction gererModifierUtilisateur()
+                
+        
+        
+        
+        
+        
 
-    public static function gererModifierUtilisateurAdmin(){
+  /*  public static function gererModifierUtilisateurAdmin(){
 			
 			try{
 				//1èr cas : aucun submit n'a été cliqué
@@ -186,7 +265,7 @@
 				ViewInscription::afficherModifierUtilisateurAdmin($oUtilisateur, $e->getMessage());
 			}
 		}//fin de la fonction gererModifierUtilisateur()
-		
+		*/
         
     
   /*---------------------------------------------------------------------------------------------------------------------------*/		
@@ -200,14 +279,21 @@
 			try{
 				$oUtilisateur = new Utilisateur($_GET['idUtilisateur']);
 				$oUtilisateur->rechercherUnUtilisateur();
+                $aRes = Array('idUtilisateur' => $_GET['idUtilisateur']);
+               // $bDelete = true;
               //  var_dump($oUtilisateur);
               //  var_dump($oUtilisateur);
                
 				//supprimer dans la base de données d Utilisateur
-				return $oUtilisateur->supprimerUnUtilisateur();	
-              
+				$bDelete = $oUtilisateur->supprimerUnUtilisateur();	
+                $aRes['succes'] = $bDelete;
+                //header("Location:index.php?s=".$_GET['s']."&bSup=".$bDelete);
+                 ViewInscription::afficherMessage('L\'utilisateur est bien supprimé ');
+                ob_clean();
+                echo json_encode($aRes);
+                ob_flush();
 			}catch(Exception $e){
-				return $e->getMessage();
+				echo $e->getMessage();
 			}
 		}//fin de la fonction gererSupprimerUtilisateur()  
     

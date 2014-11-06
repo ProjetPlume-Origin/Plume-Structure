@@ -20,9 +20,8 @@ window.addEventListener('load', function () {
     /*------------------------------ validation le formulaire de modification-----------------------------------------------*/
     
     var modifierAdmin = document.getElementById('modifierAdmin');
-    console.log(modifierAdmin);
+    
     if(modifierAdmin){
-        console.log('je suis la ');
         modifierAdmin.addEventListener('click', valide1);
         // positionner le curseur sur le premier champs
         var nom = document.getElementById('nom');
@@ -32,7 +31,7 @@ window.addEventListener('load', function () {
      /*----------------------------- validation le formulaire de connexion -------------------------------------------------*/
     
     var connexion = document.getElementById('connexion');
-  //  console.log(connexion);
+ 
     if(connexion){
        
         connexion.addEventListener('click', valide2);
@@ -64,8 +63,7 @@ window.addEventListener('load', function () {
      /*----------------------- validation le formulaire redefinition  mot depasse oublie--------------------------------------*/
     
     var RedefinitionMotPass = document.getElementById('RedefinitionMotPass');
-    console.log('lalalalalala');
-    if(RedefinitionMotPass){
+        if(RedefinitionMotPass){
          console.log('je suis la ');
         RedefinitionMotPass.addEventListener('click', valide4);
         // positionner le curseur sur le premier champs
@@ -74,6 +72,32 @@ window.addEventListener('load', function () {
     }
     
 });
+
+
+
+
+/*
+function supprimerUnUtilisateur(sMsg, iSection, sAction, idUtilisateur)
+{
+	var bConfirm = confirm(sMsg);
+	if(bConfirm == true){
+		//Redirection
+		document.location="../ajax/gererUtilisateur.php?s="+iSection+"&idUtilisateur="+idUtilisateur+"&action="+sAction;
+	}
+}*/
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*--------------------------------------------------------------------------------------------------------------------------*/
 function valide() {
@@ -113,13 +137,9 @@ function valide() {
     console.log(valeurPass1);
     var valeurPass = nettoieEspaces(valeurPass1);
    
-
-   
-     
+ 
     var passcon = document.getElementById('passcon');
-     
     var valeurPasscon1 = passcon.value;
-    console.log(valeurPasscon1);
     var valeurPasscon = nettoieEspaces(valeurPasscon1);
     
 
@@ -268,7 +288,7 @@ function valide() {
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 
 
-
+ var iUtilisateur =document.getElementById('iUtilisateur').value;
 
 function valide1() {
     console.log(' interieur' );
@@ -282,6 +302,8 @@ function valide1() {
         tousLesSpans[i].innerHTML = '';  //enlever toutes les erreurs
     }
 
+   
+    
     var nom = document.getElementById('nom');
     var valeurNom1 = nom.value;
     console.log(valeurNom1);
@@ -297,7 +319,7 @@ function valide1() {
     valeurTypeUtilisateur = valeurTypeUtilisateur.toLowerCase();
 
    
-/*---*/
+/*--validation status-*/
     
     var statut = document.getElementById('statut');  
     var valeurStatut1 = statut.value;
@@ -309,7 +331,7 @@ function valide1() {
    
     
 
-/*-----*/
+/*--validation du nom---*/
 
     if (valeurNom == '') {
         nom.nextElementSibling.innerHTML = "Veuillez remplir ce champ.";
@@ -380,21 +402,42 @@ function valide1() {
        
     }
 
-  
-    
-    
-    
-    
-    
     /*----**/
   
     if(premiereErreur != '')
 	{
 		premiereErreur.focus();
     }
+    
+    
+    if ($etape == 3) {						
+		//Ajax
+		console.log("iUtilisateur="+iUtilisateur+"&txtNom="+valeurNom+"&txtType="+valeurTypeUtilisateur+"&txtStatus="+valeurStatut);
+		var sAction = $(this).attr('data-action');
+	
+    $.ajax({
+			url:"../ajax/gererUtilisateur.php",
+			type:"post",
+            data:"iUtilisateur="+iUtilisateur+"&txtNom="+valeurNom+"&txtType="+valeurTypeUtilisateur+"&txtStatus="+valeurStatut+"&action="+sAction,			
+			dataType:"html",
+			success:function(sData){				
+				document.getElementById("msg").innerHTML=sData;
+			},
+			error: function(){
+				alert("Erreur de communication !");
+			}
+		});
+       document.getElementById("modifierAdmin").disabled = true; 
+        btn = document.getElementById("modifierAdmin");   
+        
+        btn.className= "buttonDesactiver";
+    
+    }
+    
+    
     if ($etape == 3) {
         
-        document.querySelector("#info_ModifierAdmin").submit();
+      //  document.querySelector("#info_ModifierAdmin").submit();
        
      
     }

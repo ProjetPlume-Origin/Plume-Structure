@@ -31,23 +31,23 @@
             self::gererRechercheAvancee();
             break;
 
-                    case 3: 
-                        self::gererConnexionUtilisateur();
-                        break; 
+          case 3: 
+            self::gererConnexionUtilisateur();
+            break; 
 
-                    case 4: 
-                        self::gererInscriptionUtilisateur();
-                        break;  
+          case 4: 
+            self::gererInscriptionUtilisateur();
+            break;  
 
-                    case 5: 
+          case 5: 
             self::gererDeconnectionUtilisateur();
             break;
                     
-                  case 6: /////controleur christhian
+          case 6: /////controleur christhian
             Controleur::exampleOuvrage();
             break;
 
-                  case 7: /////controleur christhian                           /*******du  contrelerue**/
+          case 7: /////controleur christhian                           /*******du  contrelerue**/
             self::exampleComment(); 
             break;
           
@@ -59,20 +59,20 @@
             self::switchCommentaire();
             break;
                     
-            case 10: 
+          case 10: 
             //fonction qui redirige sur un affichage propre a un oeuvre
-                Controleur::gererAfficherOuvrage();
-                break;
+            Controleur::gererAfficherOuvrage();
+            break;
 
-                    case 'monCompte': 
-                    Controleur::gererOuvrage();
-                    break;
+          case 'monCompte': 
+            Controleur::gererOuvrage();
+            break;
             
-            case 20: 
+          case 20: 
                 self::gererOublierMotDePasseUtilisateur();
                 break; 
                     
-            case 21: 
+          case 21: 
                 self::gererRedefinirMotDePasseUtilisateur();
                 break;
             
@@ -82,7 +82,6 @@
       } 
       
     }//fin de la fonction gererSite()
-
 
 /***************************************** PARTIE CONTROLEUR DE JULIAN ****************************************/ 
         
@@ -238,6 +237,15 @@
     	/**
 		 * afficher le formulaire d'ajout et sur submit ajouter du Produit dans la base de données
 		 */
+        
+       
+        
+        
+       
+        
+        
+        
+        
 		public static function gererInscriptionUtilisateur(){
 			
 			try{
@@ -338,7 +346,7 @@
 			}catch(Exception $sMsg){
 				ViewInscription::afficherConnexionUtilisateur($sMsg);
 			}
-		}//fin de la fonction gererAjouterUtilisateur()
+		}//fin de la fonction gererConnexionUtilisateur()
 
 
 		
@@ -387,10 +395,9 @@
         public static function gererRedefinirMotDePasseUtilisateur() {
 
             try {
-                  echo 'JE SUIS LA 1';
+                  
                //if(isset($_POST['cmd'])){
-                
-                     echo 'JE SUIS LA 2';
+                                    
                     $oUtilisateur = new Utilisateur();
                     $oUtilisateur-> setIdUtilisateur($_POST['idUtilisateur']);// recuperation du hidden
                     $oUtilisateur-> setMotDePasse($_POST['txtPass']);
