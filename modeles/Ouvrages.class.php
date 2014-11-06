@@ -214,7 +214,7 @@
 	/*
 	*function rechercherCommentaires
 	  param$paragrapheId 
-	* @uthorChristhian
+	* @uthorChristhianDiaz
 	*/
 	
 	function rechercherCommentaires($paragrapheId){
