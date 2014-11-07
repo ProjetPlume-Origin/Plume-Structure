@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.11.1deb2+deb7u1
+-- version 4.1.4
 -- http://www.phpmyadmin.net
 --
--- Client: localhost
--- Généré le: Ven 24 Octobre 2014 à 19:07
--- Version du serveur: 5.5.38
--- Version de PHP: 5.4.4-14+deb7u14
+-- Client :  127.0.0.1
+-- Généré le :  Sam 08 Novembre 2014 à 00:06
+-- Version du serveur :  5.6.15-log
+-- Version de PHP :  5.5.8
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `e1395754`
+-- Base de données :  `projet_plume`
 --
 
 -- --------------------------------------------------------
@@ -159,8 +159,8 @@ INSERT INTO `utilisateur` (`idUtilisateur`, `sNomUtilisateur`, `sCourrielUtilisa
 -- Contraintes pour la table `commentaire`
 --
 ALTER TABLE `commentaire`
-  ADD CONSTRAINT `FK_Commentaire_idUtilisateur` FOREIGN KEY (`idUtilisateur`) REFERENCES `utilisateur` (`idUtilisateur`),
-  ADD CONSTRAINT `FK_Commentaire_idParagraphe` FOREIGN KEY (`idParagraphe`) REFERENCES `paragraphe` (`idParagraphe`);
+  ADD CONSTRAINT `FK_Commentaire_idUtilisateur` FOREIGN KEY (`idUtilisateur`) REFERENCES `utilisateur` (`idUtilisateur`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_Commentaire_idParagraphe` FOREIGN KEY (`idParagraphe`) REFERENCES `paragraphe` (`idParagraphe`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `ouvrage`
