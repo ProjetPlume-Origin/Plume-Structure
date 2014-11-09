@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Sam 08 Novembre 2014 à 00:06
+-- Généré le :  Dim 09 Novembre 2014 à 01:35
 -- Version du serveur :  5.6.15-log
 -- Version de PHP :  5.5.8
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `commentaire` (
   PRIMARY KEY (`idCommentaire`),
   KEY `FK_Commentaire_idParagraphe` (`idParagraphe`),
   KEY `FK_Commentaire_idUtilisateur` (`idUtilisateur`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- Contenu de la table `commentaire`
@@ -45,7 +45,8 @@ INSERT INTO `commentaire` (`idCommentaire`, `sContenuCommentaire`, `sDateComment
 (2, 'c''est vraiment plate', '2014-10-23 13:57:34', 11, 5),
 (3, 'Très bon', '2014-10-24 13:57:56', 12, 2),
 (4, 'ça ne me plaît pas beaucoup', '2014-10-22 13:58:25', 13, 2),
-(5, 'ça ne me plaît pas', '2014-10-08 13:58:43', 14, 3);
+(5, 'ça ne me plaît pas', '2014-10-08 13:58:43', 14, 3),
+(6, 'jkjkjk', NULL, 15, 5);
 
 -- --------------------------------------------------------
 
@@ -62,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `ouvrage` (
   `idUtilisateur` int(11) NOT NULL,
   PRIMARY KEY (`idOuvrage`),
   KEY `FK_Ouvrage_idUtilisateur` (`idUtilisateur`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Contenu de la table `ouvrage`
@@ -72,7 +73,8 @@ INSERT INTO `ouvrage` (`idOuvrage`, `sTitreOuvrage`, `sDateOuvrage`, `sCouvertur
 (1, 'Comme un chant d''espérance', '2014-09-26 18:42:38', NULL, 'Romans policiers', 5),
 (2, 'Anima', '2014-09-18 18:48:31', NULL, 'Science-fiction et fantastique', 4),
 (3, 'Je suis là', '2014-09-05 18:51:22', NULL, 'Poésie et théâtre', 2),
-(4, 'Chocolat', '2014-09-24 18:53:51', NULL, 'Littérature étrangèr', 3);
+(4, 'Chocolat', '2014-09-24 18:53:51', NULL, 'Littérature étrangèr', 3),
+(5, 'nnnn', '2014-11-08 02:00:00', 'hghhgh', 'hghgh', 5);
 
 -- --------------------------------------------------------
 
@@ -87,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `paragraphe` (
   `idOuvrage` int(11) DEFAULT NULL,
   PRIMARY KEY (`idParagraphe`),
   KEY `FK_Paragraphe_idOuvrage` (`idOuvrage`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
 
 --
 -- Contenu de la table `paragraphe`
@@ -97,7 +99,8 @@ INSERT INTO `paragraphe` (`idParagraphe`, `sContenuParagraphe`, `sDateParagraphe
 (11, '''Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error repudiandae natus sed laboriosam, ea, alias eveniet quisquam cupiditate porro magni sunt soluta asperiores fugiat quia iste, consequatur? Iusto, ex, minima.\\r\\n\\r\\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\\r\\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\\r\\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\\r\\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\\r\\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\\r\\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\r\\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\\r\\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\\r\\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\\r\\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\\r\\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\\r\\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\r\\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\\r\\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\\r\\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\\r\\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\\r\\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\\r\\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\r\\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\\r\\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\\r\\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\\r\\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\\r\\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\\r\\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\r\\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\\r\\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\\r\\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\\r\\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\\r\\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\\r\\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\r\\n''', '2014-10-01 13:52:27', 1),
 (12, '''Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error repudiandae natus sed laboriosam, ea, alias eveniet quisquam cupiditate porro magni sunt soluta asperiores fugiat quia iste, consequatur? Iusto, ex, minima.\\r\\n\\r\\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\\r\\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\\r\\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\\r\\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\\r\\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\\r\\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\r\\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\\r\\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\\r\\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\\r\\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\\r\\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\\r\\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\r\\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\\r\\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\\r\\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\\r\\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\\r\\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\\r\\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\r\\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\\r\\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\\r\\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\\r\\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\\r\\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\\r\\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\r\\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\\r\\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\\r\\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\\r\\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\\r\\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\\r\\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\r\\n''', '2014-10-02 13:52:38', 2),
 (13, '''Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error repudiandae natus sed laboriosam, ea, alias eveniet quisquam cupiditate porro magni sunt soluta asperiores fugiat quia iste, consequatur? Iusto, ex, minima.\\r\\n\\r\\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\\r\\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\\r\\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\\r\\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\\r\\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\\r\\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\r\\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\\r\\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\\r\\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\\r\\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\\r\\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\\r\\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\r\\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\\r\\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\\r\\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\\r\\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\\r\\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\\r\\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\r\\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\\r\\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\\r\\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\\r\\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\\r\\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\\r\\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\r\\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\\r\\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\\r\\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\\r\\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\\r\\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\\r\\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\r\\n''', '2014-10-09 13:53:03', 3),
-(14, '''Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error repudiandae natus sed laboriosam, ea, alias eveniet quisquam cupiditate porro magni sunt soluta asperiores fugiat quia iste, consequatur? Iusto, ex, minima.\\r\\n\\r\\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\\r\\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\\r\\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\\r\\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\\r\\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\\r\\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\r\\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\\r\\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\\r\\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\\r\\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\\r\\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\\r\\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\r\\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\\r\\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\\r\\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\\r\\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\\r\\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\\r\\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\r\\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\\r\\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\\r\\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\\r\\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\\r\\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\\r\\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\r\\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\\r\\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\\r\\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\\r\\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\\r\\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\\r\\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\r\\n''', '2014-10-13 13:53:13', 4);
+(14, '''Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error repudiandae natus sed laboriosam, ea, alias eveniet quisquam cupiditate porro magni sunt soluta asperiores fugiat quia iste, consequatur? Iusto, ex, minima.\\r\\n\\r\\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\\r\\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\\r\\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\\r\\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\\r\\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\\r\\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\r\\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\\r\\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\\r\\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\\r\\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\\r\\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\\r\\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\r\\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\\r\\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\\r\\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\\r\\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\\r\\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\\r\\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\r\\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\\r\\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\\r\\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\\r\\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\\r\\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\\r\\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\r\\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\\r\\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\\r\\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\\r\\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\\r\\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\\r\\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\r\\n''', '2014-10-13 13:53:13', 4),
+(15, 'jkkjkjkjkjk', NULL, 5);
 
 -- --------------------------------------------------------
 
@@ -121,6 +124,7 @@ CREATE TABLE IF NOT EXISTS `reglage` (
 
 INSERT INTO `reglage` (`sTypePolice`, `sTaillePolice`, `sCouleurPolice`, `sCouleurFond`, `idUtilisateur`) VALUES
 ('Arial', '14', '#000000', '#6699FF', 1),
+('playfair', '16', 'textLumino', 'bgLumino1', 6),
 ('Times', '14', '#003399', '#808080', 2);
 
 -- --------------------------------------------------------
@@ -138,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `sStatut` varchar(30) DEFAULT NULL,
   `sTypeUtilisateur` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`idUtilisateur`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- Contenu de la table `utilisateur`
@@ -149,7 +153,8 @@ INSERT INTO `utilisateur` (`idUtilisateur`, `sNomUtilisateur`, `sCourrielUtilisa
 (2, 'Alexandre Mayer', 'alex@gmail.com', '123', NULL, '1', 'utilisateur'),
 (3, 'Hanaa El Hamoumi', 'hanna@gmail.com', '123', NULL, '1', 'utilisateur'),
 (4, 'Jalal Khair', 'jalal@gmail.com', '123', NULL, '1', 'admin'),
-(5, 'Julian Rendon', 'julian@gmail.com', '123', NULL, '1', 'utilisateur');
+(5, 'Julian Rendon', 'julian@gmail.com', '123', NULL, '1', 'utilisateur'),
+(6, 'jll', 'jll@jll.com', 'deb570aa025753c86ee42d39a8c8ae96', ' ', 'active', 'Membre');
 
 --
 -- Contraintes pour les tables exportées
@@ -166,13 +171,13 @@ ALTER TABLE `commentaire`
 -- Contraintes pour la table `ouvrage`
 --
 ALTER TABLE `ouvrage`
-  ADD CONSTRAINT `FK_Ouvrage_idUtilisateur` FOREIGN KEY (`idUtilisateur`) REFERENCES `utilisateur` (`idUtilisateur`);
+  ADD CONSTRAINT `FK_Ouvrage_idUtilisateur` FOREIGN KEY (`idUtilisateur`) REFERENCES `utilisateur` (`idUtilisateur`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `paragraphe`
 --
 ALTER TABLE `paragraphe`
-  ADD CONSTRAINT `FK_Paragraphe_idOuvrage` FOREIGN KEY (`idOuvrage`) REFERENCES `ouvrage` (`idOuvrage`);
+  ADD CONSTRAINT `FK_Paragraphe_idOuvrage` FOREIGN KEY (`idOuvrage`) REFERENCES `ouvrage` (`idOuvrage`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `reglage`
